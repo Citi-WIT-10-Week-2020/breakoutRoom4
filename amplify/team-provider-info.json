@@ -23,6 +23,11 @@
             "StackName": "amplify-acornsqurl-dev-195450",
             "StackId": "arn:aws:cloudformation:us-east-1:451696402673:stack/amplify-acornsqurl-dev-195450/eff8d680-b0f5-11ea-bc4c-0ec9495d5707",
             "AmplifyAppId": "d1hvojxerhxo03"
+        },
+        "categories": {
+            "auth": {
+                "acornsqurl6b065b4d": {}
+            }
         }
     },
     "feature": {
