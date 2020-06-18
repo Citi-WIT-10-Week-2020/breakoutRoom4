@@ -1,0 +1,41 @@
+{
+    "prod": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-acornsqurl-prod-170530-authRole",
+            "UnauthRoleArn": "arn:aws:iam::451696402673:role/amplify-acornsqurl-prod-170530-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::451696402673:role/amplify-acornsqurl-prod-170530-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "amplify-acornsqurl-prod-170530-deployment",
+            "UnauthRoleName": "amplify-acornsqurl-prod-170530-unauthRole",
+            "StackName": "amplify-acornsqurl-prod-170530",
+            "StackId": "arn:aws:cloudformation:us-east-1:451696402673:stack/amplify-acornsqurl-prod-170530/486a3650-b0de-11ea-a346-12c1d85cca19",
+            "AmplifyAppId": "d1hvojxerhxo03"
+        }
+    },
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-acornsqurl-dev-195450-authRole",
+            "UnauthRoleArn": "arn:aws:iam::451696402673:role/amplify-acornsqurl-dev-195450-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::451696402673:role/amplify-acornsqurl-dev-195450-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "amplify-acornsqurl-dev-195450-deployment",
+            "UnauthRoleName": "amplify-acornsqurl-dev-195450-unauthRole",
+            "StackName": "amplify-acornsqurl-dev-195450",
+            "StackId": "arn:aws:cloudformation:us-east-1:451696402673:stack/amplify-acornsqurl-dev-195450/eff8d680-b0f5-11ea-bc4c-0ec9495d5707",
+            "AmplifyAppId": "d1hvojxerhxo03"
+        }
+    },
+    "feature": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-acornsqurl-feature-195734-authRole",
+            "UnauthRoleArn": "arn:aws:iam::451696402673:role/amplify-acornsqurl-feature-195734-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::451696402673:role/amplify-acornsqurl-feature-195734-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "amplify-acornsqurl-feature-195734-deployment",
+            "UnauthRoleName": "amplify-acornsqurl-feature-195734-unauthRole",
+            "StackName": "amplify-acornsqurl-feature-195734",
+            "StackId": "arn:aws:cloudformation:us-east-1:451696402673:stack/amplify-acornsqurl-feature-195734/51a2f960-b0f6-11ea-91b9-0a87c278b5b5",
+            "AmplifyAppId": "d1hvojxerhxo03"
+        }
+    }
+}
