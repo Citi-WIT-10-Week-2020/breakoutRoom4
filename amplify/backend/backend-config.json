@@ -1,1 +1,10 @@
-{}
+{
+	"auth": {
+		"acornsqurl6b065b4d": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": [],
+			"customAuth": false
+		}
+	}
+}
