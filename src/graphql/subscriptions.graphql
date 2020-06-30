@@ -1,0 +1,121 @@
+# this is an auto generated file. This will be overwritten
+subscription OnCreateProfessor {
+  onCreateProfessor {
+    id
+    professorName
+    universityName
+    courses {
+      items {
+        id
+        professor
+        courseName
+        courseDescription
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+      }
+      nextToken
+      startedAt
+    }
+    _version
+    _deleted
+    _lastChangedAt
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateProfessor {
+  onUpdateProfessor {
+    id
+    professorName
+    universityName
+    courses {
+      items {
+        id
+        professor
+        courseName
+        courseDescription
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+      }
+      nextToken
+      startedAt
+    }
+    _version
+    _deleted
+    _lastChangedAt
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteProfessor {
+  onDeleteProfessor {
+    id
+    professorName
+    universityName
+    courses {
+      items {
+        id
+        professor
+        courseName
+        courseDescription
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+      }
+      nextToken
+      startedAt
+    }
+    _version
+    _deleted
+    _lastChangedAt
+    createdAt
+    updatedAt
+  }
+}
+subscription OnCreateCourse {
+  onCreateCourse {
+    id
+    professor
+    courseName
+    courseDescription
+    _version
+    _deleted
+    _lastChangedAt
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateCourse {
+  onUpdateCourse {
+    id
+    professor
+    courseName
+    courseDescription
+    _version
+    _deleted
+    _lastChangedAt
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteCourse {
+  onDeleteCourse {
+    id
+    professor
+    courseName
+    courseDescription
+    _version
+    _deleted
+    _lastChangedAt
+    createdAt
+    updatedAt
+  }
+}
