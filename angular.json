@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "acornSQURL"
+    }
+  },
+  "defaultProject": "acornSQURL",
+  "cli": {
+    "analytics": "a002d5d0-1583-4af1-bf26-2085de9b1351"
+  }
 }
