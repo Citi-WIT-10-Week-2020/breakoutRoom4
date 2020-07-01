@@ -1,0 +1,139 @@
+# this is an auto generated file. This will be overwritten
+mutation CreateProfessor(
+  $input: CreateProfessorInput!
+  $condition: ModelProfessorConditionInput
+) {
+  createProfessor(input: $input, condition: $condition) {
+    id
+    professorName
+    universityName
+    courses {
+      items {
+        id
+        professor
+        courseName
+        courseDescription
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+      }
+      nextToken
+      startedAt
+    }
+    _version
+    _deleted
+    _lastChangedAt
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateProfessor(
+  $input: UpdateProfessorInput!
+  $condition: ModelProfessorConditionInput
+) {
+  updateProfessor(input: $input, condition: $condition) {
+    id
+    professorName
+    universityName
+    courses {
+      items {
+        id
+        professor
+        courseName
+        courseDescription
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+      }
+      nextToken
+      startedAt
+    }
+    _version
+    _deleted
+    _lastChangedAt
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteProfessor(
+  $input: DeleteProfessorInput!
+  $condition: ModelProfessorConditionInput
+) {
+  deleteProfessor(input: $input, condition: $condition) {
+    id
+    professorName
+    universityName
+    courses {
+      items {
+        id
+        professor
+        courseName
+        courseDescription
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+      }
+      nextToken
+      startedAt
+    }
+    _version
+    _deleted
+    _lastChangedAt
+    createdAt
+    updatedAt
+  }
+}
+mutation CreateCourse(
+  $input: CreateCourseInput!
+  $condition: ModelCourseConditionInput
+) {
+  createCourse(input: $input, condition: $condition) {
+    id
+    professor
+    courseName
+    courseDescription
+    _version
+    _deleted
+    _lastChangedAt
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateCourse(
+  $input: UpdateCourseInput!
+  $condition: ModelCourseConditionInput
+) {
+  updateCourse(input: $input, condition: $condition) {
+    id
+    professor
+    courseName
+    courseDescription
+    _version
+    _deleted
+    _lastChangedAt
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteCourse(
+  $input: DeleteCourseInput!
+  $condition: ModelCourseConditionInput
+) {
+  deleteCourse(input: $input, condition: $condition) {
+    id
+    professor
+    courseName
+    courseDescription
+    _version
+    _deleted
+    _lastChangedAt
+    createdAt
+    updatedAt
+  }
+}
