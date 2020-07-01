@@ -13,7 +13,8 @@ export class HomeScreenComponent implements OnInit {
 
   ngOnInit(): void {
     this.apiservice.ListProfessors().then((evt)=>{
-      if(evt.items == null){
+      console.log(evt);
+      if(evt.items.length == 0){
         this.apiservice.CreateProfessor({
           professorName:"haku",
           id:"0",
@@ -27,7 +28,9 @@ export class HomeScreenComponent implements OnInit {
       }
     }).catch((err)=>{
       console.log(err);
-    })
+    });
+
+
     this.apiservice.ListCourses().then((evt)=>{
       this.courses = evt.items;
       console.log(evt.items);
