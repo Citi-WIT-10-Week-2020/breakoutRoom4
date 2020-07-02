@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { APIService } from '../../API.service';
+import { v4 as uuidv4 } from 'uuid';
 @Component({
   selector: 'app-home-screen',
   templateUrl: './home-screen.component.html',
@@ -10,8 +11,16 @@ export class HomeScreenComponent implements OnInit {
   count: number = 0;
   profName: String;
   constructor(private apiservice: APIService) { }
-
+  courseObject: any;
   ngOnInit(): void {
+    
+    this.courseObject={
+      courseName:"A test Course, in object",
+      courseDescription:"TESTING TESTING HAHAHA",
+      professor:"haku",
+      id:uuidv4()
+    };
+    console.log(this.courseObject);
     this.apiservice.ListProfessors().then((evt)=>{
       console.log(evt);
       if(evt.items.length == 0){
@@ -44,15 +53,13 @@ export class HomeScreenComponent implements OnInit {
     })
   }
 
-  createCourse(){
-    this.apiservice.CreateCourse({
-      courseName:"A test Course",
-      courseDescription:"TESTING TESTING HAHAHA",
-      professor:"haku",
-      id:this.count.toString()
-    }).then((evt)=>{
+  async createCourse(){
+    await this.apiservice.CreateCourse(this.courseObject).then((evt)=>{
       console.log(evt);
-    });
+      this.courseObject.id=uuidv4();
+    }).catch((err)=>{
+      console.log(err);
+    })
   }
 
 }
