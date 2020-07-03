@@ -1,0 +1,15 @@
+type Professor @model {
+	id: ID!
+	professorName: String!
+	universityName: String!
+	courses: [Course] @connection(keyName:"byProfessor",fields:["professorName"])
+}
+
+type Course @model
+@key(name:"byProfessor",fields:["professor"],queryField:"courseByProfessor")
+{
+	id:ID!
+	professor: String!
+	courseName: String!
+	courseDescription: String!
+}
