@@ -52,5 +52,23 @@
                 "acornsqurl6b065b4d": {}
             }
         }
+    },
+    "apidev": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-acornsqurl-apidev-204118-authRole",
+            "UnauthRoleArn": "arn:aws:iam::451696402673:role/amplify-acornsqurl-apidev-204118-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::451696402673:role/amplify-acornsqurl-apidev-204118-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "amplify-acornsqurl-apidev-204118-deployment",
+            "UnauthRoleName": "amplify-acornsqurl-apidev-204118-unauthRole",
+            "StackName": "amplify-acornsqurl-apidev-204118",
+            "StackId": "arn:aws:cloudformation:us-east-1:451696402673:stack/amplify-acornsqurl-apidev-204118/43810fa0-b4ea-11ea-bc10-0aa958b6917a",
+            "AmplifyAppId": "d1hvojxerhxo03"
+        },
+        "categories": {
+            "auth": {
+                "acornsqurl6b065b4d": {}
+            }
+        }
     }
 }
