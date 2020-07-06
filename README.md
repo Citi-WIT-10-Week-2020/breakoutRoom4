@@ -1,6 +1,15 @@
 # AcornSQURL
 Anjali was here
 
+Ashley wuz also herr
+=======
+
+Caitlin has arrived
+
+=======
+Dina wuz here
+
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.8.
 ## Setup Local Environemnt
 
