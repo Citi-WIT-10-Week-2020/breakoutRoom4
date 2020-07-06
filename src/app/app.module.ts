@@ -15,6 +15,7 @@ import { TopicScreenComponent } from './components/topic-screen/topic-screen.com
 import { HomeScreenComponent } from './components/home-screen/home-screen.component';
 import { CourseComponent } from './components/course/course.component';
 import { TopicComponent } from './components/topic/topic.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -32,6 +33,7 @@ import { TopicComponent } from './components/topic/topic.component';
     AmplifyUIAngularModule,
     BrowserModule,
     AppRoutingModule,
+    BrowserAnimationsModule,
   
   ],
   providers: [],
