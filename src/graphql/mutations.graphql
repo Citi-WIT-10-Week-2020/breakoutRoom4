@@ -98,6 +98,22 @@ mutation CreateCourse(
     professor
     courseName
     courseDescription
+    topics {
+      items {
+        id
+        professor
+        TopicName
+        course
+        TopicDescription
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+      }
+      nextToken
+      startedAt
+    }
     _version
     _deleted
     _lastChangedAt
@@ -114,6 +130,22 @@ mutation UpdateCourse(
     professor
     courseName
     courseDescription
+    topics {
+      items {
+        id
+        professor
+        TopicName
+        course
+        TopicDescription
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+      }
+      nextToken
+      startedAt
+    }
     _version
     _deleted
     _lastChangedAt
@@ -130,6 +162,184 @@ mutation DeleteCourse(
     professor
     courseName
     courseDescription
+    topics {
+      items {
+        id
+        professor
+        TopicName
+        course
+        TopicDescription
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+      }
+      nextToken
+      startedAt
+    }
+    _version
+    _deleted
+    _lastChangedAt
+    createdAt
+    updatedAt
+  }
+}
+mutation CreateTopic(
+  $input: CreateTopicInput!
+  $condition: ModelTopicConditionInput
+) {
+  createTopic(input: $input, condition: $condition) {
+    id
+    professor
+    TopicName
+    course
+    TopicDescription
+    files {
+      items {
+        id
+        course
+        topic
+        filename
+        filetype
+        fileDescription
+        resourseGroup
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+      }
+      nextToken
+      startedAt
+    }
+    _version
+    _deleted
+    _lastChangedAt
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateTopic(
+  $input: UpdateTopicInput!
+  $condition: ModelTopicConditionInput
+) {
+  updateTopic(input: $input, condition: $condition) {
+    id
+    professor
+    TopicName
+    course
+    TopicDescription
+    files {
+      items {
+        id
+        course
+        topic
+        filename
+        filetype
+        fileDescription
+        resourseGroup
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+      }
+      nextToken
+      startedAt
+    }
+    _version
+    _deleted
+    _lastChangedAt
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteTopic(
+  $input: DeleteTopicInput!
+  $condition: ModelTopicConditionInput
+) {
+  deleteTopic(input: $input, condition: $condition) {
+    id
+    professor
+    TopicName
+    course
+    TopicDescription
+    files {
+      items {
+        id
+        course
+        topic
+        filename
+        filetype
+        fileDescription
+        resourseGroup
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+      }
+      nextToken
+      startedAt
+    }
+    _version
+    _deleted
+    _lastChangedAt
+    createdAt
+    updatedAt
+  }
+}
+mutation CreateFile(
+  $input: CreateFileInput!
+  $condition: ModelFileConditionInput
+) {
+  createFile(input: $input, condition: $condition) {
+    id
+    course
+    topic
+    filename
+    filetype
+    fileDescription
+    resourseGroup
+    _version
+    _deleted
+    _lastChangedAt
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateFile(
+  $input: UpdateFileInput!
+  $condition: ModelFileConditionInput
+) {
+  updateFile(input: $input, condition: $condition) {
+    id
+    course
+    topic
+    filename
+    filetype
+    fileDescription
+    resourseGroup
+    _version
+    _deleted
+    _lastChangedAt
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteFile(
+  $input: DeleteFileInput!
+  $condition: ModelFileConditionInput
+) {
+  deleteFile(input: $input, condition: $condition) {
+    id
+    course
+    topic
+    filename
+    filetype
+    fileDescription
+    resourseGroup
     _version
     _deleted
     _lastChangedAt
