@@ -102,6 +102,78 @@ export type DeleteCourseInput = {
   _version?: number | null;
 };
 
+export type CreateTopicInput = {
+  id?: string | null;
+  professor: string;
+  TopicName: string;
+  course: string;
+  TopicDescription: string;
+  _version?: number | null;
+};
+
+export type ModelTopicConditionInput = {
+  professor?: ModelStringInput | null;
+  TopicName?: ModelStringInput | null;
+  course?: ModelStringInput | null;
+  TopicDescription?: ModelStringInput | null;
+  and?: Array<ModelTopicConditionInput | null> | null;
+  or?: Array<ModelTopicConditionInput | null> | null;
+  not?: ModelTopicConditionInput | null;
+};
+
+export type UpdateTopicInput = {
+  id: string;
+  professor?: string | null;
+  TopicName?: string | null;
+  course?: string | null;
+  TopicDescription?: string | null;
+  _version?: number | null;
+};
+
+export type DeleteTopicInput = {
+  id?: string | null;
+  _version?: number | null;
+};
+
+export type CreateFileInput = {
+  id?: string | null;
+  course: string;
+  topic: string;
+  filename: string;
+  filetype: string;
+  fileDescription?: string | null;
+  resourseGroup: string;
+  _version?: number | null;
+};
+
+export type ModelFileConditionInput = {
+  course?: ModelStringInput | null;
+  topic?: ModelStringInput | null;
+  filename?: ModelStringInput | null;
+  filetype?: ModelStringInput | null;
+  fileDescription?: ModelStringInput | null;
+  resourseGroup?: ModelStringInput | null;
+  and?: Array<ModelFileConditionInput | null> | null;
+  or?: Array<ModelFileConditionInput | null> | null;
+  not?: ModelFileConditionInput | null;
+};
+
+export type UpdateFileInput = {
+  id: string;
+  course?: string | null;
+  topic?: string | null;
+  filename?: string | null;
+  filetype?: string | null;
+  fileDescription?: string | null;
+  resourseGroup?: string | null;
+  _version?: number | null;
+};
+
+export type DeleteFileInput = {
+  id?: string | null;
+  _version?: number | null;
+};
+
 export type ModelProfessorFilterInput = {
   id?: ModelIDInput | null;
   professorName?: ModelStringInput | null;
@@ -137,10 +209,44 @@ export type ModelCourseFilterInput = {
   not?: ModelCourseFilterInput | null;
 };
 
+export type ModelTopicFilterInput = {
+  id?: ModelIDInput | null;
+  professor?: ModelStringInput | null;
+  TopicName?: ModelStringInput | null;
+  course?: ModelStringInput | null;
+  TopicDescription?: ModelStringInput | null;
+  and?: Array<ModelTopicFilterInput | null> | null;
+  or?: Array<ModelTopicFilterInput | null> | null;
+  not?: ModelTopicFilterInput | null;
+};
+
+export type ModelFileFilterInput = {
+  id?: ModelIDInput | null;
+  course?: ModelStringInput | null;
+  topic?: ModelStringInput | null;
+  filename?: ModelStringInput | null;
+  filetype?: ModelStringInput | null;
+  fileDescription?: ModelStringInput | null;
+  resourseGroup?: ModelStringInput | null;
+  and?: Array<ModelFileFilterInput | null> | null;
+  or?: Array<ModelFileFilterInput | null> | null;
+  not?: ModelFileFilterInput | null;
+};
+
 export enum ModelSortDirection {
   ASC = "ASC",
   DESC = "DESC"
 }
+
+export type ModelStringKeyConditionInput = {
+  eq?: string | null;
+  le?: string | null;
+  lt?: string | null;
+  ge?: string | null;
+  gt?: string | null;
+  between?: Array<string | null> | null;
+  beginsWith?: string | null;
+};
 
 export type CreateProfessorMutation = {
   __typename: "Professor";
@@ -235,6 +341,24 @@ export type CreateCourseMutation = {
   professor: string;
   courseName: string;
   courseDescription: string;
+  topics: {
+    __typename: "ModelTopicConnection";
+    items: Array<{
+      __typename: "Topic";
+      id: string;
+      professor: string;
+      TopicName: string;
+      course: string;
+      TopicDescription: string;
+      _version: number;
+      _deleted: boolean | null;
+      _lastChangedAt: number;
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
+    nextToken: string | null;
+    startedAt: number | null;
+  } | null;
   _version: number;
   _deleted: boolean | null;
   _lastChangedAt: number;
@@ -248,6 +372,24 @@ export type UpdateCourseMutation = {
   professor: string;
   courseName: string;
   courseDescription: string;
+  topics: {
+    __typename: "ModelTopicConnection";
+    items: Array<{
+      __typename: "Topic";
+      id: string;
+      professor: string;
+      TopicName: string;
+      course: string;
+      TopicDescription: string;
+      _version: number;
+      _deleted: boolean | null;
+      _lastChangedAt: number;
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
+    nextToken: string | null;
+    startedAt: number | null;
+  } | null;
   _version: number;
   _deleted: boolean | null;
   _lastChangedAt: number;
@@ -261,6 +403,174 @@ export type DeleteCourseMutation = {
   professor: string;
   courseName: string;
   courseDescription: string;
+  topics: {
+    __typename: "ModelTopicConnection";
+    items: Array<{
+      __typename: "Topic";
+      id: string;
+      professor: string;
+      TopicName: string;
+      course: string;
+      TopicDescription: string;
+      _version: number;
+      _deleted: boolean | null;
+      _lastChangedAt: number;
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
+    nextToken: string | null;
+    startedAt: number | null;
+  } | null;
+  _version: number;
+  _deleted: boolean | null;
+  _lastChangedAt: number;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type CreateTopicMutation = {
+  __typename: "Topic";
+  id: string;
+  professor: string;
+  TopicName: string;
+  course: string;
+  TopicDescription: string;
+  files: {
+    __typename: "ModelFileConnection";
+    items: Array<{
+      __typename: "File";
+      id: string;
+      course: string;
+      topic: string;
+      filename: string;
+      filetype: string;
+      fileDescription: string | null;
+      resourseGroup: string;
+      _version: number;
+      _deleted: boolean | null;
+      _lastChangedAt: number;
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
+    nextToken: string | null;
+    startedAt: number | null;
+  } | null;
+  _version: number;
+  _deleted: boolean | null;
+  _lastChangedAt: number;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type UpdateTopicMutation = {
+  __typename: "Topic";
+  id: string;
+  professor: string;
+  TopicName: string;
+  course: string;
+  TopicDescription: string;
+  files: {
+    __typename: "ModelFileConnection";
+    items: Array<{
+      __typename: "File";
+      id: string;
+      course: string;
+      topic: string;
+      filename: string;
+      filetype: string;
+      fileDescription: string | null;
+      resourseGroup: string;
+      _version: number;
+      _deleted: boolean | null;
+      _lastChangedAt: number;
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
+    nextToken: string | null;
+    startedAt: number | null;
+  } | null;
+  _version: number;
+  _deleted: boolean | null;
+  _lastChangedAt: number;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type DeleteTopicMutation = {
+  __typename: "Topic";
+  id: string;
+  professor: string;
+  TopicName: string;
+  course: string;
+  TopicDescription: string;
+  files: {
+    __typename: "ModelFileConnection";
+    items: Array<{
+      __typename: "File";
+      id: string;
+      course: string;
+      topic: string;
+      filename: string;
+      filetype: string;
+      fileDescription: string | null;
+      resourseGroup: string;
+      _version: number;
+      _deleted: boolean | null;
+      _lastChangedAt: number;
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
+    nextToken: string | null;
+    startedAt: number | null;
+  } | null;
+  _version: number;
+  _deleted: boolean | null;
+  _lastChangedAt: number;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type CreateFileMutation = {
+  __typename: "File";
+  id: string;
+  course: string;
+  topic: string;
+  filename: string;
+  filetype: string;
+  fileDescription: string | null;
+  resourseGroup: string;
+  _version: number;
+  _deleted: boolean | null;
+  _lastChangedAt: number;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type UpdateFileMutation = {
+  __typename: "File";
+  id: string;
+  course: string;
+  topic: string;
+  filename: string;
+  filetype: string;
+  fileDescription: string | null;
+  resourseGroup: string;
+  _version: number;
+  _deleted: boolean | null;
+  _lastChangedAt: number;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type DeleteFileMutation = {
+  __typename: "File";
+  id: string;
+  course: string;
+  topic: string;
+  filename: string;
+  filetype: string;
+  fileDescription: string | null;
+  resourseGroup: string;
   _version: number;
   _deleted: boolean | null;
   _lastChangedAt: number;
@@ -349,6 +659,11 @@ export type SyncCoursesQuery = {
     professor: string;
     courseName: string;
     courseDescription: string;
+    topics: {
+      __typename: "ModelTopicConnection";
+      nextToken: string | null;
+      startedAt: number | null;
+    } | null;
     _version: number;
     _deleted: boolean | null;
     _lastChangedAt: number;
@@ -365,6 +680,24 @@ export type GetCourseQuery = {
   professor: string;
   courseName: string;
   courseDescription: string;
+  topics: {
+    __typename: "ModelTopicConnection";
+    items: Array<{
+      __typename: "Topic";
+      id: string;
+      professor: string;
+      TopicName: string;
+      course: string;
+      TopicDescription: string;
+      _version: number;
+      _deleted: boolean | null;
+      _lastChangedAt: number;
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
+    nextToken: string | null;
+    startedAt: number | null;
+  } | null;
   _version: number;
   _deleted: boolean | null;
   _lastChangedAt: number;
@@ -380,6 +713,151 @@ export type ListCoursesQuery = {
     professor: string;
     courseName: string;
     courseDescription: string;
+    topics: {
+      __typename: "ModelTopicConnection";
+      nextToken: string | null;
+      startedAt: number | null;
+    } | null;
+    _version: number;
+    _deleted: boolean | null;
+    _lastChangedAt: number;
+    createdAt: string;
+    updatedAt: string;
+  } | null> | null;
+  nextToken: string | null;
+  startedAt: number | null;
+};
+
+export type SyncTopicsQuery = {
+  __typename: "ModelTopicConnection";
+  items: Array<{
+    __typename: "Topic";
+    id: string;
+    professor: string;
+    TopicName: string;
+    course: string;
+    TopicDescription: string;
+    files: {
+      __typename: "ModelFileConnection";
+      nextToken: string | null;
+      startedAt: number | null;
+    } | null;
+    _version: number;
+    _deleted: boolean | null;
+    _lastChangedAt: number;
+    createdAt: string;
+    updatedAt: string;
+  } | null> | null;
+  nextToken: string | null;
+  startedAt: number | null;
+};
+
+export type GetTopicQuery = {
+  __typename: "Topic";
+  id: string;
+  professor: string;
+  TopicName: string;
+  course: string;
+  TopicDescription: string;
+  files: {
+    __typename: "ModelFileConnection";
+    items: Array<{
+      __typename: "File";
+      id: string;
+      course: string;
+      topic: string;
+      filename: string;
+      filetype: string;
+      fileDescription: string | null;
+      resourseGroup: string;
+      _version: number;
+      _deleted: boolean | null;
+      _lastChangedAt: number;
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
+    nextToken: string | null;
+    startedAt: number | null;
+  } | null;
+  _version: number;
+  _deleted: boolean | null;
+  _lastChangedAt: number;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type ListTopicsQuery = {
+  __typename: "ModelTopicConnection";
+  items: Array<{
+    __typename: "Topic";
+    id: string;
+    professor: string;
+    TopicName: string;
+    course: string;
+    TopicDescription: string;
+    files: {
+      __typename: "ModelFileConnection";
+      nextToken: string | null;
+      startedAt: number | null;
+    } | null;
+    _version: number;
+    _deleted: boolean | null;
+    _lastChangedAt: number;
+    createdAt: string;
+    updatedAt: string;
+  } | null> | null;
+  nextToken: string | null;
+  startedAt: number | null;
+};
+
+export type SyncFilesQuery = {
+  __typename: "ModelFileConnection";
+  items: Array<{
+    __typename: "File";
+    id: string;
+    course: string;
+    topic: string;
+    filename: string;
+    filetype: string;
+    fileDescription: string | null;
+    resourseGroup: string;
+    _version: number;
+    _deleted: boolean | null;
+    _lastChangedAt: number;
+    createdAt: string;
+    updatedAt: string;
+  } | null> | null;
+  nextToken: string | null;
+  startedAt: number | null;
+};
+
+export type GetFileQuery = {
+  __typename: "File";
+  id: string;
+  course: string;
+  topic: string;
+  filename: string;
+  filetype: string;
+  fileDescription: string | null;
+  resourseGroup: string;
+  _version: number;
+  _deleted: boolean | null;
+  _lastChangedAt: number;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type ListFilesQuery = {
+  __typename: "ModelFileConnection";
+  items: Array<{
+    __typename: "File";
+    id: string;
+    course: string;
+    topic: string;
+    filename: string;
+    filetype: string;
+    fileDescription: string | null;
+    resourseGroup: string;
     _version: number;
     _deleted: boolean | null;
     _lastChangedAt: number;
@@ -398,6 +876,98 @@ export type CourseByProfessorQuery = {
     professor: string;
     courseName: string;
     courseDescription: string;
+    topics: {
+      __typename: "ModelTopicConnection";
+      nextToken: string | null;
+      startedAt: number | null;
+    } | null;
+    _version: number;
+    _deleted: boolean | null;
+    _lastChangedAt: number;
+    createdAt: string;
+    updatedAt: string;
+  } | null> | null;
+  nextToken: string | null;
+  startedAt: number | null;
+};
+
+export type TopicByCourseByProfessorQuery = {
+  __typename: "ModelTopicConnection";
+  items: Array<{
+    __typename: "Topic";
+    id: string;
+    professor: string;
+    TopicName: string;
+    course: string;
+    TopicDescription: string;
+    files: {
+      __typename: "ModelFileConnection";
+      nextToken: string | null;
+      startedAt: number | null;
+    } | null;
+    _version: number;
+    _deleted: boolean | null;
+    _lastChangedAt: number;
+    createdAt: string;
+    updatedAt: string;
+  } | null> | null;
+  nextToken: string | null;
+  startedAt: number | null;
+};
+
+export type FileByCourseByTopicQuery = {
+  __typename: "ModelFileConnection";
+  items: Array<{
+    __typename: "File";
+    id: string;
+    course: string;
+    topic: string;
+    filename: string;
+    filetype: string;
+    fileDescription: string | null;
+    resourseGroup: string;
+    _version: number;
+    _deleted: boolean | null;
+    _lastChangedAt: number;
+    createdAt: string;
+    updatedAt: string;
+  } | null> | null;
+  nextToken: string | null;
+  startedAt: number | null;
+};
+
+export type FileByResourceGroupQuery = {
+  __typename: "ModelFileConnection";
+  items: Array<{
+    __typename: "File";
+    id: string;
+    course: string;
+    topic: string;
+    filename: string;
+    filetype: string;
+    fileDescription: string | null;
+    resourseGroup: string;
+    _version: number;
+    _deleted: boolean | null;
+    _lastChangedAt: number;
+    createdAt: string;
+    updatedAt: string;
+  } | null> | null;
+  nextToken: string | null;
+  startedAt: number | null;
+};
+
+export type FileByFilenameQuery = {
+  __typename: "ModelFileConnection";
+  items: Array<{
+    __typename: "File";
+    id: string;
+    course: string;
+    topic: string;
+    filename: string;
+    filetype: string;
+    fileDescription: string | null;
+    resourseGroup: string;
     _version: number;
     _deleted: boolean | null;
     _lastChangedAt: number;
@@ -501,6 +1071,24 @@ export type OnCreateCourseSubscription = {
   professor: string;
   courseName: string;
   courseDescription: string;
+  topics: {
+    __typename: "ModelTopicConnection";
+    items: Array<{
+      __typename: "Topic";
+      id: string;
+      professor: string;
+      TopicName: string;
+      course: string;
+      TopicDescription: string;
+      _version: number;
+      _deleted: boolean | null;
+      _lastChangedAt: number;
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
+    nextToken: string | null;
+    startedAt: number | null;
+  } | null;
   _version: number;
   _deleted: boolean | null;
   _lastChangedAt: number;
@@ -514,6 +1102,24 @@ export type OnUpdateCourseSubscription = {
   professor: string;
   courseName: string;
   courseDescription: string;
+  topics: {
+    __typename: "ModelTopicConnection";
+    items: Array<{
+      __typename: "Topic";
+      id: string;
+      professor: string;
+      TopicName: string;
+      course: string;
+      TopicDescription: string;
+      _version: number;
+      _deleted: boolean | null;
+      _lastChangedAt: number;
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
+    nextToken: string | null;
+    startedAt: number | null;
+  } | null;
   _version: number;
   _deleted: boolean | null;
   _lastChangedAt: number;
@@ -527,6 +1133,174 @@ export type OnDeleteCourseSubscription = {
   professor: string;
   courseName: string;
   courseDescription: string;
+  topics: {
+    __typename: "ModelTopicConnection";
+    items: Array<{
+      __typename: "Topic";
+      id: string;
+      professor: string;
+      TopicName: string;
+      course: string;
+      TopicDescription: string;
+      _version: number;
+      _deleted: boolean | null;
+      _lastChangedAt: number;
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
+    nextToken: string | null;
+    startedAt: number | null;
+  } | null;
+  _version: number;
+  _deleted: boolean | null;
+  _lastChangedAt: number;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnCreateTopicSubscription = {
+  __typename: "Topic";
+  id: string;
+  professor: string;
+  TopicName: string;
+  course: string;
+  TopicDescription: string;
+  files: {
+    __typename: "ModelFileConnection";
+    items: Array<{
+      __typename: "File";
+      id: string;
+      course: string;
+      topic: string;
+      filename: string;
+      filetype: string;
+      fileDescription: string | null;
+      resourseGroup: string;
+      _version: number;
+      _deleted: boolean | null;
+      _lastChangedAt: number;
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
+    nextToken: string | null;
+    startedAt: number | null;
+  } | null;
+  _version: number;
+  _deleted: boolean | null;
+  _lastChangedAt: number;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnUpdateTopicSubscription = {
+  __typename: "Topic";
+  id: string;
+  professor: string;
+  TopicName: string;
+  course: string;
+  TopicDescription: string;
+  files: {
+    __typename: "ModelFileConnection";
+    items: Array<{
+      __typename: "File";
+      id: string;
+      course: string;
+      topic: string;
+      filename: string;
+      filetype: string;
+      fileDescription: string | null;
+      resourseGroup: string;
+      _version: number;
+      _deleted: boolean | null;
+      _lastChangedAt: number;
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
+    nextToken: string | null;
+    startedAt: number | null;
+  } | null;
+  _version: number;
+  _deleted: boolean | null;
+  _lastChangedAt: number;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnDeleteTopicSubscription = {
+  __typename: "Topic";
+  id: string;
+  professor: string;
+  TopicName: string;
+  course: string;
+  TopicDescription: string;
+  files: {
+    __typename: "ModelFileConnection";
+    items: Array<{
+      __typename: "File";
+      id: string;
+      course: string;
+      topic: string;
+      filename: string;
+      filetype: string;
+      fileDescription: string | null;
+      resourseGroup: string;
+      _version: number;
+      _deleted: boolean | null;
+      _lastChangedAt: number;
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
+    nextToken: string | null;
+    startedAt: number | null;
+  } | null;
+  _version: number;
+  _deleted: boolean | null;
+  _lastChangedAt: number;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnCreateFileSubscription = {
+  __typename: "File";
+  id: string;
+  course: string;
+  topic: string;
+  filename: string;
+  filetype: string;
+  fileDescription: string | null;
+  resourseGroup: string;
+  _version: number;
+  _deleted: boolean | null;
+  _lastChangedAt: number;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnUpdateFileSubscription = {
+  __typename: "File";
+  id: string;
+  course: string;
+  topic: string;
+  filename: string;
+  filetype: string;
+  fileDescription: string | null;
+  resourseGroup: string;
+  _version: number;
+  _deleted: boolean | null;
+  _lastChangedAt: number;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnDeleteFileSubscription = {
+  __typename: "File";
+  id: string;
+  course: string;
+  topic: string;
+  filename: string;
+  filetype: string;
+  fileDescription: string | null;
+  resourseGroup: string;
   _version: number;
   _deleted: boolean | null;
   _lastChangedAt: number;
@@ -684,6 +1458,24 @@ export class APIService {
           professor
           courseName
           courseDescription
+          topics {
+            __typename
+            items {
+              __typename
+              id
+              professor
+              TopicName
+              course
+              TopicDescription
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+            nextToken
+            startedAt
+          }
           _version
           _deleted
           _lastChangedAt
@@ -713,6 +1505,24 @@ export class APIService {
           professor
           courseName
           courseDescription
+          topics {
+            __typename
+            items {
+              __typename
+              id
+              professor
+              TopicName
+              course
+              TopicDescription
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+            nextToken
+            startedAt
+          }
           _version
           _deleted
           _lastChangedAt
@@ -742,6 +1552,24 @@ export class APIService {
           professor
           courseName
           courseDescription
+          topics {
+            __typename
+            items {
+              __typename
+              id
+              professor
+              TopicName
+              course
+              TopicDescription
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+            nextToken
+            startedAt
+          }
           _version
           _deleted
           _lastChangedAt
@@ -759,6 +1587,252 @@ export class APIService {
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
     return <DeleteCourseMutation>response.data.deleteCourse;
+  }
+  async CreateTopic(
+    input: CreateTopicInput,
+    condition?: ModelTopicConditionInput
+  ): Promise<CreateTopicMutation> {
+    const statement = `mutation CreateTopic($input: CreateTopicInput!, $condition: ModelTopicConditionInput) {
+        createTopic(input: $input, condition: $condition) {
+          __typename
+          id
+          professor
+          TopicName
+          course
+          TopicDescription
+          files {
+            __typename
+            items {
+              __typename
+              id
+              course
+              topic
+              filename
+              filetype
+              fileDescription
+              resourseGroup
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+            nextToken
+            startedAt
+          }
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <CreateTopicMutation>response.data.createTopic;
+  }
+  async UpdateTopic(
+    input: UpdateTopicInput,
+    condition?: ModelTopicConditionInput
+  ): Promise<UpdateTopicMutation> {
+    const statement = `mutation UpdateTopic($input: UpdateTopicInput!, $condition: ModelTopicConditionInput) {
+        updateTopic(input: $input, condition: $condition) {
+          __typename
+          id
+          professor
+          TopicName
+          course
+          TopicDescription
+          files {
+            __typename
+            items {
+              __typename
+              id
+              course
+              topic
+              filename
+              filetype
+              fileDescription
+              resourseGroup
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+            nextToken
+            startedAt
+          }
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <UpdateTopicMutation>response.data.updateTopic;
+  }
+  async DeleteTopic(
+    input: DeleteTopicInput,
+    condition?: ModelTopicConditionInput
+  ): Promise<DeleteTopicMutation> {
+    const statement = `mutation DeleteTopic($input: DeleteTopicInput!, $condition: ModelTopicConditionInput) {
+        deleteTopic(input: $input, condition: $condition) {
+          __typename
+          id
+          professor
+          TopicName
+          course
+          TopicDescription
+          files {
+            __typename
+            items {
+              __typename
+              id
+              course
+              topic
+              filename
+              filetype
+              fileDescription
+              resourseGroup
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+            nextToken
+            startedAt
+          }
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <DeleteTopicMutation>response.data.deleteTopic;
+  }
+  async CreateFile(
+    input: CreateFileInput,
+    condition?: ModelFileConditionInput
+  ): Promise<CreateFileMutation> {
+    const statement = `mutation CreateFile($input: CreateFileInput!, $condition: ModelFileConditionInput) {
+        createFile(input: $input, condition: $condition) {
+          __typename
+          id
+          course
+          topic
+          filename
+          filetype
+          fileDescription
+          resourseGroup
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <CreateFileMutation>response.data.createFile;
+  }
+  async UpdateFile(
+    input: UpdateFileInput,
+    condition?: ModelFileConditionInput
+  ): Promise<UpdateFileMutation> {
+    const statement = `mutation UpdateFile($input: UpdateFileInput!, $condition: ModelFileConditionInput) {
+        updateFile(input: $input, condition: $condition) {
+          __typename
+          id
+          course
+          topic
+          filename
+          filetype
+          fileDescription
+          resourseGroup
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <UpdateFileMutation>response.data.updateFile;
+  }
+  async DeleteFile(
+    input: DeleteFileInput,
+    condition?: ModelFileConditionInput
+  ): Promise<DeleteFileMutation> {
+    const statement = `mutation DeleteFile($input: DeleteFileInput!, $condition: ModelFileConditionInput) {
+        deleteFile(input: $input, condition: $condition) {
+          __typename
+          id
+          course
+          topic
+          filename
+          filetype
+          fileDescription
+          resourseGroup
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <DeleteFileMutation>response.data.deleteFile;
   }
   async SyncProfessors(
     filter?: ModelProfessorFilterInput,
@@ -904,6 +1978,11 @@ export class APIService {
             professor
             courseName
             courseDescription
+            topics {
+              __typename
+              nextToken
+              startedAt
+            }
             _version
             _deleted
             _lastChangedAt
@@ -940,6 +2019,24 @@ export class APIService {
           professor
           courseName
           courseDescription
+          topics {
+            __typename
+            items {
+              __typename
+              id
+              professor
+              TopicName
+              course
+              TopicDescription
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+            nextToken
+            startedAt
+          }
           _version
           _deleted
           _lastChangedAt
@@ -969,6 +2066,11 @@ export class APIService {
             professor
             courseName
             courseDescription
+            topics {
+              __typename
+              nextToken
+              startedAt
+            }
             _version
             _deleted
             _lastChangedAt
@@ -994,6 +2096,258 @@ export class APIService {
     )) as any;
     return <ListCoursesQuery>response.data.listCourses;
   }
+  async SyncTopics(
+    filter?: ModelTopicFilterInput,
+    limit?: number,
+    nextToken?: string,
+    lastSync?: number
+  ): Promise<SyncTopicsQuery> {
+    const statement = `query SyncTopics($filter: ModelTopicFilterInput, $limit: Int, $nextToken: String, $lastSync: AWSTimestamp) {
+        syncTopics(filter: $filter, limit: $limit, nextToken: $nextToken, lastSync: $lastSync) {
+          __typename
+          items {
+            __typename
+            id
+            professor
+            TopicName
+            course
+            TopicDescription
+            files {
+              __typename
+              nextToken
+              startedAt
+            }
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+          }
+          nextToken
+          startedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    if (lastSync) {
+      gqlAPIServiceArguments.lastSync = lastSync;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <SyncTopicsQuery>response.data.syncTopics;
+  }
+  async GetTopic(id: string): Promise<GetTopicQuery> {
+    const statement = `query GetTopic($id: ID!) {
+        getTopic(id: $id) {
+          __typename
+          id
+          professor
+          TopicName
+          course
+          TopicDescription
+          files {
+            __typename
+            items {
+              __typename
+              id
+              course
+              topic
+              filename
+              filetype
+              fileDescription
+              resourseGroup
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+            nextToken
+            startedAt
+          }
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      id
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <GetTopicQuery>response.data.getTopic;
+  }
+  async ListTopics(
+    filter?: ModelTopicFilterInput,
+    limit?: number,
+    nextToken?: string
+  ): Promise<ListTopicsQuery> {
+    const statement = `query ListTopics($filter: ModelTopicFilterInput, $limit: Int, $nextToken: String) {
+        listTopics(filter: $filter, limit: $limit, nextToken: $nextToken) {
+          __typename
+          items {
+            __typename
+            id
+            professor
+            TopicName
+            course
+            TopicDescription
+            files {
+              __typename
+              nextToken
+              startedAt
+            }
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+          }
+          nextToken
+          startedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <ListTopicsQuery>response.data.listTopics;
+  }
+  async SyncFiles(
+    filter?: ModelFileFilterInput,
+    limit?: number,
+    nextToken?: string,
+    lastSync?: number
+  ): Promise<SyncFilesQuery> {
+    const statement = `query SyncFiles($filter: ModelFileFilterInput, $limit: Int, $nextToken: String, $lastSync: AWSTimestamp) {
+        syncFiles(filter: $filter, limit: $limit, nextToken: $nextToken, lastSync: $lastSync) {
+          __typename
+          items {
+            __typename
+            id
+            course
+            topic
+            filename
+            filetype
+            fileDescription
+            resourseGroup
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+          }
+          nextToken
+          startedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    if (lastSync) {
+      gqlAPIServiceArguments.lastSync = lastSync;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <SyncFilesQuery>response.data.syncFiles;
+  }
+  async GetFile(id: string): Promise<GetFileQuery> {
+    const statement = `query GetFile($id: ID!) {
+        getFile(id: $id) {
+          __typename
+          id
+          course
+          topic
+          filename
+          filetype
+          fileDescription
+          resourseGroup
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      id
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <GetFileQuery>response.data.getFile;
+  }
+  async ListFiles(
+    filter?: ModelFileFilterInput,
+    limit?: number,
+    nextToken?: string
+  ): Promise<ListFilesQuery> {
+    const statement = `query ListFiles($filter: ModelFileFilterInput, $limit: Int, $nextToken: String) {
+        listFiles(filter: $filter, limit: $limit, nextToken: $nextToken) {
+          __typename
+          items {
+            __typename
+            id
+            course
+            topic
+            filename
+            filetype
+            fileDescription
+            resourseGroup
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+          }
+          nextToken
+          startedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <ListFilesQuery>response.data.listFiles;
+  }
   async CourseByProfessor(
     professor?: string,
     sortDirection?: ModelSortDirection,
@@ -1010,6 +2364,11 @@ export class APIService {
             professor
             courseName
             courseDescription
+            topics {
+              __typename
+              nextToken
+              startedAt
+            }
             _version
             _deleted
             _lastChangedAt
@@ -1040,6 +2399,219 @@ export class APIService {
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
     return <CourseByProfessorQuery>response.data.courseByProfessor;
+  }
+  async TopicByCourseByProfessor(
+    professor?: string,
+    course?: ModelStringKeyConditionInput,
+    sortDirection?: ModelSortDirection,
+    filter?: ModelTopicFilterInput,
+    limit?: number,
+    nextToken?: string
+  ): Promise<TopicByCourseByProfessorQuery> {
+    const statement = `query TopicByCourseByProfessor($professor: String, $course: ModelStringKeyConditionInput, $sortDirection: ModelSortDirection, $filter: ModelTopicFilterInput, $limit: Int, $nextToken: String) {
+        topicByCourseByProfessor(professor: $professor, course: $course, sortDirection: $sortDirection, filter: $filter, limit: $limit, nextToken: $nextToken) {
+          __typename
+          items {
+            __typename
+            id
+            professor
+            TopicName
+            course
+            TopicDescription
+            files {
+              __typename
+              nextToken
+              startedAt
+            }
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+          }
+          nextToken
+          startedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (professor) {
+      gqlAPIServiceArguments.professor = professor;
+    }
+    if (course) {
+      gqlAPIServiceArguments.course = course;
+    }
+    if (sortDirection) {
+      gqlAPIServiceArguments.sortDirection = sortDirection;
+    }
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <TopicByCourseByProfessorQuery>(
+      response.data.topicByCourseByProfessor
+    );
+  }
+  async FileByCourseByTopic(
+    course?: string,
+    topic?: ModelStringKeyConditionInput,
+    sortDirection?: ModelSortDirection,
+    filter?: ModelFileFilterInput,
+    limit?: number,
+    nextToken?: string
+  ): Promise<FileByCourseByTopicQuery> {
+    const statement = `query FileByCourseByTopic($course: String, $topic: ModelStringKeyConditionInput, $sortDirection: ModelSortDirection, $filter: ModelFileFilterInput, $limit: Int, $nextToken: String) {
+        fileByCourseByTopic(course: $course, topic: $topic, sortDirection: $sortDirection, filter: $filter, limit: $limit, nextToken: $nextToken) {
+          __typename
+          items {
+            __typename
+            id
+            course
+            topic
+            filename
+            filetype
+            fileDescription
+            resourseGroup
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+          }
+          nextToken
+          startedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (course) {
+      gqlAPIServiceArguments.course = course;
+    }
+    if (topic) {
+      gqlAPIServiceArguments.topic = topic;
+    }
+    if (sortDirection) {
+      gqlAPIServiceArguments.sortDirection = sortDirection;
+    }
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <FileByCourseByTopicQuery>response.data.fileByCourseByTopic;
+  }
+  async FileByResourceGroup(
+    resourseGroup?: string,
+    sortDirection?: ModelSortDirection,
+    filter?: ModelFileFilterInput,
+    limit?: number,
+    nextToken?: string
+  ): Promise<FileByResourceGroupQuery> {
+    const statement = `query FileByResourceGroup($resourseGroup: String, $sortDirection: ModelSortDirection, $filter: ModelFileFilterInput, $limit: Int, $nextToken: String) {
+        fileByResourceGroup(resourseGroup: $resourseGroup, sortDirection: $sortDirection, filter: $filter, limit: $limit, nextToken: $nextToken) {
+          __typename
+          items {
+            __typename
+            id
+            course
+            topic
+            filename
+            filetype
+            fileDescription
+            resourseGroup
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+          }
+          nextToken
+          startedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (resourseGroup) {
+      gqlAPIServiceArguments.resourseGroup = resourseGroup;
+    }
+    if (sortDirection) {
+      gqlAPIServiceArguments.sortDirection = sortDirection;
+    }
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <FileByResourceGroupQuery>response.data.fileByResourceGroup;
+  }
+  async FileByFilename(
+    resourseGroup?: string,
+    sortDirection?: ModelSortDirection,
+    filter?: ModelFileFilterInput,
+    limit?: number,
+    nextToken?: string
+  ): Promise<FileByFilenameQuery> {
+    const statement = `query FileByFilename($resourseGroup: String, $sortDirection: ModelSortDirection, $filter: ModelFileFilterInput, $limit: Int, $nextToken: String) {
+        fileByFilename(resourseGroup: $resourseGroup, sortDirection: $sortDirection, filter: $filter, limit: $limit, nextToken: $nextToken) {
+          __typename
+          items {
+            __typename
+            id
+            course
+            topic
+            filename
+            filetype
+            fileDescription
+            resourseGroup
+            _version
+            _deleted
+            _lastChangedAt
+            createdAt
+            updatedAt
+          }
+          nextToken
+          startedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (resourseGroup) {
+      gqlAPIServiceArguments.resourseGroup = resourseGroup;
+    }
+    if (sortDirection) {
+      gqlAPIServiceArguments.sortDirection = sortDirection;
+    }
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <FileByFilenameQuery>response.data.fileByFilename;
   }
   OnCreateProfessorListener: Observable<
     OnCreateProfessorSubscription
@@ -1161,6 +2733,24 @@ export class APIService {
           professor
           courseName
           courseDescription
+          topics {
+            __typename
+            items {
+              __typename
+              id
+              professor
+              TopicName
+              course
+              TopicDescription
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+            nextToken
+            startedAt
+          }
           _version
           _deleted
           _lastChangedAt
@@ -1180,6 +2770,24 @@ export class APIService {
           professor
           courseName
           courseDescription
+          topics {
+            __typename
+            items {
+              __typename
+              id
+              professor
+              TopicName
+              course
+              TopicDescription
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+            nextToken
+            startedAt
+          }
           _version
           _deleted
           _lastChangedAt
@@ -1199,6 +2807,24 @@ export class APIService {
           professor
           courseName
           courseDescription
+          topics {
+            __typename
+            items {
+              __typename
+              id
+              professor
+              TopicName
+              course
+              TopicDescription
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+            nextToken
+            startedAt
+          }
           _version
           _deleted
           _lastChangedAt
@@ -1208,4 +2834,190 @@ export class APIService {
       }`
     )
   ) as Observable<OnDeleteCourseSubscription>;
+
+  OnCreateTopicListener: Observable<OnCreateTopicSubscription> = API.graphql(
+    graphqlOperation(
+      `subscription OnCreateTopic {
+        onCreateTopic {
+          __typename
+          id
+          professor
+          TopicName
+          course
+          TopicDescription
+          files {
+            __typename
+            items {
+              __typename
+              id
+              course
+              topic
+              filename
+              filetype
+              fileDescription
+              resourseGroup
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+            nextToken
+            startedAt
+          }
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnCreateTopicSubscription>;
+
+  OnUpdateTopicListener: Observable<OnUpdateTopicSubscription> = API.graphql(
+    graphqlOperation(
+      `subscription OnUpdateTopic {
+        onUpdateTopic {
+          __typename
+          id
+          professor
+          TopicName
+          course
+          TopicDescription
+          files {
+            __typename
+            items {
+              __typename
+              id
+              course
+              topic
+              filename
+              filetype
+              fileDescription
+              resourseGroup
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+            nextToken
+            startedAt
+          }
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnUpdateTopicSubscription>;
+
+  OnDeleteTopicListener: Observable<OnDeleteTopicSubscription> = API.graphql(
+    graphqlOperation(
+      `subscription OnDeleteTopic {
+        onDeleteTopic {
+          __typename
+          id
+          professor
+          TopicName
+          course
+          TopicDescription
+          files {
+            __typename
+            items {
+              __typename
+              id
+              course
+              topic
+              filename
+              filetype
+              fileDescription
+              resourseGroup
+              _version
+              _deleted
+              _lastChangedAt
+              createdAt
+              updatedAt
+            }
+            nextToken
+            startedAt
+          }
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnDeleteTopicSubscription>;
+
+  OnCreateFileListener: Observable<OnCreateFileSubscription> = API.graphql(
+    graphqlOperation(
+      `subscription OnCreateFile {
+        onCreateFile {
+          __typename
+          id
+          course
+          topic
+          filename
+          filetype
+          fileDescription
+          resourseGroup
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnCreateFileSubscription>;
+
+  OnUpdateFileListener: Observable<OnUpdateFileSubscription> = API.graphql(
+    graphqlOperation(
+      `subscription OnUpdateFile {
+        onUpdateFile {
+          __typename
+          id
+          course
+          topic
+          filename
+          filetype
+          fileDescription
+          resourseGroup
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnUpdateFileSubscription>;
+
+  OnDeleteFileListener: Observable<OnDeleteFileSubscription> = API.graphql(
+    graphqlOperation(
+      `subscription OnDeleteFile {
+        onDeleteFile {
+          __typename
+          id
+          course
+          topic
+          filename
+          filetype
+          fileDescription
+          resourseGroup
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnDeleteFileSubscription>;
 }

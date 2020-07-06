@@ -86,6 +86,22 @@ subscription OnCreateCourse {
     professor
     courseName
     courseDescription
+    topics {
+      items {
+        id
+        professor
+        TopicName
+        course
+        TopicDescription
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+      }
+      nextToken
+      startedAt
+    }
     _version
     _deleted
     _lastChangedAt
@@ -99,6 +115,22 @@ subscription OnUpdateCourse {
     professor
     courseName
     courseDescription
+    topics {
+      items {
+        id
+        professor
+        TopicName
+        course
+        TopicDescription
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+      }
+      nextToken
+      startedAt
+    }
     _version
     _deleted
     _lastChangedAt
@@ -112,6 +144,166 @@ subscription OnDeleteCourse {
     professor
     courseName
     courseDescription
+    topics {
+      items {
+        id
+        professor
+        TopicName
+        course
+        TopicDescription
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+      }
+      nextToken
+      startedAt
+    }
+    _version
+    _deleted
+    _lastChangedAt
+    createdAt
+    updatedAt
+  }
+}
+subscription OnCreateTopic {
+  onCreateTopic {
+    id
+    professor
+    TopicName
+    course
+    TopicDescription
+    files {
+      items {
+        id
+        course
+        topic
+        filename
+        filetype
+        fileDescription
+        resourseGroup
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+      }
+      nextToken
+      startedAt
+    }
+    _version
+    _deleted
+    _lastChangedAt
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateTopic {
+  onUpdateTopic {
+    id
+    professor
+    TopicName
+    course
+    TopicDescription
+    files {
+      items {
+        id
+        course
+        topic
+        filename
+        filetype
+        fileDescription
+        resourseGroup
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+      }
+      nextToken
+      startedAt
+    }
+    _version
+    _deleted
+    _lastChangedAt
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteTopic {
+  onDeleteTopic {
+    id
+    professor
+    TopicName
+    course
+    TopicDescription
+    files {
+      items {
+        id
+        course
+        topic
+        filename
+        filetype
+        fileDescription
+        resourseGroup
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+      }
+      nextToken
+      startedAt
+    }
+    _version
+    _deleted
+    _lastChangedAt
+    createdAt
+    updatedAt
+  }
+}
+subscription OnCreateFile {
+  onCreateFile {
+    id
+    course
+    topic
+    filename
+    filetype
+    fileDescription
+    resourseGroup
+    _version
+    _deleted
+    _lastChangedAt
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateFile {
+  onUpdateFile {
+    id
+    course
+    topic
+    filename
+    filetype
+    fileDescription
+    resourseGroup
+    _version
+    _deleted
+    _lastChangedAt
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteFile {
+  onDeleteFile {
+    id
+    course
+    topic
+    filename
+    filetype
+    fileDescription
+    resourseGroup
     _version
     _deleted
     _lastChangedAt

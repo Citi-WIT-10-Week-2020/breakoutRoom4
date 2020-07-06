@@ -13,13 +13,15 @@ export class HomeScreenComponent implements OnInit {
   constructor(private apiservice: APIService) { }
   courseObject: any;
   ngOnInit(): void {
-    
+    //initializes the course object. This will eventually be deleted and replaced with user input
     this.courseObject={
       courseName:"A test Course, in object",
       courseDescription:"TESTING TESTING HAHAHA",
       professor:"haku",
       id:uuidv4()
     };
+
+    //creates a professor if there are no current professors. Eventually will be erased or refactored
     console.log(this.courseObject);
     this.apiservice.ListProfessors().then((evt)=>{
       console.log(evt);
@@ -37,7 +39,9 @@ export class HomeScreenComponent implements OnInit {
       }
     }).catch((err)=>{
       console.log(err);
-    })
+    });
+
+    //grabs all the courses that already exist and stores the info in the variable courses
     this.apiservice.ListCourses().then((evt)=>{
       this.courses = evt.items;
       console.log(evt.items);
@@ -45,12 +49,14 @@ export class HomeScreenComponent implements OnInit {
       console.log(err);
     });
 
+    //subscribes to any new course creations
     this.apiservice.OnCreateCourseListener.subscribe((evt)=>{
       const data = (evt as any).value.data.onCreateCourse;
       this.courses =[...this.courses,data];
     })
   }
 
+  //code for creating a course. This will eventually be moved to the popup for CreateCourse
   async createCourse(){
     await this.apiservice.CreateCourse(this.courseObject).then((evt)=>{
       console.log(evt);
