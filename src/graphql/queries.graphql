@@ -97,6 +97,10 @@ query SyncCourses(
       professor
       courseName
       courseDescription
+      topics {
+        nextToken
+        startedAt
+      }
       _version
       _deleted
       _lastChangedAt
@@ -113,6 +117,22 @@ query GetCourse($id: ID!) {
     professor
     courseName
     courseDescription
+    topics {
+      items {
+        id
+        professor
+        TopicName
+        course
+        TopicDescription
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+      }
+      nextToken
+      startedAt
+    }
     _version
     _deleted
     _lastChangedAt
@@ -131,6 +151,170 @@ query ListCourses(
       professor
       courseName
       courseDescription
+      topics {
+        nextToken
+        startedAt
+      }
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+    nextToken
+    startedAt
+  }
+}
+query SyncTopics(
+  $filter: ModelTopicFilterInput
+  $limit: Int
+  $nextToken: String
+  $lastSync: AWSTimestamp
+) {
+  syncTopics(
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+    lastSync: $lastSync
+  ) {
+    items {
+      id
+      professor
+      TopicName
+      course
+      TopicDescription
+      files {
+        nextToken
+        startedAt
+      }
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+    nextToken
+    startedAt
+  }
+}
+query GetTopic($id: ID!) {
+  getTopic(id: $id) {
+    id
+    professor
+    TopicName
+    course
+    TopicDescription
+    files {
+      items {
+        id
+        course
+        topic
+        filename
+        filetype
+        fileDescription
+        resourseGroup
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+      }
+      nextToken
+      startedAt
+    }
+    _version
+    _deleted
+    _lastChangedAt
+    createdAt
+    updatedAt
+  }
+}
+query ListTopics(
+  $filter: ModelTopicFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listTopics(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      professor
+      TopicName
+      course
+      TopicDescription
+      files {
+        nextToken
+        startedAt
+      }
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+    nextToken
+    startedAt
+  }
+}
+query SyncFiles(
+  $filter: ModelFileFilterInput
+  $limit: Int
+  $nextToken: String
+  $lastSync: AWSTimestamp
+) {
+  syncFiles(
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+    lastSync: $lastSync
+  ) {
+    items {
+      id
+      course
+      topic
+      filename
+      filetype
+      fileDescription
+      resourseGroup
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+    nextToken
+    startedAt
+  }
+}
+query GetFile($id: ID!) {
+  getFile(id: $id) {
+    id
+    course
+    topic
+    filename
+    filetype
+    fileDescription
+    resourseGroup
+    _version
+    _deleted
+    _lastChangedAt
+    createdAt
+    updatedAt
+  }
+}
+query ListFiles(
+  $filter: ModelFileFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listFiles(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      course
+      topic
+      filename
+      filetype
+      fileDescription
+      resourseGroup
       _version
       _deleted
       _lastChangedAt
@@ -160,6 +344,144 @@ query CourseByProfessor(
       professor
       courseName
       courseDescription
+      topics {
+        nextToken
+        startedAt
+      }
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+    nextToken
+    startedAt
+  }
+}
+query TopicByCourseByProfessor(
+  $professor: String
+  $course: ModelStringKeyConditionInput
+  $sortDirection: ModelSortDirection
+  $filter: ModelTopicFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  topicByCourseByProfessor(
+    professor: $professor
+    course: $course
+    sortDirection: $sortDirection
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      id
+      professor
+      TopicName
+      course
+      TopicDescription
+      files {
+        nextToken
+        startedAt
+      }
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+    nextToken
+    startedAt
+  }
+}
+query FileByCourseByTopic(
+  $course: String
+  $topic: ModelStringKeyConditionInput
+  $sortDirection: ModelSortDirection
+  $filter: ModelFileFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  fileByCourseByTopic(
+    course: $course
+    topic: $topic
+    sortDirection: $sortDirection
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      id
+      course
+      topic
+      filename
+      filetype
+      fileDescription
+      resourseGroup
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+    nextToken
+    startedAt
+  }
+}
+query FileByResourceGroup(
+  $resourseGroup: String
+  $sortDirection: ModelSortDirection
+  $filter: ModelFileFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  fileByResourceGroup(
+    resourseGroup: $resourseGroup
+    sortDirection: $sortDirection
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      id
+      course
+      topic
+      filename
+      filetype
+      fileDescription
+      resourseGroup
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+    nextToken
+    startedAt
+  }
+}
+query FileByFilename(
+  $resourseGroup: String
+  $sortDirection: ModelSortDirection
+  $filter: ModelFileFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  fileByFilename(
+    resourseGroup: $resourseGroup
+    sortDirection: $sortDirection
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      id
+      course
+      topic
+      filename
+      filetype
+      fileDescription
+      resourseGroup
       _version
       _deleted
       _lastChangedAt

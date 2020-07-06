@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { APIService } from '../../API.service';
+import { v4 as uuidv4 } from 'uuid';
 @Component({
   selector: 'app-home-screen',
   templateUrl: './home-screen.component.html',
@@ -10,8 +11,18 @@ export class HomeScreenComponent implements OnInit {
   count: number = 0;
   profName: String;
   constructor(private apiservice: APIService) { }
-
+  courseObject: any;
   ngOnInit(): void {
+    //initializes the course object. This will eventually be deleted and replaced with user input
+    this.courseObject={
+      courseName:"A test Course, in object",
+      courseDescription:"TESTING TESTING HAHAHA",
+      professor:"haku",
+      id:uuidv4()
+    };
+
+    //creates a professor if there are no current professors. Eventually will be erased or refactored
+    console.log(this.courseObject);
     this.apiservice.ListProfessors().then((evt)=>{
       console.log(evt);
       if(evt.items.length == 0){
@@ -30,7 +41,7 @@ export class HomeScreenComponent implements OnInit {
       console.log(err);
     });
 
-
+    //grabs all the courses that already exist and stores the info in the variable courses
     this.apiservice.ListCourses().then((evt)=>{
       this.courses = evt.items;
       console.log(evt.items);
@@ -38,21 +49,21 @@ export class HomeScreenComponent implements OnInit {
       console.log(err);
     });
 
+    //subscribes to any new course creations
     this.apiservice.OnCreateCourseListener.subscribe((evt)=>{
       const data = (evt as any).value.data.onCreateCourse;
       this.courses =[...this.courses,data];
     })
   }
 
-  createCourse(){
-    this.apiservice.CreateCourse({
-      courseName:"A test Course",
-      courseDescription:"TESTING TESTING HAHAHA",
-      professor:"haku",
-      id:this.count.toString()
-    }).then((evt)=>{
+  //code for creating a course. This will eventually be moved to the popup for CreateCourse
+  async createCourse(){
+    await this.apiservice.CreateCourse(this.courseObject).then((evt)=>{
       console.log(evt);
-    });
+      this.courseObject.id=uuidv4();
+    }).catch((err)=>{
+      console.log(err);
+    })
   }
 
 }
