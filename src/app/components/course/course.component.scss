@@ -1,0 +1,17 @@
+.mat-card {
+    padding: 2em;
+}
+
+.course-card {
+    max-width: 200px;
+    max-height: 300px;
+}
+
+.course-card:hover {
+    background-color: rgb(237, 221, 241);
+    cursor: pointer;
+}
+  
+.default-img {
+    max-width: 250px;
+}
