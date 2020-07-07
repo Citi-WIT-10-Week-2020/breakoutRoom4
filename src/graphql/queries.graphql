@@ -1,34 +1,4 @@
 # this is an auto generated file. This will be overwritten
-query SyncProfessors(
-  $filter: ModelProfessorFilterInput
-  $limit: Int
-  $nextToken: String
-  $lastSync: AWSTimestamp
-) {
-  syncProfessors(
-    filter: $filter
-    limit: $limit
-    nextToken: $nextToken
-    lastSync: $lastSync
-  ) {
-    items {
-      id
-      professorName
-      universityName
-      courses {
-        nextToken
-        startedAt
-      }
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-    }
-    nextToken
-    startedAt
-  }
-}
 query GetProfessor($id: ID!) {
   getProfessor(id: $id) {
     id
@@ -40,18 +10,11 @@ query GetProfessor($id: ID!) {
         professor
         courseName
         courseDescription
-        _version
-        _deleted
-        _lastChangedAt
         createdAt
         updatedAt
       }
       nextToken
-      startedAt
     }
-    _version
-    _deleted
-    _lastChangedAt
     createdAt
     updatedAt
   }
@@ -68,47 +31,11 @@ query ListProfessors(
       universityName
       courses {
         nextToken
-        startedAt
       }
-      _version
-      _deleted
-      _lastChangedAt
       createdAt
       updatedAt
     }
     nextToken
-    startedAt
-  }
-}
-query SyncCourses(
-  $filter: ModelCourseFilterInput
-  $limit: Int
-  $nextToken: String
-  $lastSync: AWSTimestamp
-) {
-  syncCourses(
-    filter: $filter
-    limit: $limit
-    nextToken: $nextToken
-    lastSync: $lastSync
-  ) {
-    items {
-      id
-      professor
-      courseName
-      courseDescription
-      topics {
-        nextToken
-        startedAt
-      }
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-    }
-    nextToken
-    startedAt
   }
 }
 query GetCourse($id: ID!) {
@@ -124,18 +51,11 @@ query GetCourse($id: ID!) {
         TopicName
         course
         TopicDescription
-        _version
-        _deleted
-        _lastChangedAt
         createdAt
         updatedAt
       }
       nextToken
-      startedAt
     }
-    _version
-    _deleted
-    _lastChangedAt
     createdAt
     updatedAt
   }
@@ -153,48 +73,11 @@ query ListCourses(
       courseDescription
       topics {
         nextToken
-        startedAt
       }
-      _version
-      _deleted
-      _lastChangedAt
       createdAt
       updatedAt
     }
     nextToken
-    startedAt
-  }
-}
-query SyncTopics(
-  $filter: ModelTopicFilterInput
-  $limit: Int
-  $nextToken: String
-  $lastSync: AWSTimestamp
-) {
-  syncTopics(
-    filter: $filter
-    limit: $limit
-    nextToken: $nextToken
-    lastSync: $lastSync
-  ) {
-    items {
-      id
-      professor
-      TopicName
-      course
-      TopicDescription
-      files {
-        nextToken
-        startedAt
-      }
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-    }
-    nextToken
-    startedAt
   }
 }
 query GetTopic($id: ID!) {
@@ -213,18 +96,11 @@ query GetTopic($id: ID!) {
         filetype
         fileDescription
         resourseGroup
-        _version
-        _deleted
-        _lastChangedAt
         createdAt
         updatedAt
       }
       nextToken
-      startedAt
     }
-    _version
-    _deleted
-    _lastChangedAt
     createdAt
     updatedAt
   }
@@ -243,46 +119,11 @@ query ListTopics(
       TopicDescription
       files {
         nextToken
-        startedAt
       }
-      _version
-      _deleted
-      _lastChangedAt
       createdAt
       updatedAt
     }
     nextToken
-    startedAt
-  }
-}
-query SyncFiles(
-  $filter: ModelFileFilterInput
-  $limit: Int
-  $nextToken: String
-  $lastSync: AWSTimestamp
-) {
-  syncFiles(
-    filter: $filter
-    limit: $limit
-    nextToken: $nextToken
-    lastSync: $lastSync
-  ) {
-    items {
-      id
-      course
-      topic
-      filename
-      filetype
-      fileDescription
-      resourseGroup
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-    }
-    nextToken
-    startedAt
   }
 }
 query GetFile($id: ID!) {
@@ -294,9 +135,6 @@ query GetFile($id: ID!) {
     filetype
     fileDescription
     resourseGroup
-    _version
-    _deleted
-    _lastChangedAt
     createdAt
     updatedAt
   }
@@ -315,14 +153,10 @@ query ListFiles(
       filetype
       fileDescription
       resourseGroup
-      _version
-      _deleted
-      _lastChangedAt
       createdAt
       updatedAt
     }
     nextToken
-    startedAt
   }
 }
 query CourseByProfessor(
@@ -346,16 +180,11 @@ query CourseByProfessor(
       courseDescription
       topics {
         nextToken
-        startedAt
       }
-      _version
-      _deleted
-      _lastChangedAt
       createdAt
       updatedAt
     }
     nextToken
-    startedAt
   }
 }
 query TopicByCourseByProfessor(
@@ -382,16 +211,11 @@ query TopicByCourseByProfessor(
       TopicDescription
       files {
         nextToken
-        startedAt
       }
-      _version
-      _deleted
-      _lastChangedAt
       createdAt
       updatedAt
     }
     nextToken
-    startedAt
   }
 }
 query FileByCourseByTopic(
@@ -418,14 +242,10 @@ query FileByCourseByTopic(
       filetype
       fileDescription
       resourseGroup
-      _version
-      _deleted
-      _lastChangedAt
       createdAt
       updatedAt
     }
     nextToken
-    startedAt
   }
 }
 query FileByResourceGroup(
@@ -450,14 +270,10 @@ query FileByResourceGroup(
       filetype
       fileDescription
       resourseGroup
-      _version
-      _deleted
-      _lastChangedAt
       createdAt
       updatedAt
     }
     nextToken
-    startedAt
   }
 }
 query FileByFilename(
@@ -482,13 +298,9 @@ query FileByFilename(
       filetype
       fileDescription
       resourseGroup
-      _version
-      _deleted
-      _lastChangedAt
       createdAt
       updatedAt
     }
     nextToken
-    startedAt
   }
 }

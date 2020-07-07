@@ -25,7 +25,7 @@ export class HomeScreenComponent implements OnInit {
     console.log(this.courseObject);
     this.apiservice.ListProfessors().then((evt)=>{
       console.log(evt);
-      if(evt.items.length == 0){
+      if(evt.items == null){
         this.apiservice.CreateProfessor({
           professorName:"haku",
           id:"0",
@@ -53,9 +53,43 @@ export class HomeScreenComponent implements OnInit {
     this.apiservice.OnCreateCourseListener.subscribe((evt)=>{
       const data = (evt as any).value.data.onCreateCourse;
       this.courses =[...this.courses,data];
+    });
+
+    //subscribes to any course updates
+    this.apiservice.OnUpdateCourseListener.subscribe((evt)=>{
+      //need to search thru array, find original, and replace it with the new one  TnT ALGORITHMS
+      const data = (evt as any).value.data.onUpdateCourse;
+      this.courses =[...this.courses,data];
+      console.log("An update has occurred!")
+    });
+
+    //subscribes to any course deletions
+    this.apiservice.OnDeleteCourseListener.subscribe((evt)=>{
+      console.log("A deletion has occured!");
+      console.log(evt);
+      //basically, search thru array, find original, remove it
     })
   }
 
+  //logic for deleting course. Hardcoded, will update to user input
+  deleteCourse(){
+    this.apiservice.DeleteCourse({
+      id:"9d556f04-89a8-4ce7-96be-88d7e7e84687"
+    }).catch((err)=>{
+      console.log(err);
+    })
+  }
+  //logic for updating the course. Hardcoded for now, but will be converted to user input
+  async updateCourse(){
+    this.apiservice.UpdateCourse({
+      id:"9d556f04-89a8-4ce7-96be-88d7e7e84687",
+      
+      courseDescription:"UPDATE2e",
+      courseName:"Updating the name"
+    }).catch((err)=>{
+      console.log(err);
+    })
+  }
   //code for creating a course. This will eventually be moved to the popup for CreateCourse
   async createCourse(){
     await this.apiservice.CreateCourse(this.courseObject).then((evt)=>{
