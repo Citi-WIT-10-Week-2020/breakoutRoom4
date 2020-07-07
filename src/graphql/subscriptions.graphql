@@ -10,18 +10,11 @@ subscription OnCreateProfessor {
         professor
         courseName
         courseDescription
-        _version
-        _deleted
-        _lastChangedAt
         createdAt
         updatedAt
       }
       nextToken
-      startedAt
     }
-    _version
-    _deleted
-    _lastChangedAt
     createdAt
     updatedAt
   }
@@ -37,18 +30,11 @@ subscription OnUpdateProfessor {
         professor
         courseName
         courseDescription
-        _version
-        _deleted
-        _lastChangedAt
         createdAt
         updatedAt
       }
       nextToken
-      startedAt
     }
-    _version
-    _deleted
-    _lastChangedAt
     createdAt
     updatedAt
   }
@@ -64,18 +50,11 @@ subscription OnDeleteProfessor {
         professor
         courseName
         courseDescription
-        _version
-        _deleted
-        _lastChangedAt
         createdAt
         updatedAt
       }
       nextToken
-      startedAt
     }
-    _version
-    _deleted
-    _lastChangedAt
     createdAt
     updatedAt
   }
@@ -93,18 +72,11 @@ subscription OnCreateCourse {
         TopicName
         course
         TopicDescription
-        _version
-        _deleted
-        _lastChangedAt
         createdAt
         updatedAt
       }
       nextToken
-      startedAt
     }
-    _version
-    _deleted
-    _lastChangedAt
     createdAt
     updatedAt
   }
@@ -122,18 +94,11 @@ subscription OnUpdateCourse {
         TopicName
         course
         TopicDescription
-        _version
-        _deleted
-        _lastChangedAt
         createdAt
         updatedAt
       }
       nextToken
-      startedAt
     }
-    _version
-    _deleted
-    _lastChangedAt
     createdAt
     updatedAt
   }
@@ -151,18 +116,11 @@ subscription OnDeleteCourse {
         TopicName
         course
         TopicDescription
-        _version
-        _deleted
-        _lastChangedAt
         createdAt
         updatedAt
       }
       nextToken
-      startedAt
     }
-    _version
-    _deleted
-    _lastChangedAt
     createdAt
     updatedAt
   }
@@ -183,18 +141,11 @@ subscription OnCreateTopic {
         filetype
         fileDescription
         resourseGroup
-        _version
-        _deleted
-        _lastChangedAt
         createdAt
         updatedAt
       }
       nextToken
-      startedAt
     }
-    _version
-    _deleted
-    _lastChangedAt
     createdAt
     updatedAt
   }
@@ -215,18 +166,11 @@ subscription OnUpdateTopic {
         filetype
         fileDescription
         resourseGroup
-        _version
-        _deleted
-        _lastChangedAt
         createdAt
         updatedAt
       }
       nextToken
-      startedAt
     }
-    _version
-    _deleted
-    _lastChangedAt
     createdAt
     updatedAt
   }
@@ -247,18 +191,11 @@ subscription OnDeleteTopic {
         filetype
         fileDescription
         resourseGroup
-        _version
-        _deleted
-        _lastChangedAt
         createdAt
         updatedAt
       }
       nextToken
-      startedAt
     }
-    _version
-    _deleted
-    _lastChangedAt
     createdAt
     updatedAt
   }
@@ -272,9 +209,6 @@ subscription OnCreateFile {
     filetype
     fileDescription
     resourseGroup
-    _version
-    _deleted
-    _lastChangedAt
     createdAt
     updatedAt
   }
@@ -288,9 +222,6 @@ subscription OnUpdateFile {
     filetype
     fileDescription
     resourseGroup
-    _version
-    _deleted
-    _lastChangedAt
     createdAt
     updatedAt
   }
@@ -304,9 +235,6 @@ subscription OnDeleteFile {
     filetype
     fileDescription
     resourseGroup
-    _version
-    _deleted
-    _lastChangedAt
     createdAt
     updatedAt
   }

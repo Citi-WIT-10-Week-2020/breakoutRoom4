@@ -8,9 +8,9 @@ import { TopicScreenComponent } from './components/topic-screen/topic-screen.com
 //here's where we add our routes
 const routes: Routes = [
   {path:'',component:HomeScreenComponent},
-  {path:'Home',component:HomeScreenComponent},
-  {path:'Course',component: CourseScreenComponent},
-  {path:'Topic',component: TopicScreenComponent},
+  {path:'home',component:HomeScreenComponent},
+  {path:'course/:id',component: CourseScreenComponent},
+  {path:'topic',component: TopicScreenComponent},
   {path:'',component:HomeScreenComponent},
   {path:'**',component:HomeScreenComponent}
 ];

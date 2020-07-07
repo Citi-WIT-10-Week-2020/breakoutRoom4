@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 import Amplify, { Auth } from 'aws-amplify';
 import { Hub, Logger} from 'aws-amplify';
 
