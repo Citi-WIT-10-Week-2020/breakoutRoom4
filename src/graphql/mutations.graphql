@@ -13,18 +13,11 @@ mutation CreateProfessor(
         professor
         courseName
         courseDescription
-        _version
-        _deleted
-        _lastChangedAt
         createdAt
         updatedAt
       }
       nextToken
-      startedAt
     }
-    _version
-    _deleted
-    _lastChangedAt
     createdAt
     updatedAt
   }
@@ -43,18 +36,11 @@ mutation UpdateProfessor(
         professor
         courseName
         courseDescription
-        _version
-        _deleted
-        _lastChangedAt
         createdAt
         updatedAt
       }
       nextToken
-      startedAt
     }
-    _version
-    _deleted
-    _lastChangedAt
     createdAt
     updatedAt
   }
@@ -73,18 +59,11 @@ mutation DeleteProfessor(
         professor
         courseName
         courseDescription
-        _version
-        _deleted
-        _lastChangedAt
         createdAt
         updatedAt
       }
       nextToken
-      startedAt
     }
-    _version
-    _deleted
-    _lastChangedAt
     createdAt
     updatedAt
   }
@@ -105,18 +84,11 @@ mutation CreateCourse(
         TopicName
         course
         TopicDescription
-        _version
-        _deleted
-        _lastChangedAt
         createdAt
         updatedAt
       }
       nextToken
-      startedAt
     }
-    _version
-    _deleted
-    _lastChangedAt
     createdAt
     updatedAt
   }
@@ -137,18 +109,11 @@ mutation UpdateCourse(
         TopicName
         course
         TopicDescription
-        _version
-        _deleted
-        _lastChangedAt
         createdAt
         updatedAt
       }
       nextToken
-      startedAt
     }
-    _version
-    _deleted
-    _lastChangedAt
     createdAt
     updatedAt
   }
@@ -169,18 +134,11 @@ mutation DeleteCourse(
         TopicName
         course
         TopicDescription
-        _version
-        _deleted
-        _lastChangedAt
         createdAt
         updatedAt
       }
       nextToken
-      startedAt
     }
-    _version
-    _deleted
-    _lastChangedAt
     createdAt
     updatedAt
   }
@@ -204,18 +162,11 @@ mutation CreateTopic(
         filetype
         fileDescription
         resourseGroup
-        _version
-        _deleted
-        _lastChangedAt
         createdAt
         updatedAt
       }
       nextToken
-      startedAt
     }
-    _version
-    _deleted
-    _lastChangedAt
     createdAt
     updatedAt
   }
@@ -239,18 +190,11 @@ mutation UpdateTopic(
         filetype
         fileDescription
         resourseGroup
-        _version
-        _deleted
-        _lastChangedAt
         createdAt
         updatedAt
       }
       nextToken
-      startedAt
     }
-    _version
-    _deleted
-    _lastChangedAt
     createdAt
     updatedAt
   }
@@ -274,18 +218,11 @@ mutation DeleteTopic(
         filetype
         fileDescription
         resourseGroup
-        _version
-        _deleted
-        _lastChangedAt
         createdAt
         updatedAt
       }
       nextToken
-      startedAt
     }
-    _version
-    _deleted
-    _lastChangedAt
     createdAt
     updatedAt
   }
@@ -302,9 +239,6 @@ mutation CreateFile(
     filetype
     fileDescription
     resourseGroup
-    _version
-    _deleted
-    _lastChangedAt
     createdAt
     updatedAt
   }
@@ -321,9 +255,6 @@ mutation UpdateFile(
     filetype
     fileDescription
     resourseGroup
-    _version
-    _deleted
-    _lastChangedAt
     createdAt
     updatedAt
   }
@@ -340,9 +271,6 @@ mutation DeleteFile(
     filetype
     fileDescription
     resourseGroup
-    _version
-    _deleted
-    _lastChangedAt
     createdAt
     updatedAt
   }
