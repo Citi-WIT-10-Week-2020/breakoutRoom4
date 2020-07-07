@@ -1,3 +1,6 @@
-<p>course-screen works!</p>
+<p>course-screen works! {{courseId}}</p>
 
-<a routerLink='/Topic'>Go to Topic Screen</a>
+<a routerLink='/topic'>Go to Topic Screen</a>
+<ul>
+    <li *ngFor="let item of topics" [routerLink]="['/course',item.id]">{{item.professor}} : {{item.TopicName}} : {{item.TopicDescription}} : {{item.id}}</li>
+  </ul>

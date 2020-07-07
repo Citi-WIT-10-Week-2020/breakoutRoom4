@@ -4,13 +4,12 @@
 import { Injectable } from "@angular/core";
 import API, { graphqlOperation } from "@aws-amplify/api";
 import { GraphQLResult } from "@aws-amplify/api/lib/types";
-import * as Observable from "zen-observable";
+import { Observable } from "zen-observable-ts";
 
 export type CreateProfessorInput = {
   id?: string | null;
   professorName: string;
   universityName: string;
-  _version?: number | null;
 };
 
 export type ModelProfessorConditionInput = {
@@ -64,12 +63,10 @@ export type UpdateProfessorInput = {
   id: string;
   professorName?: string | null;
   universityName?: string | null;
-  _version?: number | null;
 };
 
 export type DeleteProfessorInput = {
   id?: string | null;
-  _version?: number | null;
 };
 
 export type CreateCourseInput = {
@@ -77,7 +74,6 @@ export type CreateCourseInput = {
   professor: string;
   courseName: string;
   courseDescription: string;
-  _version?: number | null;
 };
 
 export type ModelCourseConditionInput = {
@@ -94,12 +90,10 @@ export type UpdateCourseInput = {
   professor?: string | null;
   courseName?: string | null;
   courseDescription?: string | null;
-  _version?: number | null;
 };
 
 export type DeleteCourseInput = {
   id?: string | null;
-  _version?: number | null;
 };
 
 export type CreateTopicInput = {
@@ -108,7 +102,6 @@ export type CreateTopicInput = {
   TopicName: string;
   course: string;
   TopicDescription: string;
-  _version?: number | null;
 };
 
 export type ModelTopicConditionInput = {
@@ -127,12 +120,10 @@ export type UpdateTopicInput = {
   TopicName?: string | null;
   course?: string | null;
   TopicDescription?: string | null;
-  _version?: number | null;
 };
 
 export type DeleteTopicInput = {
   id?: string | null;
-  _version?: number | null;
 };
 
 export type CreateFileInput = {
@@ -143,7 +134,6 @@ export type CreateFileInput = {
   filetype: string;
   fileDescription?: string | null;
   resourseGroup: string;
-  _version?: number | null;
 };
 
 export type ModelFileConditionInput = {
@@ -166,12 +156,10 @@ export type UpdateFileInput = {
   filetype?: string | null;
   fileDescription?: string | null;
   resourseGroup?: string | null;
-  _version?: number | null;
 };
 
 export type DeleteFileInput = {
   id?: string | null;
-  _version?: number | null;
 };
 
 export type ModelProfessorFilterInput = {
@@ -261,18 +249,11 @@ export type CreateProfessorMutation = {
       professor: string;
       courseName: string;
       courseDescription: string;
-      _version: number;
-      _deleted: boolean | null;
-      _lastChangedAt: number;
       createdAt: string;
       updatedAt: string;
     } | null> | null;
     nextToken: string | null;
-    startedAt: number | null;
   } | null;
-  _version: number;
-  _deleted: boolean | null;
-  _lastChangedAt: number;
   createdAt: string;
   updatedAt: string;
 };
@@ -290,18 +271,11 @@ export type UpdateProfessorMutation = {
       professor: string;
       courseName: string;
       courseDescription: string;
-      _version: number;
-      _deleted: boolean | null;
-      _lastChangedAt: number;
       createdAt: string;
       updatedAt: string;
     } | null> | null;
     nextToken: string | null;
-    startedAt: number | null;
   } | null;
-  _version: number;
-  _deleted: boolean | null;
-  _lastChangedAt: number;
   createdAt: string;
   updatedAt: string;
 };
@@ -319,18 +293,11 @@ export type DeleteProfessorMutation = {
       professor: string;
       courseName: string;
       courseDescription: string;
-      _version: number;
-      _deleted: boolean | null;
-      _lastChangedAt: number;
       createdAt: string;
       updatedAt: string;
     } | null> | null;
     nextToken: string | null;
-    startedAt: number | null;
   } | null;
-  _version: number;
-  _deleted: boolean | null;
-  _lastChangedAt: number;
   createdAt: string;
   updatedAt: string;
 };
@@ -350,18 +317,11 @@ export type CreateCourseMutation = {
       TopicName: string;
       course: string;
       TopicDescription: string;
-      _version: number;
-      _deleted: boolean | null;
-      _lastChangedAt: number;
       createdAt: string;
       updatedAt: string;
     } | null> | null;
     nextToken: string | null;
-    startedAt: number | null;
   } | null;
-  _version: number;
-  _deleted: boolean | null;
-  _lastChangedAt: number;
   createdAt: string;
   updatedAt: string;
 };
@@ -381,18 +341,11 @@ export type UpdateCourseMutation = {
       TopicName: string;
       course: string;
       TopicDescription: string;
-      _version: number;
-      _deleted: boolean | null;
-      _lastChangedAt: number;
       createdAt: string;
       updatedAt: string;
     } | null> | null;
     nextToken: string | null;
-    startedAt: number | null;
   } | null;
-  _version: number;
-  _deleted: boolean | null;
-  _lastChangedAt: number;
   createdAt: string;
   updatedAt: string;
 };
@@ -412,18 +365,11 @@ export type DeleteCourseMutation = {
       TopicName: string;
       course: string;
       TopicDescription: string;
-      _version: number;
-      _deleted: boolean | null;
-      _lastChangedAt: number;
       createdAt: string;
       updatedAt: string;
     } | null> | null;
     nextToken: string | null;
-    startedAt: number | null;
   } | null;
-  _version: number;
-  _deleted: boolean | null;
-  _lastChangedAt: number;
   createdAt: string;
   updatedAt: string;
 };
@@ -446,18 +392,11 @@ export type CreateTopicMutation = {
       filetype: string;
       fileDescription: string | null;
       resourseGroup: string;
-      _version: number;
-      _deleted: boolean | null;
-      _lastChangedAt: number;
       createdAt: string;
       updatedAt: string;
     } | null> | null;
     nextToken: string | null;
-    startedAt: number | null;
   } | null;
-  _version: number;
-  _deleted: boolean | null;
-  _lastChangedAt: number;
   createdAt: string;
   updatedAt: string;
 };
@@ -480,18 +419,11 @@ export type UpdateTopicMutation = {
       filetype: string;
       fileDescription: string | null;
       resourseGroup: string;
-      _version: number;
-      _deleted: boolean | null;
-      _lastChangedAt: number;
       createdAt: string;
       updatedAt: string;
     } | null> | null;
     nextToken: string | null;
-    startedAt: number | null;
   } | null;
-  _version: number;
-  _deleted: boolean | null;
-  _lastChangedAt: number;
   createdAt: string;
   updatedAt: string;
 };
@@ -514,18 +446,11 @@ export type DeleteTopicMutation = {
       filetype: string;
       fileDescription: string | null;
       resourseGroup: string;
-      _version: number;
-      _deleted: boolean | null;
-      _lastChangedAt: number;
       createdAt: string;
       updatedAt: string;
     } | null> | null;
     nextToken: string | null;
-    startedAt: number | null;
   } | null;
-  _version: number;
-  _deleted: boolean | null;
-  _lastChangedAt: number;
   createdAt: string;
   updatedAt: string;
 };
@@ -539,9 +464,6 @@ export type CreateFileMutation = {
   filetype: string;
   fileDescription: string | null;
   resourseGroup: string;
-  _version: number;
-  _deleted: boolean | null;
-  _lastChangedAt: number;
   createdAt: string;
   updatedAt: string;
 };
@@ -555,9 +477,6 @@ export type UpdateFileMutation = {
   filetype: string;
   fileDescription: string | null;
   resourseGroup: string;
-  _version: number;
-  _deleted: boolean | null;
-  _lastChangedAt: number;
   createdAt: string;
   updatedAt: string;
 };
@@ -571,33 +490,8 @@ export type DeleteFileMutation = {
   filetype: string;
   fileDescription: string | null;
   resourseGroup: string;
-  _version: number;
-  _deleted: boolean | null;
-  _lastChangedAt: number;
   createdAt: string;
   updatedAt: string;
-};
-
-export type SyncProfessorsQuery = {
-  __typename: "ModelProfessorConnection";
-  items: Array<{
-    __typename: "Professor";
-    id: string;
-    professorName: string;
-    universityName: string;
-    courses: {
-      __typename: "ModelCourseConnection";
-      nextToken: string | null;
-      startedAt: number | null;
-    } | null;
-    _version: number;
-    _deleted: boolean | null;
-    _lastChangedAt: number;
-    createdAt: string;
-    updatedAt: string;
-  } | null> | null;
-  nextToken: string | null;
-  startedAt: number | null;
 };
 
 export type GetProfessorQuery = {
@@ -613,18 +507,11 @@ export type GetProfessorQuery = {
       professor: string;
       courseName: string;
       courseDescription: string;
-      _version: number;
-      _deleted: boolean | null;
-      _lastChangedAt: number;
       createdAt: string;
       updatedAt: string;
     } | null> | null;
     nextToken: string | null;
-    startedAt: number | null;
   } | null;
-  _version: number;
-  _deleted: boolean | null;
-  _lastChangedAt: number;
   createdAt: string;
   updatedAt: string;
 };
@@ -639,39 +526,11 @@ export type ListProfessorsQuery = {
     courses: {
       __typename: "ModelCourseConnection";
       nextToken: string | null;
-      startedAt: number | null;
     } | null;
-    _version: number;
-    _deleted: boolean | null;
-    _lastChangedAt: number;
     createdAt: string;
     updatedAt: string;
   } | null> | null;
   nextToken: string | null;
-  startedAt: number | null;
-};
-
-export type SyncCoursesQuery = {
-  __typename: "ModelCourseConnection";
-  items: Array<{
-    __typename: "Course";
-    id: string;
-    professor: string;
-    courseName: string;
-    courseDescription: string;
-    topics: {
-      __typename: "ModelTopicConnection";
-      nextToken: string | null;
-      startedAt: number | null;
-    } | null;
-    _version: number;
-    _deleted: boolean | null;
-    _lastChangedAt: number;
-    createdAt: string;
-    updatedAt: string;
-  } | null> | null;
-  nextToken: string | null;
-  startedAt: number | null;
 };
 
 export type GetCourseQuery = {
@@ -689,18 +548,11 @@ export type GetCourseQuery = {
       TopicName: string;
       course: string;
       TopicDescription: string;
-      _version: number;
-      _deleted: boolean | null;
-      _lastChangedAt: number;
       createdAt: string;
       updatedAt: string;
     } | null> | null;
     nextToken: string | null;
-    startedAt: number | null;
   } | null;
-  _version: number;
-  _deleted: boolean | null;
-  _lastChangedAt: number;
   createdAt: string;
   updatedAt: string;
 };
@@ -716,40 +568,11 @@ export type ListCoursesQuery = {
     topics: {
       __typename: "ModelTopicConnection";
       nextToken: string | null;
-      startedAt: number | null;
     } | null;
-    _version: number;
-    _deleted: boolean | null;
-    _lastChangedAt: number;
     createdAt: string;
     updatedAt: string;
   } | null> | null;
   nextToken: string | null;
-  startedAt: number | null;
-};
-
-export type SyncTopicsQuery = {
-  __typename: "ModelTopicConnection";
-  items: Array<{
-    __typename: "Topic";
-    id: string;
-    professor: string;
-    TopicName: string;
-    course: string;
-    TopicDescription: string;
-    files: {
-      __typename: "ModelFileConnection";
-      nextToken: string | null;
-      startedAt: number | null;
-    } | null;
-    _version: number;
-    _deleted: boolean | null;
-    _lastChangedAt: number;
-    createdAt: string;
-    updatedAt: string;
-  } | null> | null;
-  nextToken: string | null;
-  startedAt: number | null;
 };
 
 export type GetTopicQuery = {
@@ -770,18 +593,11 @@ export type GetTopicQuery = {
       filetype: string;
       fileDescription: string | null;
       resourseGroup: string;
-      _version: number;
-      _deleted: boolean | null;
-      _lastChangedAt: number;
       createdAt: string;
       updatedAt: string;
     } | null> | null;
     nextToken: string | null;
-    startedAt: number | null;
   } | null;
-  _version: number;
-  _deleted: boolean | null;
-  _lastChangedAt: number;
   createdAt: string;
   updatedAt: string;
 };
@@ -798,37 +614,11 @@ export type ListTopicsQuery = {
     files: {
       __typename: "ModelFileConnection";
       nextToken: string | null;
-      startedAt: number | null;
     } | null;
-    _version: number;
-    _deleted: boolean | null;
-    _lastChangedAt: number;
     createdAt: string;
     updatedAt: string;
   } | null> | null;
   nextToken: string | null;
-  startedAt: number | null;
-};
-
-export type SyncFilesQuery = {
-  __typename: "ModelFileConnection";
-  items: Array<{
-    __typename: "File";
-    id: string;
-    course: string;
-    topic: string;
-    filename: string;
-    filetype: string;
-    fileDescription: string | null;
-    resourseGroup: string;
-    _version: number;
-    _deleted: boolean | null;
-    _lastChangedAt: number;
-    createdAt: string;
-    updatedAt: string;
-  } | null> | null;
-  nextToken: string | null;
-  startedAt: number | null;
 };
 
 export type GetFileQuery = {
@@ -840,9 +630,6 @@ export type GetFileQuery = {
   filetype: string;
   fileDescription: string | null;
   resourseGroup: string;
-  _version: number;
-  _deleted: boolean | null;
-  _lastChangedAt: number;
   createdAt: string;
   updatedAt: string;
 };
@@ -858,14 +645,10 @@ export type ListFilesQuery = {
     filetype: string;
     fileDescription: string | null;
     resourseGroup: string;
-    _version: number;
-    _deleted: boolean | null;
-    _lastChangedAt: number;
     createdAt: string;
     updatedAt: string;
   } | null> | null;
   nextToken: string | null;
-  startedAt: number | null;
 };
 
 export type CourseByProfessorQuery = {
@@ -879,16 +662,11 @@ export type CourseByProfessorQuery = {
     topics: {
       __typename: "ModelTopicConnection";
       nextToken: string | null;
-      startedAt: number | null;
     } | null;
-    _version: number;
-    _deleted: boolean | null;
-    _lastChangedAt: number;
     createdAt: string;
     updatedAt: string;
   } | null> | null;
   nextToken: string | null;
-  startedAt: number | null;
 };
 
 export type TopicByCourseByProfessorQuery = {
@@ -903,16 +681,11 @@ export type TopicByCourseByProfessorQuery = {
     files: {
       __typename: "ModelFileConnection";
       nextToken: string | null;
-      startedAt: number | null;
     } | null;
-    _version: number;
-    _deleted: boolean | null;
-    _lastChangedAt: number;
     createdAt: string;
     updatedAt: string;
   } | null> | null;
   nextToken: string | null;
-  startedAt: number | null;
 };
 
 export type FileByCourseByTopicQuery = {
@@ -926,14 +699,10 @@ export type FileByCourseByTopicQuery = {
     filetype: string;
     fileDescription: string | null;
     resourseGroup: string;
-    _version: number;
-    _deleted: boolean | null;
-    _lastChangedAt: number;
     createdAt: string;
     updatedAt: string;
   } | null> | null;
   nextToken: string | null;
-  startedAt: number | null;
 };
 
 export type FileByResourceGroupQuery = {
@@ -947,14 +716,10 @@ export type FileByResourceGroupQuery = {
     filetype: string;
     fileDescription: string | null;
     resourseGroup: string;
-    _version: number;
-    _deleted: boolean | null;
-    _lastChangedAt: number;
     createdAt: string;
     updatedAt: string;
   } | null> | null;
   nextToken: string | null;
-  startedAt: number | null;
 };
 
 export type FileByFilenameQuery = {
@@ -968,14 +733,10 @@ export type FileByFilenameQuery = {
     filetype: string;
     fileDescription: string | null;
     resourseGroup: string;
-    _version: number;
-    _deleted: boolean | null;
-    _lastChangedAt: number;
     createdAt: string;
     updatedAt: string;
   } | null> | null;
   nextToken: string | null;
-  startedAt: number | null;
 };
 
 export type OnCreateProfessorSubscription = {
@@ -991,18 +752,11 @@ export type OnCreateProfessorSubscription = {
       professor: string;
       courseName: string;
       courseDescription: string;
-      _version: number;
-      _deleted: boolean | null;
-      _lastChangedAt: number;
       createdAt: string;
       updatedAt: string;
     } | null> | null;
     nextToken: string | null;
-    startedAt: number | null;
   } | null;
-  _version: number;
-  _deleted: boolean | null;
-  _lastChangedAt: number;
   createdAt: string;
   updatedAt: string;
 };
@@ -1020,18 +774,11 @@ export type OnUpdateProfessorSubscription = {
       professor: string;
       courseName: string;
       courseDescription: string;
-      _version: number;
-      _deleted: boolean | null;
-      _lastChangedAt: number;
       createdAt: string;
       updatedAt: string;
     } | null> | null;
     nextToken: string | null;
-    startedAt: number | null;
   } | null;
-  _version: number;
-  _deleted: boolean | null;
-  _lastChangedAt: number;
   createdAt: string;
   updatedAt: string;
 };
@@ -1049,18 +796,11 @@ export type OnDeleteProfessorSubscription = {
       professor: string;
       courseName: string;
       courseDescription: string;
-      _version: number;
-      _deleted: boolean | null;
-      _lastChangedAt: number;
       createdAt: string;
       updatedAt: string;
     } | null> | null;
     nextToken: string | null;
-    startedAt: number | null;
   } | null;
-  _version: number;
-  _deleted: boolean | null;
-  _lastChangedAt: number;
   createdAt: string;
   updatedAt: string;
 };
@@ -1080,18 +820,11 @@ export type OnCreateCourseSubscription = {
       TopicName: string;
       course: string;
       TopicDescription: string;
-      _version: number;
-      _deleted: boolean | null;
-      _lastChangedAt: number;
       createdAt: string;
       updatedAt: string;
     } | null> | null;
     nextToken: string | null;
-    startedAt: number | null;
   } | null;
-  _version: number;
-  _deleted: boolean | null;
-  _lastChangedAt: number;
   createdAt: string;
   updatedAt: string;
 };
@@ -1111,18 +844,11 @@ export type OnUpdateCourseSubscription = {
       TopicName: string;
       course: string;
       TopicDescription: string;
-      _version: number;
-      _deleted: boolean | null;
-      _lastChangedAt: number;
       createdAt: string;
       updatedAt: string;
     } | null> | null;
     nextToken: string | null;
-    startedAt: number | null;
   } | null;
-  _version: number;
-  _deleted: boolean | null;
-  _lastChangedAt: number;
   createdAt: string;
   updatedAt: string;
 };
@@ -1142,18 +868,11 @@ export type OnDeleteCourseSubscription = {
       TopicName: string;
       course: string;
       TopicDescription: string;
-      _version: number;
-      _deleted: boolean | null;
-      _lastChangedAt: number;
       createdAt: string;
       updatedAt: string;
     } | null> | null;
     nextToken: string | null;
-    startedAt: number | null;
   } | null;
-  _version: number;
-  _deleted: boolean | null;
-  _lastChangedAt: number;
   createdAt: string;
   updatedAt: string;
 };
@@ -1176,18 +895,11 @@ export type OnCreateTopicSubscription = {
       filetype: string;
       fileDescription: string | null;
       resourseGroup: string;
-      _version: number;
-      _deleted: boolean | null;
-      _lastChangedAt: number;
       createdAt: string;
       updatedAt: string;
     } | null> | null;
     nextToken: string | null;
-    startedAt: number | null;
   } | null;
-  _version: number;
-  _deleted: boolean | null;
-  _lastChangedAt: number;
   createdAt: string;
   updatedAt: string;
 };
@@ -1210,18 +922,11 @@ export type OnUpdateTopicSubscription = {
       filetype: string;
       fileDescription: string | null;
       resourseGroup: string;
-      _version: number;
-      _deleted: boolean | null;
-      _lastChangedAt: number;
       createdAt: string;
       updatedAt: string;
     } | null> | null;
     nextToken: string | null;
-    startedAt: number | null;
   } | null;
-  _version: number;
-  _deleted: boolean | null;
-  _lastChangedAt: number;
   createdAt: string;
   updatedAt: string;
 };
@@ -1244,18 +949,11 @@ export type OnDeleteTopicSubscription = {
       filetype: string;
       fileDescription: string | null;
       resourseGroup: string;
-      _version: number;
-      _deleted: boolean | null;
-      _lastChangedAt: number;
       createdAt: string;
       updatedAt: string;
     } | null> | null;
     nextToken: string | null;
-    startedAt: number | null;
   } | null;
-  _version: number;
-  _deleted: boolean | null;
-  _lastChangedAt: number;
   createdAt: string;
   updatedAt: string;
 };
@@ -1269,9 +967,6 @@ export type OnCreateFileSubscription = {
   filetype: string;
   fileDescription: string | null;
   resourseGroup: string;
-  _version: number;
-  _deleted: boolean | null;
-  _lastChangedAt: number;
   createdAt: string;
   updatedAt: string;
 };
@@ -1285,9 +980,6 @@ export type OnUpdateFileSubscription = {
   filetype: string;
   fileDescription: string | null;
   resourseGroup: string;
-  _version: number;
-  _deleted: boolean | null;
-  _lastChangedAt: number;
   createdAt: string;
   updatedAt: string;
 };
@@ -1301,9 +993,6 @@ export type OnDeleteFileSubscription = {
   filetype: string;
   fileDescription: string | null;
   resourseGroup: string;
-  _version: number;
-  _deleted: boolean | null;
-  _lastChangedAt: number;
   createdAt: string;
   updatedAt: string;
 };
@@ -1330,18 +1019,11 @@ export class APIService {
               professor
               courseName
               courseDescription
-              _version
-              _deleted
-              _lastChangedAt
               createdAt
               updatedAt
             }
             nextToken
-            startedAt
           }
-          _version
-          _deleted
-          _lastChangedAt
           createdAt
           updatedAt
         }
@@ -1375,18 +1057,11 @@ export class APIService {
               professor
               courseName
               courseDescription
-              _version
-              _deleted
-              _lastChangedAt
               createdAt
               updatedAt
             }
             nextToken
-            startedAt
           }
-          _version
-          _deleted
-          _lastChangedAt
           createdAt
           updatedAt
         }
@@ -1420,18 +1095,11 @@ export class APIService {
               professor
               courseName
               courseDescription
-              _version
-              _deleted
-              _lastChangedAt
               createdAt
               updatedAt
             }
             nextToken
-            startedAt
           }
-          _version
-          _deleted
-          _lastChangedAt
           createdAt
           updatedAt
         }
@@ -1467,18 +1135,11 @@ export class APIService {
               TopicName
               course
               TopicDescription
-              _version
-              _deleted
-              _lastChangedAt
               createdAt
               updatedAt
             }
             nextToken
-            startedAt
           }
-          _version
-          _deleted
-          _lastChangedAt
           createdAt
           updatedAt
         }
@@ -1514,18 +1175,11 @@ export class APIService {
               TopicName
               course
               TopicDescription
-              _version
-              _deleted
-              _lastChangedAt
               createdAt
               updatedAt
             }
             nextToken
-            startedAt
           }
-          _version
-          _deleted
-          _lastChangedAt
           createdAt
           updatedAt
         }
@@ -1561,18 +1215,11 @@ export class APIService {
               TopicName
               course
               TopicDescription
-              _version
-              _deleted
-              _lastChangedAt
               createdAt
               updatedAt
             }
             nextToken
-            startedAt
           }
-          _version
-          _deleted
-          _lastChangedAt
           createdAt
           updatedAt
         }
@@ -1611,18 +1258,11 @@ export class APIService {
               filetype
               fileDescription
               resourseGroup
-              _version
-              _deleted
-              _lastChangedAt
               createdAt
               updatedAt
             }
             nextToken
-            startedAt
           }
-          _version
-          _deleted
-          _lastChangedAt
           createdAt
           updatedAt
         }
@@ -1661,18 +1301,11 @@ export class APIService {
               filetype
               fileDescription
               resourseGroup
-              _version
-              _deleted
-              _lastChangedAt
               createdAt
               updatedAt
             }
             nextToken
-            startedAt
           }
-          _version
-          _deleted
-          _lastChangedAt
           createdAt
           updatedAt
         }
@@ -1711,18 +1344,11 @@ export class APIService {
               filetype
               fileDescription
               resourseGroup
-              _version
-              _deleted
-              _lastChangedAt
               createdAt
               updatedAt
             }
             nextToken
-            startedAt
           }
-          _version
-          _deleted
-          _lastChangedAt
           createdAt
           updatedAt
         }
@@ -1752,9 +1378,6 @@ export class APIService {
           filetype
           fileDescription
           resourseGroup
-          _version
-          _deleted
-          _lastChangedAt
           createdAt
           updatedAt
         }
@@ -1784,9 +1407,6 @@ export class APIService {
           filetype
           fileDescription
           resourseGroup
-          _version
-          _deleted
-          _lastChangedAt
           createdAt
           updatedAt
         }
@@ -1816,9 +1436,6 @@ export class APIService {
           filetype
           fileDescription
           resourseGroup
-          _version
-          _deleted
-          _lastChangedAt
           createdAt
           updatedAt
         }
@@ -1833,53 +1450,6 @@ export class APIService {
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
     return <DeleteFileMutation>response.data.deleteFile;
-  }
-  async SyncProfessors(
-    filter?: ModelProfessorFilterInput,
-    limit?: number,
-    nextToken?: string,
-    lastSync?: number
-  ): Promise<SyncProfessorsQuery> {
-    const statement = `query SyncProfessors($filter: ModelProfessorFilterInput, $limit: Int, $nextToken: String, $lastSync: AWSTimestamp) {
-        syncProfessors(filter: $filter, limit: $limit, nextToken: $nextToken, lastSync: $lastSync) {
-          __typename
-          items {
-            __typename
-            id
-            professorName
-            universityName
-            courses {
-              __typename
-              nextToken
-              startedAt
-            }
-            _version
-            _deleted
-            _lastChangedAt
-            createdAt
-            updatedAt
-          }
-          nextToken
-          startedAt
-        }
-      }`;
-    const gqlAPIServiceArguments: any = {};
-    if (filter) {
-      gqlAPIServiceArguments.filter = filter;
-    }
-    if (limit) {
-      gqlAPIServiceArguments.limit = limit;
-    }
-    if (nextToken) {
-      gqlAPIServiceArguments.nextToken = nextToken;
-    }
-    if (lastSync) {
-      gqlAPIServiceArguments.lastSync = lastSync;
-    }
-    const response = (await API.graphql(
-      graphqlOperation(statement, gqlAPIServiceArguments)
-    )) as any;
-    return <SyncProfessorsQuery>response.data.syncProfessors;
   }
   async GetProfessor(id: string): Promise<GetProfessorQuery> {
     const statement = `query GetProfessor($id: ID!) {
@@ -1896,18 +1466,11 @@ export class APIService {
               professor
               courseName
               courseDescription
-              _version
-              _deleted
-              _lastChangedAt
               createdAt
               updatedAt
             }
             nextToken
-            startedAt
           }
-          _version
-          _deleted
-          _lastChangedAt
           createdAt
           updatedAt
         }
@@ -1936,16 +1499,11 @@ export class APIService {
             courses {
               __typename
               nextToken
-              startedAt
             }
-            _version
-            _deleted
-            _lastChangedAt
             createdAt
             updatedAt
           }
           nextToken
-          startedAt
         }
       }`;
     const gqlAPIServiceArguments: any = {};
@@ -1962,54 +1520,6 @@ export class APIService {
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
     return <ListProfessorsQuery>response.data.listProfessors;
-  }
-  async SyncCourses(
-    filter?: ModelCourseFilterInput,
-    limit?: number,
-    nextToken?: string,
-    lastSync?: number
-  ): Promise<SyncCoursesQuery> {
-    const statement = `query SyncCourses($filter: ModelCourseFilterInput, $limit: Int, $nextToken: String, $lastSync: AWSTimestamp) {
-        syncCourses(filter: $filter, limit: $limit, nextToken: $nextToken, lastSync: $lastSync) {
-          __typename
-          items {
-            __typename
-            id
-            professor
-            courseName
-            courseDescription
-            topics {
-              __typename
-              nextToken
-              startedAt
-            }
-            _version
-            _deleted
-            _lastChangedAt
-            createdAt
-            updatedAt
-          }
-          nextToken
-          startedAt
-        }
-      }`;
-    const gqlAPIServiceArguments: any = {};
-    if (filter) {
-      gqlAPIServiceArguments.filter = filter;
-    }
-    if (limit) {
-      gqlAPIServiceArguments.limit = limit;
-    }
-    if (nextToken) {
-      gqlAPIServiceArguments.nextToken = nextToken;
-    }
-    if (lastSync) {
-      gqlAPIServiceArguments.lastSync = lastSync;
-    }
-    const response = (await API.graphql(
-      graphqlOperation(statement, gqlAPIServiceArguments)
-    )) as any;
-    return <SyncCoursesQuery>response.data.syncCourses;
   }
   async GetCourse(id: string): Promise<GetCourseQuery> {
     const statement = `query GetCourse($id: ID!) {
@@ -2028,18 +1538,11 @@ export class APIService {
               TopicName
               course
               TopicDescription
-              _version
-              _deleted
-              _lastChangedAt
               createdAt
               updatedAt
             }
             nextToken
-            startedAt
           }
-          _version
-          _deleted
-          _lastChangedAt
           createdAt
           updatedAt
         }
@@ -2069,16 +1572,11 @@ export class APIService {
             topics {
               __typename
               nextToken
-              startedAt
             }
-            _version
-            _deleted
-            _lastChangedAt
             createdAt
             updatedAt
           }
           nextToken
-          startedAt
         }
       }`;
     const gqlAPIServiceArguments: any = {};
@@ -2095,55 +1593,6 @@ export class APIService {
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
     return <ListCoursesQuery>response.data.listCourses;
-  }
-  async SyncTopics(
-    filter?: ModelTopicFilterInput,
-    limit?: number,
-    nextToken?: string,
-    lastSync?: number
-  ): Promise<SyncTopicsQuery> {
-    const statement = `query SyncTopics($filter: ModelTopicFilterInput, $limit: Int, $nextToken: String, $lastSync: AWSTimestamp) {
-        syncTopics(filter: $filter, limit: $limit, nextToken: $nextToken, lastSync: $lastSync) {
-          __typename
-          items {
-            __typename
-            id
-            professor
-            TopicName
-            course
-            TopicDescription
-            files {
-              __typename
-              nextToken
-              startedAt
-            }
-            _version
-            _deleted
-            _lastChangedAt
-            createdAt
-            updatedAt
-          }
-          nextToken
-          startedAt
-        }
-      }`;
-    const gqlAPIServiceArguments: any = {};
-    if (filter) {
-      gqlAPIServiceArguments.filter = filter;
-    }
-    if (limit) {
-      gqlAPIServiceArguments.limit = limit;
-    }
-    if (nextToken) {
-      gqlAPIServiceArguments.nextToken = nextToken;
-    }
-    if (lastSync) {
-      gqlAPIServiceArguments.lastSync = lastSync;
-    }
-    const response = (await API.graphql(
-      graphqlOperation(statement, gqlAPIServiceArguments)
-    )) as any;
-    return <SyncTopicsQuery>response.data.syncTopics;
   }
   async GetTopic(id: string): Promise<GetTopicQuery> {
     const statement = `query GetTopic($id: ID!) {
@@ -2165,18 +1614,11 @@ export class APIService {
               filetype
               fileDescription
               resourseGroup
-              _version
-              _deleted
-              _lastChangedAt
               createdAt
               updatedAt
             }
             nextToken
-            startedAt
           }
-          _version
-          _deleted
-          _lastChangedAt
           createdAt
           updatedAt
         }
@@ -2207,16 +1649,11 @@ export class APIService {
             files {
               __typename
               nextToken
-              startedAt
             }
-            _version
-            _deleted
-            _lastChangedAt
             createdAt
             updatedAt
           }
           nextToken
-          startedAt
         }
       }`;
     const gqlAPIServiceArguments: any = {};
@@ -2234,52 +1671,6 @@ export class APIService {
     )) as any;
     return <ListTopicsQuery>response.data.listTopics;
   }
-  async SyncFiles(
-    filter?: ModelFileFilterInput,
-    limit?: number,
-    nextToken?: string,
-    lastSync?: number
-  ): Promise<SyncFilesQuery> {
-    const statement = `query SyncFiles($filter: ModelFileFilterInput, $limit: Int, $nextToken: String, $lastSync: AWSTimestamp) {
-        syncFiles(filter: $filter, limit: $limit, nextToken: $nextToken, lastSync: $lastSync) {
-          __typename
-          items {
-            __typename
-            id
-            course
-            topic
-            filename
-            filetype
-            fileDescription
-            resourseGroup
-            _version
-            _deleted
-            _lastChangedAt
-            createdAt
-            updatedAt
-          }
-          nextToken
-          startedAt
-        }
-      }`;
-    const gqlAPIServiceArguments: any = {};
-    if (filter) {
-      gqlAPIServiceArguments.filter = filter;
-    }
-    if (limit) {
-      gqlAPIServiceArguments.limit = limit;
-    }
-    if (nextToken) {
-      gqlAPIServiceArguments.nextToken = nextToken;
-    }
-    if (lastSync) {
-      gqlAPIServiceArguments.lastSync = lastSync;
-    }
-    const response = (await API.graphql(
-      graphqlOperation(statement, gqlAPIServiceArguments)
-    )) as any;
-    return <SyncFilesQuery>response.data.syncFiles;
-  }
   async GetFile(id: string): Promise<GetFileQuery> {
     const statement = `query GetFile($id: ID!) {
         getFile(id: $id) {
@@ -2291,9 +1682,6 @@ export class APIService {
           filetype
           fileDescription
           resourseGroup
-          _version
-          _deleted
-          _lastChangedAt
           createdAt
           updatedAt
         }
@@ -2323,14 +1711,10 @@ export class APIService {
             filetype
             fileDescription
             resourseGroup
-            _version
-            _deleted
-            _lastChangedAt
             createdAt
             updatedAt
           }
           nextToken
-          startedAt
         }
       }`;
     const gqlAPIServiceArguments: any = {};
@@ -2367,16 +1751,11 @@ export class APIService {
             topics {
               __typename
               nextToken
-              startedAt
             }
-            _version
-            _deleted
-            _lastChangedAt
             createdAt
             updatedAt
           }
           nextToken
-          startedAt
         }
       }`;
     const gqlAPIServiceArguments: any = {};
@@ -2421,16 +1800,11 @@ export class APIService {
             files {
               __typename
               nextToken
-              startedAt
             }
-            _version
-            _deleted
-            _lastChangedAt
             createdAt
             updatedAt
           }
           nextToken
-          startedAt
         }
       }`;
     const gqlAPIServiceArguments: any = {};
@@ -2479,14 +1853,10 @@ export class APIService {
             filetype
             fileDescription
             resourseGroup
-            _version
-            _deleted
-            _lastChangedAt
             createdAt
             updatedAt
           }
           nextToken
-          startedAt
         }
       }`;
     const gqlAPIServiceArguments: any = {};
@@ -2532,14 +1902,10 @@ export class APIService {
             filetype
             fileDescription
             resourseGroup
-            _version
-            _deleted
-            _lastChangedAt
             createdAt
             updatedAt
           }
           nextToken
-          startedAt
         }
       }`;
     const gqlAPIServiceArguments: any = {};
@@ -2582,14 +1948,10 @@ export class APIService {
             filetype
             fileDescription
             resourseGroup
-            _version
-            _deleted
-            _lastChangedAt
             createdAt
             updatedAt
           }
           nextToken
-          startedAt
         }
       }`;
     const gqlAPIServiceArguments: any = {};
@@ -2631,18 +1993,11 @@ export class APIService {
               professor
               courseName
               courseDescription
-              _version
-              _deleted
-              _lastChangedAt
               createdAt
               updatedAt
             }
             nextToken
-            startedAt
           }
-          _version
-          _deleted
-          _lastChangedAt
           createdAt
           updatedAt
         }
@@ -2668,18 +2023,11 @@ export class APIService {
               professor
               courseName
               courseDescription
-              _version
-              _deleted
-              _lastChangedAt
               createdAt
               updatedAt
             }
             nextToken
-            startedAt
           }
-          _version
-          _deleted
-          _lastChangedAt
           createdAt
           updatedAt
         }
@@ -2705,18 +2053,11 @@ export class APIService {
               professor
               courseName
               courseDescription
-              _version
-              _deleted
-              _lastChangedAt
               createdAt
               updatedAt
             }
             nextToken
-            startedAt
           }
-          _version
-          _deleted
-          _lastChangedAt
           createdAt
           updatedAt
         }
@@ -2742,18 +2083,11 @@ export class APIService {
               TopicName
               course
               TopicDescription
-              _version
-              _deleted
-              _lastChangedAt
               createdAt
               updatedAt
             }
             nextToken
-            startedAt
           }
-          _version
-          _deleted
-          _lastChangedAt
           createdAt
           updatedAt
         }
@@ -2779,18 +2113,11 @@ export class APIService {
               TopicName
               course
               TopicDescription
-              _version
-              _deleted
-              _lastChangedAt
               createdAt
               updatedAt
             }
             nextToken
-            startedAt
           }
-          _version
-          _deleted
-          _lastChangedAt
           createdAt
           updatedAt
         }
@@ -2816,18 +2143,11 @@ export class APIService {
               TopicName
               course
               TopicDescription
-              _version
-              _deleted
-              _lastChangedAt
               createdAt
               updatedAt
             }
             nextToken
-            startedAt
           }
-          _version
-          _deleted
-          _lastChangedAt
           createdAt
           updatedAt
         }
@@ -2856,18 +2176,11 @@ export class APIService {
               filetype
               fileDescription
               resourseGroup
-              _version
-              _deleted
-              _lastChangedAt
               createdAt
               updatedAt
             }
             nextToken
-            startedAt
           }
-          _version
-          _deleted
-          _lastChangedAt
           createdAt
           updatedAt
         }
@@ -2896,18 +2209,11 @@ export class APIService {
               filetype
               fileDescription
               resourseGroup
-              _version
-              _deleted
-              _lastChangedAt
               createdAt
               updatedAt
             }
             nextToken
-            startedAt
           }
-          _version
-          _deleted
-          _lastChangedAt
           createdAt
           updatedAt
         }
@@ -2936,18 +2242,11 @@ export class APIService {
               filetype
               fileDescription
               resourseGroup
-              _version
-              _deleted
-              _lastChangedAt
               createdAt
               updatedAt
             }
             nextToken
-            startedAt
           }
-          _version
-          _deleted
-          _lastChangedAt
           createdAt
           updatedAt
         }
@@ -2967,9 +2266,6 @@ export class APIService {
           filetype
           fileDescription
           resourseGroup
-          _version
-          _deleted
-          _lastChangedAt
           createdAt
           updatedAt
         }
@@ -2989,9 +2285,6 @@ export class APIService {
           filetype
           fileDescription
           resourseGroup
-          _version
-          _deleted
-          _lastChangedAt
           createdAt
           updatedAt
         }
@@ -3011,9 +2304,6 @@ export class APIService {
           filetype
           fileDescription
           resourseGroup
-          _version
-          _deleted
-          _lastChangedAt
           createdAt
           updatedAt
         }

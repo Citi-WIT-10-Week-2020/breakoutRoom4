@@ -1,7 +1,9 @@
-<p>home-screen works!</p>
-<a routerLink='/Course'>Go to Course Screen</a>
+
+<a routerLink='/course'>Go to Course Screen</a>
 <button (click) = "createCourse()">Add Course</button>
+<button (click) = "updateCourse()">Update Course</button>
+<button (click) = "deleteCourse()">Delete Course</button>
 <ul>
-  <li *ngFor="let item of courses">{{item.professor}} : {{item.courseName}} : {{item.courseDescription}} : {{item.id}}</li>
+  <li *ngFor="let item of courses" [routerLink]="['/course',item.id]">{{item.professor}} : {{item.courseName}} : {{item.courseDescription}} : {{item.id}}</li>
 </ul>
 
