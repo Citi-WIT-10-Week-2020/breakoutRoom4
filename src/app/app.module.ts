@@ -18,7 +18,8 @@ import { TopicComponent } from './components/topic/topic.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
-import { MatIconModule } from '@angular/material/icon'
+import { MatIconModule } from '@angular/material/icon';
+import { HttpClientModule} from '@angular/common/http';
 
 
 
@@ -41,6 +42,7 @@ import { MatIconModule } from '@angular/material/icon'
     MatToolbarModule,
     MatMenuModule,
     MatIconModule,
+    HttpClientModule,
   
   ],
   providers: [],

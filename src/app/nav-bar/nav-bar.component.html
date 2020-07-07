@@ -9,7 +9,7 @@
         <header>
 
             <mat-toolbar class="header">
-                <span>Logo Img</span>
+                <span><img class="logo-img" src="assets/logo.svg"></span>
                 <span class="header-spacer"></span>
                 <span class="welcome-space">Welcome {{profName}}</span>
                 <!--Anjali's Welcome Professor-->
@@ -18,7 +18,7 @@
                     <mat-icon class="profile-icon">account_circle</mat-icon>
                  </button>
                     <mat-menu #menu="matMenu">
-                    <button mat-menu-item>Account Settings</button>
+                    <button mat-menu-item>Account Se</button>
                     <button mat-menu-item>Sign Out</button>
                     </mat-menu> 
 
@@ -26,6 +26,9 @@
 
               <!-- <button (click) = "displayName()">display name</button>  -->
             <h1>{{profName}}</h1>
+            <mat-icon svgIcon="logo_img"></mat-icon>
+
+            
             
         </header>
     </body>
