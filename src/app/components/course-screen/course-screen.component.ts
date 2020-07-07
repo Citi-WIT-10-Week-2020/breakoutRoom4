@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-
+import { APIService } from '../../API.service';
+import { v4 as uuidv4 } from 'uuid';
 @Component({
   selector: 'app-course-screen',
   templateUrl: './course-screen.component.html',
@@ -8,17 +9,30 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 })
 export class CourseScreenComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute) { }
-  topicId: String= "default";
+  constructor(private route: ActivatedRoute, private apiservice : APIService) { }
+  courseId: String;
+  topics: Array<any>;
   ngOnInit(): void {
-    console.log(this.topicId);
+    //gets the course ID passed in from home-screen
+    console.log(this.courseId);
     this.route.paramMap.subscribe(params => { 
-      this.topicId = params.get('id'); 
+      this.courseId = params.get('id'); 
     });
-    /*this.route.queryParams.subscribe(params => {
-      console.log(params['id']);
-      this.topicId = params['id'];
-    });*/
+    //gets all the topics using courseId
+    this.apiservice.GetCourse(this.courseId.toString()).then((evt)=>{
+      console.log(evt);
+      this.topics = evt.topics.items;
+      console.log(this.topics);
+    }).catch((err)=>{
+      console.log(err);
+    })
+
+    //subscribe to any topic creations
+    
   }
 
+  //create a new topic
+  createTopic(){
+
+  }
 }
