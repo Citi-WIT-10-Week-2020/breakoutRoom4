@@ -4,17 +4,20 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AmplifyUIAngularModule } from '@aws-amplify/ui-angular';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import Amplify from 'aws-amplify';
 import awsconfig from '../aws-exports';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
-
 
 import { CourseScreenComponent } from './components/course-screen/course-screen.component';
 import { TopicScreenComponent } from './components/topic-screen/topic-screen.component';
 import { HomeScreenComponent } from './components/home-screen/home-screen.component';
 import { CourseComponent } from './components/course/course.component';
 import { TopicComponent } from './components/topic/topic.component';
+
 
 
 @NgModule({
@@ -32,9 +35,12 @@ import { TopicComponent } from './components/topic/topic.component';
     AmplifyUIAngularModule,
     BrowserModule,
     AppRoutingModule,
+    MatCardModule,
+    MatButtonModule,
+    BrowserAnimationsModule,
   
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: []
 })
 export class AppModule { }
