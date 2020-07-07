@@ -20,6 +20,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { HttpClientModule} from '@angular/common/http';
+import { FooterComponent } from './components/footer/footer.component';
 
 
 
@@ -32,6 +33,7 @@ import { HttpClientModule} from '@angular/common/http';
     HomeScreenComponent,
     CourseComponent,
     TopicComponent,
+    FooterComponent,
 
   ],
   imports: [
