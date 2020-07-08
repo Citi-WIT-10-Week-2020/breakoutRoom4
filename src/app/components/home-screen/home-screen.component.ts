@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { APIService } from '../../API.service';
 import { v4 as uuidv4 } from 'uuid';
+
 @Component({
   selector: 'app-home-screen',
   templateUrl: './home-screen.component.html',
@@ -55,7 +56,7 @@ export class HomeScreenComponent implements OnInit {
       this.courses =[...this.courses,data];
     });
 
-    //subscribes to any course updates
+      //subscribes to any course updates
     this.apiservice.OnUpdateCourseListener.subscribe((evt)=>{
       //need to search thru array, find original, and replace it with the new one  TnT ALGORITHMS
       const data = (evt as any).value.data.onUpdateCourse;
@@ -71,25 +72,7 @@ export class HomeScreenComponent implements OnInit {
     })
   }
 
-  //logic for deleting course. Hardcoded, will update to user input
-  deleteCourse(){
-    this.apiservice.DeleteCourse({
-      id:"9d556f04-89a8-4ce7-96be-88d7e7e84687"
-    }).catch((err)=>{
-      console.log(err);
-    })
-  }
-  //logic for updating the course. Hardcoded for now, but will be converted to user input
-  async updateCourse(){
-    this.apiservice.UpdateCourse({
-      id:"9d556f04-89a8-4ce7-96be-88d7e7e84687",
-      
-      courseDescription:"UPDATE2e",
-      courseName:"Updating the name"
-    }).catch((err)=>{
-      console.log(err);
-    })
-  }
+ 
   //code for creating a course. This will eventually be moved to the popup for CreateCourse
   async createCourse(){
     await this.apiservice.CreateCourse(this.courseObject).then((evt)=>{
@@ -99,5 +82,6 @@ export class HomeScreenComponent implements OnInit {
       console.log(err);
     })
   }
-
 }
+
+

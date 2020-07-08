@@ -4,11 +4,12 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AmplifyUIAngularModule } from '@aws-amplify/ui-angular';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
 
 import Amplify from 'aws-amplify';
 import awsconfig from '../aws-exports';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
-
 
 import { CourseScreenComponent } from './components/course-screen/course-screen.component';
 import { TopicScreenComponent } from './components/topic-screen/topic-screen.component';
@@ -21,6 +22,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { HttpClientModule} from '@angular/common/http';
 import { FooterComponent } from './components/footer/footer.component';
+
 
 
 
@@ -40,6 +42,8 @@ import { FooterComponent } from './components/footer/footer.component';
     AmplifyUIAngularModule,
     BrowserModule,
     AppRoutingModule,
+    MatCardModule,
+    MatButtonModule,
     BrowserAnimationsModule,
     MatToolbarModule,
     MatMenuModule,
@@ -47,8 +51,9 @@ import { FooterComponent } from './components/footer/footer.component';
     HttpClientModule,
   
   ],
-  providers: [],
   bootstrap: [AppComponent],
+  entryComponents: [],
+  providers: [],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
 
 })
