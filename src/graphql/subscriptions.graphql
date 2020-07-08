@@ -1,0 +1,241 @@
+# this is an auto generated file. This will be overwritten
+subscription OnCreateProfessor {
+  onCreateProfessor {
+    id
+    professorName
+    universityName
+    courses {
+      items {
+        id
+        professor
+        courseName
+        courseDescription
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateProfessor {
+  onUpdateProfessor {
+    id
+    professorName
+    universityName
+    courses {
+      items {
+        id
+        professor
+        courseName
+        courseDescription
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteProfessor {
+  onDeleteProfessor {
+    id
+    professorName
+    universityName
+    courses {
+      items {
+        id
+        professor
+        courseName
+        courseDescription
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnCreateCourse {
+  onCreateCourse {
+    id
+    professor
+    courseName
+    courseDescription
+    topics {
+      items {
+        id
+        professor
+        TopicName
+        course
+        TopicDescription
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateCourse {
+  onUpdateCourse {
+    id
+    professor
+    courseName
+    courseDescription
+    topics {
+      items {
+        id
+        professor
+        TopicName
+        course
+        TopicDescription
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteCourse {
+  onDeleteCourse {
+    id
+    professor
+    courseName
+    courseDescription
+    topics {
+      items {
+        id
+        professor
+        TopicName
+        course
+        TopicDescription
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnCreateTopic {
+  onCreateTopic {
+    id
+    professor
+    TopicName
+    course
+    TopicDescription
+    files {
+      items {
+        id
+        course
+        topic
+        filename
+        filetype
+        fileDescription
+        resourseGroup
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateTopic {
+  onUpdateTopic {
+    id
+    professor
+    TopicName
+    course
+    TopicDescription
+    files {
+      items {
+        id
+        course
+        topic
+        filename
+        filetype
+        fileDescription
+        resourseGroup
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteTopic {
+  onDeleteTopic {
+    id
+    professor
+    TopicName
+    course
+    TopicDescription
+    files {
+      items {
+        id
+        course
+        topic
+        filename
+        filetype
+        fileDescription
+        resourseGroup
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnCreateFile {
+  onCreateFile {
+    id
+    course
+    topic
+    filename
+    filetype
+    fileDescription
+    resourseGroup
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateFile {
+  onUpdateFile {
+    id
+    course
+    topic
+    filename
+    filetype
+    fileDescription
+    resourseGroup
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteFile {
+  onDeleteFile {
+    id
+    course
+    topic
+    filename
+    filetype
+    fileDescription
+    resourseGroup
+    createdAt
+    updatedAt
+  }
+}
