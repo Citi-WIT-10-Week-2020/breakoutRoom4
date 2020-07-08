@@ -1,12 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AmplifyUIAngularModule } from '@aws-amplify/ui-angular';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import Amplify from 'aws-amplify';
 import awsconfig from '../aws-exports';
@@ -17,6 +16,11 @@ import { TopicScreenComponent } from './components/topic-screen/topic-screen.com
 import { HomeScreenComponent } from './components/home-screen/home-screen.component';
 import { CourseComponent } from './components/course/course.component';
 import { TopicComponent } from './components/topic/topic.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon'
+
 
 
 
@@ -38,9 +42,15 @@ import { TopicComponent } from './components/topic/topic.component';
     MatCardModule,
     MatButtonModule,
     BrowserAnimationsModule,
+    MatToolbarModule,
+    MatMenuModule,
+    MatIconModule,
   
   ],
   bootstrap: [AppComponent],
-  entryComponents: []
+  entryComponents: [],
+  providers: [],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
+
 })
 export class AppModule { }

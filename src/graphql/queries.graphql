@@ -1,0 +1,306 @@
+# this is an auto generated file. This will be overwritten
+query GetProfessor($id: ID!) {
+  getProfessor(id: $id) {
+    id
+    professorName
+    universityName
+    courses {
+      items {
+        id
+        professor
+        courseName
+        courseDescription
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+query ListProfessors(
+  $filter: ModelProfessorFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listProfessors(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      professorName
+      universityName
+      courses {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query GetCourse($id: ID!) {
+  getCourse(id: $id) {
+    id
+    professor
+    courseName
+    courseDescription
+    topics {
+      items {
+        id
+        professor
+        TopicName
+        course
+        TopicDescription
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+query ListCourses(
+  $filter: ModelCourseFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listCourses(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      professor
+      courseName
+      courseDescription
+      topics {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query GetTopic($id: ID!) {
+  getTopic(id: $id) {
+    id
+    professor
+    TopicName
+    course
+    TopicDescription
+    files {
+      items {
+        id
+        course
+        topic
+        filename
+        filetype
+        fileDescription
+        resourseGroup
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+query ListTopics(
+  $filter: ModelTopicFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listTopics(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      professor
+      TopicName
+      course
+      TopicDescription
+      files {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query GetFile($id: ID!) {
+  getFile(id: $id) {
+    id
+    course
+    topic
+    filename
+    filetype
+    fileDescription
+    resourseGroup
+    createdAt
+    updatedAt
+  }
+}
+query ListFiles(
+  $filter: ModelFileFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listFiles(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      course
+      topic
+      filename
+      filetype
+      fileDescription
+      resourseGroup
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query CourseByProfessor(
+  $professor: String
+  $sortDirection: ModelSortDirection
+  $filter: ModelCourseFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  courseByProfessor(
+    professor: $professor
+    sortDirection: $sortDirection
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      id
+      professor
+      courseName
+      courseDescription
+      topics {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query TopicByCourseByProfessor(
+  $professor: String
+  $course: ModelStringKeyConditionInput
+  $sortDirection: ModelSortDirection
+  $filter: ModelTopicFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  topicByCourseByProfessor(
+    professor: $professor
+    course: $course
+    sortDirection: $sortDirection
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      id
+      professor
+      TopicName
+      course
+      TopicDescription
+      files {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query FileByCourseByTopic(
+  $course: String
+  $topic: ModelStringKeyConditionInput
+  $sortDirection: ModelSortDirection
+  $filter: ModelFileFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  fileByCourseByTopic(
+    course: $course
+    topic: $topic
+    sortDirection: $sortDirection
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      id
+      course
+      topic
+      filename
+      filetype
+      fileDescription
+      resourseGroup
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query FileByResourceGroup(
+  $resourseGroup: String
+  $sortDirection: ModelSortDirection
+  $filter: ModelFileFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  fileByResourceGroup(
+    resourseGroup: $resourseGroup
+    sortDirection: $sortDirection
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      id
+      course
+      topic
+      filename
+      filetype
+      fileDescription
+      resourseGroup
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query FileByFilename(
+  $resourseGroup: String
+  $sortDirection: ModelSortDirection
+  $filter: ModelFileFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  fileByFilename(
+    resourseGroup: $resourseGroup
+    sortDirection: $sortDirection
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      id
+      course
+      topic
+      filename
+      filetype
+      fileDescription
+      resourseGroup
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}

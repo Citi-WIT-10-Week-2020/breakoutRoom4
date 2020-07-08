@@ -5,7 +5,13 @@ import { AppModule } from './app/app.module';
 import { environment } from './environments/environment';
 import Amplify, { Auth } from 'aws-amplify';
 import awsconfig from './aws-exports';
+
+import PubSub from '@aws-amplify/pubsub';
+import API from '@aws-amplify/api';
+
 Amplify.configure(awsconfig);
+API.configure(awsconfig);
+PubSub.configure(awsconfig);
 
 Auth.configure(awsconfig);
 if (environment.production) {
