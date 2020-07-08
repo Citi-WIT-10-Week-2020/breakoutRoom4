@@ -9,7 +9,7 @@
         <header>
 
             <mat-toolbar class="header">
-                <span>Logo Img</span>
+                <span><img class="logo-img" src="assets/logo1-05.svg"></span>
                 <span class="header-spacer"></span>
                 <span class="welcome-space">Welcome {{profName}}</span>
                 <!--Anjali's Welcome Professor-->
@@ -19,13 +19,17 @@
                  </button>
                     <mat-menu #menu="matMenu">
                     <button mat-menu-item>Account Settings</button>
-                    <button mat-menu-item>Sign Out</button>
+                    <button mat-menu-item>About</button>
+                    <button mat-menu-item><button mat-menu-item><amplify-sign-out class="sign-out"></amplify-sign-out></button></button>
                     </mat-menu> 
 
               </mat-toolbar>
 
               <!-- <button (click) = "displayName()">display name</button>  -->
             <h1>{{profName}}</h1>
+            <mat-icon svgIcon="logo_img"></mat-icon>
+
+            
             
         </header>
     </body>
