@@ -23,6 +23,8 @@ import { DialogBodyComponent } from './components/dialog-body/dialog-body.compon
 import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatDialogConfig } from '@angular/material/dialog';
+import { HttpClientModule} from '@angular/common/http';
+import { FooterComponent } from './components/footer/footer.component';
 
 
 
@@ -36,6 +38,7 @@ import { MatDialogConfig } from '@angular/material/dialog';
     CourseComponent,
     TopicComponent,
     DialogBodyComponent,
+    FooterComponent,
 
   ],
   imports: [
@@ -50,6 +53,8 @@ import { MatDialogConfig } from '@angular/material/dialog';
     ReactiveFormsModule,
   ],
   providers: [  {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}
+    HttpClientModule,
+  
   ],
   bootstrap: [AppComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
