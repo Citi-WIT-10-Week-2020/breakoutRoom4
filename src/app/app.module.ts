@@ -4,11 +4,12 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AmplifyUIAngularModule } from '@aws-amplify/ui-angular';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
 
 import Amplify from 'aws-amplify';
 import awsconfig from '../aws-exports';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
-
 
 import { CourseScreenComponent } from './components/course-screen/course-screen.component';
 import { TopicScreenComponent } from './components/topic-screen/topic-screen.component';
@@ -23,6 +24,9 @@ import { DialogBodyComponent } from './components/dialog-body/dialog-body.compon
 import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatDialogConfig } from '@angular/material/dialog';
+import { HttpClientModule} from '@angular/common/http';
+import { FooterComponent } from './components/footer/footer.component';
+
 
 
 
@@ -36,20 +40,26 @@ import { MatDialogConfig } from '@angular/material/dialog';
     CourseComponent,
     TopicComponent,
     DialogBodyComponent,
+    FooterComponent,
 
   ],
   imports: [
     AmplifyUIAngularModule,
     BrowserModule,
     AppRoutingModule,
+    MatCardModule,
+    MatButtonModule,
     BrowserAnimationsModule,
     MatToolbarModule,
     MatMenuModule,
     MatIconModule,
     MatDialogModule,
     ReactiveFormsModule,
+    HttpClientModule
+
   ],
   providers: [  {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}
+  
   ],
   bootstrap: [AppComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
