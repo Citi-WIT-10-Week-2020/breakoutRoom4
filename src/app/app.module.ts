@@ -18,7 +18,11 @@ import { TopicComponent } from './components/topic/topic.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
-import { MatIconModule } from '@angular/material/icon'
+import { MatIconModule } from '@angular/material/icon';
+import { DialogBodyComponent } from './components/dialog-body/dialog-body.component'
+import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatDialogConfig } from '@angular/material/dialog';
 
 
 
@@ -31,6 +35,7 @@ import { MatIconModule } from '@angular/material/icon'
     HomeScreenComponent,
     CourseComponent,
     TopicComponent,
+    DialogBodyComponent,
 
   ],
   imports: [
@@ -41,11 +46,14 @@ import { MatIconModule } from '@angular/material/icon'
     MatToolbarModule,
     MatMenuModule,
     MatIconModule,
-  
+    MatDialogModule,
+    ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [  {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}
+  ],
   bootstrap: [AppComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
+  entryComponents: [DialogBodyComponent]
 
 })
 export class AppModule { }

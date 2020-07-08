@@ -1,0 +1,32 @@
+<h2 mat-dialog-title>Add Course</h2>
+<body>
+    <mat-dialog-content class ="container">
+        <label>
+            Course Name:
+            <input type="text" [formControl]="courseName">
+        </label> 
+        <br>
+        <label>
+            Course Description:
+            <input type="text" [formControl]="courseDesc">
+        </label>
+        <br>
+        <label>
+            Course Code:
+            <input type="text" [formControl]="accessCode">
+        </label>
+        <br>
+        <label>
+            Access Code:
+            <input type="number" [formControl]="accessCode">
+        </label>
+        <br>
+        <label>
+            Number of Topics:
+            <input type="number" [formControl]="topicNum">
+        </label>
+    </mat-dialog-content>
+</body>
+<mat-dialog-actions>
+    <button class="mat-raised-button" (click)="close()">Create</button>
+</mat-dialog-actions>

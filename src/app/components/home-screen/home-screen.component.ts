@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { APIService } from '../../API.service';
 import { v4 as uuidv4 } from 'uuid';
+import { DialogBodyComponent } from 'src/app/components/dialog-body/dialog-body.component'
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+
+
 @Component({
   selector: 'app-home-screen',
   templateUrl: './home-screen.component.html',
@@ -10,7 +14,9 @@ export class HomeScreenComponent implements OnInit {
   courses: Array<any>;
   count: number = 0;
   profName: String;
-  constructor(private apiservice: APIService) { }
+  //private matDialog: MatDialog;
+  constructor(private apiservice: APIService, private matDialog: MatDialog) {}
+
   courseObject: any;
   ngOnInit(): void {
     //initializes the course object. This will eventually be deleted and replaced with user input
@@ -99,5 +105,11 @@ export class HomeScreenComponent implements OnInit {
       console.log(err);
     })
   }
-
+  //opens modal to take input to create a new course
+  openDialog() {
+    console.log("dialog opened");
+    const dialogConfig = new MatDialogConfig();
+    let dialogRef = this.matDialog.open(DialogBodyComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe(()=>{console.log("dialog has been closed")}); //instead of console log , refresh page
+  }
 }
