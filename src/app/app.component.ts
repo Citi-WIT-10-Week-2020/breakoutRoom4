@@ -11,11 +11,6 @@ import { DialogBodyComponent } from './components/dialog-body/dialog-body.compon
 })
 export class AppComponent {
   title = 'acornSQURL';
-  constructor(private matDialog: MatDialog) {}
+ 
   
-  openDialog() {
-    const dialogConfig = new MatDialogConfig();
-    let dialogRef = this.matDialog.open(DialogBodyComponent, dialogConfig);
-    dialogRef.afterClosed().subscribe(()=>{console.log("dialog has been closed")}); //instead of console log , refresh page
-  }
 }
