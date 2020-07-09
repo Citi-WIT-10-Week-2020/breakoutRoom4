@@ -31,7 +31,6 @@ export class NavBarComponent implements OnInit {
   }
 
   // uses Hub from Amplify to listen for sign in. sign up, and sign out
-  
   displayName () {
 
     const logger = new Logger('My-Logger');
@@ -58,11 +57,11 @@ export class NavBarComponent implements OnInit {
   }
 
   /// when user signs in or signs out, the displayUserName function is called to 
-  // read the name using currentUserInfo
+  // read the name using Auth.currentUserInfo
   displayUserName() {
     Auth.currentUserInfo().then((evt)=>{
       console.log(evt);
-      this.profName = evt.username;
+      this.profName = evt.attributes.given_name + " " + evt.attributes.family_name;
     });
 
     console.log("in displayUserName");
