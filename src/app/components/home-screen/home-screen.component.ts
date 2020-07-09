@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { APIService } from '../../API.service';
 import { v4 as uuidv4 } from 'uuid';
-import { CourseService } from './courses.service';
-import { ICourse } from './course';
+
 
 /* May use for grid */
 export interface Tile {
@@ -14,6 +13,8 @@ export interface Tile {
 
 
 
+import { CourseService } from '../../shared/courses.service';
+import { ICourse } from '../../shared/course';
 @Component({
   selector: 'app-home-screen',
   templateUrl: './home-screen.component.html',
@@ -83,31 +84,9 @@ export class HomeScreenComponent implements OnInit {
     });
   }
 
-  //logic for deleting course. Hardcoded, will update to user input
-  deleteCourse(){
-    const myObserver = {
-      next: x => {
-        console.log('Value: ' , x);
-      },
-      error: err => console.error('Observer got an error: ' + err),
-      complete: () => console.log('Observer got a complete notification'),
-    };
-    this.courseservice.deleteCourse(this.courseObject.id).subscribe(myObserver);
+  
 
-  }
-
-
-  //logic for updating the course. Hardcoded for now, but will be converted to user input
-  async updateCourse(){
-    const myObserver = {
-      next: x => {
-        console.log('Value: ' , x);
-      },
-      error: err => console.error('Observer got an error: ' + err),
-      complete: () => console.log('Observer got a complete notification'),
-    };
-    this.courseservice.updateCourse(this.courseObject).subscribe(myObserver);
-  }
+ 
   //code for creating a course. This will eventually be moved to the popup for CreateCourse
   async createCourse(){
     const myObserver = {
