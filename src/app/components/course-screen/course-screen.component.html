@@ -2,7 +2,7 @@
 <h1>TOPICS</h1>
 <button mat-raised-button class="add-button" (click)="createTopic()">ADD TOPIC</button>
 
-<app-topic></app-topic>
+<app-topic [professor]="this.topicObject.professor" [topic]="this.topicObject.TopicName" [topicDescription]="this.topicObject.TopicDescription" [topicID]="this.topicObject.id"></app-topic>
 
 <ul>
     <li *ngFor="let item of topics"><app-topic [professor]="item.professor" [topic]="item.TopicName" [topicDescription]="item.TopicDescription" [topicID]="item.id"></app-topic></li>
