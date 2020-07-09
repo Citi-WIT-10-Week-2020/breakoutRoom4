@@ -43,7 +43,7 @@ export class HomeScreenComponent implements OnInit {
       this.courses =[...this.courses,data];
     });
 
-    //subscribes to any course updates
+      //subscribes to any course updates
     this.apiservice.OnUpdateCourseListener.subscribe((evt)=>{
       //need to search thru array, find original, and replace it with the new one  TnT ALGORITHMS
       const data = (evt as any).value.data.onUpdateCourse;
@@ -95,5 +95,6 @@ export class HomeScreenComponent implements OnInit {
     };
     this.courseservice.createCourse(this.courseObject).subscribe(myObserver);
   }
-
 }
+
+
