@@ -35,7 +35,7 @@ export class CourseScreenComponent implements OnInit {
       console.log(this.topics);
     }).catch((err)=>{
       console.log(err);
-    })
+    });
 
     //subscribe to any topic creations
     

@@ -1,4 +1,9 @@
 
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700&display=swap');
+
+* {
+    font-family: montserrat;
+}
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
 @import '~@angular/material/theming';
@@ -34,5 +39,20 @@ body{
     
     
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body { 
+        height: 100%;
+        margin: 0;
+        
+ }
+
+body { 
+        font-family: Roboto, "Helvetica Neue", sans-serif; 
+        text-decoration: none;
+}
+
+:root {
+        --amplify-primary-color: #9687ce;
+        --amplify-primary-tint: #ff7359;
+        --amplify-primary-shade: #e0573e;
+        font-size: 16px;
+      }
