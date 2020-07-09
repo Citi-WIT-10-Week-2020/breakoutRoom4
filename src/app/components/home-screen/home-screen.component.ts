@@ -1,12 +1,31 @@
 import { Component, OnInit } from '@angular/core';
 import { APIService } from '../../API.service';
 import { v4 as uuidv4 } from 'uuid';
+
+/* May use for grid */
+export interface Tile {
+  color: string;
+  cols: number;
+  rows: number;
+  text: string;
+}
+
+
 @Component({
   selector: 'app-home-screen',
   templateUrl: './home-screen.component.html',
   styleUrls: ['./home-screen.component.scss']
 })
 export class HomeScreenComponent implements OnInit {
+
+  /* May use for grid */
+  tiles: Tile[] = [
+    {text: 'One', cols: 1, rows: 4, color: 'lightblue'},
+    {text: 'Two', cols: 1, rows: 2, color: 'lightgreen'},
+    {text: 'Three', cols: 1, rows: 1, color: 'lightpink'},
+    {text: 'Four', cols: 1, rows: 1, color: '#DDBDF1'},
+  ];
+
   courses: Array<any>;
   count: number = 0;
   profName: String;
