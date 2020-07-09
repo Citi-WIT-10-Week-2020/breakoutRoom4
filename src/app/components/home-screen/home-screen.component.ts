@@ -1,17 +1,45 @@
 import { Component, OnInit } from '@angular/core';
 import { APIService } from '../../API.service';
 import { v4 as uuidv4 } from 'uuid';
+
+
+/* May use for grid */
+export interface Tile {
+  color: string;
+  cols: number;
+  rows: number;
+  text: string;
+}
+
+
+
+import { CourseService } from '../../shared/courses.service';
+import { ICourse } from '../../shared/course';
 @Component({
   selector: 'app-home-screen',
   templateUrl: './home-screen.component.html',
-  styleUrls: ['./home-screen.component.scss']
+  styleUrls: ['./home-screen.component.scss'],
+  providers:[CourseService]
 })
 export class HomeScreenComponent implements OnInit {
+
+  /* May use for grid */
+  tiles: Tile[] = [
+    {text: 'One', cols: 1, rows: 5, color: 'lightblue'},
+    {text: 'Two', cols: 1, rows: 2, color: 'lightgreen'},
+    {text: 'Three', cols: 1, rows: 1, color: 'lightpink'},
+    {text: 'Four', cols: 1, rows: 1, color: '#DDBDF1'},
+  ];
+   styles = {
+    cols:1,
+    rows: 3,
+    color:'lightblue'
+  }
   courses: Array<any>;
-  count: number = 0;
-  profName: String;
-  constructor(private apiservice: APIService) { }
-  courseObject: any;
+  courseObject: ICourse;  //to be deleted
+  
+  constructor(private apiservice: APIService,private courseservice:CourseService) { }
+  
   ngOnInit(): void {
     //initializes the course object. This will eventually be deleted and replaced with user input
     this.courseObject={
@@ -21,33 +49,18 @@ export class HomeScreenComponent implements OnInit {
       id:uuidv4()
     };
 
-    //creates a professor if there are no current professors. Eventually will be erased or refactored
-    console.log(this.courseObject);
-    this.apiservice.ListProfessors().then((evt)=>{
-      console.log(evt);
-      if(evt.items == null){
-        this.apiservice.CreateProfessor({
-          professorName:"haku",
-          id:"0",
-          universityName:"UF"
-        }).then((evt)=>{
-          console.log(evt);
-          this.profName=evt.professorName;
-        }).catch((err)=>{
-          console.log(err);
-        })
-      }
-    }).catch((err)=>{
-      console.log(err);
-    });
+   
+    //get all courses
+    const myObserver = {
+      next: x => {
+        console.log('Value: ' , x);
+        this.courses = x.items;
+      },
+      error: err => console.error('Observer got an error: ' + err),
+      complete: () => console.log('Observer got a complete notification'),
+    };
+    this.courseservice.getCourses().subscribe(myObserver);
 
-    //grabs all the courses that already exist and stores the info in the variable courses
-    this.apiservice.ListCourses().then((evt)=>{
-      this.courses = evt.items;
-      console.log(evt.items);
-    }).catch((err)=>{
-      console.log(err);
-    });
 
     //subscribes to any new course creations
     this.apiservice.OnCreateCourseListener.subscribe((evt)=>{
@@ -55,7 +68,7 @@ export class HomeScreenComponent implements OnInit {
       this.courses =[...this.courses,data];
     });
 
-    //subscribes to any course updates
+      //subscribes to any course updates
     this.apiservice.OnUpdateCourseListener.subscribe((evt)=>{
       //need to search thru array, find original, and replace it with the new one  TnT ALGORITHMS
       const data = (evt as any).value.data.onUpdateCourse;
@@ -68,36 +81,23 @@ export class HomeScreenComponent implements OnInit {
       console.log("A deletion has occured!");
       console.log(evt);
       //basically, search thru array, find original, remove it
-    })
+    });
   }
 
-  //logic for deleting course. Hardcoded, will update to user input
-  deleteCourse(){
-    this.apiservice.DeleteCourse({
-      id:"9d556f04-89a8-4ce7-96be-88d7e7e84687"
-    }).catch((err)=>{
-      console.log(err);
-    })
-  }
-  //logic for updating the course. Hardcoded for now, but will be converted to user input
-  async updateCourse(){
-    this.apiservice.UpdateCourse({
-      id:"9d556f04-89a8-4ce7-96be-88d7e7e84687",
-      
-      courseDescription:"UPDATE2e",
-      courseName:"Updating the name"
-    }).catch((err)=>{
-      console.log(err);
-    })
-  }
+  
+
+ 
   //code for creating a course. This will eventually be moved to the popup for CreateCourse
   async createCourse(){
-    await this.apiservice.CreateCourse(this.courseObject).then((evt)=>{
-      console.log(evt);
-      this.courseObject.id=uuidv4();
-    }).catch((err)=>{
-      console.log(err);
-    })
+    const myObserver = {
+      next: x => {
+        console.log('Value: ' , x);
+      },
+      error: err => console.error('Observer got an error: ' + err),
+      complete: () => console.log('Observer got a complete notification'),
+    };
+    this.courseservice.createCourse(this.courseObject).subscribe(myObserver);
   }
-
 }
+
+
