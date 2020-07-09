@@ -24,12 +24,16 @@ export class HomeScreenComponent implements OnInit {
 
   /* May use for grid */
   tiles: Tile[] = [
-    {text: 'One', cols: 1, rows: 4, color: 'lightblue'},
+    {text: 'One', cols: 1, rows: 5, color: 'lightblue'},
     {text: 'Two', cols: 1, rows: 2, color: 'lightgreen'},
     {text: 'Three', cols: 1, rows: 1, color: 'lightpink'},
     {text: 'Four', cols: 1, rows: 1, color: '#DDBDF1'},
   ];
-
+   styles = {
+    cols:1,
+    rows: 3,
+    color:'lightblue'
+  }
   courses: Array<any>;
   courseObject: ICourse;  //to be deleted
   
