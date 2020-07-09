@@ -22,6 +22,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { HttpClientModule} from '@angular/common/http';
 import { FooterComponent } from './components/footer/footer.component';
+import { MatGridListModule } from '@angular/material/grid-list'
 
 
 
@@ -49,6 +50,7 @@ import { FooterComponent } from './components/footer/footer.component';
     MatMenuModule,
     MatIconModule,
     HttpClientModule,
+    MatGridListModule,
   
   ],
   bootstrap: [AppComponent],
