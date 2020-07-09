@@ -92,7 +92,7 @@ export class HomeScreenComponent implements OnInit {
     console.log("dialog opened");
     const dialogConfig = new MatDialogConfig();
     let dialogRef = this.matDialog.open(DialogBodyComponent, dialogConfig);
-    dialogRef.afterClosed().subscribe(()=>{console.log("dialog has been closed")}); //instead of console log , refresh page
+    dialogRef.afterClosed().subscribe(()=>{console.log("dialog has been closed"), console.log(this.courseObject.courseName)}); //instead of console log , refresh page
   }
 }
 

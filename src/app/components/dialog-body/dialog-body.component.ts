@@ -12,25 +12,32 @@ import { FormControl, FormGroup } from '@angular/forms';
 export class DialogBodyComponent implements OnInit{
   course : FormGroup;
   ngOnInit() {
-    this.course = new FormGroup({
-      courseName: new FormControl(''),
-      courseDesc: new FormControl(''),
-      courseCode: new FormControl(''),
-      accessCode: new FormControl(''),
-      topicNum: new FormControl('')
-    })
+    // this.course = new FormGroup({
+    //   courseName: new FormControl(''),
+    //   courseDesc: new FormControl(''),
+    //   courseCode: new FormControl(''),
+    //   accessCode: new FormControl(''),
+    //   topicNum: new FormControl('')
+    //})
   
   };
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, public dialogRef: MatDialogRef<DialogBodyComponent>) {}
-    courseName = new FormControl('');  
-    courseDesc = new FormControl('');
-    courseCode = new FormControl('');
-    accessCode = new FormControl('');
-    topicNum = new FormControl('');
+    // courseName = new FormControl('');  
+    // courseDesc = new FormControl('');
+    // courseCode = new FormControl('');
+    // accessCode = new FormControl('');
+    // topicNum = new FormControl('');
   
   close() {   
     this.dialogRef.close();
-    console.log(this.courseName);
   }
 
 }
+
+// export interface NewCourse {
+//   courseName: string;
+//   courseDesc: string;
+//   courseCode: string;
+//   accessCode: number;
+//   topicNum: number;
+// }
