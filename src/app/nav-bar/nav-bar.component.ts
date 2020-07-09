@@ -1,8 +1,8 @@
 import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import Amplify, { Auth } from 'aws-amplify';
 import { Hub, Logger} from 'aws-amplify';
-import { from } from 'rxjs';
 
+import { Observable, of ,from} from 'rxjs';
 @Component({
   selector: 'app-nav-bar',
   templateUrl: './nav-bar.component.html',
@@ -23,10 +23,11 @@ export class NavBarComponent implements OnInit , OnChanges{
       this.profName = evt.username;
     });
  
-    this.profName = "";
     
-    */
-
+    
+    
+  */
+    this.profName = "";
     this.displayName();
 
   }
@@ -34,7 +35,9 @@ export class NavBarComponent implements OnInit , OnChanges{
   // uses Hub from Amplify to listen for sign in. sign up, and sign out
   
    displayName () {
-
+    if (this.profName ==""){
+      this.displayUserName();
+    }
     const logger = new Logger('My-Logger');
     console.log(logger);
     const listener = async (data) => {
@@ -64,15 +67,25 @@ export class NavBarComponent implements OnInit , OnChanges{
     console.log("ONCHANGES RAAAAN");
     console.log("PROFESSOR NAME: "+ this.profName);
   }
-  async displayUserName() {
+   displayUserName() {
     //wrap in observable, and have profName subscribe :) rxjs 
     /*const observable =Auth.currentUserInfo().then((evt)=>{
       console.log(evt);
       this.profName = evt.username;
       console.log("CHANGED PROFNAME: " + this.profName);
     });*/
+    const myObserver = {
+      next: x => {
+        console.log('Value: ' , x);
+        this.profName = x.username;
+        console.log(this.profName);
+      },
+      error: err => console.error('Observer got an error: ' + err),
+      complete: () => console.log('Observer got a complete notification'),
+    };
+    from(Auth.currentUserInfo()).subscribe(myObserver);
 
-    this.profName = await Auth.currentUserInfo().then((evt)=>  evt.username);
+    //this.profName = await Auth.currentUserInfo().then((evt)=>  evt.username);
 
     console.log("in displayUserName");
   }
