@@ -77,7 +77,7 @@ export class NavBarComponent implements OnInit , OnChanges{
     const myObserver = {
       next: x => {
         console.log('Value: ' , x);
-        this.profName = x.username;
+        this.profName = x.attributes.given_name + " " + x.attributes.family_name;
         console.log(this.profName);
       },
       error: err => console.error('Observer got an error: ' + err),
