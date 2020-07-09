@@ -1,6 +1,11 @@
 <p>course-screen works! {{courseId}}</p>
+<h1>TOPICS</h1>
+<button mat-raised-button class="add-button" (click)="createTopic()">ADD TOPIC</button>
+
+<app-topic></app-topic>
+
+<ul>
+    <li *ngFor="let item of topics"><app-topic [professor]="item.professor" [topic]="item.TopicName" [topicDescription]="item.TopicDescription" [topicID]="item.id"></app-topic></li>
+  </ul>
 
 <a routerLink='/topic'>Go to Topic Screen</a>
-<ul>
-    <li *ngFor="let item of topics" [routerLink]="['/course',item.id]">{{item.professor}} : {{item.TopicName}} : {{item.TopicDescription}} : {{item.id}}</li>
-  </ul>

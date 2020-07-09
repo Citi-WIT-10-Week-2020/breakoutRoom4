@@ -9,10 +9,20 @@ import { v4 as uuidv4 } from 'uuid';
 })
 export class CourseScreenComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute, private apiservice : APIService) { }
   courseId: String;
   topics: Array<any>;
+  topicObject: any;
+
+  constructor(private route: ActivatedRoute, private apiservice : APIService) { }
+
   ngOnInit(): void {
+
+    this.topicObject={
+      professor: "Mr. Default",
+      TopicName: "Default Topic",
+      TopicDescription: "this practice baby",
+      id: 123
+    };
     //gets the course ID passed in from home-screen
     console.log(this.courseId);
     this.route.paramMap.subscribe(params => { 
