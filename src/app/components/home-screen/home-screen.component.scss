@@ -1,0 +1,28 @@
+html, body {
+    min-height: 795px;
+}
+
+.title-container {
+    display: flex;  
+    align-items: center;
+    padding: 100px 100px 30px;
+}
+
+.title-item {
+    font-size: 42px;
+    text-decoration: none;
+   
+    
+}
+
+.space {
+    flex: 1 1 auto;
+}
+.card-container {
+    
+    border: 1px solid black;
+}
+
+.container {
+    padding: 0 160px;
+}
