@@ -1,8 +1,20 @@
 
-  <amplify-authenticator>
+  <amplify-authenticator usernameAlias="email">
+   <!--  <amplify-sign-in header-text="My Custom Sign In Text" slot="sign-in"></amplify-sign-in> -->
+    <amplify-sign-up
+      slot="sign-up"
+      usernameAlias="email"
+      [formFields]="formFields"
+  
+
+      ></amplify-sign-up>
+      <amplify-sign-in slot="sign-in" usernameAlias="email"></amplify-sign-in>
+      <!-- <amplify-sign-in slot="sign-in" usernameAlias="first_name"></amplify-sign-in>  -->
+    
     <div>
       <app-nav-bar></app-nav-bar>
       <router-outlet></router-outlet>
-      <amplify-sign-out></amplify-sign-out>
+    <!--sign out moved to navbar.html-->  
     </div>
   </amplify-authenticator>
+
