@@ -54,4 +54,10 @@
 </html>
 
 
+<a routerLink='/course'>Go to Course Screen</a>
+<button (click) = "createCourse()">Add Course</button>
+
+<ul>
+  <li *ngFor="let item of courses"><app-course [name]="item.courseName" [courseID]="item.id" [description]="item.courseDescription"></app-course></li>
+</ul>
 
