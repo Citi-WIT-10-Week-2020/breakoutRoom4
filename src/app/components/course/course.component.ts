@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { APIService } from '../../API.service';
 //import { analyzeAndValidateNgModules } from '@angular/compiler';
-
+import { CourseService } from '../../shared/courses.service';
 
 @Component({
   selector: 'app-course',
@@ -10,32 +10,37 @@ import { APIService } from '../../API.service';
 })
 export class CourseComponent implements OnInit {
   @Input() name: String;
-  @Input() courseID: number;
+  @Input() courseID: string;
   @Input() description: String;
 
-  constructor(private apiservice: APIService) { }
+  constructor(private apiservice: APIService, private courseservice:CourseService) { }
       
   ngOnInit(): void { }
   
-    //logic for updating the course. Hardcoded for now, but will be converted to user input
-    async updateCourse(){
-      this.apiservice.UpdateCourse({
-        id:"9d556f04-89a8-4ce7-96be-88d7e7e84687",
-        
-        courseDescription:"UPDATE2e",
-        courseName:"Updating the name"
-      }).catch((err)=>{
-        console.log(err);
-      })
-    }
+    
 
     //logic for deleting course. Hardcoded, will update to user input
-    async deleteCourse(){
-      this.apiservice.DeleteCourse({
-        id:"9d556f04-89a8-4ce7-96be-88d7e7e84687"
-      }).catch((err)=>{
-        console.log(err);
-      })
+    deleteCourse(){
+      const myObserver = {
+        next: x => {
+          console.log('Value: ' , x);
+        },
+        error: err => console.error('Observer got an error: ' + err),
+        complete: () => console.log('Observer got a complete notification'),
+      };
+      this.courseservice.deleteCourse(this.courseID).subscribe(myObserver);
+  
+    }
+     //logic for updating the course. Will eventually be in the update-course-component (popup thing)
+  async updateCourse(){
+    const myObserver = {
+      next: x => {
+        console.log('Value: ' , x);
+      },
+      error: err => console.error('Observer got an error: ' + err),
+      complete: () => console.log('Observer got a complete notification'),
+    };
+    //this.courseservice.updateCourse(this.courseObject).subscribe(myObserver);
   }
   
 }
