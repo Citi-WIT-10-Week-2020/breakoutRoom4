@@ -1,12 +1,25 @@
-<p>course-screen works! {{courseId}}</p>
-<h1>TOPICS</h1>
-<button mat-raised-button class="add-button" (click)="createTopic()">ADD TOPIC</button>
+<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+        <p>course-screen works! {{courseId}}</p>
+        <div class="section-container">
+            
+            <div class="title-container">
+                <span class="title-item">Topics</span>
+                <span class="space"></span>
+                <span><button mat-raised-button (click)="createTopic()">Add Topic</button></span>
+            </div>
 
-<!--this is just an example topic! delete when we have real working topics-->
-<app-topic [professor]="this.topicObject.professor" [topic]="this.topicObject.TopicName" [topicDescription]="this.topicObject.TopicDescription" [topicID]="this.topicObject.id"></app-topic>
+            <!--this is just an example topic! delete when we have real working topics-->
+            <app-topic [professor]="this.topicObject.professor" [topic]="this.topicObject.TopicName" [topicDescription]="this.topicObject.TopicDescription" [topicID]="this.topicObject.id"></app-topic>
 
-<ul>
-    <li *ngFor="let item of topics"><app-topic [professor]="item.professor" [topic]="item.TopicName" [topicDescription]="item.TopicDescription" [topicID]="item.id"></app-topic></li>
-  </ul>
+            <ul>
+                <li *ngFor="let item of topics"><app-topic [professor]="item.professor" [topic]="item.TopicName" [topicDescription]="item.TopicDescription" [topicID]="item.id"></app-topic></li>
+            </ul>
 
-<a routerLink='/topic'>Go to Topic Screen</a>
+            <a routerLink='/topic'>Go to Topic Screen</a>
+        </div>
+
+    </body>
+</html>
