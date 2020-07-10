@@ -2,13 +2,14 @@
 <html>
     <head></head>
     <body>
-        <p>course-screen works! {{courseId}}</p>
+       <!-- <p>course-screen works! {{courseId}}</p> -->
         <div class="section-container">
-            
+
             <div class="title-container">
-                <span class="title-item">Topics</span>
+                <span class="title-item"><a routerLink='/course'>Courses ></a></span>
+                <span class="title-item"><a [routerLink]="['/course', this.courseId]">Topics</a></span>
                 <span class="space"></span>
-                <span><button mat-raised-button (click)="createTopic()">Add Topic</button></span>
+                <span><button class="add-btn" (click) = "createTopic()">+</button></span>
             </div>
 
             <!--this is just an example topic! delete when we have real working topics-->
@@ -18,7 +19,6 @@
                 <li *ngFor="let item of topics"><app-topic [professor]="item.professor" [topic]="item.TopicName" [topicDescription]="item.TopicDescription" [topicID]="item.id"></app-topic></li>
             </ul>
 
-            <a routerLink='/topic'>Go to Topic Screen</a>
         </div>
 
     </body>
