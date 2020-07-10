@@ -5,8 +5,19 @@ import { DialogBodyComponent } from 'src/app/components/dialog-body/dialog-body.
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 
 
-import { CourseService } from './courses.service';
-import { ICourse } from './course';
+
+import { CourseService } from '../../shared/courses.service';
+import { ICourse } from '../../shared/course';
+
+
+/* May use for grid */
+export interface Tile {
+  color: string;
+  cols: number;
+  rows: number;
+  text: string;
+}
+
 @Component({
   selector: 'app-home-screen',
   templateUrl: './home-screen.component.html',
@@ -14,6 +25,19 @@ import { ICourse } from './course';
   providers:[CourseService]
 })
 export class HomeScreenComponent implements OnInit {
+
+  /* May use for grid */
+  tiles: Tile[] = [
+    {text: 'One', cols: 1, rows: 5, color: 'lightblue'},
+    {text: 'Two', cols: 1, rows: 2, color: 'lightgreen'},
+    {text: 'Three', cols: 1, rows: 1, color: 'lightpink'},
+    {text: 'Four', cols: 1, rows: 1, color: '#DDBDF1'},
+  ];
+   styles = {
+    cols:1,
+    rows: 3,
+    color:'lightblue'
+  }
   courses: Array<any>;
   count: number = 0;
   profName: String;
@@ -52,45 +76,35 @@ export class HomeScreenComponent implements OnInit {
 
       //subscribes to any course updates
     this.apiservice.OnUpdateCourseListener.subscribe((evt)=>{
-      //need to search thru array, find original, and replace it with the new one  TnT ALGORITHMS
+     
       const data = (evt as any).value.data.onUpdateCourse;
       this.courses =[...this.courses,data];
-      console.log("An update has occurred!")
+      console.log("An update has occurred!");
+      //search thru array, find original, and replace it with the new one
+      this.courses = this.courses.map((course)=>{
+        if(course.id == data.id){
+          return data;
+        }
+        else return course;
+      })
     });
 
     //subscribes to any course deletions
     this.apiservice.OnDeleteCourseListener.subscribe((evt)=>{
       console.log("A deletion has occured!");
-      console.log(evt);
+      const data = (evt as any).value.data.onDeleteCourse;
+      console.log(data);
       //basically, search thru array, find original, remove it
+      this.courses = this.courses.filter((course)=>{
+          return (course.id != data.id)
+      });
+      console.log(this.courses);
     });
   }
 
-  //logic for deleting course. Hardcoded, will update to user input
-  deleteCourse(){
-    const myObserver = {
-      next: x => {
-        console.log('Value: ' , x);
-      },
-      error: err => console.error('Observer got an error: ' + err),
-      complete: () => console.log('Observer got a complete notification'),
-    };
-    this.courseservice.deleteCourse(this.courseObject.id).subscribe(myObserver);
+  
 
-  }
-
-
-  //logic for updating the course. Hardcoded for now, but will be converted to user input
-  async updateCourse(){
-    const myObserver = {
-      next: x => {
-        console.log('Value: ' , x);
-      },
-      error: err => console.error('Observer got an error: ' + err),
-      complete: () => console.log('Observer got a complete notification'),
-    };
-    this.courseservice.updateCourse(this.courseObject).subscribe(myObserver);
-  }
+ 
   //code for creating a course. This will eventually be moved to the popup for CreateCourse
   async createCourse(){
     const myObserver = {

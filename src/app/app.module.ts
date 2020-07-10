@@ -26,6 +26,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatDialogConfig } from '@angular/material/dialog';
 import { HttpClientModule} from '@angular/common/http';
 import { FooterComponent } from './components/footer/footer.component';
+import { MatGridListModule } from '@angular/material/grid-list'
 
 
 
@@ -58,7 +59,9 @@ import { FooterComponent } from './components/footer/footer.component';
     HttpClientModule
 
   ],
-  providers: [  {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}
+  providers: [  {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}},
+    HttpClientModule,
+    MatGridListModule
   
   ],
   bootstrap: [AppComponent],
