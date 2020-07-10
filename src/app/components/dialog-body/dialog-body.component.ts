@@ -2,7 +2,7 @@ import {Component, Inject} from '@angular/core';
 import {OnInit} from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { FormControl, FormGroup } from '@angular/forms';
-import { ICourse } from 'src/app/components/home-screen/course';
+//import { ICourse } from 'src/app/components/home-screen/course';
 @Component({
   selector: 'app-dialog-body',
   templateUrl: './dialog-body.component.html',
