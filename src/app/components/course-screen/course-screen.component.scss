@@ -12,6 +12,7 @@ html, body {
 .title-container {
     display: flex;  
     align-items: center;
+    vertical-align: center;
     padding: 100px 0 30px;
     text-decoration: none;
     
@@ -24,4 +25,17 @@ html, body {
 
 .space {
     flex: 1 1 auto;
+}
+
+.add-btn {
+    font-size: 30px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    vertical-align: center;
+    align-items: center;
+}
+
+.add-btn:hover {
+    cursor: pointer;
 }
