@@ -2,7 +2,7 @@ import {Component, Inject} from '@angular/core';
 import {OnInit} from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { FormControl, FormGroup } from '@angular/forms';
-
+import { ICourse } from 'src/app/components/home-screen/course';
 @Component({
   selector: 'app-dialog-body',
   templateUrl: './dialog-body.component.html',
@@ -12,14 +12,12 @@ import { FormControl, FormGroup } from '@angular/forms';
 export class DialogBodyComponent implements OnInit{
   course : FormGroup;
   ngOnInit() {
-    // this.course = new FormGroup({
-    //   courseName: new FormControl(''),
-    //   courseDesc: new FormControl(''),
-    //   courseCode: new FormControl(''),
-    //   accessCode: new FormControl(''),
-    //   topicNum: new FormControl('')
-    //})
-  
+    this.course = new FormGroup({
+      courseName: new FormControl(''),
+      professor: new FormControl(''),
+      courseDescription: new FormControl(''),
+      id: new FormControl('')
+    })
   };
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, public dialogRef: MatDialogRef<DialogBodyComponent>) {}
     // courseName = new FormControl('');  
@@ -30,6 +28,9 @@ export class DialogBodyComponent implements OnInit{
   
   close() {   
     this.dialogRef.close();
+  }
+  onSubmit() {
+    console.log(this.course.value, this.course.valid);
   }
 
 }

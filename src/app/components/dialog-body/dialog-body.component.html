@@ -1,23 +1,26 @@
 <h2 mat-dialog-title>Add Course</h2>
     <mat-dialog-content class ="container">
-        <form [formGroup] = "course" >
-            Course Name:
-            <input type="text" formControlName="courseName">
+        <form novalidate [formGroup]= "course" > <!--(ngSubmit)="onSubmit(course)" -->
+            <label>
+                <span>Course Name:</span>
+                <input type="text" formControlName="courseName">
+            </label>
+
            <br>
-            Course Description:
-            <input type="text" formControlName="courseDesc">
+           <label>
+                <span>Course Description:</span>
+                <input type="text" formControlName="courseDescription">
+            </label>
            <br>
-            Course Code:
-            <input type="text" formControlName="accessCode">
-            <br>
-            Access Code:
-            <input type="number" formControlName="accessCode">
-            <br>
-            Number of Topics:
-            <input type="number" formControlName="topicNum" outline ="none" >
+           <label>
+                <span>id:</span>           
+            <input type="string" formControlName="id">
+            </label>
         </form>
+
     </mat-dialog-content>
 
 <mat-dialog-actions>
-    <button class="mat-raised-button" (click)="close()">Create</button>
+    <button type ="submit" class="mat-raised-button" (click)="close()">Create</button>
+    <!--<button class="mat-raised-button" (click)="onSubmit()">Create</button>-->
 </mat-dialog-actions>
