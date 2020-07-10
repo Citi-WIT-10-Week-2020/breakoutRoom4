@@ -8,6 +8,8 @@ import { FormFieldTypes } from '@aws-amplify/ui-components';
 import { Hub, Logger} from 'aws-amplify';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
+
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
