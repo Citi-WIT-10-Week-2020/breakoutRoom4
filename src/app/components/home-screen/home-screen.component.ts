@@ -70,17 +70,29 @@ export class HomeScreenComponent implements OnInit {
 
       //subscribes to any course updates
     this.apiservice.OnUpdateCourseListener.subscribe((evt)=>{
-      //need to search thru array, find original, and replace it with the new one  TnT ALGORITHMS
+     
       const data = (evt as any).value.data.onUpdateCourse;
       this.courses =[...this.courses,data];
-      console.log("An update has occurred!")
+      console.log("An update has occurred!");
+      //search thru array, find original, and replace it with the new one
+      this.courses = this.courses.map((course)=>{
+        if(course.id == data.id){
+          return data;
+        }
+        else return course;
+      })
     });
 
     //subscribes to any course deletions
     this.apiservice.OnDeleteCourseListener.subscribe((evt)=>{
       console.log("A deletion has occured!");
-      console.log(evt);
+      const data = (evt as any).value.data.onDeleteCourse;
+      console.log(data);
       //basically, search thru array, find original, remove it
+      this.courses = this.courses.filter((course)=>{
+          return (course.id != data.id)
+      });
+      console.log(this.courses);
     });
   }
 
