@@ -9,7 +9,7 @@ import { MatButtonModule } from '@angular/material/button';
 
 import Amplify from 'aws-amplify';
 import awsconfig from '../aws-exports';
-import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { NavBarComponent } from './components/navigation/nav-bar/nav-bar.component';
 
 import { CourseScreenComponent } from './components/course-screen/course-screen.component';
 import { TopicScreenComponent } from './components/topic-screen/topic-screen.component';
@@ -25,7 +25,7 @@ import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/d
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatDialogConfig } from '@angular/material/dialog';
 import { HttpClientModule} from '@angular/common/http';
-import { FooterComponent } from './components/footer/footer.component';
+import { FooterComponent } from './components/navigation/footer/footer.component';
 import { MatGridListModule } from '@angular/material/grid-list'
 
 
