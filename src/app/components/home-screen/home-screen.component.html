@@ -1,8 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head></head>
+  <body>
 
-<a routerLink='/course'>Go to Course Screen</a>
-<button mat-raised-button (click) = "createCourse()">Add Course</button>
 
-<ul>
-  <li *ngFor="let item of courses"><app-course [name]="item.courseName" [courseID]="item.id" [description]="item.courseDescription"></app-course></li>
-</ul>
+    <div class="section-container">
+
+      <div class="title-container">
+        <span class="title-item"><a routerLink='/course'>Courses</a></span>
+        <span class="space"></span>
+        <span><button (click) = "createCourse()">Add Course</button></span>
+      </div>
+
+
+      <!--
+      <mat-grid-list cols="1" rowHeight="200px">
+        We can add another grid title
+      
+        <mat-grid-tile class="card-container" rowspan="2">
+          
+          <ul>
+            <li *ngFor="let item of courses" [routerLink]="['/course',item.id]">{{item.professor}} : {{item.courseName}} : {{item.courseDescription}} : {{item.id}}</li>
+          </ul>
+        
+        </mat-grid-tile>
+
+      
+      </mat-grid-list>-->
+
+      <mat-grid-list class="container" cols="4" rowHeight="150px">
+        <mat-grid-tile
+            *ngFor="let item of courses"
+            [colspan]="styles.cols"
+            [rowspan]="styles.rows"
+            >
+            <app-course [name]="item.courseName" [courseID]="item.id" [description]="item.courseDescription"></app-course>
+        </mat-grid-tile>
+      </mat-grid-list>
+
+
+      <div class="container">
+        <mat-grid-list cols="4" rowHeight="25px" gutterSize="10px">
+          <mat-grid-tile class="card-container" >One</mat-grid-tile>
+          <mat-grid-tile class="card-container" >Two</mat-grid-tile>
+          <mat-grid-tile class="card-container" >Three</mat-grid-tile>
+          <mat-grid-tile class="card-container" >Four</mat-grid-tile>
+    
+        </mat-grid-list>
+      </div>
+    </div>
+    
+    
+
+  </body>
+</html>
+
+
 
