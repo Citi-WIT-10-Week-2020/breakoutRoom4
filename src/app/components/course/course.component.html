@@ -1,1 +1,17 @@
-<p>course works!</p>
+
+<mat-card class="course-card" tabindex="0">
+    <mat-card-header [routerLink]="['/course', this.courseID]" title="Click to go to course">
+      <mat-card-title>{{name}}</mat-card-title>
+      <mat-card-subtitle>{{courseID}}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image class="default-img" src="https://peerfinance101.com/wp-content/uploads/2016/03/personal-finance-scholarship-essay.jpg" alt="Photo of a college students">
+    <mat-card-content>
+      <p>
+        {{description}}
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-button (click)="updateCourse()">UPDATE</button>
+        <button mat-button (click)="deleteCourse()">DELETE</button>
+    </mat-card-actions>
+</mat-card>

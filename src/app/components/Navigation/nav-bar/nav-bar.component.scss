@@ -1,0 +1,50 @@
+
+.header {
+    background-color: rgb(233, 233, 233);
+    height: 72px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header-spacer {
+    flex: 1 1 auto;
+  }
+
+.welcome-space {
+    padding-right: 10px;
+    
+}
+
+.profile-btn {
+    background-color: transparent;
+    color: none;
+    border: none;
+    width: 64px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.profile-icon {
+    
+    height: 64px;
+    width: 64px;
+    font-size: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.logo-img {
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sign-out {
+    color: blue;
+}
