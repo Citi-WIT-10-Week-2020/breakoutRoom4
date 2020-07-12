@@ -1,0 +1,44 @@
+html, body {
+    display: block;
+    min-height: 770px;
+    margin: 0;
+}
+
+.section-container {
+    margin-left: 100px;
+    margin-right: 100px;
+}
+
+.title-container {
+    display: flex;  
+    align-items: center;
+    vertical-align: center;
+    padding: 100px 0 30px;
+    text-decoration: none;
+    
+}
+
+.title-item a {
+    font-size: 42px;
+    text-decoration: none;
+}
+
+.space {
+    flex: 1 1 auto;
+}
+.card-container {
+    border: 1px solid black;
+}
+
+.container {
+    padding: 0;   
+}
+
+.add-btn {
+    font-size: 30px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    vertical-align: center;
+    align-items: center;
+}
