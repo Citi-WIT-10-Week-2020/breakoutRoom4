@@ -21,8 +21,11 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { HttpClientModule} from '@angular/common/http';
-import { FooterComponent } from './components/Navigation/footer/footer.component';
-import { MatGridListModule } from '@angular/material/grid-list'
+
+import { FooterComponent } from './components/navigation/footer/footer.component';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { FlexLayoutModule } from '@angular/flex-layout';
+
 
 
 
@@ -51,6 +54,7 @@ import { MatGridListModule } from '@angular/material/grid-list'
     MatIconModule,
     HttpClientModule,
     MatGridListModule,
+    FlexLayoutModule,
   
   ],
   bootstrap: [AppComponent],
