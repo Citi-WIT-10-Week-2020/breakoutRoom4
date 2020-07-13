@@ -8,6 +8,8 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 
 import { CourseService } from '../../shared/courses.service';
 import { ICourse } from '../../shared/course';
+import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
+import {LayoutModule} from '@angular/cdk/layout';
 
 
 /* May use for grid */
@@ -42,8 +44,24 @@ export class HomeScreenComponent implements OnInit {
   count: number = 0;
   profName: String;
   courseObject: ICourse;  //to be deleted
+  
+  
 
-  constructor(private apiservice: APIService, private matDialog: MatDialog, private courseservice:CourseService) {}
+
+  constructor(private apiservice: APIService, private matDialog: MatDialog,private courseservice:CourseService, private breakpointObserver: BreakpointObserver) { 
+
+    /* //Might use this for the responsive layout (uses breakpoint import statment)
+    breakpointObserver.observe([
+      Breakpoints.HandsetLandscape,
+      Breakpoints.HandsetPortrait
+    ]).subscribe(result => {
+      if (result.matches) {
+        this.activateHandsetLayout();
+      }
+    });*/
+  } 
+
+  
 
   ngOnInit(): void {
     //initializes the course object. This will eventually be deleted and replaced with user input
@@ -55,6 +73,9 @@ export class HomeScreenComponent implements OnInit {
       
     };
 
+    
+
+   
     //get all courses
     const myObserver = {
       next: x => {
@@ -120,7 +141,7 @@ export class HomeScreenComponent implements OnInit {
     let dialogRef = this.matDialog.open(DialogBodyComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(()=>{console.log("dialog has been closed")});
    } //instead of console log , refresh page
-   
+
   async createCourse(){
     const myObserver = {
       next: x => {
