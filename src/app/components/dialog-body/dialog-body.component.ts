@@ -26,21 +26,23 @@ export class DialogBodyComponent implements OnInit{
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, public dialogRef: MatDialogRef<DialogBodyComponent>, private courseservice:CourseService) {}
   
   
-  close() {   
-    this.dialogRef.close();
-    this.onSubmit();
-    this.createCourse();
-  }
+  // close() {   
+  //   this.dialogRef.close();
+  //   this.onSubmit();
+  //   this.createCourse();
+  // }
+
   onSubmit(): void {
     console.log(this.course.value);
-    
-    this.courseObject.courseName = this.course.value.course_name;
+    console.log("submit works");
+
+    //this.courseObject.courseName = this.course.get("course_name");
     this.courseObject.courseDescription = this.course.value.courseDesc;
     this.courseObject.professor = this.course.value.prof;
     this.courseObject.id = this.course.value.identification;
-
-    console.log(this.courseObject.courseName);
-
+    // console.log(this.courseObject.courseName);
+    this.dialogRef.close();
+    //this.createCourse();
   }
   async createCourse(){
     const myObserver = {
