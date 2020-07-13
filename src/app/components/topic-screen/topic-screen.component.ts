@@ -19,13 +19,9 @@ export class TopicScreenComponent implements OnInit {
     //gets topicID
     this.route.paramMap.subscribe(params => { 
       this.topicId = params.get('id'); 
-    });
-    console.log(this.topicId);
-
-    //gets topicName
-    this.route.paramMap.subscribe(params => { 
       this.topicName = params.get('TopicName'); 
     });
+    console.log(this.topicId);
     console.log(this.topicName);
   
 }
