@@ -16,11 +16,11 @@
 
       <div class="cardcont" fxLayout="row wrap" fxLayoutGap="50px" fxLayoutAlign="flex-start">
         <ng-container *ngFor="let item of courses">
-          <app-course fxFlex="0 1 auto" [name]="item.courseName" [courseID]="item.id" [description]="item.courseDescription"></app-course>
+          <app-course class="appcoursecont" fxFlex="0 1 auto" [name]="item.courseName" [courseID]="item.id" [description]="item.courseDescription"></app-course>
         </ng-container>
       </div>
 
-      <hr>
+     
 
       <!--
       <mat-grid-list cols="1" rowHeight="200px">
@@ -38,17 +38,7 @@
       </mat-grid-list>-->
 
 
-      <div class="container">
-        <mat-grid-list cols="4" rowHeight="25px" gutterSize="10px">
-          <mat-grid-tile class="card-container" >One</mat-grid-tile>
-          <mat-grid-tile class="card-container" >Two</mat-grid-tile>
-          <mat-grid-tile class="card-container" >Three</mat-grid-tile>
-          <mat-grid-tile class="card-container" >Four</mat-grid-tile>
-
-
-    
-        </mat-grid-list>
-      </div>
+      
     </div>
 
 
