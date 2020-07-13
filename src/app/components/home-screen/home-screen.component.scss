@@ -1,12 +1,13 @@
 html, body {
     display: block;
-    min-height: 770px;
+    min-height: 790px;
     margin: 0;
 }
 
 .section-container {
-    margin-left: 100px;
-    margin-right: 100px;
+    margin-left: 150px;
+    margin-right: 150px;
+    margin-bottom: 50px;
 }
 
 .title-container {
@@ -19,8 +20,10 @@ html, body {
 }
 
 .title-item a {
-    font-size: 42px;
+    font-size: 50px;
     text-decoration: none;
+    padding-right: 40px;
+    color: rgb(92, 17, 141);
 }
 
 .space {
@@ -36,14 +39,22 @@ html, body {
 }
 
 .add-btn {
-    font-size: 30px;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    vertical-align: center;
-    align-items: center;
+    font-size: 35px;
+    width: 40px;
+    height: 30px;
+    color: rgb(92, 17, 141);
+}
+
+.add-btn-bg {
+    border: none;
+    background: none;
+    
 }
 
 .add-btn:hover {
     cursor: pointer;
+}
+
+.cardcont {
+    align-items: center;
 }
