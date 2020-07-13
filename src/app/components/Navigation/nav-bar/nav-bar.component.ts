@@ -10,11 +10,11 @@ import { Observable, of ,from} from 'rxjs';
 })
 
 
-export class NavBarComponent implements OnInit , OnChanges{
+export class NavBarComponent implements OnInit {
   profName:String;
 
   constructor() {}
-
+ 
   ngOnInit(): void {
 
     /*
@@ -63,10 +63,10 @@ export class NavBarComponent implements OnInit , OnChanges{
 
   /// when user signs in or signs out, the displayUserName function is called to 
   // read the name using currentUserInfo
-  ngOnChanges(changes: SimpleChanges){
+  /*ngOnChanges(changes: SimpleChanges){
     console.log("ONCHANGES RAAAAN");
     console.log("PROFESSOR NAME: "+ this.profName);
-  }
+  }*/
    displayUserName() {
     //wrap in observable, and have profName subscribe :) rxjs 
     /*const observable =Auth.currentUserInfo().then((evt)=>{
@@ -77,7 +77,8 @@ export class NavBarComponent implements OnInit , OnChanges{
     const myObserver = {
       next: x => {
         console.log('Value: ' , x);
-        this.profName = x.attributes.given_name + " " + x.attributes.family_name;
+        //this.profName = x.attributes.given_name + " " + x.attributes.family_name;
+        this.profName = x.username;
         console.log(this.profName);
       },
       error: err => console.error('Observer got an error: ' + err),
