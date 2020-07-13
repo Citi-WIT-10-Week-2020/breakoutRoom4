@@ -12,8 +12,8 @@ export interface Tile {
 }
 
 
+import {CourseService} from '../../shared/courses.service';
 
-import { CourseService } from '../../shared/courses.service';
 import { ICourse } from '../../shared/course';
 @Component({
   selector: 'app-home-screen',
@@ -105,9 +105,10 @@ export class HomeScreenComponent implements OnInit {
       next: x => {
         console.log('Value: ' , x);
       },
-      error: err => console.error('Observer got an error: ' + err),
+      error: err => console.error('Observer got an error: ' , err),
       complete: () => console.log('Observer got a complete notification'),
     };
+    this.courseObject.id = uuidv4();
     this.courseservice.createCourse(this.courseObject).subscribe(myObserver);
   }
 }
