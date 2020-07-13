@@ -3,17 +3,22 @@ import Amplify, { Auth } from 'aws-amplify';
 import { Hub, Logger} from 'aws-amplify';
 
 import { Observable, of ,from} from 'rxjs';
+import { ResourceLoader } from '@angular/compiler';
+import { UserinfoService } from '../shared/userinfo.service';
+
 @Component({
   selector: 'app-nav-bar',
   templateUrl: './nav-bar.component.html',
-  styleUrls: ['./nav-bar.component.scss']
+  styleUrls: ['./nav-bar.component.scss'],
+  providers:[UserinfoService]
 })
 
 
 export class NavBarComponent implements OnInit , OnChanges{
   profName:String;
 
-  constructor() {}
+
+  constructor(private userinfo: UserinfoService) {}
 
   ngOnInit(): void {
 
@@ -22,12 +27,10 @@ export class NavBarComponent implements OnInit , OnChanges{
       console.log(evt);
       this.profName = evt.username;
     });
- 
-    
-    
     
   */
     this.profName = "";
+   
     this.displayName();
 
   }
@@ -40,20 +43,22 @@ export class NavBarComponent implements OnInit , OnChanges{
     }
     const logger = new Logger('My-Logger');
     console.log(logger);
-    const listener = async (data) => {
+    const listener = (data) => {
       console.log(data);
       switch (data.payload.event) {
 
          case 'signIn':
-              await this.displayUserName();
+              this.displayUserName();
               break;
           case 'signUp':
-              await this.displayUserName();
-             break;
+              this.displayUserName();
+              break;
           case 'signOut':
              this.profName = "";
              console.log(this.profName);
              console.log("sign out");
+             location.reload();
+          // this.userinfo.logout(this.profName);
              break;
       }
     }
@@ -67,13 +72,24 @@ export class NavBarComponent implements OnInit , OnChanges{
     console.log("ONCHANGES RAAAAN");
     console.log("PROFESSOR NAME: "+ this.profName);
   }
+  
    displayUserName() {
     //wrap in observable, and have profName subscribe :) rxjs 
-    /*const observable =Auth.currentUserInfo().then((evt)=>{
+    /*
+    const observable =Auth.currentUserInfo().then((evt)=>{
       console.log(evt);
       this.profName = evt.username;
       console.log("CHANGED PROFNAME: " + this.profName);
-    });*/
+    });
+    */
+
+ 
+  //this.userinfo.getUserInfo();
+ // this.profName = this.userinfo.getUsername();
+  //console.log("nav bar name", this.profName); //name not here
+
+  console.log("in displayUserName");
+    
     const myObserver = {
       next: x => {
         console.log('Value: ' , x);
@@ -83,12 +99,17 @@ export class NavBarComponent implements OnInit , OnChanges{
       error: err => console.error('Observer got an error: ' + err),
       complete: () => console.log('Observer got a complete notification'),
     };
-    from(Auth.currentUserInfo()).subscribe(myObserver);
+   // from(Auth.currentUserInfo()).subscribe(myObserver);
+    this.userinfo.getUserInfo().subscribe(myObserver);
 
     //this.profName = await Auth.currentUserInfo().then((evt)=>  evt.username);
 
-    console.log("in displayUserName");
+    
+
+   
   }
+
+ 
 
 } 
 
