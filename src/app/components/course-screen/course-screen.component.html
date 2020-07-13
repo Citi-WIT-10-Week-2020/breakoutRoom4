@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html>
-    <head></head>
+
     <body>
        <!-- <p>course-screen works! {{courseId}}</p> -->
         <div class="section-container">
@@ -8,18 +6,22 @@
             <div class="title-container">
                 <span class="title-item"><a routerLink='/course'>Courses ></a></span>
                 <span class="title-item"><a [routerLink]="['/course', this.courseId]">Topics</a></span>
-                <span class="space"></span>
-                <span><button class="add-btn" (click) = "createTopic()">+</button></span>
+                <span><button class="add-btn-bg" (click) = "createTopic()"><mat-icon class="add-btn">add_circle_outline</mat-icon></button></span>
             </div>
 
             <!--this is just an example topic! delete when we have real working topics-->
             <app-topic [professor]="this.topicObject.professor" [topic]="this.topicObject.TopicName" [topicDescription]="this.topicObject.TopicDescription" [topicID]="this.topicObject.id"></app-topic>
 
-            <ul>
-                <li *ngFor="let item of topics"><app-topic [professor]="item.professor" [topic]="item.TopicName" [topicDescription]="item.TopicDescription" [topicID]="item.id"></app-topic></li>
-            </ul>
+            <!--actual flex layout for real topics-->
+            <div class="cardcont" fxLayout="row wrap" fxLayoutGap="50px" fxLayoutAlign="flex-start">
+                <ng-container *ngFor="let item of topics">
+                  <app-topic fxFlex="0 1 auto" [professor]="item.professor" [topic]="item.TopicName" [topicDescription]="item.TopicDescription" [topicID]="item.id"></app-topic>
+                </ng-container>
+            </div>
+
+            <hr>
 
         </div>
 
     </body>
-</html>
+
