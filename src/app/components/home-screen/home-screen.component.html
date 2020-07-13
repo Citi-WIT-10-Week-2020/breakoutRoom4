@@ -8,8 +8,8 @@
 
       <div class="title-container">
         <span class="title-item"><a routerLink='/course'>Courses</a></span>
-        <span class="space"></span>
-        <span><button class="add-btn" (click) = "createCourse()">+</button></span>
+        
+        <span><button class="add-btn-bg" (click) = "createCourse()"><mat-icon class="add-btn">add_circle_outline</mat-icon></button></span>
       </div>
 
 
@@ -37,16 +37,6 @@
       
       </mat-grid-list>-->
 
-      <span layout="row" layout-md="colum"><mat-grid-list class="container" cols="4" rowHeight="150px"> <!-- This might be added: [cols]="breakpoint"-->
-        <span flex><mat-grid-tile
-            *ngFor="let item of courses"
-            [colspan]="styles.cols"
-            [rowspan]="styles.rows"
-            >
-            <app-course [name]="item.courseName" [courseID]="item.id" [description]="item.courseDescription"></app-course>
-        </mat-grid-tile></span>
-      </mat-grid-list></span>
-
 
       <div class="container">
         <mat-grid-list cols="4" rowHeight="25px" gutterSize="10px">
@@ -63,7 +53,7 @@
 
   
     
-    <hr>
+    
     
 
 
