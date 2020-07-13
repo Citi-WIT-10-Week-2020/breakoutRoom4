@@ -4,7 +4,7 @@
 import { Injectable } from "@angular/core";
 import API, { graphqlOperation } from "@aws-amplify/api";
 import { GraphQLResult } from "@aws-amplify/api/lib/types";
-import { Observable } from "zen-observable-ts";
+import * as Observable from "zen-observable";
 
 export type CreateProfessorInput = {
   id?: string | null;

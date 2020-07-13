@@ -118,7 +118,19 @@ export class HomeScreenComponent implements OnInit {
     console.log("dialog opened");
     const dialogConfig = new MatDialogConfig();
     let dialogRef = this.matDialog.open(DialogBodyComponent, dialogConfig);
-    dialogRef.afterClosed().subscribe(()=>{console.log("dialog has been closed")}); //instead of console log , refresh page
+    dialogRef.afterClosed().subscribe(()=>{console.log("dialog has been closed")});
+   } //instead of console log , refresh page
+   
+  async createCourse(){
+    const myObserver = {
+      next: x => {
+        console.log('Value: ' , x);
+      },
+      error: err => console.error('Observer got an error: ' , err),
+      complete: () => console.log('Observer got a complete notification'),
+    };
+    this.courseObject.id = uuidv4();
+    this.courseservice.createCourse(this.courseObject).subscribe(myObserver);
   }
 }
 
