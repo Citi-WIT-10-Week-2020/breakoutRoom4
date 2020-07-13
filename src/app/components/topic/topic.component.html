@@ -1,1 +1,14 @@
-<p>topic works!</p>
+
+<mat-card class="topic-card" tabindex="0" [routerLink]="['/topic', this.topicID, this.topic]">
+    <!--for when we have working topicIDs routerLink should be: ['/course', this.topicID-->
+    <mat-card-title   title="Click to go to topic">{{topic}}</mat-card-title>
+    <mat-card-content title="Click to go to topic">
+      <p>
+        {{topicDescription}}
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-button (click)="updateTopic()">UPDATE</button>
+        <button mat-button (click)="deleteTopic()">DELETE</button>
+    </mat-card-actions>
+</mat-card>

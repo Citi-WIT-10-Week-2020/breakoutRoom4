@@ -1,30 +1,37 @@
-html, body {
+
+.div-body {
+
     display: block;
-    min-height: 770px;
+    min-height: 790px;
     margin: 0;
 }
 
 .section-container {
-    margin-left: 100px;
-    margin-right: 100px;
+    margin-left: 150px;
+    margin-right: 150px;
+    margin-bottom: 50px;
 }
 
 .title-container {
     display: flex;  
     align-items: center;
+    vertical-align: center;
     padding: 100px 0 30px;
     text-decoration: none;
     
 }
 
 .title-item a {
-    font-size: 42px;
+    font-size: 50px;
     text-decoration: none;
+    padding-right: 40px;
+    color: rgb(94, 12, 119);
 }
 
 .space {
     flex: 1 1 auto;
 }
+
 .card-container {
     border: 1px solid black;
 }
@@ -32,3 +39,29 @@ html, body {
 .container {
     padding: 0;   
 }
+
+.add-btn {
+    font-size: 35px;
+    width: 40px;
+    height: 30px;
+    color: rgb(94, 12, 119);
+}
+
+.add-btn-bg {
+    border: none;
+    background: none;
+    
+}
+
+.add-btn:hover {
+    cursor: pointer;
+}
+
+.cardcont {
+    align-items: center;
+}
+
+.appcoursecont:last-child {
+    margin-right: 50px;
+}
+

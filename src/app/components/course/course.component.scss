@@ -1,12 +1,16 @@
 .mat-card {
-    padding: 2em;
+    //padding: 2em;
+    margin: 0px;
 }
 
 .course-card {
-    max-width: 400px;
+    max-width: 250px;
     min-width: 200px;
-    max-height: 400px;
+    max-height: 200px;
+    margin: 20px 0;
 }
+
+
 
 .course-card:hover {
     background-color: rgb(237, 221, 241);

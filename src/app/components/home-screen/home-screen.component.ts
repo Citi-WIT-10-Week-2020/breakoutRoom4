@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { APIService } from '../../API.service';
 import { v4 as uuidv4 } from 'uuid';
+import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
+import {LayoutModule} from '@angular/cdk/layout';
 
 
 /* May use for grid */
@@ -12,8 +14,8 @@ export interface Tile {
 }
 
 
+import {CourseService} from '../../shared/courses.service';
 
-import { CourseService } from '../../shared/courses.service';
 import { ICourse } from '../../shared/course';
 @Component({
   selector: 'app-home-screen',
@@ -38,8 +40,24 @@ export class HomeScreenComponent implements OnInit {
   courses: Array<any>;
   courseObject: ICourse;  //to be deleted
   
-  constructor(private apiservice: APIService,private courseservice:CourseService) { }
   
+
+
+  constructor(private apiservice: APIService,private courseservice:CourseService, private breakpointObserver: BreakpointObserver) { 
+
+    /* //Might use this for the responsive layout (uses breakpoint import statment)
+    breakpointObserver.observe([
+      Breakpoints.HandsetLandscape,
+      Breakpoints.HandsetPortrait
+    ]).subscribe(result => {
+      if (result.matches) {
+        this.activateHandsetLayout();
+      }
+    });*/
+  } 
+
+  
+
   ngOnInit(): void {
     //initializes the course object. This will eventually be deleted and replaced with user input
     this.courseObject={
@@ -48,6 +66,8 @@ export class HomeScreenComponent implements OnInit {
       professor:"haku",
       id:uuidv4()
     };
+
+    
 
    
     //get all courses
@@ -70,17 +90,29 @@ export class HomeScreenComponent implements OnInit {
 
       //subscribes to any course updates
     this.apiservice.OnUpdateCourseListener.subscribe((evt)=>{
-      //need to search thru array, find original, and replace it with the new one  TnT ALGORITHMS
+     
       const data = (evt as any).value.data.onUpdateCourse;
       this.courses =[...this.courses,data];
-      console.log("An update has occurred!")
+      console.log("An update has occurred!");
+      //search thru array, find original, and replace it with the new one
+      this.courses = this.courses.map((course)=>{
+        if(course.id == data.id){
+          return data;
+        }
+        else return course;
+      })
     });
 
     //subscribes to any course deletions
     this.apiservice.OnDeleteCourseListener.subscribe((evt)=>{
       console.log("A deletion has occured!");
-      console.log(evt);
+      const data = (evt as any).value.data.onDeleteCourse;
+      console.log(data);
       //basically, search thru array, find original, remove it
+      this.courses = this.courses.filter((course)=>{
+          return (course.id != data.id)
+      });
+      console.log(this.courses);
     });
   }
 
@@ -93,9 +125,10 @@ export class HomeScreenComponent implements OnInit {
       next: x => {
         console.log('Value: ' , x);
       },
-      error: err => console.error('Observer got an error: ' + err),
+      error: err => console.error('Observer got an error: ' , err),
       complete: () => console.log('Observer got a complete notification'),
     };
+    this.courseObject.id = uuidv4();
     this.courseservice.createCourse(this.courseObject).subscribe(myObserver);
   }
 }
