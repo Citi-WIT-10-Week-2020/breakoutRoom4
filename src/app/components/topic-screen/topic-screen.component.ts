@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'app-topic-screen',
@@ -7,9 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TopicScreenComponent implements OnInit {
 
-  constructor() { }
+  
+
+  constructor(private route:ActivatedRoute) { }
+  topicId: String;
+  topicName: String;
 
   ngOnInit(): void {
-  }
+    //gets topicID
+    this.route.paramMap.subscribe(params => { 
+      this.topicId = params.get('id'); 
+      this.topicName = params.get('TopicName'); 
+    });
+    console.log(this.topicId);
+    console.log(this.topicName);
+  
+}
 
 }
+

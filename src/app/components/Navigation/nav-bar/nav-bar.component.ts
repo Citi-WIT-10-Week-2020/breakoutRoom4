@@ -4,7 +4,7 @@ import { Hub, Logger} from 'aws-amplify';
 
 import { Observable, of ,from} from 'rxjs';
 import { ResourceLoader } from '@angular/compiler';
-import { UserinfoService } from '../shared/userinfo.service';
+import { UserinfoService } from '../../../shared/userinfo.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -14,13 +14,13 @@ import { UserinfoService } from '../shared/userinfo.service';
 })
 
 
-export class NavBarComponent implements OnInit , OnChanges{
+export class NavBarComponent implements OnInit {
   profName:String;
 
 
   constructor(private userinfo: UserinfoService) {}
 
-  ngOnInit(): void {
+ngOnInit(): void {
 
     /*
     Auth.currentUserInfo().then((evt)=>{
@@ -68,12 +68,11 @@ export class NavBarComponent implements OnInit , OnChanges{
 
   /// when user signs in or signs out, the displayUserName function is called to 
   // read the name using currentUserInfo
-  ngOnChanges(changes: SimpleChanges){
+  /*ngOnChanges(changes: SimpleChanges){
     console.log("ONCHANGES RAAAAN");
     console.log("PROFESSOR NAME: "+ this.profName);
-  }
-  
-   displayUserName() {
+*/
+  displayUserName() {
     //wrap in observable, and have profName subscribe :) rxjs 
     /*
     const observable =Auth.currentUserInfo().then((evt)=>{
@@ -93,7 +92,8 @@ export class NavBarComponent implements OnInit , OnChanges{
     const myObserver = {
       next: x => {
         console.log('Value: ' , x);
-        this.profName = x.attributes.given_name + " " + x.attributes.family_name;
+        //this.profName = x.attributes.given_name + " " + x.attributes.family_name;
+        this.profName = x.username;
         console.log(this.profName);
       },
       error: err => console.error('Observer got an error: ' + err),
