@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { APIService } from '../../API.service';
 import { v4 as uuidv4 } from 'uuid';
+import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
+import {LayoutModule} from '@angular/cdk/layout';
 
 
 /* May use for grid */
@@ -38,8 +40,24 @@ export class HomeScreenComponent implements OnInit {
   courses: Array<any>;
   courseObject: ICourse;  //to be deleted
   
-  constructor(private apiservice: APIService,private courseservice:CourseService) { }
   
+
+
+  constructor(private apiservice: APIService,private courseservice:CourseService, private breakpointObserver: BreakpointObserver) { 
+
+    /* //Might use this for the responsive layout (uses breakpoint import statment)
+    breakpointObserver.observe([
+      Breakpoints.HandsetLandscape,
+      Breakpoints.HandsetPortrait
+    ]).subscribe(result => {
+      if (result.matches) {
+        this.activateHandsetLayout();
+      }
+    });*/
+  } 
+
+  
+
   ngOnInit(): void {
     //initializes the course object. This will eventually be deleted and replaced with user input
     this.courseObject={
@@ -48,6 +66,8 @@ export class HomeScreenComponent implements OnInit {
       professor:"haku",
       id:uuidv4()
     };
+
+    
 
    
     //get all courses

@@ -13,6 +13,15 @@
       </div>
 
 
+
+      <div class="cardcont" fxLayout="row wrap" fxLayoutGap="50px" fxLayoutAlign="flex-start">
+        <ng-container *ngFor="let item of courses">
+          <app-course fxFlex="0 1 auto" [name]="item.courseName" [courseID]="item.id" [description]="item.courseDescription"></app-course>
+        </ng-container>
+      </div>
+
+      <hr>
+
       <!--
       <mat-grid-list cols="1" rowHeight="200px">
         We can add another grid title
@@ -28,15 +37,15 @@
       
       </mat-grid-list>-->
 
-      <mat-grid-list class="container" cols="4" rowHeight="150px">
-        <mat-grid-tile
+      <span layout="row" layout-md="colum"><mat-grid-list class="container" cols="4" rowHeight="150px"> <!-- This might be added: [cols]="breakpoint"-->
+        <span flex><mat-grid-tile
             *ngFor="let item of courses"
             [colspan]="styles.cols"
             [rowspan]="styles.rows"
             >
             <app-course [name]="item.courseName" [courseID]="item.id" [description]="item.courseDescription"></app-course>
-        </mat-grid-tile>
-      </mat-grid-list>
+        </mat-grid-tile></span>
+      </mat-grid-list></span>
 
 
       <div class="container">
@@ -45,12 +54,21 @@
           <mat-grid-tile class="card-container" >Two</mat-grid-tile>
           <mat-grid-tile class="card-container" >Three</mat-grid-tile>
           <mat-grid-tile class="card-container" >Four</mat-grid-tile>
+
+
     
         </mat-grid-list>
       </div>
     </div>
+
+  
     
+    <hr>
     
+
+
+    
+
 
   </body>
 </html>
