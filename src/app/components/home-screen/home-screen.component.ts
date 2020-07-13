@@ -43,7 +43,6 @@ export class HomeScreenComponent implements OnInit {
   profName: String;
   courseObject: ICourse;  //to be deleted
 
-  //private matDialog: MatDialog;
   constructor(private apiservice: APIService, private matDialog: MatDialog, private courseservice:CourseService) {}
 
   ngOnInit(): void {
@@ -102,20 +101,18 @@ export class HomeScreenComponent implements OnInit {
     });
   }
 
-  
-
  
   //code for creating a course. This will eventually be moved to the popup for CreateCourse
-  async createCourse(){
-    const myObserver = {
-      next: x => {
-        console.log('Value: ' , x);
-      },
-      error: err => console.error('Observer got an error: ' + err),
-      complete: () => console.log('Observer got a complete notification'),
-    };
-    this.courseservice.createCourse(this.courseObject).subscribe(myObserver);
-  }
+  // async createCourse(){
+  //   const myObserver = {
+  //     next: x => {
+  //       console.log('Value: ' , x);
+  //     },
+  //     error: err => console.error('Observer got an error: ' + err),
+  //     complete: () => console.log('Observer got a complete notification'),
+  //   };
+  //   this.courseservice.createCourse(this.courseObject).subscribe(myObserver);
+  // }
   //opens modal to take input to create a new course
   openDialog() {
     console.log("dialog opened");

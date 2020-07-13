@@ -3,24 +3,25 @@
         <form novalidate [formGroup]= "course" > <!--(ngSubmit)="onSubmit(course)" -->
             <label>
                 <span>Course Name:</span>
-                <input type="text" formControlName="courseName">
+                <input type="text" formControlName="course_name">
             </label>
 
            <br>
            <label>
                 <span>Course Description:</span>
-                <input type="text" formControlName="courseDescription">
+                <input type="text" formControlName="courseDesc">
             </label>
            <br>
            <label>
                 <span>id:</span>           
-            <input type="string" formControlName="id">
+            <input type="string" formControlName="identification">
             </label>
         </form>
 
     </mat-dialog-content>
 
 <mat-dialog-actions>
-    <button type ="submit" class="mat-raised-button" (click)="close()">Create</button>
+    <button type ="submit" class="mat-raised-button" (click)="close()">Create</button>   
+
     <!--<button class="mat-raised-button" (click)="onSubmit()">Create</button>-->
 </mat-dialog-actions>

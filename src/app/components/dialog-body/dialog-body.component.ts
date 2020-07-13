@@ -2,37 +2,59 @@ import {Component, Inject} from '@angular/core';
 import {OnInit} from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { FormControl, FormGroup } from '@angular/forms';
-//import { ICourse } from 'src/app/components/home-screen/course';
+import { CourseService } from '../../shared/courses.service';
+import { ICourse } from '../../shared/course';
+
 @Component({
   selector: 'app-dialog-body',
   templateUrl: './dialog-body.component.html',
-  styleUrls: ['./dialog-body.component.scss']
+  styleUrls: ['./dialog-body.component.scss'],
+  providers:[CourseService]
 })
 
 export class DialogBodyComponent implements OnInit{
   course : FormGroup;
+  courseObject: ICourse; 
   ngOnInit() {
     this.course = new FormGroup({
-      courseName: new FormControl(''),
-      professor: new FormControl(''),
-      courseDescription: new FormControl(''),
-      id: new FormControl('')
+      course_name: new FormControl(''),
+      prof: new FormControl('Yong Yoon'),
+      courseDesc: new FormControl(''),
+      identification: new FormControl('')
     })
   };
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, public dialogRef: MatDialogRef<DialogBodyComponent>) {}
-    // courseName = new FormControl('');  
-    // courseDesc = new FormControl('');
-    // courseCode = new FormControl('');
-    // accessCode = new FormControl('');
-    // topicNum = new FormControl('');
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, public dialogRef: MatDialogRef<DialogBodyComponent>, private courseservice:CourseService) {}
+  
   
   close() {   
     this.dialogRef.close();
+    this.onSubmit();
+    this.createCourse();
   }
-  onSubmit() {
-    console.log(this.course.value, this.course.valid);
-  }
+  onSubmit(): void {
+    console.log(this.course.value);
+    
+    this.courseObject.courseName = this.course.value.course_name;
+    this.courseObject.courseDescription = this.course.value.courseDesc;
+    this.courseObject.professor = this.course.value.prof;
+    this.courseObject.id = this.course.value.identification;
 
+    console.log(this.courseObject.courseName);
+
+  }
+  async createCourse(){
+    const myObserver = {
+      next: x => {
+        console.log('Value: ' , x);
+      },
+      error: err => console.error('Observer got an error: ' + err),
+      complete: () => console.log('Observer got a complete notification'),
+    };
+    this.courseservice.createCourse(this.courseObject).subscribe(myObserver);
+  }
+  get courseName(): any {
+    return this.course.get('course_name');
+  }
 }
 
 // export interface NewCourse {
