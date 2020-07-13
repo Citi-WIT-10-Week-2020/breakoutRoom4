@@ -20,9 +20,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
+import { DialogBodyComponent } from './components/dialog-body/dialog-body.component'
+import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatDialogConfig } from '@angular/material/dialog';
 import { HttpClientModule} from '@angular/common/http';
-import { FooterComponent } from './components/Navigation/footer/footer.component';
-import { MatGridListModule } from '@angular/material/grid-list'
+
+import { FooterComponent } from './components/navigation/footer/footer.component';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { FlexLayoutModule } from '@angular/flex-layout';
+
 
 
 
@@ -36,6 +43,7 @@ import { MatGridListModule } from '@angular/material/grid-list'
     HomeScreenComponent,
     CourseComponent,
     TopicComponent,
+    DialogBodyComponent,
     FooterComponent,
 
   ],
@@ -49,14 +57,20 @@ import { MatGridListModule } from '@angular/material/grid-list'
     MatToolbarModule,
     MatMenuModule,
     MatIconModule,
+    MatDialogModule,
+    ReactiveFormsModule,
+    HttpClientModule
+
+  ],
+  providers: [  {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}},
     HttpClientModule,
     MatGridListModule,
+    FlexLayoutModule,
   
   ],
   bootstrap: [AppComponent],
-  entryComponents: [],
-  providers: [],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
+  entryComponents: [DialogBodyComponent]
 
 })
 export class AppModule { }

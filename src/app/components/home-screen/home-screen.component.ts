@@ -1,6 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { APIService } from '../../API.service';
 import { v4 as uuidv4 } from 'uuid';
+import { DialogBodyComponent } from 'src/app/components/dialog-body/dialog-body.component'
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+
+
+
+import { CourseService } from '../../shared/courses.service';
+import { ICourse } from '../../shared/course';
+import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
+import {LayoutModule} from '@angular/cdk/layout';
 
 
 /* May use for grid */
@@ -11,10 +20,6 @@ export interface Tile {
   text: string;
 }
 
-
-import {CourseService} from '../../shared/courses.service';
-
-import { ICourse } from '../../shared/course';
 @Component({
   selector: 'app-home-screen',
   templateUrl: './home-screen.component.html',
@@ -36,10 +41,28 @@ export class HomeScreenComponent implements OnInit {
     color:'lightblue'
   }
   courses: Array<any>;
+  count: number = 0;
+  profName: String;
   courseObject: ICourse;  //to be deleted
   
-  constructor(private apiservice: APIService,private courseservice:CourseService) { }
   
+
+
+  constructor(private apiservice: APIService, private matDialog: MatDialog,private courseservice:CourseService, private breakpointObserver: BreakpointObserver) { 
+
+    /* //Might use this for the responsive layout (uses breakpoint import statment)
+    breakpointObserver.observe([
+      Breakpoints.HandsetLandscape,
+      Breakpoints.HandsetPortrait
+    ]).subscribe(result => {
+      if (result.matches) {
+        this.activateHandsetLayout();
+      }
+    });*/
+  } 
+
+  
+
   ngOnInit(): void {
     //initializes the course object. This will eventually be deleted and replaced with user input
     this.courseObject={
@@ -47,7 +70,10 @@ export class HomeScreenComponent implements OnInit {
       courseDescription:"TESTING TESTING HAHAHA",
       professor:"haku",
       id:uuidv4()
+      
     };
+
+    
 
    
     //get all courses
@@ -96,10 +122,26 @@ export class HomeScreenComponent implements OnInit {
     });
   }
 
-  
-
  
   //code for creating a course. This will eventually be moved to the popup for CreateCourse
+  // async createCourse(){
+  //   const myObserver = {
+  //     next: x => {
+  //       console.log('Value: ' , x);
+  //     },
+  //     error: err => console.error('Observer got an error: ' + err),
+  //     complete: () => console.log('Observer got a complete notification'),
+  //   };
+  //   this.courseservice.createCourse(this.courseObject).subscribe(myObserver);
+  // }
+  //opens modal to take input to create a new course
+  openDialog() {
+    console.log("dialog opened");
+    const dialogConfig = new MatDialogConfig();
+    let dialogRef = this.matDialog.open(DialogBodyComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe(()=>{console.log("dialog has been closed")});
+   } //instead of console log , refresh page
+
   async createCourse(){
     const myObserver = {
       next: x => {
