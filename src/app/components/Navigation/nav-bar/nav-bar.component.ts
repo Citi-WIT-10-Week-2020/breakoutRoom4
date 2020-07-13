@@ -92,8 +92,8 @@ ngOnInit(): void {
     const myObserver = {
       next: x => {
         console.log('Value: ' , x);
-        //this.profName = x.attributes.given_name + " " + x.attributes.family_name;
-        this.profName = x.username;
+        this.profName = x.attributes.given_name + " " + x.attributes.family_name;
+        //this.profName = x.username;
         console.log(this.profName);
       },
       error: err => console.error('Observer got an error: ' + err),
