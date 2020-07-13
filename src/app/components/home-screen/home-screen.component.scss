@@ -23,7 +23,7 @@
     font-size: 50px;
     text-decoration: none;
     padding-right: 40px;
-    color: rgb(157, 10, 255);
+    color: rgb(94, 12, 119);
 }
 
 .space {
@@ -41,7 +41,7 @@
     font-size: 35px;
     width: 40px;
     height: 30px;
-    color: rgb(92, 17, 141);
+    color: rgb(94, 12, 119);
 }
 
 .add-btn-bg {
@@ -53,4 +53,8 @@
 
 .cardcont {
     align-items: center;
+}
+
+.appcoursecont:last-child {
+    margin-right: 50px;
 }
