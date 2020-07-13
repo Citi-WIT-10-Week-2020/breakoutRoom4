@@ -12,8 +12,8 @@
     ],
     "smsAuthenticationMessage": "Your authentication code is {####}",
     "smsVerificationMessage": "Your verification code is {####}",
-    "emailVerificationSubject": "ACORN Verification Code",
-    "emailVerificationMessage": "Your verification code for ACORN is {####}. If you did not sign up, please disregard this email.",
+    "emailVerificationSubject": "Your verification code",
+    "emailVerificationMessage": "Your verification code is {####}",
     "defaultPasswordPolicy": false,
     "passwordPolicyMinLength": 8,
     "passwordPolicyCharacters": [],
@@ -21,18 +21,15 @@
         "email"
     ],
     "userpoolClientGenerateSecret": true,
-    "userpoolClientRefreshTokenValidity": "100",
+    "userpoolClientRefreshTokenValidity": 30,
     "userpoolClientWriteAttributes": [
         "email"
     ],
     "userpoolClientReadAttributes": [
-        "email",
-        "family_name",
-        "given_name",
-        "name"
+        "email"
     ],
     "userpoolClientLambdaRole": "acorns6b065b4d_userpoolclient_lambda_role",
-    "userpoolClientSetAttributes": true,
+    "userpoolClientSetAttributes": false,
     "sharedId": "6b065b4d",
     "resourceName": "acornsqurl6b065b4d",
     "authSelections": "identityPoolAndUserPool",
@@ -48,16 +45,7 @@
             "Arn"
         ]
     },
-    "useDefault": "manual",
+    "useDefault": "default",
     "userPoolGroupList": [],
-    "dependsOn": [],
-    "thirdPartyAuth": false,
-    "userPoolGroups": false,
-    "adminQueries": false,
-    "triggers": "{}",
-    "hostedUI": false,
-    "parentStack": {
-        "Ref": "AWS::StackId"
-    },
-    "permissions": []
+    "dependsOn": []
 }
