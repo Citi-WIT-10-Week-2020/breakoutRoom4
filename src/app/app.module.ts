@@ -9,7 +9,7 @@ import { MatButtonModule } from '@angular/material/button';
 
 import Amplify from 'aws-amplify';
 import awsconfig from '../aws-exports';
-import { NavBarComponent } from './components/navigation/nav-bar/nav-bar.component';
+import { NavBarComponent } from './components/Navigation/nav-bar/nav-bar.component';
 
 import { CourseScreenComponent } from './components/course-screen/course-screen.component';
 import { TopicScreenComponent } from './components/topic-screen/topic-screen.component';
@@ -21,9 +21,11 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { HttpClientModule} from '@angular/common/http';
+
 import { FooterComponent } from './components/navigation/footer/footer.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { FlexLayoutModule } from '@angular/flex-layout';
+
 
 
 
