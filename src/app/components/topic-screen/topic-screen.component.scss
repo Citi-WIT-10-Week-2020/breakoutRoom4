@@ -1,0 +1,37 @@
+.div-body {
+    display: block;
+    min-height: 790px;
+    margin: 0;
+    margin-left: 150px;
+    margin-right: 150px;
+    margin-bottom: 50px;
+}
+
+.title-container {
+    display: flex;  
+    align-items: center;
+    vertical-align: center;
+    padding: 100px 0 30px;
+    text-decoration: none;
+    
+}
+
+.title-item {
+    font-size: 50px;
+    text-decoration: none;
+    padding-right: 40px;
+    color: rgb(94, 12, 119);
+}
+
+.add-btn {
+    font-size: 35px;
+    width: 40px;
+    height: 30px;
+    color: rgb(94, 12, 119);
+}
+
+.add-btn-bg {
+    border: none;
+    background: none;
+    
+}
