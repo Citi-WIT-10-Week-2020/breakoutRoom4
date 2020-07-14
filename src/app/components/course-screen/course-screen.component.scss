@@ -1,3 +1,51 @@
-.add-button {
-    margin: 1em;
+body {
+    display: block;
+    min-height: 770px;
+    margin: 0;
+}
+
+.section-container {
+    margin-left: 100px;
+    margin-right: 100px;
+}
+
+.title-container {
+    display: flex;  
+    align-items: center;
+    vertical-align: center;
+    padding: 100px 0 30px;
+    text-decoration: none;
+    
+}
+
+.title-item a {
+    font-size: 50px;
+    text-decoration: none;
+    padding-right: 40px;
+    color: rgb(92, 17, 141);
+}
+
+.space {
+    flex: 1 1 auto;
+}
+
+.add-btn {
+    font-size: 35px;
+    width: 40px;
+    height: 30px;
+    color: rgb(92, 17, 141);
+}
+
+.add-btn:hover {
+    cursor: pointer;
+}
+
+.add-btn-bg {
+    border: none;
+    background: none;
+    
+}
+
+.cardcont {
+    align-items: center;
 }

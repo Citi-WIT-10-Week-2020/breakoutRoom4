@@ -2,11 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { APIService } from '../../API.service';
 import { v4 as uuidv4 } from 'uuid';
+
 @Component({
   selector: 'app-course-screen',
   templateUrl: './course-screen.component.html',
   styleUrls: ['./course-screen.component.scss']
 })
+
 export class CourseScreenComponent implements OnInit {
 
   courseId: String;
