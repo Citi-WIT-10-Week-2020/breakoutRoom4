@@ -31,7 +31,10 @@ export class DialogBodyComponent implements OnInit{
   //   this.onSubmit();
   //   this.createCourse();
   // }
+  cancel(): void{
+    this.dialogRef.close();
 
+  }
   onSubmit(): void {
     console.log(this.course.value);
     console.log("submit works");

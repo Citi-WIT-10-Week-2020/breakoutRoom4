@@ -135,7 +135,7 @@ export class HomeScreenComponent implements OnInit {
   //   this.courseservice.createCourse(this.courseObject).subscribe(myObserver);
   // }
   //opens modal to take input to create a new course
-  openDialog() {
+  openCourseDialog() {
     console.log("dialog opened");
     const dialogConfig = new MatDialogConfig();
     let dialogRef = this.matDialog.open(DialogBodyComponent, dialogConfig);

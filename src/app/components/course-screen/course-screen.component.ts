@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { APIService } from '../../API.service';
 import { v4 as uuidv4 } from 'uuid';
+import { DialogBodyComponent } from 'src/app/components/dialog-body/dialog-body.component'
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-course-screen',
@@ -15,7 +17,7 @@ export class CourseScreenComponent implements OnInit {
   topics: Array<any>;
   topicObject: any;
 
-  constructor(private route: ActivatedRoute, private apiservice : APIService) { }
+  constructor(private route: ActivatedRoute, private apiservice : APIService, private matDialog: MatDialog,) { }
 
   ngOnInit(): void {
 
@@ -42,7 +44,12 @@ export class CourseScreenComponent implements OnInit {
     //subscribe to any topic creations
     
   }
-
+  openTopicDialog() {
+    console.log("dialog opened");
+    const dialogConfig = new MatDialogConfig();
+    let dialogRef = this.matDialog.open(DialogBodyComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe(()=>{console.log("dialog has been closed")});
+   } //instead of console log , refresh page
   //create a new topic
   createTopic(){
 
