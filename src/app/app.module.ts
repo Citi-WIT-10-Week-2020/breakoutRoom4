@@ -59,13 +59,12 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatIconModule,
     MatDialogModule,
     ReactiveFormsModule,
-    HttpClientModule
-
+    HttpClientModule,
+    FlexLayoutModule
   ],
   providers: [  {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}},
     HttpClientModule,
     MatGridListModule,
-    FlexLayoutModule,
   
   ],
   bootstrap: [AppComponent],
