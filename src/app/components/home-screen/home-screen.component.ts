@@ -44,7 +44,7 @@ export class HomeScreenComponent implements OnInit {
   
 
 
-  constructor(private apiservice: APIService,private courseservice:CourseService, private breakpointObserver: BreakpointObserver) { 
+  constructor(private apiservice: APIService,private matDialog: MatDialog, private courseservice:CourseService, private breakpointObserver: BreakpointObserver) { 
 
     /* //Might use this for the responsive layout (uses breakpoint import statment)
     breakpointObserver.observe([
@@ -118,7 +118,12 @@ export class HomeScreenComponent implements OnInit {
   }
 
   
-
+  openCourseDialog() {
+    console.log("dialog opened");
+    const dialogConfig = new MatDialogConfig();
+    let dialogRef = this.matDialog.open(DialogBodyComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe(()=>{console.log("dialog has been closed")});
+   } //instead of console log , refresh page
  
   //code for creating a course. This will eventually be moved to the popup for CreateCourse
   async createCourse(){
