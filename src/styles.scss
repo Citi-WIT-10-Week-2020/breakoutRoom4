@@ -32,16 +32,28 @@ $acornSQURL-theme: mat-light-theme($acornSQURL-primary, $acornSQURL-accent, $aco
 @include angular-material-theme($acornSQURL-theme);
 
 /* You can add global styles to this file, and also import other style files */
-body{
     
-        background: linear-gradient(0.30turn, #3f87a6, #f69d3c);
+        //background: linear-gradient(0.30turn, #3f87a6, #f69d3c);
+
+    
+    
+
+
+
+body { 
         font-family: Roboto, "Helvetica Neue", sans-serif; 
         text-decoration: none;
         height: 100%;
         margin: 0;
-    
-    
+        
+        background: linear-gradient(0.30turn, rgba(168, 125, 197, 0.65), rgba(52, 12, 160, 0.651));
+        
+       
+        
+       
+
 }
+
 
 :root {
         --amplify-primary-color: #9687ce;
