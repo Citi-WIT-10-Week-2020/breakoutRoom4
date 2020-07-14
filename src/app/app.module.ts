@@ -25,6 +25,7 @@ import { HttpClientModule} from '@angular/common/http';
 import { FooterComponent } from './components/navigation/footer/footer.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { DialogBodyComponent } from './components/dialog-body/dialog-body.component';
 
 
 
@@ -40,6 +41,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     CourseComponent,
     TopicComponent,
     FooterComponent,
+    DialogBodyComponent,
 
   ],
   imports: [
