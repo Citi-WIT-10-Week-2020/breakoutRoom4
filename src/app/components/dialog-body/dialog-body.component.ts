@@ -40,9 +40,9 @@ export class DialogBodyComponent implements OnInit{
     console.log("submit works");
 
     //this.courseObject.courseName = this.course.get("course_name");
-    this.courseObject.courseDescription = this.course.value.courseDesc;
-    this.courseObject.professor = this.course.value.prof;
-    this.courseObject.id = this.course.value.identification;
+    // this.courseObject.courseDescription = this.course.value.courseDesc;
+    // this.courseObject.professor = this.course.value.prof;
+    // this.courseObject.id = this.course.value.identification;
     // console.log(this.courseObject.courseName);
     this.dialogRef.close();
     //this.createCourse();
