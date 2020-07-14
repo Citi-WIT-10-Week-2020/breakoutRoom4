@@ -39,11 +39,13 @@ export class DialogBodyComponent implements OnInit{
     console.log(this.course.value);
     console.log("submit works");
 
-    //this.courseObject.courseName = this.course.get("course_name");
+    this.courseObject.courseName = this.course.get('course_name').value;
+    console.log("course name is: " + this.courseObject.courseName);
     // this.courseObject.courseDescription = this.course.value.courseDesc;
     // this.courseObject.professor = this.course.value.prof;
     // this.courseObject.id = this.course.value.identification;
     // console.log(this.courseObject.courseName);
+    //console.log(this.courseName());
     this.dialogRef.close();
     //this.createCourse();
   }
@@ -58,6 +60,7 @@ export class DialogBodyComponent implements OnInit{
     this.courseservice.createCourse(this.courseObject).subscribe(myObserver);
   }
   get courseName(): any {
-    return this.course.get('course_name');
+    return this.course.get('course_name').value;
+    
   }
 }
