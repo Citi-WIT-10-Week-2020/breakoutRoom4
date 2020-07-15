@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { APIService } from '../../API.service';
 //import { analyzeAndValidateNgModules } from '@angular/compiler';
 import { CourseService } from '../../shared/courses.service';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
   selector: 'app-course',
