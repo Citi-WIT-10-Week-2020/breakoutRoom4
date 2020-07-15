@@ -7,6 +7,9 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
   templateUrl: './topic-screen.component.html',
   styleUrls: ['./topic-screen.component.scss']
 })
+
+
+
 export class TopicScreenComponent implements OnInit {
 
   

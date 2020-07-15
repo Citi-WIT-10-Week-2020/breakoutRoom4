@@ -17,6 +17,7 @@ import { HomeScreenComponent } from './components/home-screen/home-screen.compon
 import { CourseComponent } from './components/course/course.component';
 import { TopicComponent } from './components/topic/topic.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
@@ -26,6 +27,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FooterComponent } from './components/navigation/footer/footer.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { ResourceGroupComponent } from './components/resource-group/resource-group.component';
 import { DialogBodyComponent } from './components/dialog-body/dialog-body.component';
 
 
@@ -42,6 +45,8 @@ import { DialogBodyComponent } from './components/dialog-body/dialog-body.compon
     CourseComponent,
     TopicComponent,
     FooterComponent,
+    ResourceGroupComponent,
+
     DialogBodyComponent,
     
   ],
@@ -58,6 +63,9 @@ import { DialogBodyComponent } from './components/dialog-body/dialog-body.compon
     HttpClientModule,
     MatGridListModule,
     FlexLayoutModule,
+    MatExpansionModule,
+
+  
     MatDialogModule,
     ReactiveFormsModule
   ],

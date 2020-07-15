@@ -1,31 +1,139 @@
 .div-body {
     display: block;
-    min-height: 770px;
+    min-height: 790px;
     margin: 0;
-}
-
-.section-container {
     margin-left: 100px;
     margin-right: 100px;
+    margin-bottom: 50px;
+}
+
+.nav-container {
+    margin-top: 20px;
+    
+}
+
+.nav-container a {
+    text-decoration: none;
+    font-size: 24px;
+    color: whitesmoke;
+
 }
 
 .title-container {
     display: flex;  
     align-items: center;
     vertical-align: center;
-    padding: 100px 0 30px;
+    padding: 60px 0 30px;
     text-decoration: none;
     
 }
 
-.title-item a {
+.title-item {
     font-size: 50px;
     text-decoration: none;
     padding-right: 40px;
-    color: rgb(92, 17, 141);
+    color: rgb(94, 12, 119);
 }
 
-.space {
-    flex: 1 1 auto;
+.add-btn {
+    font-size: 35px;
+    width: 40px;
+    height: 30px;
+    color: rgb(94, 12, 119);
 }
 
+.add-btn-bg {
+    border: none;
+    background: none;
+    
+}
+
+.wrapper {
+    width: 100%;
+    min-height: 500px;
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 20px;
+
+}
+
+
+
+.box1 {
+    width: 60%;
+    margin-right: 15px;
+    //border: 1px solid black;
+}
+
+.box2 {
+    width: 40%;
+    margin-left: 15px;
+    //border: 1px solid black;
+    //flex-basis: 0;
+    
+}
+
+.wrapper-2 {
+    width: 100%;
+    min-height: 200px;
+    display: flex;
+    justify-content: space-evenly;
+    border: 1px solid black;
+}
+
+.box1-title {
+    padding-top: 5px;;
+    font-size: 32px;
+    padding-bottom: 25px;
+}
+
+.box2-title {
+    padding-top: 5px;;
+    font-size: 32px;
+    padding-bottom: 25px;
+    text-align: center;
+}
+
+.video-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-items: stretch;
+    height: 500;
+    padding: 0px 55px;
+
+}
+
+
+
+.video-item {
+    text-align: center;
+    border: 2px solid blueviolet;
+    align-self: stretch;
+    margin-bottom: 10px;
+    height: 60px;
+    background-color: rgba($color: #ffffff, $alpha: .65);
+    border-radius: 5px;
+}
+
+
+//all the css for expansion panel
+.rg {
+    background-color: rgba($color: #ffffff, $alpha: .65);
+}
+
+.rg-title {
+    font-size: x-large;
+}
+
+.file {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: rgb(94, 12, 119);
+    font-size: large;
+}
+
+.mat-expansion-panel:not([class*='mat-elevation-z']) {
+    box-shadow: none;
+}
+//all the css for expansion panel
