@@ -14,7 +14,13 @@ import { ICourse } from '../../shared/course';
 
 export class DialogBodyComponent implements OnInit{
   course : FormGroup;
-  courseObject: ICourse; 
+  courseObject: ICourse = {
+    professor: undefined,
+    courseName: undefined,
+    courseDescription: undefined,
+    id: undefined
+  };
+
   ngOnInit() {
     this.course = new FormGroup({
       course_name: new FormControl(''),
@@ -40,10 +46,14 @@ export class DialogBodyComponent implements OnInit{
     console.log("submit works");
 
     this.courseObject.courseName = this.course.get('course_name').value;
-    console.log("course name is: " + this.courseObject.courseName);
-    // this.courseObject.courseDescription = this.course.value.courseDesc;
-    // this.courseObject.professor = this.course.value.prof;
-    // this.courseObject.id = this.course.value.identification;
+    this.courseObject.courseDescription = this.course.get('courseDesc').value;
+    this.courseObject.id = this.course.get('identification').value;
+
+
+    console.log("Course name is: " + this.courseObject.courseName);
+    console.log("Course description is: " + this.courseObject.courseDescription);
+    console.log("Course ID is: " + this.courseObject.id);
+
     // console.log(this.courseObject.courseName);
     //console.log(this.courseName());
     this.dialogRef.close();
