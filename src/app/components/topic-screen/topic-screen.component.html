@@ -1,5 +1,5 @@
 
-<body>
+<div class="div-body">
     <p>topic-screen works!</p>
     <h1>Topic Id: {{topicId}}</h1>
     <h2>Topic Name: {{topicName}}</h2>
@@ -9,12 +9,12 @@
 
          <div class="title-container">
              <span class="title-item"><a routerLink=''>Courses ></a></span>
-             <span class="title-item"><a [routerLink]="['/course', courseId]">Topics ></a></span> <!--the routing here shall be fixed-->
-             <span class="title-item"><a [routerLink]="['./topic', topicId, topicName]">{{topicName}}</a></span>
+             <span class="title-item"><a [routerLink]="['/course']">Topics ></a></span> <!--the routing here shall be fixed-->
+             <span class="title-item"><a [routerLink]="['/topic', topicId, topicName]">{{topicName}}</a></span>
             <!--are we having an overall add button here?-->
          </div>
 
 
      </div>
 
- </body>
+    </div>
