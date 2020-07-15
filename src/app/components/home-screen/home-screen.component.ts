@@ -3,6 +3,8 @@ import { APIService } from '../../API.service';
 import { v4 as uuidv4 } from 'uuid';
 import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 import {LayoutModule} from '@angular/cdk/layout';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+
 import { DialogBodyComponent } from 'src/app/components/dialog-body/dialog-body.component'
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 
