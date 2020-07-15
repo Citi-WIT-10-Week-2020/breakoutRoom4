@@ -22,12 +22,14 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { HttpClientModule} from '@angular/common/http';
-
+import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
+import { ReactiveFormsModule } from '@angular/forms';
 import { FooterComponent } from './components/navigation/footer/footer.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { ResourceGroupComponent } from './components/resource-group/resource-group.component';
+import { DialogBodyComponent } from './components/dialog-body/dialog-body.component';
 
 
 
@@ -45,6 +47,8 @@ import { ResourceGroupComponent } from './components/resource-group/resource-gro
     FooterComponent,
     ResourceGroupComponent,
 
+    DialogBodyComponent,
+    
   ],
   imports: [
     AmplifyUIAngularModule,
@@ -62,9 +66,11 @@ import { ResourceGroupComponent } from './components/resource-group/resource-gro
     MatExpansionModule,
 
   
+    MatDialogModule,
+    ReactiveFormsModule
   ],
   bootstrap: [AppComponent],
-  entryComponents: [],
+  entryComponents: [DialogBodyComponent],
   providers: [],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
 
