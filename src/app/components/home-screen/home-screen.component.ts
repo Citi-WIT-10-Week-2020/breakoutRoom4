@@ -65,6 +65,7 @@ export class HomeScreenComponent implements OnInit {
     this.subscribeToCourseUpdates();
     this.subscribeToCourseDeletions();
   }
+
   subscribeToCourseDeletions(){
     this.apiservice.OnDeleteCourseListener.subscribe((evt)=>{
       console.log("A deletion has occured!");
@@ -77,6 +78,7 @@ export class HomeScreenComponent implements OnInit {
       console.log(this.courses);
     });
   }
+
   subscribeToCourseCreations(){
     this.apiservice.OnCreateCourseListener.subscribe((evt)=>{
       const data = (evt as any).value.data.onCreateCourse;
