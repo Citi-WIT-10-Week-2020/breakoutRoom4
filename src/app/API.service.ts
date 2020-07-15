@@ -134,6 +134,13 @@ export type CreateFileInput = {
   filetype: string;
   fileDescription?: string | null;
   resourseGroup: string;
+  file?: S3ObjectInput | null;
+};
+
+export type S3ObjectInput = {
+  bucket: string;
+  region: string;
+  key: string;
 };
 
 export type ModelFileConditionInput = {
@@ -156,6 +163,7 @@ export type UpdateFileInput = {
   filetype?: string | null;
   fileDescription?: string | null;
   resourseGroup?: string | null;
+  file?: S3ObjectInput | null;
 };
 
 export type DeleteFileInput = {
@@ -464,6 +472,12 @@ export type CreateFileMutation = {
   filetype: string;
   fileDescription: string | null;
   resourseGroup: string;
+  file: {
+    __typename: "S3Object";
+    bucket: string;
+    region: string;
+    key: string;
+  } | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -477,6 +491,12 @@ export type UpdateFileMutation = {
   filetype: string;
   fileDescription: string | null;
   resourseGroup: string;
+  file: {
+    __typename: "S3Object";
+    bucket: string;
+    region: string;
+    key: string;
+  } | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -490,6 +510,12 @@ export type DeleteFileMutation = {
   filetype: string;
   fileDescription: string | null;
   resourseGroup: string;
+  file: {
+    __typename: "S3Object";
+    bucket: string;
+    region: string;
+    key: string;
+  } | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -630,6 +656,12 @@ export type GetFileQuery = {
   filetype: string;
   fileDescription: string | null;
   resourseGroup: string;
+  file: {
+    __typename: "S3Object";
+    bucket: string;
+    region: string;
+    key: string;
+  } | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -645,6 +677,12 @@ export type ListFilesQuery = {
     filetype: string;
     fileDescription: string | null;
     resourseGroup: string;
+    file: {
+      __typename: "S3Object";
+      bucket: string;
+      region: string;
+      key: string;
+    } | null;
     createdAt: string;
     updatedAt: string;
   } | null> | null;
@@ -699,6 +737,12 @@ export type FileByCourseByTopicQuery = {
     filetype: string;
     fileDescription: string | null;
     resourseGroup: string;
+    file: {
+      __typename: "S3Object";
+      bucket: string;
+      region: string;
+      key: string;
+    } | null;
     createdAt: string;
     updatedAt: string;
   } | null> | null;
@@ -716,6 +760,12 @@ export type FileByResourceGroupQuery = {
     filetype: string;
     fileDescription: string | null;
     resourseGroup: string;
+    file: {
+      __typename: "S3Object";
+      bucket: string;
+      region: string;
+      key: string;
+    } | null;
     createdAt: string;
     updatedAt: string;
   } | null> | null;
@@ -733,6 +783,12 @@ export type FileByFilenameQuery = {
     filetype: string;
     fileDescription: string | null;
     resourseGroup: string;
+    file: {
+      __typename: "S3Object";
+      bucket: string;
+      region: string;
+      key: string;
+    } | null;
     createdAt: string;
     updatedAt: string;
   } | null> | null;
@@ -967,6 +1023,12 @@ export type OnCreateFileSubscription = {
   filetype: string;
   fileDescription: string | null;
   resourseGroup: string;
+  file: {
+    __typename: "S3Object";
+    bucket: string;
+    region: string;
+    key: string;
+  } | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -980,6 +1042,12 @@ export type OnUpdateFileSubscription = {
   filetype: string;
   fileDescription: string | null;
   resourseGroup: string;
+  file: {
+    __typename: "S3Object";
+    bucket: string;
+    region: string;
+    key: string;
+  } | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -993,6 +1061,12 @@ export type OnDeleteFileSubscription = {
   filetype: string;
   fileDescription: string | null;
   resourseGroup: string;
+  file: {
+    __typename: "S3Object";
+    bucket: string;
+    region: string;
+    key: string;
+  } | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -1378,6 +1452,12 @@ export class APIService {
           filetype
           fileDescription
           resourseGroup
+          file {
+            __typename
+            bucket
+            region
+            key
+          }
           createdAt
           updatedAt
         }
@@ -1407,6 +1487,12 @@ export class APIService {
           filetype
           fileDescription
           resourseGroup
+          file {
+            __typename
+            bucket
+            region
+            key
+          }
           createdAt
           updatedAt
         }
@@ -1436,6 +1522,12 @@ export class APIService {
           filetype
           fileDescription
           resourseGroup
+          file {
+            __typename
+            bucket
+            region
+            key
+          }
           createdAt
           updatedAt
         }
@@ -1682,6 +1774,12 @@ export class APIService {
           filetype
           fileDescription
           resourseGroup
+          file {
+            __typename
+            bucket
+            region
+            key
+          }
           createdAt
           updatedAt
         }
@@ -1711,6 +1809,12 @@ export class APIService {
             filetype
             fileDescription
             resourseGroup
+            file {
+              __typename
+              bucket
+              region
+              key
+            }
             createdAt
             updatedAt
           }
@@ -1853,6 +1957,12 @@ export class APIService {
             filetype
             fileDescription
             resourseGroup
+            file {
+              __typename
+              bucket
+              region
+              key
+            }
             createdAt
             updatedAt
           }
@@ -1902,6 +2012,12 @@ export class APIService {
             filetype
             fileDescription
             resourseGroup
+            file {
+              __typename
+              bucket
+              region
+              key
+            }
             createdAt
             updatedAt
           }
@@ -1948,6 +2064,12 @@ export class APIService {
             filetype
             fileDescription
             resourseGroup
+            file {
+              __typename
+              bucket
+              region
+              key
+            }
             createdAt
             updatedAt
           }
@@ -2266,6 +2388,12 @@ export class APIService {
           filetype
           fileDescription
           resourseGroup
+          file {
+            __typename
+            bucket
+            region
+            key
+          }
           createdAt
           updatedAt
         }
@@ -2285,6 +2413,12 @@ export class APIService {
           filetype
           fileDescription
           resourseGroup
+          file {
+            __typename
+            bucket
+            region
+            key
+          }
           createdAt
           updatedAt
         }
@@ -2304,6 +2438,12 @@ export class APIService {
           filetype
           fileDescription
           resourseGroup
+          file {
+            __typename
+            bucket
+            region
+            key
+          }
           createdAt
           updatedAt
         }

@@ -209,6 +209,11 @@ subscription OnCreateFile {
     filetype
     fileDescription
     resourseGroup
+    file {
+      bucket
+      region
+      key
+    }
     createdAt
     updatedAt
   }
@@ -222,6 +227,11 @@ subscription OnUpdateFile {
     filetype
     fileDescription
     resourseGroup
+    file {
+      bucket
+      region
+      key
+    }
     createdAt
     updatedAt
   }
@@ -235,6 +245,11 @@ subscription OnDeleteFile {
     filetype
     fileDescription
     resourseGroup
+    file {
+      bucket
+      region
+      key
+    }
     createdAt
     updatedAt
   }

@@ -38,4 +38,11 @@ type File @model
 	filetype:String!
 	fileDescription:String
 	resourseGroup: String!
+	file:S3Object
+}
+
+type S3Object {
+  bucket: String!
+  region: String!
+  key: String!
 }

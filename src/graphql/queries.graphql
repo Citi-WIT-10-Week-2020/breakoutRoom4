@@ -135,6 +135,11 @@ query GetFile($id: ID!) {
     filetype
     fileDescription
     resourseGroup
+    file {
+      bucket
+      region
+      key
+    }
     createdAt
     updatedAt
   }
@@ -153,6 +158,11 @@ query ListFiles(
       filetype
       fileDescription
       resourseGroup
+      file {
+        bucket
+        region
+        key
+      }
       createdAt
       updatedAt
     }
@@ -242,6 +252,11 @@ query FileByCourseByTopic(
       filetype
       fileDescription
       resourseGroup
+      file {
+        bucket
+        region
+        key
+      }
       createdAt
       updatedAt
     }
@@ -270,6 +285,11 @@ query FileByResourceGroup(
       filetype
       fileDescription
       resourseGroup
+      file {
+        bucket
+        region
+        key
+      }
       createdAt
       updatedAt
     }
@@ -298,6 +318,11 @@ query FileByFilename(
       filetype
       fileDescription
       resourseGroup
+      file {
+        bucket
+        region
+        key
+      }
       createdAt
       updatedAt
     }

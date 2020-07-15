@@ -239,6 +239,11 @@ mutation CreateFile(
     filetype
     fileDescription
     resourseGroup
+    file {
+      bucket
+      region
+      key
+    }
     createdAt
     updatedAt
   }
@@ -255,6 +260,11 @@ mutation UpdateFile(
     filetype
     fileDescription
     resourseGroup
+    file {
+      bucket
+      region
+      key
+    }
     createdAt
     updatedAt
   }
@@ -271,6 +281,11 @@ mutation DeleteFile(
     filetype
     fileDescription
     resourseGroup
+    file {
+      bucket
+      region
+      key
+    }
     createdAt
     updatedAt
   }
