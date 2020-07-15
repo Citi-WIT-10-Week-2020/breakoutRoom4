@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
   selector: 'app-topic',
@@ -11,6 +12,7 @@ export class TopicComponent implements OnInit {
   @Input() topic: String;
   @Input() professor: String;
   @Input() topicDescription: String;
+  @Input() courseId: String;
 
   constructor() { }
 
