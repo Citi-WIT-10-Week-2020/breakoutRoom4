@@ -19,10 +19,10 @@ export class TopicScreenComponent implements OnInit {
   ngOnInit(): void {
 
     //gets courseID
-    this.route.parent.paramMap.subscribe(params => {
+    /*this.route.parent.paramMap.subscribe(params => {
       this.courseId = params.get('id');
     });
-    console.log(this.courseId);
+    console.log(this.courseId);*/
 
     //gets topicID
     this.route.paramMap.subscribe(params => { 
