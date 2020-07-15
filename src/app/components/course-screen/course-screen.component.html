@@ -3,11 +3,23 @@
        <!-- <p>course-screen works! {{courseId}}</p> -->
         
 
+
+
+    
+        <router-outlet></router-outlet>
+
+       
+        
+
+
             <div class="nav-container">
                 <span><a routerLink='/course'>Courses ></a></span>
                 <span><a [routerLink]="['/course', this.courseId]">Topics</a></span>
                 
             </div>
+
+            
+
 
             <div class="title-container">
                 <span class="title-item">Topics</span>
@@ -30,4 +42,6 @@
         
 
     </div>
+
+
 
