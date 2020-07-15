@@ -51,11 +51,18 @@ export class AppComponent {
         label: "Are you a Professor or a Student?",
         placeholder: "\"Professor\" or \"Student\"",
         required: true,
-        //for later: check value of this field
+        //for later: check value of this field and throw error
       },
+      
+
     ];
-  } 
+    
+    
+
   
+    
+  }
+
   //Attempt to make icon registry work
   /*constructor(
     private matIconRegistry: MatIconRegistry, 
