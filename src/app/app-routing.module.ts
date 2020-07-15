@@ -10,7 +10,7 @@ const routes: Routes = [
   {path:'',component:HomeScreenComponent},
   {path:'home',component:HomeScreenComponent},
   {path:'course/:id',component: CourseScreenComponent},
-  {path:'topic/:id',component: TopicScreenComponent},
+  {path:'topic/:id/:TopicName',component: TopicScreenComponent},
   {path:'',component:HomeScreenComponent},
   {path:'**',component:HomeScreenComponent}
 ];
