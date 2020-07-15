@@ -1,13 +1,19 @@
 
-    <body>
+    <div class="div-body">
        <!-- <p>course-screen works! {{courseId}}</p> -->
-        <div class="section-container">
+        
+
+            <div class="nav-container">
+                <span><a routerLink='/course'>Courses ></a></span>
+                <span><a [routerLink]="['/course', this.courseId]">Topics</a></span>
+                
+            </div>
 
             <div class="title-container">
-                <span class="title-item"><a routerLink='/course'>Courses ></a></span>
-                <span class="title-item"><a [routerLink]="['/course', this.courseId]">Topics</a></span>
-                <span><button class="add-btn-bg" (click) = "createTopic()"><mat-icon class="add-btn">add_circle_outline</mat-icon></button></span>
-            </div>
+                <span class="title-item">Topics</span>
+                
+                <span> <!--<button class="add-btn-bg" (click) = "createCourse()"> --><mat-icon class="add-btn">add_circle_outline</mat-icon><!--</button>--></span>
+              </div>
 
             <!--this is just an example topic! delete when we have real working topics-->
             <app-topic [professor]="this.topicObject.professor" [topic]="this.topicObject.TopicName" [topicDescription]="this.topicObject.TopicDescription" [topicID]="this.topicObject.id"></app-topic>
@@ -19,9 +25,9 @@
                 </ng-container>
             </div>
 
-            <hr>
+            
 
-        </div>
+        
 
-    </body>
+    </div>
 
