@@ -15,7 +15,11 @@ import { v4 as uuidv4 } from 'uuid';
 export class DialogBodyComponent implements OnInit{
   course : FormGroup;
   courseObject: ICourse; 
+
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, public dialogRef: MatDialogRef<DialogBodyComponent>, private courseservice:CourseService) {}
+
   ngOnInit() {
+    //create form group..will eventually have to pass in param for professor
     this.course = new FormGroup({
       courseName: new FormControl(''),
       professor: new FormControl('Yong Yoon'),
@@ -23,14 +27,8 @@ export class DialogBodyComponent implements OnInit{
       id: new FormControl(uuidv4())
     })
   };
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, public dialogRef: MatDialogRef<DialogBodyComponent>, private courseservice:CourseService) {}
+
   
-  
-  // close() {   
-  //   this.dialogRef.close();
-  //   this.onSubmit();
-  //   this.createCourse();
-  // }
   cancel(): void{
     this.dialogRef.close();
 
@@ -42,8 +40,11 @@ export class DialogBodyComponent implements OnInit{
     console.log("CourseObject",this.courseObject);
     
     this.dialogRef.close();
+    //create the course
     this.createCourse();
   }
+
+  //logic for creating the course
   async createCourse(){
     const myObserver = {
       next: x => {
