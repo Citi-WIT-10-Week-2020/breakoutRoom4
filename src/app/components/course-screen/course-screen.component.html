@@ -1,13 +1,19 @@
 
     <div class="div-body">
-       <!-- <p>course-screen works! {{courseId}}</p> -->
+
+    
+        <router-outlet></router-outlet>
+
+       
         
+
 
             <div class="nav-container">
                 <span><a routerLink='/course'>Courses ></a></span>
                 <span><a [routerLink]="['/course', this.courseId]">Topics</a></span>
                 
-            </div>
+
+            
 
             <div class="title-container">
                 <span class="title-item">Topics</span>
@@ -16,7 +22,7 @@
               </div>
 
             <!--this is just an example topic! delete when we have real working topics-->
-            <app-topic [professor]="this.topicObject.professor" [topic]="this.topicObject.TopicName" [topicDescription]="this.topicObject.TopicDescription" [topicID]="this.topicObject.id"></app-topic>
+            <app-topic [professor]="this.topicObject.professor" [topic]="this.topicObject.TopicName" [topicDescription]="this.topicObject.TopicDescription" [topicID]="this.topicObject.id" [courseId]="courseId"></app-topic>
 
             <!--actual flex layout for real topics-->
             <div class="cardcont" fxLayout="row wrap" fxLayoutGap="50px" fxLayoutAlign="flex-start">
