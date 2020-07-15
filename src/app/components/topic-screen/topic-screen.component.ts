@@ -24,7 +24,7 @@ export class TopicScreenComponent implements OnInit {
     console.log(this.topicId);
     console.log(this.topicName);
   
-}
+  }
 
 }
 
