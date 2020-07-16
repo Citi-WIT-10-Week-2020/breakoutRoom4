@@ -60,38 +60,49 @@
 
 
 .box1 {
-    width: 60%;
+    width: 100%;
     margin-right: 15px;
     //border: 1px solid black;
 }
 
-.box2 {
-    width: 40%;
+/*.box2 {
+    width: 25%;
     margin-left: 15px;
     //border: 1px solid black;
     //flex-basis: 0;
     
-}
+}*/
 
 .wrapper-2 {
     width: 100%;
     min-height: 200px;
     display: flex;
-    justify-content: space-evenly;
-    border: 1px solid black;
+    flex-direction: column;
+    //border: 1px solid black;
 }
 
 .box1-title {
     padding-top: 5px;;
     font-size: 32px;
     padding-bottom: 25px;
+    padding-left: 10px;
 }
 
 .box2-title {
     padding-top: 5px;;
     font-size: 32px;
     padding-bottom: 25px;
-    text-align: center;
+    padding-left: 50px;
+    
+}
+.box3-title {
+    width: 100%;
+    height: 20px;
+    padding-top: 5px;;
+    font-size: 32px;
+    padding-bottom: 25px;
+    padding-left: 10px;
+    
 }
 
 .video-container {
@@ -100,7 +111,7 @@
     align-items: center;
     align-items: stretch;
     height: 500;
-    padding: 0px 55px;
+    padding-left: 40px;
 
 }
 
@@ -111,11 +122,15 @@
     border: 2px solid blueviolet;
     align-self: stretch;
     margin-bottom: 10px;
-    height: 60px;
+    height: 150px;
     background-color: rgba($color: #ffffff, $alpha: .65);
     border-radius: 5px;
 }
 
+
+.faq-item {
+    flex-grow: initial;
+}
 
 //all the css for expansion panel
 .rg {

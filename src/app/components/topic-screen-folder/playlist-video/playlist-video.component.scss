@@ -1,0 +1,68 @@
+.rg {
+    background-color: rgba($color: #ffffff, $alpha: .65);
+}
+
+.rg-title {
+    font-size: x-large;
+    height: 30px;
+    padding-top: 6px;
+}
+
+.file {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: rgb(94, 12, 119);
+    font-size: large;
+}
+
+.mat-expansion-panel:not([class*='mat-elevation-z']) {
+    box-shadow: none;
+}
+//^^For resource group shell
+
+
+.video-item {
+    
+    text-align: center;
+    //border: 2px solid blueviolet;
+    //align-self: stretch;
+    margin-bottom: 10px;
+    height: 150px;
+    width: 200px;
+    background-color: rgba($color: #ffffff, $alpha: .65);
+    border-radius: 5px;
+}
+.video-title {
+    align-self: stretch;
+    height: 40px;
+}
+
+.video-container {
+    display: flex;
+    flex-direction: row;
+    align-items: auto;
+    //align-items: stretch;
+    height: 500;
+    padding-left: 40px;
+    justify-content: start;
+
+}
+
+.playlist-container {
+    align-items: center;
+    display: flex;
+}
+
+.vidname {
+    height: 50px;
+}
+
+.video-comp {
+    flex-direction: column;
+    width: 200px;
+    padding: 15px 0;
+}
+
+.video-comp:last-of-type {
+    margin-right: 50px;
+}

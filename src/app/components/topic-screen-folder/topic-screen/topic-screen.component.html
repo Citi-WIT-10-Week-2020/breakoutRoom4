@@ -1,0 +1,81 @@
+
+
+<div class="div-body">
+
+
+
+
+
+    <div class="nav-container">
+      <span><a routerLink='/course'>Courses ></a></span>
+      <span><a [routerLink]="['/course']">Topics ></a></span>
+      <span><a [routerLink]="['/topic', this.topicId]">{{topicName}}</a></span>
+    
+  </div>
+
+
+
+    <div class="title-container">
+        <span class="title-item">Topic Id: {{topicId}}</span>
+        
+        <span> <!--<button class="add-btn-bg" (click) = "createCourse()"> --><mat-icon class="add-btn">add_circle_outline</mat-icon><!--</button>--></span>
+      </div>
+
+      <div class="wrapper">
+        <div class="box1">
+          <div class="box1-title">Files<mat-icon>add_circle_outline</mat-icon></div>
+
+          <mat-accordion multi>
+            <app-resource-group></app-resource-group>
+            <app-resource-group></app-resource-group>
+            <app-playlist-video></app-playlist-video>
+          </mat-accordion>
+
+
+
+        </div>
+
+        <!--<div class="box2">
+          <div class="box2-title">Playlist<mat-icon>add_circle_outline</mat-icon></div>
+          <div class="video-container">
+            <div class="video-item">item</div>
+            <div class="video-item">item</div>
+            
+              <video class="video-item" 
+                  controls poster= "https://media.geeksforgeeks.org/wp-content/cdn-uploads/20190710102234/download3.png"> 
+                <source src= "https://media.geeksforgeeks.org/wp-content/uploads/20200409094356/Placement100-_-GeeksforGeeks2.mp4"
+                   type="video/mp4">
+              </video>
+
+            <app-playlist-video></app-playlist-video>
+           
+            
+            
+              
+            </div>
+            
+          </div> -->
+
+        </div>
+      
+
+      <div class="wrapper-2">
+        <div class="box3-title">FAQ<mat-icon>add_circle_outline</mat-icon></div>
+
+        <mat-accordion multi>
+          <app-faq></app-faq>
+          <app-faq></app-faq>
+        </mat-accordion>
+
+      </div>
+
+        
+      
+</div>
+
+
+  
+
+     
+
+
