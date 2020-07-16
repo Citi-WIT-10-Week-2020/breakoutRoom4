@@ -11,6 +11,7 @@
         </p>
       </mat-card-content>
       <mat-card-actions>
+          <button mat-button [cdkCopyToClipboard]="this.courseID" [title]="this.courseID" (click)="openSnackBar()">COPY ID</button>
           <button mat-button (click)="updateCourse()">UPDATE</button>
           <button mat-button (click)="deleteCourse()">DELETE</button>
       </mat-card-actions>

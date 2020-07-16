@@ -31,6 +31,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { ResourceGroupComponent } from './components/resource-group/resource-group.component';
 import { DialogBodyComponent } from './components/dialog-body/dialog-body.component';
+import {ClipboardModule} from '@angular/cdk/clipboard';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 
 
@@ -67,8 +69,8 @@ import { DialogBodyComponent } from './components/dialog-body/dialog-body.compon
     MatGridListModule,
     FlexLayoutModule,
     MatExpansionModule,
-
-  
+    ClipboardModule,
+    MatSnackBarModule,
     MatDialogModule,
     ReactiveFormsModule
   ],
