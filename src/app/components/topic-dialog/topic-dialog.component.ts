@@ -1,38 +1,33 @@
-import {Component, Inject} from '@angular/core';
-import {OnInit} from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { FormControl, FormGroup } from '@angular/forms';
 import { CourseService } from '../../shared/courses.service';
-import { ICourse } from '../../shared/course';
 import { v4 as uuidv4 } from 'uuid';
+
 @Component({
-  selector: 'app-dialog-body',
-  templateUrl: './dialog-body.component.html',
-  styleUrls: ['./dialog-body.component.scss'],
+  selector: 'app-topic-dialog',
+  templateUrl: './topic-dialog.component.html',
+  styleUrls: ['./topic-dialog.component.scss'],
   providers:[CourseService]
 })
-
-export class DialogBodyComponent implements OnInit{
-  course : FormGroup;
-  courseObject: ICourse;
-
+export class TopicDialogComponent implements OnInit {
+  topic: FormGroup;
+  
   ngOnInit() {
-    this.course = new FormGroup({
-      courseName: new FormControl(''),
-      professor: new FormControl('Yong Yoon'),
-      courseDescription: new FormControl(''),
-      id: new FormControl(uuidv4())
+    this.topic = new FormGroup({
+      topicName: new FormControl(''),
+      topicDescription: new FormControl(''),
+      topicID: new FormControl(uuidv4())
     })
   };
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, public dialogRef: MatDialogRef<DialogBodyComponent>, private courseservice:CourseService) {}
   
-  
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, public dialogRef: MatDialogRef<TopicDialogComponent>, private courseservice:CourseService) {}
   cancel(): void{
     this.dialogRef.close();
 
   }
   onSubmit(): void {
-    console.log(this.course.value);
+    console.log(this.topic.value);
     console.log("submit works");
 
     // this.courseObject.courseName = this.course.get('course_name').value;
@@ -43,9 +38,11 @@ export class DialogBodyComponent implements OnInit{
     console.log("CourseObject",this.courseObject);
     
     this.dialogRef.close();
-    this.createCourse();
+    this.createTopic();
   }
-  async createCourse(){
+
+  //create a new topic
+  async createTopic(){
     const myObserver = {
       next: x => {
         console.log('Value: ' , x);
@@ -55,8 +52,4 @@ export class DialogBodyComponent implements OnInit{
     };
     this.courseservice.createCourse(this.courseObject).subscribe(myObserver);
   }
-  // get courseName(): any {
-  //   return this.course.get('course_name').value;
-    
-  // }
 }

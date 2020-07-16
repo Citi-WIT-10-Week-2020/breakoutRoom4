@@ -1,15 +1,15 @@
-<h2 mat-dialog-title>Add Course</h2>
+<h2 mat-dialog-title>Add Topic</h2>
     <mat-dialog-content class ="container">
         <form novalidate [formGroup]= "course" > <!--(ngSubmit)="onSubmit(course)" -->
             <label>
-                <span>Course Name:</span>
-                <input type="text" formControlName="courseName">
+                <span>Topic Name:</span>
+                <input type="text" formControlName="topicName">
             </label>
 
            <br>
            <label>
                 <span>Course Description:</span>
-                <input type="text" formControlName="courseDescription">
+                <input type="text" formControlName="topicDescription">
             </label>
            <br>
            <!-- <label>
