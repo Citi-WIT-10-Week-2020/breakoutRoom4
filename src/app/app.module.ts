@@ -14,6 +14,7 @@ import { NavBarComponent } from './components/Navigation/nav-bar/nav-bar.compone
 import { CourseScreenComponent } from './components/course-screen/course-screen.component';
 import { TopicScreenComponent } from './components/topic-screen/topic-screen.component';
 import { HomeScreenComponent } from './components/home-screen/home-screen.component';
+import { HelpScreenComponent } from './components/help-screen/help-screen.component';
 import { CourseComponent } from './components/course/course.component';
 import { TopicComponent } from './components/topic/topic.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -48,6 +49,8 @@ import { DialogBodyComponent } from './components/dialog-body/dialog-body.compon
     ResourceGroupComponent,
 
     DialogBodyComponent,
+
+    HelpScreenComponent,
     
   ],
   imports: [
