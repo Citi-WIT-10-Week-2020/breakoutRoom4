@@ -1,14 +1,6 @@
 
     <div class="div-body">
 
-
-    
-        <router-outlet></router-outlet>
-
-       
-        
-
-
             <div class="nav-container">
                 <span><a routerLink='/course'>Courses ></a></span>
                 <span><a [routerLink]="['/course', this.courseId]">Topics</a></span>
@@ -18,7 +10,7 @@
 
 
             <div class="title-container">
-                <span class="title-item">Topics</span>
+                <span class="title-item"><a [routerLink]="['/course', this.courseId]">Topics</a></span>
                 
                 <span> <!--<button class="add-btn-bg" (click) = "createCourse()"> --><mat-icon class="add-btn">add_circle_outline</mat-icon><!--</button>--></span>
               </div>

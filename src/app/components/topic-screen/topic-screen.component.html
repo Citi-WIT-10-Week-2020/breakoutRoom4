@@ -8,15 +8,15 @@
 
     <div class="nav-container">
       <span><a routerLink='/course'>Courses ></a></span>
-      <span><a [routerLink]="['/course']">Topics ></a></span>
-      <span><a [routerLink]="['/topic', this.topicId]">{{topicName}}</a></span>
+      <span><a [routerLink]="['/course', this.courseId]">Topics ></a></span>
+      <span><a [routerLink]="['/topic', this.courseId, this.topicId, this.topicName]">{{topicName}}</a></span>
     
   </div>
 
 
 
     <div class="title-container">
-        <span class="title-item">Topic Id: {{topicId}}</span>
+        <span class="title-item"><a [routerLink]="['/topic', this.courseId, this.topicId, this.topicName]">{{topicName}}</a></span>
         
         <span> <!--<button class="add-btn-bg" (click) = "createCourse()"> --><mat-icon class="add-btn">add_circle_outline</mat-icon><!--</button>--></span>
       </div>
