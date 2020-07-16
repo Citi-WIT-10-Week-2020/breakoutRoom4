@@ -27,9 +27,8 @@ import { FooterComponent } from './components/navigation/footer/footer.component
 import { MatGridListModule } from '@angular/material/grid-list';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { DialogBodyComponent } from './components/dialog-body/dialog-body.component';
-
-
-
+import { UpdateDialogComponent } from './components/update-dialog/update-dialog.component';
+import {TopicDialogComponent} from './components/topic-dialog/topic-dialog.component';
 
 
 @NgModule({
@@ -43,6 +42,8 @@ import { DialogBodyComponent } from './components/dialog-body/dialog-body.compon
     TopicComponent,
     FooterComponent,
     DialogBodyComponent,
+    UpdateDialogComponent,
+    TopicDialogComponent,
     
   ],
   imports: [
@@ -59,10 +60,11 @@ import { DialogBodyComponent } from './components/dialog-body/dialog-body.compon
     MatGridListModule,
     FlexLayoutModule,
     MatDialogModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    
   ],
   bootstrap: [AppComponent],
-  entryComponents: [DialogBodyComponent],
+  entryComponents: [DialogBodyComponent, UpdateDialogComponent],
   providers: [],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
 
