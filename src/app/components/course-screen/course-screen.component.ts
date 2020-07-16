@@ -43,8 +43,5 @@ export class CourseScreenComponent implements OnInit {
     
   }
 
-  //create a new topic
-  createTopic(){
-
-  }
+  
 }
