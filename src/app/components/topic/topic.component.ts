@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { APIService } from '../../API.service';
 import { TopicsService } from '../../shared/topics.service';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+
 
 @Component({
   selector: 'app-topic',
@@ -14,6 +16,7 @@ export class TopicComponent implements OnInit {
   @Input() topic: String;
   @Input() professor: String;
   @Input() topicDescription: String;
+  @Input() courseId: String;
 
   constructor(private apiservice: APIService, private topicservice:TopicsService) {}
 
