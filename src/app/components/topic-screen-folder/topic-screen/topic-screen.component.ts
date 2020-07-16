@@ -12,8 +12,6 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 export class TopicScreenComponent implements OnInit {
 
-  
-
   constructor(private route:ActivatedRoute) { }
   topicId: String;
   topicName: String;
@@ -22,10 +20,10 @@ export class TopicScreenComponent implements OnInit {
   ngOnInit(): void {
 
     //gets courseID
-    /*this.route.parent.paramMap.subscribe(params => {
-      this.courseId = params.get('id');
+    this.route.paramMap.subscribe(params => {
+      this.courseId = params.get('courseId');
     });
-    console.log(this.courseId);*/
+    console.log(this.courseId);
 
     //gets topicID
     this.route.paramMap.subscribe(params => { 
