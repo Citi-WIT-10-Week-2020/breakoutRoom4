@@ -14,12 +14,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 export class DialogBodyComponent implements OnInit{
   course : FormGroup;
-  courseObject: ICourse = {
-    professor: undefined,
-    courseName: undefined,
-    courseDescription: undefined,
-    id: undefined
-  };
+  courseObject: ICourse;
 
   ngOnInit() {
     this.course = new FormGroup({
