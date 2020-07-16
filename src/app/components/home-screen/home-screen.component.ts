@@ -42,7 +42,6 @@ export class HomeScreenComponent implements OnInit {
   
   
 
-
   constructor(private apiservice: APIService,private courseservice:CourseService, private breakpointObserver: BreakpointObserver) { 
 
     /* //Might use this for the responsive layout (uses breakpoint import statment)
@@ -102,6 +101,7 @@ export class HomeScreenComponent implements OnInit {
         else return course;
       })
     });
+
 
     //subscribes to any course deletions
     this.apiservice.OnDeleteCourseListener.subscribe((evt)=>{
