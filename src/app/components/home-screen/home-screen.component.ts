@@ -101,6 +101,20 @@ export class HomeScreenComponent implements OnInit {
         else return course;
       })
     });
+
+
+    //subscribes to any course deletions
+    this.apiservice.OnDeleteCourseListener.subscribe((evt)=>{
+      console.log("A deletion has occured!");
+      const data = (evt as any).value.data.onDeleteCourse;
+      console.log(data);
+      //basically, search thru array, find original, remove it
+      this.courses = this.courses.filter((course)=>{
+          return (course.id != data.id)
+      });
+      console.log(this.courses);
+    });
+
   }
 
   getCourses(){

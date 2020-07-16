@@ -12,8 +12,6 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 export class TopicScreenComponent implements OnInit {
 
-  
-
   constructor(private route:ActivatedRoute) { }
   topicId: String;
   topicName: String;
