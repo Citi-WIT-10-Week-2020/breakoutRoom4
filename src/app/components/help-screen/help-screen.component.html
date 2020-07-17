@@ -1,7 +1,7 @@
-<button mat-flat-button class="nav-back"><a routerLink=''> < Back to Home</a></button>
+<button mat-flat-button class="nav-back"><a routerLink=''> < Home</a></button>
 <div class="div-body">
     <div class="title-header">
-        <h1 class="title">Help Page</h1>
+        <span class="title">Help Page</span>
         <div class="subtitle-section">
             <span class="section-link"><a href="/help#faq">FAQ</a></span>
             <span class="section-link"><a href="/help#examples">Examples</a></span>
@@ -9,13 +9,15 @@
     </div>
     <a name="faq"></a>
     <div class="faq">
-        <h2 class="section-title">Frequently Asked Questions</h2>
+        <div class="section-title">Frequently Asked Questions</div>
         <mat-accordion multi="true">
             <mat-expansion-panel>
                 <mat-expansion-panel-header>
                     <mat-panel-title class="question">#1: How to Add a Course</mat-panel-title>
                 </mat-expansion-panel-header>
-                <p class="answer">To add a course, press the plus sign button next to the Courses title on the home page page. From here, a pop-up will appear. Enter the name and description of your Course that you would like students to see. Don’t worry, a unique ID for students to be able to join your course will be automatically assigned to your Course. This Course ID can be shared by clicking the “Copy ID” button, which will copy the ID to your clipboard and then share with your students however you see fit. After you press the “Create” button on the pop-up, you should see the Course appear on your home page.
+                <p class="answer">To add a course, press the plus sign button next to the Courses title on the home page page.</p>
+                <img src="/help-page-imgs/demo-course-add.png" height="50">
+                <p>From here, a pop-up will appear. Enter the name and description of your Course that you would like students to see. Don’t worry, a unique ID for students to be able to join your course will be automatically assigned to your Course. This Course ID can be shared by clicking the “Copy ID” button, which will copy the ID to your clipboard and then share with your students however you see fit. After you press the “Create” button on the pop-up, you should see the Course appear on your home page.
                 </p>   
             </mat-expansion-panel>
             <mat-expansion-panel>
@@ -53,7 +55,7 @@
     </div>
     <a name="examples"></a>
     <div class="examples">
-        <h2 class="section-title">Examples</h2>
+        <div class="section-title">Examples</div>
         <mat-accordion multi="true">
             <mat-expansion-panel>
                 <mat-expansion-panel-header>

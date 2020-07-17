@@ -1,3 +1,12 @@
+
+
+.div-body {
+
+    display: block;
+    min-height: 790px;
+    margin: 0;
+}
+
 .nav-back a {
     text-decoration: none;
     color: black;
@@ -22,7 +31,7 @@
 .title {
     font-size: 50px;
     text-decoration: none;
-    padding-left: 30px;
+    padding: 30px;
     color: rgb(94, 12, 119);
 }
 
@@ -43,24 +52,26 @@
     color: white;
 }
 
-.section-link:hover{
+.section-link a:hover{
     color: rgb(94, 12, 119);
     cursor: pointer;
 }
 
 .section-title {
     color: black;
-    padding-top: 10px;
-    padding-bottom: 15px;
+    margin-bottom: 30px;
     font-size: 30px;
-    font-weight: bold;
 }
 
 .faq {
-    background-color: white;
+    background-color: rgba(255,255,255,0.75);
     color: black;
-    margin: 50px;
-    padding: 20px;
+    margin-top: 50px;
+    margin-left: 100px;
+    margin-right: 100px;
+    margin-bottom: 100px;
+    padding: 50px;
+    border-radius: .25em;
 }
 
 .faq-item {
@@ -72,10 +83,11 @@
 }
 
 .examples {
-    background-color: white;
+    background-color: rgba(255,255,255,0.75);
     color: black;
-    margin: 50px;
-    padding: 20px;
+    margin: 100px;
+    padding: 50px;
+    border-radius: .25em;
 }
 
 .question {
