@@ -18,33 +18,35 @@ export class UpdateDialogComponent implements OnInit {
   @Input() name : string;
   @Input() description : string;
   @Input() professor : string;
-  @Input() id : string;
+  @Input() courseID : string;
 
   course : FormGroup;
-  //courseObject : ICourse;
-  courseObject : ICourse = {
-    courseName : this.name,
-    courseDescription : this.description,
-    professor : this.professor,
-    id : this.id
-  };
-
+  courseObject: ICourse;
+  
   ngOnInit() {
+
+    this.courseObject = { 
+      courseName : this.name,
+      courseDescription : this.description,
+      professor : this.professor,
+      id : this.courseID
+    }
+
+    console.log("INPUT NAME: " + this.name);
+    console.log("INPUT PROF: " + this.professor);
+
     this.course = new FormGroup({
       courseName: new FormControl(''),
       courseDescription: new FormControl(''),
     })
+    console.log("OLD INFO", this.courseObject);
+
   };
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, public dialogRef: MatDialogRef<UpdateDialogComponent>, private courseservice:CourseService) {}
   
   onSubmit(): void {
     console.log(this.course.value);
     console.log("submit works");
-
-    this.courseObject.courseName = this.name;
-    this.courseObject.courseDescription = this.description;
-    this.courseObject.professor = this.professor;
-    this.courseObject.id = this.id;
 
     if(this.course.get('courseName').value != ''){
       this.courseObject.courseName = this.course.get('courseName').value;

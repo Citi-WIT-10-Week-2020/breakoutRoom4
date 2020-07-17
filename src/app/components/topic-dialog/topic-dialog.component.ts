@@ -17,9 +17,9 @@ export class TopicDialogComponent implements OnInit {
 
   ngOnInit() {
     this.topic = new FormGroup({
-      topicName: new FormControl(''),
-      topicDescription: new FormControl(''),
-      topicID: new FormControl(uuidv4()),
+      TopicName: new FormControl(''),
+      TopicDescription: new FormControl(''),
+      id: new FormControl(uuidv4()),
       professor : new FormControl('Mr. Bean'), 
       course : new FormControl('sciences'),
     })
@@ -33,7 +33,7 @@ export class TopicDialogComponent implements OnInit {
   onSubmit(): void {
     console.log(this.topic.value);
     console.log("submit works");
-    
+
     this.topicObject = this.topic.value;
     console.log("TopicObject",this.topicObject);
     
@@ -51,7 +51,6 @@ export class TopicDialogComponent implements OnInit {
       error: err => console.error('Observer got an error: ' , err),
       complete: () => console.log('Observer got a complete notification'),
     };
-    this.topicObject.id = uuidv4();
     this.topicservice.createTopic(this.topicObject).subscribe(myObserver);
 
   }

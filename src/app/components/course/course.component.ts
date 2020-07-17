@@ -3,7 +3,7 @@ import { APIService } from '../../API.service';
 //import { analyzeAndValidateNgModules } from '@angular/compiler';
 import { CourseService } from '../../shared/courses.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import {UpdateDialogComponent} from '../update-dialog/update-dialog.component';
+import {UpdateDialogComponent} from 'src/app/components/update-dialog/update-dialog.component';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
@@ -16,6 +16,7 @@ export class CourseComponent implements OnInit {
   @Input() name: string;
   @Input() courseID: string;
   @Input() description: string;
+  @Input() professor: string;
 
   constructor(private apiservice: APIService, private matDialog: MatDialog, private courseservice:CourseService) { }
       
@@ -45,6 +46,8 @@ export class CourseComponent implements OnInit {
       let instance =  dialogRef.componentInstance;
       instance.name = this.name;
       instance.description = this.description;
+      instance.courseID = this.courseID;
+      instance.professor = this.professor;
       dialogRef.afterClosed().subscribe(()=>{console.log("dialog has been closed")});
      }
 
