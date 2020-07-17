@@ -31,7 +31,6 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { ResourceGroupComponent } from './components/topic-screen-folder/resource-group/resource-group.component';
 import { DialogBodyComponent } from './components/dialog-body/dialog-body.component';
-
 import { PlaylistVideoComponent } from './components/topic-screen-folder/playlist-video/playlist-video.component';
 import { FaqComponent } from './components/topic-screen-folder/faq/faq.component';
 
@@ -55,13 +54,10 @@ import {TopicDialogComponent} from './components/topic-dialog/topic-dialog.compo
     FooterComponent,
     ResourceGroupComponent,
     DialogBodyComponent,
-
     PlaylistVideoComponent,
     FaqComponent,
-
     UpdateDialogComponent,
     TopicDialogComponent,
-
 
     HelpScreenComponent,
     
