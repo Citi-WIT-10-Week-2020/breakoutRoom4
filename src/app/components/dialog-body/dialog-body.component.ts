@@ -19,8 +19,6 @@ export class DialogBodyComponent implements OnInit{
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, public dialogRef: MatDialogRef<DialogBodyComponent>, private courseservice:CourseService) {}
 
-
-
   ngOnInit() {
     //create form group..will eventually have to pass in param for professor
     this.course = new FormGroup({
@@ -44,11 +42,6 @@ export class DialogBodyComponent implements OnInit{
     // this.courseObject.courseDescription = this.course.get('courseDesc').value;
     // this.courseObject.id = this.course.get('identification').value;
 
-
-    // console.log("Course name is: " + this.courseObject.courseName);
-    // console.log("Course description is: " + this.courseObject.courseDescription);
-    //console.log("Course ID is: " + this.courseObject.id);
-
     this.courseObject = this.course.value;
     console.log("CourseObject",this.courseObject);
     
@@ -67,9 +60,5 @@ export class DialogBodyComponent implements OnInit{
       complete: () => console.log('Observer got a complete notification'),
     };
     this.courseservice.createCourse(this.courseObject).subscribe(myObserver);
-  }
-  get courseName(): any {
-    return this.course.get('course_name').value;
-    
   }
 }

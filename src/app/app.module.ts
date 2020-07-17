@@ -36,6 +36,8 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 
 
+import { UpdateDialogComponent } from './components/update-dialog/update-dialog.component';
+import {TopicDialogComponent} from './components/topic-dialog/topic-dialog.component';
 
 
 @NgModule({
@@ -51,6 +53,8 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     ResourceGroupComponent,
 
     DialogBodyComponent,
+    UpdateDialogComponent,
+    TopicDialogComponent,
 
     HelpScreenComponent,
     
@@ -72,10 +76,11 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     ClipboardModule,
     MatSnackBarModule,
     MatDialogModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    
   ],
   bootstrap: [AppComponent],
-  entryComponents: [DialogBodyComponent],
+  entryComponents: [DialogBodyComponent, UpdateDialogComponent],
   providers: [],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
 
