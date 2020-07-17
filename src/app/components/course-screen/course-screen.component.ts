@@ -8,6 +8,8 @@ import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 import {LayoutModule} from '@angular/cdk/layout';
 import { Tile } from '../home-screen/home-screen.component';
 import { ConsoleLogger } from '@aws-amplify/core';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import {TopicDialogComponent} from '../topic-dialog/topic-dialog.component';
 
 @Component({
   selector: 'app-course-screen',
@@ -22,7 +24,7 @@ export class CourseScreenComponent implements OnInit {
   topics: Array<any>;
   topicObject: ITopic;
 
-  constructor(private route: ActivatedRoute, private apiservice : APIService, private breakpointObserver: BreakpointObserver, private topicservice:TopicsService) { }
+  constructor(private route: ActivatedRoute, private matDialog: MatDialog,private apiservice : APIService, private breakpointObserver: BreakpointObserver, private topicservice:TopicsService) { }
   
 
   ngOnInit(): void {
@@ -100,23 +102,26 @@ export class CourseScreenComponent implements OnInit {
     });
    
   }
+  // async createTopic(){
+  //   console.log('clicked');
+  //   const myObserver = {
+  //     next: x => {
+  //       console.log('create topic' , x);
+  //     },
+  //     error: err => console.error('Observer got an error: ' , err),
+  //     complete: () => console.log('Observer got a complete notification'),
+  //   };
+  //   this.topicObject.id = uuidv4();
+  //   this.topicservice.createTopic(this.topicObject).subscribe(myObserver);
 
+  // }
 
-
-  //create a new topic
-  async createTopic(){
-    console.log('clicked');
-    const myObserver = {
-      next: x => {
-        console.log('create topic' , x);
-      },
-      error: err => console.error('Observer got an error: ' , err),
-      complete: () => console.log('Observer got a complete notification'),
-    };
-    this.topicObject.id = uuidv4();
-    this.topicservice.createTopic(this.topicObject).subscribe(myObserver);
-
-  }
-
+  //open topic dialog
+  openTopicDialog() {
+    console.log("dialog opened");
+    const dialogConfig = new MatDialogConfig();
+    let dialogRef = this.matDialog.open(TopicDialogComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe(()=>{console.log("dialog has been closed")});
+   }
 }
 

@@ -36,6 +36,8 @@ import { FaqComponent } from './components/topic-screen-folder/faq/faq.component
 
 
 
+import { UpdateDialogComponent } from './components/update-dialog/update-dialog.component';
+import {TopicDialogComponent} from './components/topic-dialog/topic-dialog.component';
 
 
 @NgModule({
@@ -52,6 +54,9 @@ import { FaqComponent } from './components/topic-screen-folder/faq/faq.component
     DialogBodyComponent,
     PlaylistVideoComponent,
     FaqComponent,
+    UpdateDialogComponent,
+    TopicDialogComponent,
+
     HelpScreenComponent,
     
   ],
@@ -72,10 +77,11 @@ import { FaqComponent } from './components/topic-screen-folder/faq/faq.component
 
   
     MatDialogModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    
   ],
   bootstrap: [AppComponent],
-  entryComponents: [DialogBodyComponent],
+  entryComponents: [DialogBodyComponent, UpdateDialogComponent],
   providers: [],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
 
