@@ -1,16 +1,21 @@
 
     <div class="div-body">
+       <!-- <p>course-screen works! {{courseId}}</p> -->
+        
+
 
             <div class="nav-container">
                 <span><a routerLink='/course'>Courses ></a></span>
                 <span><a [routerLink]="['/course', this.courseId]">Topics</a></span>
                 
+            </div>
 
             
 
 
             <div class="title-container">
-                <span class="title-item"><a [routerLink]="['/course', this.courseId]">Topics</a></span>
+
+                <span class="title-item"><a [routerLink]="['/course', this.courseId]">Course: Topics</a></span>
                 <span><button class="add-btn-bg" (click) = "openTopicDialog()"><mat-icon class="add-btn">add_circle_outline</mat-icon></button></span>
             </div>
             
@@ -22,7 +27,7 @@
             <!--actual flex layout for real topics-->
             <div class="cardcont" fxLayout="row wrap" fxLayoutGap="50px" fxLayoutAlign="flex-start">
                 <ng-container *ngFor="let item of topics">
-                  <app-topic fxFlex="0 1 auto" [professor]="item.professor" [topic]="item.TopicName" [topicDescription]="item.TopicDescription" [topicID]="item.id"></app-topic>
+                  <app-topic fxFlex="0 1 auto" [professor]="item.professor" [topic]="item.TopicName" [topicDescription]="item.TopicDescription" [topicID]="item.id" [courseId]="this.courseId"></app-topic>
                 </ng-container>
             </div>
 
