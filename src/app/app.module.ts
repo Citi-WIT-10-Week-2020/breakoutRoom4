@@ -31,9 +31,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { ResourceGroupComponent } from './components/resource-group/resource-group.component';
 import { DialogBodyComponent } from './components/dialog-body/dialog-body.component';
-
-
-
+import { UpdateDialogComponent } from './components/update-dialog/update-dialog.component';
+import {TopicDialogComponent} from './components/topic-dialog/topic-dialog.component';
 
 
 @NgModule({
@@ -49,6 +48,8 @@ import { DialogBodyComponent } from './components/dialog-body/dialog-body.compon
     ResourceGroupComponent,
 
     DialogBodyComponent,
+    UpdateDialogComponent,
+    TopicDialogComponent,
 
     HelpScreenComponent,
     
@@ -70,10 +71,11 @@ import { DialogBodyComponent } from './components/dialog-body/dialog-body.compon
 
   
     MatDialogModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    
   ],
   bootstrap: [AppComponent],
-  entryComponents: [DialogBodyComponent],
+  entryComponents: [DialogBodyComponent, UpdateDialogComponent],
   providers: [],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
 
