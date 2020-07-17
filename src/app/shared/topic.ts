@@ -1,6 +1,7 @@
 export interface ITopic{
     professor: string;
-    courseName: string;
-    courseDescription:string;  
+    TopicName: string;
+    TopicDescription:string;  
     id:string;
+    course:string;
 }

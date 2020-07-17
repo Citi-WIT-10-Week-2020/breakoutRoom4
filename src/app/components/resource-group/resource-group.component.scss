@@ -1,0 +1,18 @@
+.rg {
+    background-color: rgba($color: #ffffff, $alpha: .65);
+}
+
+.rg-title {
+    font-size: x-large;
+}
+
+.file {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: rgb(94, 12, 119);
+    font-size: large;
+}
+
+.mat-expansion-panel:not([class*='mat-elevation-z']) {
+    box-shadow: none;
+}

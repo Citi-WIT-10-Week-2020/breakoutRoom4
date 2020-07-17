@@ -4,10 +4,13 @@ import { APIService } from '../../API.service';
 import { CourseService } from '../../shared/courses.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import {UpdateDialogComponent} from '../update-dialog/update-dialog.component';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+
 @Component({
   selector: 'app-course',
   templateUrl: './course.component.html',
-  styleUrls: ['./course.component.scss']
+  styleUrls: ['./course.component.scss'],
+  providers: [CourseService]
 })
 export class CourseComponent implements OnInit {
   @Input() name: string;

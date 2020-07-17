@@ -3,6 +3,8 @@ import { APIService } from '../../API.service';
 import { v4 as uuidv4 } from 'uuid';
 import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 import {LayoutModule} from '@angular/cdk/layout';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+
 import { DialogBodyComponent } from 'src/app/components/dialog-body/dialog-body.component'
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import {CourseService} from '../../shared/courses.service';
@@ -25,7 +27,7 @@ export interface Tile {
 export class HomeScreenComponent implements OnInit {
 
   /* May use for grid */
-  tiles: Tile[] = [
+  /*tiles: Tile[] = [
     {text: 'One', cols: 1, rows: 5, color: 'lightblue'},
     {text: 'Two', cols: 1, rows: 2, color: 'lightgreen'},
     {text: 'Three', cols: 1, rows: 1, color: 'lightpink'},
@@ -35,10 +37,10 @@ export class HomeScreenComponent implements OnInit {
     cols:1,
     rows: 3,
     color:'lightblue'
-  }
+  }*/
   courses: Array<any>;
-  courseObject: ICourse;  //to be deleted
-
+  
+  
   constructor(private apiservice: APIService,private matDialog: MatDialog, private courseservice:CourseService, private breakpointObserver: BreakpointObserver) { 
 
     /* //Might use this for the responsive layout (uses breakpoint import statment)
@@ -54,13 +56,13 @@ export class HomeScreenComponent implements OnInit {
 
 
   ngOnInit(): void {
-    //initializes the course object. This will eventually be deleted and replaced with user input
-    this.courseObject={
-      courseName:"A test Course, in object",
-      courseDescription:"TESTING TESTING HAHAHA",
-      professor:"haku",
-      id:uuidv4()
-    };
+    // //initializes the course object. This will eventually be deleted and replaced with user input
+    // this.courseObject={
+    //   courseName:"A test Course, in object",
+    //   courseDescription:"TESTING TESTING HAHAHA",
+    //   professor:"haku",
+    //   id:uuidv4()
+    // };
 
    
     //get all courses
@@ -73,15 +75,32 @@ export class HomeScreenComponent implements OnInit {
       complete: () => console.log('Observer got a complete notification'),
     };
     this.courseservice.getCourses().subscribe(myObserver);
+    this.getCourses();
+    this.subscribeToCourseCreations();
+    this.subscribeToCourseUpdates();
+    this.subscribeToCourseDeletions();
+  }
 
+  subscribeToCourseDeletions(){
+    this.apiservice.OnDeleteCourseListener.subscribe((evt)=>{
+      console.log("A deletion has occured!");
+      const data = (evt as any).value.data.onDeleteCourse;
+      console.log(data);
+      //basically, search thru array, find original, remove it
+      this.courses = this.courses.filter((course)=>{
+          return (course.id != data.id)
+      });
+      console.log(this.courses);
+    });
+  }
 
-    //subscribes to any new course creations
+  subscribeToCourseCreations(){
     this.apiservice.OnCreateCourseListener.subscribe((evt)=>{
       const data = (evt as any).value.data.onCreateCourse;
       this.courses =[...this.courses,data];
     });
-
-      //subscribes to any course updates
+  }
+  subscribeToCourseUpdates(){
     this.apiservice.OnUpdateCourseListener.subscribe((evt)=>{
      
       const data = (evt as any).value.data.onUpdateCourse;
@@ -96,6 +115,7 @@ export class HomeScreenComponent implements OnInit {
       })
     });
 
+
     //subscribes to any course deletions
     this.apiservice.OnDeleteCourseListener.subscribe((evt)=>{
       console.log("A deletion has occured!");
@@ -107,9 +127,22 @@ export class HomeScreenComponent implements OnInit {
       });
       console.log(this.courses);
     });
+
   }
 
   
+  getCourses(){
+    const myObserver = {
+      next: x => {
+        console.log('Value: ' , x);
+        this.courses = x.items;
+      },
+      error: err => console.error('Observer got an error: ' + err),
+      complete: () => console.log('Observer got a complete notification'),
+    };
+    this.courseservice.getCourses().subscribe(myObserver);
+  }
+
   openCourseDialog() {
     console.log("dialog opened");
     const dialogConfig = new MatDialogConfig();
@@ -117,6 +150,8 @@ export class HomeScreenComponent implements OnInit {
     dialogRef.afterClosed().subscribe(()=>{console.log("dialog has been closed")});
    } //instead of console log , refresh page
  
+  
+  
 }
 
 
