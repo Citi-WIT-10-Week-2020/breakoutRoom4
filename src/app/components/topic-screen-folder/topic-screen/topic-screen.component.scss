@@ -1,6 +1,6 @@
 .div-body {
     display: block;
-    min-height: 790px;
+    min-height: 700px;
     margin: 0;
     margin-left: 100px;
     margin-right: 100px;
@@ -8,14 +8,15 @@
 }
 
 .nav-container {
-    margin-top: 20px;
-    
+    margin-top: 40px;
+    //padding-left: 10px;
 }
 
 .nav-container a {
     text-decoration: none;
-    font-size: 24px;
-    color: whitesmoke;
+    font-size: 22px;
+    color: white;
+    font-weight: 300;
 
 }
 
@@ -23,23 +24,25 @@
     display: flex;  
     align-items: center;
     vertical-align: center;
-    padding: 60px 0 30px;
+    padding: 38px 0 30px;
     text-decoration: none;
+    //height: 120px;
     
 }
 
 .title-item a {
     font-size: 50px;
+    font-weight: 400;
     text-decoration: none;
-    padding-right: 40px;
-    color: rgb(94, 12, 119);
+    padding-right: 10px;
+    color: rgb(85, 32, 116);
 }
 
 .add-btn {
     font-size: 35px;
     width: 40px;
     height: 30px;
-    color: rgb(94, 12, 119);
+    color: rgb(85, 32, 116);
 }
 
 .add-btn-bg {
@@ -50,7 +53,7 @@
 
 .wrapper {
     width: 100%;
-    min-height: 500px;
+    min-height: 250px;
     display: flex;
     justify-content: space-evenly;
     margin-bottom: 20px;
@@ -61,7 +64,6 @@
 
 .box1 {
     width: 100%;
-    margin-right: 15px;
     //border: 1px solid black;
 }
 
@@ -86,6 +88,7 @@
     font-size: 32px;
     padding-bottom: 25px;
     padding-left: 10px;
+    //color: #252525;
 }
 
 .box2-title {
@@ -152,3 +155,7 @@
     box-shadow: none;
 }
 //all the css for expansion panel
+
+.apprg {
+    margin-bottom: px;
+}
