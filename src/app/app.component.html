@@ -1,4 +1,6 @@
 
+
+ 
  <amplify-authenticator usernameAlias="email">
    
      <amplify-sign-up
@@ -9,16 +11,12 @@
 
       ></amplify-sign-up>
       <amplify-sign-in slot="sign-in" usernameAlias="email"></amplify-sign-in>
-       
   
-       <div class="remove-space">
-          <app-nav-bar></app-nav-bar>
-          <router-outlet></router-outlet>
-          <app-footer></app-footer>
-        </div>
-   <amplify-authenticator>
-    
-   <!-- </amplify-authenticator>  -->
-
- 
+  <amplify-authenticator>
+    <div>
+      <app-nav-bar></app-nav-bar>
+      <router-outlet></router-outlet>
+      <app-footer></app-footer>
+    </div>
+  </amplify-authenticator> 
 

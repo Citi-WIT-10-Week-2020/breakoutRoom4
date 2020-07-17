@@ -11,15 +11,18 @@ import { FileService } from 'src/app/shared/file.service';
   styleUrls: ['./topic-screen.component.scss'],
   providers:[FileService]
 })
-export class TopicScreenComponent implements OnInit {
 
+
+
+export class TopicScreenComponent implements OnInit {
   public formGroup = this.fb.group({
     file:[null,Validators.required]
   });
   private fileName;
   private fileType;
   files: Array<any>;
-  constructor(private route:ActivatedRoute, private fb: FormBuilder, private fileservice: FileService) { }
+  constructor(private route:ActivatedRoute,private fb: FormBuilder, private fileservice: FileService) { }
+
   topicId: String;
   topicName: String;
   courseId: String;
@@ -27,8 +30,8 @@ export class TopicScreenComponent implements OnInit {
   ngOnInit(): void {
 
     //gets courseID
-    this.route.parent.paramMap.subscribe(params => {
-      this.courseId = params.get('id');
+    this.route.paramMap.subscribe(params => {
+      this.courseId = params.get('courseId');
     });
     console.log(this.courseId);
 

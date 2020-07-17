@@ -1,0 +1,89 @@
+.nav-back a {
+    text-decoration: none;
+    color: black;
+    padding: 20px;
+    font-size: 15px;
+}
+
+.nav-back {
+    margin: 30px 20px 40px;
+    padding: 20px 0 20px;
+}
+
+.title-header {
+    display: flex;  
+    align-items: left;
+    vertical-align: center;
+    padding: 20px 0 30px;
+    text-decoration: none;
+    flex-direction: column;
+}
+
+.title {
+    font-size: 50px;
+    text-decoration: none;
+    padding-left: 30px;
+    color: rgb(94, 12, 119);
+}
+
+.subtitle-section {
+    display: flex;  
+    align-items: center;
+    vertical-align: center;
+    text-decoration: none;
+    padding-top: 15px;
+}
+
+.section-link a {
+    text-decoration: none;
+    font-size: 20px;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-top: 20px;
+    color: white;
+}
+
+.section-link:hover{
+    color: rgb(94, 12, 119);
+    cursor: pointer;
+}
+
+.section-title {
+    color: black;
+    padding-top: 10px;
+    padding-bottom: 15px;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.faq {
+    background-color: white;
+    color: black;
+    margin: 50px;
+    padding: 20px;
+}
+
+.faq-item {
+    padding: 10px;
+}
+
+.hr {
+    padding-top: 10px;
+}
+
+.examples {
+    background-color: white;
+    color: black;
+    margin: 50px;
+    padding: 20px;
+}
+
+.question {
+    color: rgb(94, 12, 119);
+}
+
+.example-item {
+    color: rgb(94, 12, 119);
+    padding: 10px;
+}
+
