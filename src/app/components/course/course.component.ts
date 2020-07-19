@@ -6,7 +6,8 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import {UpdateDialogComponent} from 'src/app/components/update-dialog/update-dialog.component';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import {ClipboardModule} from '@angular/cdk/clipboard';
-import {MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
+
+import { CopyDialogComponent } from '../copy-dialog/copy-dialog.component';
 
 @Component({
   selector: 'app-course',
@@ -20,7 +21,7 @@ export class CourseComponent implements OnInit {
   @Input() description: string;
   @Input() professor: string;
 
-  constructor(private apiservice: APIService, private courseservice:CourseService, private _snackBar: MatSnackBar, private matDialog: MatDialog) { }
+  constructor(private apiservice: APIService, private courseservice:CourseService, private matDialog: MatDialog, private copyDialog: MatDialog) { }
       
   ngOnInit(): void { }
   
@@ -33,16 +34,22 @@ export class CourseComponent implements OnInit {
       document.execCommand('copy');
     }*/
 
-    horizontalPosition: MatSnackBarHorizontalPosition = 'center';
-    verticalPosition: MatSnackBarVerticalPosition = 'top';
-    //copy pop up
-    openSnackBar() {
-      this._snackBar.open('Course ID copied!', 'Close', {
-        duration: 2000,
-        horizontalPosition: this.horizontalPosition,
-        verticalPosition: this.verticalPosition,
-      });
+    openCopyDialog() {
+        const dialogConfig = new MatDialogConfig();
+
+        dialogConfig.disableClose = false;
+        dialogConfig.autoFocus = true;
+
+        dialogConfig.data = {
+            courseId: this.courseID
+        };
+
+        //this.copyDialog.open(CopyDialogComponent, dialogConfig);
+
+        let dialogRef = this.copyDialog.open(CopyDialogComponent, dialogConfig);
+        dialogRef.afterClosed().subscribe(()=>{console.log("dialog has been closed")});  
     }
+    
 
     //logic for deleting course. Hardcoded, will update to user input
     deleteCourse(){
