@@ -7,8 +7,10 @@
 
 
     <div class="nav-container">
-      <span><a routerLink='/course'>Courses > </a></span>
-      <span><a [routerLink]="['/course', this.courseId]">Topics > </a></span>
+      <span><a routerLink='/course'>Courses</a></span>
+      <span class="nav-dec">></span>
+      <span><a [routerLink]="['/course', this.courseId]">Topics</a></span>
+      <span class="nav-dec">></span>
       <span><a [routerLink]="['/topic', this.courseId, this.topicId, this.topicName]">{{topicName}}</a></span>
     
   </div>
@@ -23,10 +25,13 @@
 
       <div class="wrapper">
         <div class="box1">
-          <div class="box1-title">Files <mat-icon>add_circle_outline</mat-icon></div>
+          <div class="box1-title">Files <mat-icon class="add-file-btn">add_circle_outline</mat-icon></div>
 
           <mat-accordion multi>
-            <app-resource-group></app-resource-group>
+            <ng-container *ngFor="let item of rgObject">
+              <app-resource-group [rgName]="item.rgName" [fileName]="item.fileName" ></app-resource-group>
+            </ng-container>
+            
             <app-resource-group></app-resource-group>
             <app-playlist-video></app-playlist-video>
           </mat-accordion>
@@ -60,7 +65,7 @@
       
 
       <div class="wrapper-2">
-        <div class="box3-title">FAQ <mat-icon>add_circle_outline</mat-icon></div>
+        <div class="box3-title">FAQ <mat-icon class="add-file-btn">add_circle_outline</mat-icon></div>
 
         <mat-accordion multi>
           <app-faq></app-faq>

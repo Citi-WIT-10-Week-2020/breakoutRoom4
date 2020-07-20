@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { title } from 'process';
 
 
 @Component({
@@ -16,8 +17,16 @@ export class TopicScreenComponent implements OnInit {
   topicId: String;
   topicName: String;
   courseId: String;
-
+  rgObject: any;
+  
   ngOnInit(): void {
+
+    this.rgObject={
+      rgName: "title",
+      fileName: "name of file",
+    };
+
+
 
     //gets courseID
     this.route.paramMap.subscribe(params => {
