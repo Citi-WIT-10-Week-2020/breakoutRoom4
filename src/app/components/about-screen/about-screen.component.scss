@@ -1,0 +1,90 @@
+
+
+.div-body {
+
+    display: block;
+    min-height: 790px;
+    margin: 0;
+}
+
+.nav-back a {
+    text-decoration: none;
+    color: black;
+    padding: 20px;
+    font-size: 15px;
+}
+
+.nav-back {
+    margin: 30px 30px 30px;
+    padding: 10px 0 10px;
+}
+
+.title-header {
+    display: flex;  
+    align-items: left;
+    vertical-align: center;
+    padding: 20px 0 30px;
+    text-decoration: none;
+    flex-direction: column;
+}
+
+.title {
+    font-size: 50px;
+    text-decoration: none;
+    padding: 30px;
+    color: rgb(94, 12, 119);
+}
+
+.subtitle-section {
+    display: flex;  
+    align-items: center;
+    vertical-align: center;
+    text-decoration: none;
+    padding-top: 15px;
+}
+
+.section-link a {
+    text-decoration: none;
+    font-size: 20px;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-top: 20px;
+    color: white;
+}
+
+.section-link a:hover{
+    color: rgb(94, 12, 119);
+    cursor: pointer;
+}
+
+.history {
+    background-color: white;
+    color: black;
+    margin: 100px;
+    border-radius: .25em;
+    padding: 50px;
+}
+
+.creators {
+    color: black;
+    margin: 100px;
+    padding: 50px;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 40px;
+    color: rgb(94, 12, 119);
+}
+
+
+
+
+
+
+
+
+
+
+
+
