@@ -1,0 +1,27 @@
+<h2 mat-dialog-title>Update Topic</h2>
+    <mat-dialog-content class ="container">
+        <form novalidate [formGroup]= "topicForm" > <!--(ngSubmit)="onSubmit(course)" -->
+            <label>
+                <span>Topic Name:</span>
+                <input type="text"  formControlName="topicName" placeholder={{topic}}>
+            </label>
+
+           <br>
+           <label>
+                <span>Topic Description:</span>
+                <input type="text" formControlName="topicDescription" placeholder={{topicDescription}}> 
+            </label>
+           <br>
+
+           <!-- <label> [name]="item.courseName" [courseId]="item.id" [description]="item.courseDescription"
+                <span>id:</span>           
+            <input type="string" formControlName="id">
+            </label> -->
+        </form>
+
+    </mat-dialog-content>
+
+<mat-dialog-actions>
+    <button class="btn-cancel" class="mat-raised-button" style="padding: 5px 30px;margin: auto" (click)="cancel()">Cancel</button>
+    <button type ="btn-submit" class="mat-raised-button"style="padding: 5px 30px;margin: auto" (click)="onSubmit()">Update</button>   
+</mat-dialog-actions>

@@ -3,7 +3,7 @@
 
             <div class="nav-container">
                 <span><a routerLink='/course'>Courses ></a></span>
-                <span><a [routerLink]="['/course', this.courseId]">Topics</a></span>
+                <span><a [routerLink]="['/course', this.courseId]"> Topics</a></span>
                 
 
             
@@ -22,7 +22,7 @@
             <!--actual flex layout for real topics-->
             <div class="cardcont" fxLayout="row wrap" fxLayoutGap="50px" fxLayoutAlign="flex-start">
                 <ng-container *ngFor="let item of topics">
-                  <app-topic fxFlex="0 1 auto" [professor]="item.professor" [topic]="item.TopicName" [topicDescription]="item.TopicDescription" [topicID]="item.id"></app-topic>
+                  <app-topic fxFlex="0 1 auto" [className]="item.course" [professor]="item.professor" [topic]="item.TopicName" [topicDescription]="item.TopicDescription" [topicID]="item.id"></app-topic>
                 </ng-container>
             </div>
 

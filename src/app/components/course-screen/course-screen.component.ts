@@ -29,13 +29,13 @@ export class CourseScreenComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.topicObject={
-      professor: "Mr. Default",
-      TopicName: "Default Topic",
-      TopicDescription: "this practice",
-      id: "213",
-      course: "Physics"
-    };
+    // this.topicObject={
+    //   professor: "Mr. Default",
+    //   TopicName: "Default Topic",
+    //   TopicDescription: "this practice",
+    //   id: "213",
+    //   course: "Physics"
+    // };
 
     //gets the course ID passed in from home-screen
     this.route.paramMap.subscribe(params => { 

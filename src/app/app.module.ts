@@ -33,6 +33,7 @@ import { ResourceGroupComponent } from './components/resource-group/resource-gro
 import { DialogBodyComponent } from './components/dialog-body/dialog-body.component';
 import { UpdateDialogComponent } from './components/update-dialog/update-dialog.component';
 import {TopicDialogComponent} from './components/topic-dialog/topic-dialog.component';
+import { UpdateTopicDialogComponent } from './components/update-topic-dialog/update-topic-dialog.component';
 
 
 @NgModule({
@@ -52,6 +53,8 @@ import {TopicDialogComponent} from './components/topic-dialog/topic-dialog.compo
     TopicDialogComponent,
 
     HelpScreenComponent,
+
+    UpdateTopicDialogComponent,
     
   ],
   imports: [

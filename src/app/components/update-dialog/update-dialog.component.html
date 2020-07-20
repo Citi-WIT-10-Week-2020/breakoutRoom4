@@ -12,15 +12,11 @@
                 <input type="text" formControlName="courseDescription" placeholder={{description}}> 
             </label>
            <br>
-           <!-- <label> [name]="item.courseName" [courseID]="item.id" [description]="item.courseDescription"
-                <span>id:</span>           
-            <input type="string" formControlName="id">
-            </label> -->
         </form>
 
     </mat-dialog-content>
 
 <mat-dialog-actions>
-    <button class="btn-cancel" class="mat-raised-button" stye="padding: 5px 30px;" (click)="cancel()">Cancel</button>
-    <button type ="btn-submit" class="mat-raised-button" (click)="onSubmit()">Update</button>   
+    <button class="btn-cancel" class="mat-raised-button" style="padding: 5px 30px;margin: auto" (click)="cancel()">Cancel</button>
+    <button type ="btn-submit" class="mat-raised-button" style="padding: 5px 30px;margin: auto" (click)="onSubmit()">Update</button>   
 </mat-dialog-actions>

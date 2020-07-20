@@ -3,7 +3,7 @@ import { APIService } from '../../API.service';
 //import { analyzeAndValidateNgModules } from '@angular/compiler';
 import { CourseService } from '../../shared/courses.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import {UpdateDialogComponent} from 'src/app/components/update-dialog/update-dialog.component';
+import { UpdateDialogComponent } from 'src/app/components/update-dialog/update-dialog.component';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
@@ -14,7 +14,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 })
 export class CourseComponent implements OnInit {
   @Input() name: string;
-  @Input() courseID: string;
+  @Input() courseId: string;
   @Input() description: string;
   @Input() professor: string;
 
@@ -33,7 +33,7 @@ export class CourseComponent implements OnInit {
         error: err => console.error('Observer got an error: ' + err),
         complete: () => console.log('Observer got a complete notification'),
       };
-      this.courseservice.deleteCourse(this.courseID).subscribe(myObserver);
+      this.courseservice.deleteCourse(this.courseId).subscribe(myObserver);
 
     }
 
@@ -46,7 +46,7 @@ export class CourseComponent implements OnInit {
       let instance =  dialogRef.componentInstance;
       instance.name = this.name;
       instance.description = this.description;
-      instance.courseID = this.courseID;
+      instance.courseId = this.courseId;
       instance.professor = this.professor;
       dialogRef.afterClosed().subscribe(()=>{console.log("dialog has been closed")});
      }
