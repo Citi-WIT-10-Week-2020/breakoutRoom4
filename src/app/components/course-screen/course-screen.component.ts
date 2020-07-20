@@ -10,6 +10,7 @@ import { Tile } from '../home-screen/home-screen.component';
 import { ConsoleLogger } from '@aws-amplify/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import {TopicDialogComponent} from '../topic-dialog/topic-dialog.component';
+import {CourseService} from '../../shared/courses.service';
 
 @Component({
   selector: 'app-course-screen',
@@ -23,6 +24,7 @@ export class CourseScreenComponent implements OnInit {
   courseId: String;
   topics: Array<any>;
   topicObject: ITopic;
+  course: String;
 
   constructor(private route: ActivatedRoute, private matDialog: MatDialog,private apiservice : APIService, private breakpointObserver: BreakpointObserver, private topicservice:TopicsService) { }
   
@@ -43,28 +45,28 @@ export class CourseScreenComponent implements OnInit {
       console.log("courseId", this.courseId);
     });
 
- /*   
-    //gets all the topics using courseId
+ 
+    //gets the course name using courseId
     this.apiservice.GetCourse(this.courseId.toString()).then((evt)=>{
-      console.log("topic", evt);
-      this.topics = evt.topics.items;
-      console.log('this.topics', this.topics);
+      console.log("course", evt);
+      this.course = evt.courseName;
+      console.log('this.course', this.course);
     }).catch((err)=>{
       console.log(err);
     });
-*/    
+
    
    const myObserver = {
     next: x => {
     //  console.log("get topics" , x);
       this.topics = x.items;
       console.log("topics", this.topics);
-      
     },
     error: err => console.error('Observer got an error: ' + err),
     complete: () => console.log('Observer got a complete notification'),
   };
     this.topicservice.getTopics().subscribe(myObserver);
+
 
     //subscribe to any topic creations
     this.apiservice.OnCreateTopicListener.subscribe((evt)=>{

@@ -8,7 +8,7 @@
 
     <div class="nav-container">
       <span><a routerLink='/course'>Courses ></a></span>
-      <span><a [routerLink]="['/course', this.courseId]">Topics ></a></span>
+      <span><a [routerLink]="['/course', this.courseId]">{{this.course}} ></a></span>
       <span><a [routerLink]="['/topic', this.courseId, this.topicId, this.topicName]">{{topicName}}</a></span>
     
   </div>
