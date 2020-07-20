@@ -24,6 +24,7 @@ export class CourseScreenComponent implements OnInit {
   topics: Array<any>;
   topicObject: ITopic;
 
+
   constructor(private route: ActivatedRoute, private matDialog: MatDialog,private apiservice : APIService, private breakpointObserver: BreakpointObserver, private topicservice:TopicsService) { }
   
 
