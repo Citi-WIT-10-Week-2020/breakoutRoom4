@@ -5,6 +5,7 @@ import { CourseScreenComponent } from './components/course-screen/course-screen.
 import { HomeScreenComponent } from './components/home-screen/home-screen.component';
 import { TopicScreenComponent } from './components/topic-screen/topic-screen.component';
 import { HelpScreenComponent } from './components/help-screen/help-screen.component';
+import { AboutScreenComponent } from './components/about-screen/about-screen.component';
 
 //here's where we add our routes
 const routes: Routes = [
@@ -12,6 +13,7 @@ const routes: Routes = [
   {path:'course/:id',component: CourseScreenComponent},
   {path:'topic/:courseId/:id/:TopicName',component: TopicScreenComponent},
   {path: 'help', component: HelpScreenComponent},
+  {path: 'about', component: AboutScreenComponent},
   {path:'home',component:HomeScreenComponent},
   {path:'**',component:HomeScreenComponent}
 ];

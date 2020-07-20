@@ -10,7 +10,7 @@
 
 
             <div class="title-container">
-                <span class="title-item"><a [routerLink]="['/course', this.courseId]">Topics</a></span>
+                <span class="title-item"><a [routerLink]="['/course', this.courseId]">{{this.course}} : Topics</a></span>
                 <span><button class="add-btn-bg" (click) = "openTopicDialog()"><mat-icon class="add-btn">add_circle_outline</mat-icon></button></span>
             </div>
             

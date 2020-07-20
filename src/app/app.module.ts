@@ -39,6 +39,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { UpdateDialogComponent } from './components/update-dialog/update-dialog.component';
 import {TopicDialogComponent} from './components/topic-dialog/topic-dialog.component';
 import { CopyDialogComponent } from './components/copy-dialog/copy-dialog.component';
+import { AboutScreenComponent } from './components/about-screen/about-screen.component';
 
 
 @NgModule({
@@ -60,6 +61,8 @@ import { CopyDialogComponent } from './components/copy-dialog/copy-dialog.compon
     HelpScreenComponent,
 
     CopyDialogComponent,
+
+    AboutScreenComponent,
     
   ],
   imports: [
