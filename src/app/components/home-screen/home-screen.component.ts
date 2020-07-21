@@ -10,6 +10,8 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import {CourseService} from '../../shared/courses.service';
 import { ICourse } from '../../shared/course';
 
+import { UserinfoService } from 'src/app/shared/userinfo.service';
+
 /* May use for grid */
 export interface Tile {
   color: string;
@@ -22,26 +24,14 @@ export interface Tile {
   selector: 'app-home-screen',
   templateUrl: './home-screen.component.html',
   styleUrls: ['./home-screen.component.scss'],
-  providers:[CourseService]
+  providers:[CourseService,UserinfoService]
 })
 export class HomeScreenComponent implements OnInit {
 
-  /* May use for grid */
-  /*tiles: Tile[] = [
-    {text: 'One', cols: 1, rows: 5, color: 'lightblue'},
-    {text: 'Two', cols: 1, rows: 2, color: 'lightgreen'},
-    {text: 'Three', cols: 1, rows: 1, color: 'lightpink'},
-    {text: 'Four', cols: 1, rows: 1, color: '#DDBDF1'},
-  ];
-   styles = {
-    cols:1,
-    rows: 3,
-    color:'lightblue'
-  }*/
-  courses: Array<any>;
+  courses: Array<any>;  
+  user: any;
   
-  
-  constructor(private apiservice: APIService,private matDialog: MatDialog, private courseservice:CourseService, private breakpointObserver: BreakpointObserver) { 
+  constructor(private userinfo: UserinfoService, private apiservice: APIService,private matDialog: MatDialog, private courseservice:CourseService, private breakpointObserver: BreakpointObserver) { 
 
     /* //Might use this for the responsive layout (uses breakpoint import statment)
     breakpointObserver.observe([
@@ -56,29 +46,40 @@ export class HomeScreenComponent implements OnInit {
 
 
   ngOnInit(): void {
-    // //initializes the course object. This will eventually be deleted and replaced with user input
-    // this.courseObject={
-    //   courseName:"A test Course, in object",
-    //   courseDescription:"TESTING TESTING HAHAHA",
-    //   professor:"haku",
-    //   id:uuidv4()
-    // };
-
+    this.getUser();
    
-    //get all courses
+    this.subscribeToCourseCreations();
+    this.subscribeToCourseUpdates();
+    this.subscribeToCourseDeletions();
+  }
+  getUser(){
+    console.log("Getting User");
     const myObserver = {
       next: x => {
-        console.log('Value: ' , x);
-        this.courses = x.items;
+        console.log('User: ' , x);
+        this.user = x;
+        //call get professor using the username. If that doesn't exist, create a professor
+        this.apiservice.ProfessorByName(this.user.username).then((evt)=>{
+          console.log(evt);
+          if(evt.items.length == 0){
+            console.log("NULL! Create professor");
+            this.apiservice.CreateProfessor({id:uuidv4(),professorName:this.user.username, universityName:"Default"}).then((evt)=>{
+              console.log("Professor was created!");
+              this.getCourses();
+            });
+          }
+          else{
+            this.getCourses();
+          }
+        });
+
+        
       },
       error: err => console.error('Observer got an error: ' + err),
       complete: () => console.log('Observer got a complete notification'),
     };
-    this.courseservice.getCourses().subscribe(myObserver);
-    this.getCourses();
-    this.subscribeToCourseCreations();
-    this.subscribeToCourseUpdates();
-    this.subscribeToCourseDeletions();
+   // from(Auth.currentUserInfo()).subscribe(myObserver);
+    this.userinfo.getUserInfo().subscribe(myObserver);
   }
 
   subscribeToCourseDeletions(){
@@ -104,7 +105,7 @@ export class HomeScreenComponent implements OnInit {
     this.apiservice.OnUpdateCourseListener.subscribe((evt)=>{
      
       const data = (evt as any).value.data.onUpdateCourse;
-      this.courses =[...this.courses,data];
+      
       console.log("An update has occurred!");
       //search thru array, find original, and replace it with the new one
       this.courses = this.courses.map((course)=>{
@@ -115,38 +116,30 @@ export class HomeScreenComponent implements OnInit {
       })
     });
 
-
-    //subscribes to any course deletions
-    this.apiservice.OnDeleteCourseListener.subscribe((evt)=>{
-      console.log("A deletion has occured!");
-      const data = (evt as any).value.data.onDeleteCourse;
-      console.log(data);
-      //basically, search thru array, find original, remove it
-      this.courses = this.courses.filter((course)=>{
-          return (course.id != data.id)
-      });
-      console.log(this.courses);
-    });
-
   }
 
   
   getCourses(){
+    console.log("Getting Courses", this.user.username);
     const myObserver = {
       next: x => {
         console.log('Value: ' , x);
-        this.courses = x.items;
+        console.log()
+        this.courses = x.items[0].courses.items;
       },
       error: err => console.error('Observer got an error: ' + err),
       complete: () => console.log('Observer got a complete notification'),
     };
-    this.courseservice.getCourses().subscribe(myObserver);
+    this.courseservice.getCourses(this.user.username).subscribe(myObserver);
   }
 
   openCourseDialog() {
     console.log("dialog opened");
     const dialogConfig = new MatDialogConfig();
     let dialogRef = this.matDialog.open(DialogBodyComponent, dialogConfig);
+    let instance =  dialogRef.componentInstance;
+      instance.professorName = this.user.username;
+      
     dialogRef.afterClosed().subscribe(()=>{console.log("dialog has been closed")});
    } //instead of console log , refresh page
  

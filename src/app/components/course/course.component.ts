@@ -24,7 +24,7 @@ export class CourseComponent implements OnInit {
 
     
 
-    //logic for deleting course. Hardcoded, will update to user input
+    //logic for deleting course. 
     deleteCourse(){
       const myObserver = {
         next: x => {
@@ -51,7 +51,7 @@ export class CourseComponent implements OnInit {
       dialogRef.afterClosed().subscribe(()=>{console.log("dialog has been closed")});
      }
 
-     //logic for updating the course. Will eventually be in the update-course-component (popup thing)
+     
  
     //this.courseservice.updateCourse(this.courseObject).subscribe(myObserver);
   }

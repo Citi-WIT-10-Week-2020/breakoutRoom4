@@ -153,15 +153,12 @@ mutation CreateTopic(
     TopicName
     course
     TopicDescription
-    files {
+    resourceGroups {
       items {
         id
         course
         topic
-        filename
-        filetype
-        fileDescription
-        resourseGroup
+        groupName
         createdAt
         updatedAt
       }
@@ -181,15 +178,12 @@ mutation UpdateTopic(
     TopicName
     course
     TopicDescription
-    files {
+    resourceGroups {
       items {
         id
         course
         topic
-        filename
-        filetype
-        fileDescription
-        resourseGroup
+        groupName
         createdAt
         updatedAt
       }
@@ -209,6 +203,84 @@ mutation DeleteTopic(
     TopicName
     course
     TopicDescription
+    resourceGroups {
+      items {
+        id
+        course
+        topic
+        groupName
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation CreateResourceGroup(
+  $input: CreateResourceGroupInput!
+  $condition: ModelResourceGroupConditionInput
+) {
+  createResourceGroup(input: $input, condition: $condition) {
+    id
+    course
+    topic
+    groupName
+    files {
+      items {
+        id
+        course
+        topic
+        filename
+        filetype
+        fileDescription
+        resourseGroup
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateResourceGroup(
+  $input: UpdateResourceGroupInput!
+  $condition: ModelResourceGroupConditionInput
+) {
+  updateResourceGroup(input: $input, condition: $condition) {
+    id
+    course
+    topic
+    groupName
+    files {
+      items {
+        id
+        course
+        topic
+        filename
+        filetype
+        fileDescription
+        resourseGroup
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteResourceGroup(
+  $input: DeleteResourceGroupInput!
+  $condition: ModelResourceGroupConditionInput
+) {
+  deleteResourceGroup(input: $input, condition: $condition) {
+    id
+    course
+    topic
+    groupName
     files {
       items {
         id
@@ -239,6 +311,11 @@ mutation CreateFile(
     filetype
     fileDescription
     resourseGroup
+    file {
+      bucket
+      region
+      key
+    }
     createdAt
     updatedAt
   }
@@ -255,6 +332,11 @@ mutation UpdateFile(
     filetype
     fileDescription
     resourseGroup
+    file {
+      bucket
+      region
+      key
+    }
     createdAt
     updatedAt
   }
@@ -271,6 +353,11 @@ mutation DeleteFile(
     filetype
     fileDescription
     resourseGroup
+    file {
+      bucket
+      region
+      key
+    }
     createdAt
     updatedAt
   }
