@@ -23,22 +23,12 @@ export class UserinfoService{
         
     }
 
-    //an api call that retrieves the current user
-    //store that in a local variable
-
     getUserInfo () {
         
       return from(Auth.currentUserInfo());
     }
-/*
-    getUsername  () {
-      //  console.log("getUsername userinfo", this.userInfo);
-      //  console.log("getusername", this.userInfo.attributes.given_name + " " + this.userInfo.attributes.family_name);
-      //  return this.userInfo.attributes.given_name + " " + this.userInfo.attributes.family_name;
-       
-    } 
-*/
 
+    
     
     
 

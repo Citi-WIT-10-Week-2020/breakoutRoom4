@@ -21,32 +21,24 @@ import {CourseService} from '../../shared/courses.service';
 
 export class CourseScreenComponent implements OnInit {
   
-  courseId: String;
+  courseId: string;
   topics: Array<any>;
   topicObject: ITopic;
   course: String;
-
+  professorName: string;
+  courseName: string;
 
   constructor(private route: ActivatedRoute, private matDialog: MatDialog,private apiservice : APIService, private breakpointObserver: BreakpointObserver, private topicservice:TopicsService) { }
   
 
   ngOnInit(): void {
-
-    this.topicObject={
-      professor: "Mr. Default",
-      TopicName: "Default Topic",
-      TopicDescription: "this practice",
-      id: "213",
-      course: "Physics"
-    };
-
     //gets the course ID passed in from home-screen
     this.route.paramMap.subscribe(params => { 
       this.courseId = params.get('id'); 
       console.log("courseId", this.courseId);
     });
 
- 
+    
     //gets the course name using courseId
     this.apiservice.GetCourse(this.courseId.toString()).then((evt)=>{
       console.log("course", evt);
@@ -56,7 +48,7 @@ export class CourseScreenComponent implements OnInit {
       console.log(err);
     });
 
-   
+   //gets all the topics using courseId
    const myObserver = {
     next: x => {
     //  console.log("get topics" , x);
@@ -66,21 +58,29 @@ export class CourseScreenComponent implements OnInit {
     error: err => console.error('Observer got an error: ' + err),
     complete: () => console.log('Observer got a complete notification'),
   };
-    this.topicservice.getTopics().subscribe(myObserver);
+    this.topicservice.getTopics(this.courseId).subscribe(myObserver);
 
 
     //subscribe to any topic creations
+   
+   this.getTopics();
+   this.subscibeToTopicCreations();
+   this.subscribeToTopicDeletions();
+   this.subscribeToTopicDeletions(); 
+  }
+
+  subscibeToTopicCreations(){
     this.apiservice.OnCreateTopicListener.subscribe((evt)=>{
       const data = (evt as any).value.data.onCreateTopic;
       this.topics =[...this.topics,data];
     });
-    
-    //subscribes to any topic updates
+  }
+  subscribeToTopicUpdates(){
     this.apiservice.OnUpdateTopicListener.subscribe((evt)=>{
       console.log("HERE");
       const data = (evt as any).value.data.onUpdateTopic;
       console.log("data", data);
-      this.topics =[...this.topics,data];
+      
       console.log("An update has occurred!");
       //search thru array, find original, and replace it with the new one
       this.topics = this.topics.map((topic)=>{
@@ -90,8 +90,8 @@ export class CourseScreenComponent implements OnInit {
         else return topic;
       })
     });
-
-    //subscribes to any topic deletions
+  }
+  subscribeToTopicDeletions(){
     this.apiservice.OnDeleteTopicListener.subscribe((evt)=>{
       console.log("HEREE");
       console.log("A deletion has occured!");
@@ -103,27 +103,31 @@ export class CourseScreenComponent implements OnInit {
       });
       console.log(this.topics);
     });
-   
   }
-  // async createTopic(){
-  //   console.log('clicked');
-  //   const myObserver = {
-  //     next: x => {
-  //       console.log('create topic' , x);
-  //     },
-  //     error: err => console.error('Observer got an error: ' , err),
-  //     complete: () => console.log('Observer got a complete notification'),
-  //   };
-  //   this.topicObject.id = uuidv4();
-  //   this.topicservice.createTopic(this.topicObject).subscribe(myObserver);
-
-  // }
-
+  getTopics(){
+    const myObserver = {
+      next: x => {
+       console.log("get topics" , x);
+       
+        this.topics = x.topics.items;
+        console.log("topics", this.topics);
+        //also set professor and course name
+        this.courseName = x.courseName;
+        this.professorName = x.professor;
+      },
+      error: err => console.error('Observer got an error: ' + err),
+      complete: () => console.log('Observer got a complete notification'),
+    };
+      this.topicservice.getTopics(this.courseId).subscribe(myObserver);
+  }
   //open topic dialog
   openTopicDialog() {
     console.log("dialog opened");
     const dialogConfig = new MatDialogConfig();
     let dialogRef = this.matDialog.open(TopicDialogComponent, dialogConfig);
+    let instance =  dialogRef.componentInstance;
+    instance.professorName = this.professorName;
+    instance.courseName = this.courseName;
     dialogRef.afterClosed().subscribe(()=>{console.log("dialog has been closed")});
    }
 }
