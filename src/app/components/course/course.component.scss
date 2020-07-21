@@ -4,10 +4,13 @@
 }
 
 .course-card {
+    
     //height: flex;
     width: 275px;
     margin: 20px 0;
 }
+
+
 
 .course-card:hover {
     background-color: rgb(237, 221, 241);
@@ -17,14 +20,3 @@
 .default-img {
     max-width: 250px;
 }
-
-.mat-button {
-    padding: 0;
-    margin: 0;
-}
-
-.mat-card-actions {
-    align-items: center;
-    margin-left: 10px;
-}
-
