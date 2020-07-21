@@ -1,12 +1,9 @@
 
 
-<mat-card class="topic-card" tabindex="0" >
+<mat-card class="topic-card" tabindex="0">
+    <mat-card-title [routerLink]="['/topic', this.courseId, this.topicID, this.topic]" title="Click to go to topic">{{topic}}</mat-card-title>
 
-    <!--for when we have working topicIDs routerLink should be: ['/course', this.topicID-->
-    
-    <mat-card-title   [routerLink]="['/topic', this.topicDescription, this.topicID, this.topic]" title="Click to go to topic">{{topic}}</mat-card-title>
     <mat-card-content>
-
       <p>
         {{topicDescription}}
       </p>

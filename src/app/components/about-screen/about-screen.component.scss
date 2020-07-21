@@ -23,7 +23,7 @@
     display: flex;  
     align-items: left;
     vertical-align: center;
-    padding: 20px 0 30px;
+    padding: 20px 0 10px;
     text-decoration: none;
     flex-direction: column;
 }
@@ -33,6 +33,7 @@
     text-decoration: none;
     padding: 30px;
     color: rgb(94, 12, 119);
+    margin-bottom: 20px;
 }
 
 .subtitle-section {
@@ -57,47 +58,68 @@
     cursor: pointer;
 }
 
-.section-title {
+.history-content {
+    background-color: white;
     color: black;
-    margin-bottom: 30px;
-    font-size: 30px;
-}
-
-.faq {
-    background-color: rgba(255,255,255,0.75);
-    color: black;
-    margin-top: 50px;
     margin-left: 100px;
     margin-right: 100px;
-    margin-bottom: 100px;
-    padding: 50px;
     border-radius: .25em;
+    padding: 50px;
 }
 
-.faq-item {
-    padding: 10px;
-}
-
-.hr {
-    padding-top: 10px;
-}
-
-.examples {
-    background-color: rgba(255,255,255,0.75);
+.creators {
     color: black;
-    margin: 100px;
-    padding: 50px;
-    border-radius: .25em;
+    margin-right: 50px;
+    margin-left: 50px;
+    margin-top: 30px;
+    padding: 25px;
 }
 
-.question {
-    color: rgb(94, 12, 119);
+.section-title {
+    text-align: center;
+    font-size: 40px;
+    color: black;
+    margin-bottom: 40px;
+    margin-top: 75px;
 }
 
-.example-item {
-    color: rgb(94, 12, 119);
-    padding: 10px;
+.imgs {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
 }
+
+.creator-card {
+    max-width: 290px;
+    min-width: 100px;
+    max-height: 500px;
+    margin: 20px 0;
+}
+
+.cardcont {
+    align-items: center;
+}
+
+.default-img {
+    max-height: 40px;
+}
+
+.example-header-image {
+    background-image: url('https://builtin.com/sites/default/files/styles/ckeditor_optimize/public/inline-images/women-in-tech-pillar-page-online-communities-for-women.png');
+    background-size: cover;
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 
