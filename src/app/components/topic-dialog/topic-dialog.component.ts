@@ -14,8 +14,8 @@ import { TopicsService } from 'src/app/shared/topics.service';
 export class TopicDialogComponent implements OnInit {
   topic: FormGroup;
   topicObject : ITopic;
-  @Input() professorName: string;
-  @Input() courseName: string;
+  @Input() professorName : string;
+  @Input() courseName : string;
 
 
   ngOnInit() {
