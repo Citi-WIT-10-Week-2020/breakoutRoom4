@@ -14,8 +14,8 @@ export class TopicsService {
 
     constructor(private apiservice: APIService){}
 
-    getTopics () : Observable<any> {
-        return from(this.apiservice.ListTopics());
+    getTopics (id:string) : Observable<any> {
+        return from(this.apiservice.GetCourse(id));
     }
 
 

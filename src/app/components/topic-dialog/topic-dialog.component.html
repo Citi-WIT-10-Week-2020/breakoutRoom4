@@ -1,0 +1,26 @@
+<h2 mat-dialog-title>Add Topic</h2>
+    <mat-dialog-content class ="container">
+        <form novalidate [formGroup]= "topic" > <!--(ngSubmit)="onSubmit(course)" -->
+            <label>
+                <span>Topic Name:</span>
+                <input type="text" formControlName="TopicName">
+            </label>
+
+           <br>
+           <label>
+                <span>Topic Description:</span>
+                <input type="text" formControlName="TopicDescription">
+            </label>
+           <br>
+           <!-- <label>
+                <span>id:</span>           
+            <input type="string" formControlName="id">
+            </label> -->
+        </form>
+
+    </mat-dialog-content>
+
+<mat-dialog-actions>
+    <button class="btn-cancel" class="mat-raised-button" stye="padding: 5px 30px;" (click)="cancel()">Cancel</button>
+    <button type ="btn-submit" class="mat-raised-button" (click)="onSubmit()">Create</button>   
+</mat-dialog-actions>

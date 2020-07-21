@@ -69,10 +69,7 @@ ngOnInit(): void {
 
   /// when user signs in or signs out, the displayUserName function is called to 
   // read the name using currentUserInfo
-  /*ngOnChanges(changes: SimpleChanges){
-    console.log("ONCHANGES RAAAAN");
-    console.log("PROFESSOR NAME: "+ this.profName);
-*/
+  
   displayUserName() {
     //wrap in observable, and have profName subscribe :) rxjs 
     /*
@@ -88,7 +85,7 @@ ngOnInit(): void {
  // this.profName = this.userinfo.getUsername();
   //console.log("nav bar name", this.profName); //name not here
 
-  console.log("in displayUserName");
+    console.log("in displayUserName");
     
     const myObserver = {
       next: x => {
