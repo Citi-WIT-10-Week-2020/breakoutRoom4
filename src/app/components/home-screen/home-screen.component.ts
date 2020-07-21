@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { APIService } from '../../API.service';
 import { v4 as uuidv4 } from 'uuid';
 import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
@@ -22,9 +22,16 @@ import {CourseService} from '../../shared/courses.service';
 import { ICourse } from '../../shared/course';
 @Component({
   selector: 'app-home-screen',
-  templateUrl: './home-screen.component.html',
+  templateUrl: './home-screen.component.html', 
+  /*
+  template: `
+    <div>
+      <app-root>
+    </div>`
+    */
   styleUrls: ['./home-screen.component.scss'],
-  providers:[CourseService]
+  providers:[CourseService],
+  
 })
 export class HomeScreenComponent implements OnInit {
 
@@ -41,10 +48,6 @@ export class HomeScreenComponent implements OnInit {
     color:'lightblue'
   }*/
   courses: Array<any>;
-  
-  
-  
-
 
   constructor(private apiservice: APIService,private matDialog: MatDialog, private courseservice:CourseService, private breakpointObserver: BreakpointObserver) { 
 

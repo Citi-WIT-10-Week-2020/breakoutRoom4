@@ -5,7 +5,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 @Component({
   selector: 'app-topic-screen',
   templateUrl: './topic-screen.component.html',
-  styleUrls: ['./topic-screen.component.scss']
+  styleUrls: ['./topic-screen.component.scss'],
 })
 
 

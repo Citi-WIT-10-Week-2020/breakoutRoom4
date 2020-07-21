@@ -1,20 +1,45 @@
 
- <amplify-authenticator usernameAlias="email">
+<div id="removable" class="flex">
+
+    <div *ngIf="displayLogo" class="container">
+      <img  class="logo-img" src="assets/logo_outline.png"> 
+      <div class="overlay">
+         <h1 class="description">Welcome to Acorn! </h1>
+      <!--  <h3 class="description"> <br>The vision behind this application is to provide a simple, 
+        user-friendly repository for students and teachers to store/access resources for courses.
+      Login to visit the About page in the menu on the top right corner to learn more about Acorn!
+        </h3>  -->
+    
+      </div>
+    </div> 
+
+
+<amplify-authenticator id="center" usernameAlias="email" > 
+
    
      <amplify-sign-up
       slot="sign-up"
       usernameAlias="email"
       [formFields]="formFields"
-  
 
       ></amplify-sign-up>
-      <amplify-sign-in slot="sign-in" usernameAlias="email"></amplify-sign-in>
-       <amplify-sign-in slot="sign-in" usernameAlias="first_name"></amplify-sign-in>
-  <amplify-authenticator>
+    
+        <amplify-sign-in  header-text = "Sign In." slot="sign-in" usernameAlias="email" ></amplify-sign-in>
+   
+      
+ <!-- <amplify-authenticator> -->
     <div>
       <app-nav-bar></app-nav-bar>
       <router-outlet></router-outlet>
       <app-footer></app-footer>
     </div>
+    
   </amplify-authenticator> 
+
+</div> 
+
+
+
+
+
 

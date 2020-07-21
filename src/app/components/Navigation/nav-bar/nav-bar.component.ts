@@ -48,6 +48,7 @@ ngOnInit(): void {
       switch (data.payload.event) {
 
          case 'signIn':
+              location.reload();
               this.displayUserName();
               break;
           case 'signUp':
