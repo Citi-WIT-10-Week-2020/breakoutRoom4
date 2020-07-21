@@ -87,15 +87,12 @@ query GetTopic($id: ID!) {
     TopicName
     course
     TopicDescription
-    files {
+    resourceGroups {
       items {
         id
         course
         topic
-        filename
-        filetype
-        fileDescription
-        resourseGroup
+        groupName
         createdAt
         updatedAt
       }
@@ -117,6 +114,50 @@ query ListTopics(
       TopicName
       course
       TopicDescription
+      resourceGroups {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query GetResourceGroup($id: ID!) {
+  getResourceGroup(id: $id) {
+    id
+    course
+    topic
+    groupName
+    files {
+      items {
+        id
+        course
+        topic
+        filename
+        filetype
+        fileDescription
+        resourseGroup
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+query ListResourceGroups(
+  $filter: ModelResourceGroupFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listResourceGroups(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      course
+      topic
+      groupName
       files {
         nextToken
       }
@@ -135,6 +176,11 @@ query GetFile($id: ID!) {
     filetype
     fileDescription
     resourseGroup
+    file {
+      bucket
+      region
+      key
+    }
     createdAt
     updatedAt
   }
@@ -153,6 +199,38 @@ query ListFiles(
       filetype
       fileDescription
       resourseGroup
+      file {
+        bucket
+        region
+        key
+      }
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query ProfessorByName(
+  $professorName: String
+  $sortDirection: ModelSortDirection
+  $filter: ModelProfessorFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  professorByName(
+    professorName: $professorName
+    sortDirection: $sortDirection
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      id
+      professorName
+      universityName
+      courses {
+        nextToken
+      }
       createdAt
       updatedAt
     }
@@ -209,7 +287,7 @@ query TopicByCourseByProfessor(
       TopicName
       course
       TopicDescription
-      files {
+      resourceGroups {
         nextToken
       }
       createdAt
@@ -222,7 +300,7 @@ query FileByCourseByTopic(
   $course: String
   $topic: ModelStringKeyConditionInput
   $sortDirection: ModelSortDirection
-  $filter: ModelFileFilterInput
+  $filter: ModelResourceGroupFilterInput
   $limit: Int
   $nextToken: String
 ) {
@@ -238,24 +316,26 @@ query FileByCourseByTopic(
       id
       course
       topic
-      filename
-      filetype
-      fileDescription
-      resourseGroup
+      groupName
+      files {
+        nextToken
+      }
       createdAt
       updatedAt
     }
     nextToken
   }
 }
-query FileByResourceGroup(
-  $resourseGroup: String
+query FileByTopicByResourceGroup(
+  $topic: String
+  $resourseGroup: ModelStringKeyConditionInput
   $sortDirection: ModelSortDirection
   $filter: ModelFileFilterInput
   $limit: Int
   $nextToken: String
 ) {
-  fileByResourceGroup(
+  fileByTopicByResourceGroup(
+    topic: $topic
     resourseGroup: $resourseGroup
     sortDirection: $sortDirection
     filter: $filter
@@ -270,6 +350,11 @@ query FileByResourceGroup(
       filetype
       fileDescription
       resourseGroup
+      file {
+        bucket
+        region
+        key
+      }
       createdAt
       updatedAt
     }
@@ -298,6 +383,11 @@ query FileByFilename(
       filetype
       fileDescription
       resourseGroup
+      file {
+        bucket
+        region
+        key
+      }
       createdAt
       updatedAt
     }

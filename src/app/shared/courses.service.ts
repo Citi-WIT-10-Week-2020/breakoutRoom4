@@ -11,8 +11,9 @@ import { ICourse } from './course';
 export class CourseService{
     constructor(private apiservice: APIService){}
 
-    getCourses() : Observable<any> {
-        return from(this.apiservice.ListCourses());
+    getCourses(professor:string) : Observable<any> {
+        //return from(this.apiservice.ListCourses());
+        return from(this.apiservice.ProfessorByName(professor));
     }
 
     createCourse(course:ICourse){

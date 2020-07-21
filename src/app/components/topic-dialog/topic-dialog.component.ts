@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, Input } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { FormControl, FormGroup } from '@angular/forms';
 import { v4 as uuidv4 } from 'uuid';
@@ -14,14 +14,16 @@ import { TopicsService } from 'src/app/shared/topics.service';
 export class TopicDialogComponent implements OnInit {
   topic: FormGroup;
   topicObject : ITopic;
+  @Input() professorName : string;
+  @Input() courseName : string;
 
   ngOnInit() {
     this.topic = new FormGroup({
       TopicName: new FormControl(''),
       TopicDescription: new FormControl(''),
       id: new FormControl(uuidv4()),
-      professor : new FormControl('Mr. Bean'), 
-      course : new FormControl('sciences'),
+      professor : new FormControl(this.professorName), 
+      course : new FormControl(this.courseName),
     })
   };
   
