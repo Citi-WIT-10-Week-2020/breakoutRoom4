@@ -5,7 +5,13 @@ import { CourseService } from '../../shared/courses.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { UpdateDialogComponent } from 'src/app/components/update-dialog/update-dialog.component';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+
+import {ClipboardModule} from '@angular/cdk/clipboard';
+
+import { CopyDialogComponent } from '../copy-dialog/copy-dialog.component';
+
 import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
+
 
 @Component({
   selector: 'app-course',
@@ -19,10 +25,35 @@ export class CourseComponent implements OnInit {
   @Input() description: string;
   @Input() professor: string;
 
-  constructor(private apiservice: APIService, private matDialog: MatDialog, private deleteDialog: MatDialog, private courseservice:CourseService) { }
+
+  constructor(private apiservice: APIService, private courseservice:CourseService, private matDialog: MatDialog, private copyDialog: MatDialog, private deleteDialog: MatDialog) { }
       
   ngOnInit(): void { }
+  
+    //copy course id
+    /*copyCourseID() {
+      const selBox = document.createElement('textarea');
+      selBox.select();
+      selBox.value = this.courseID;
+      document.body.appendChild(selBox);
+      document.execCommand('copy');
+    }*/
 
+    openCopyDialog() {
+        const dialogConfig = new MatDialogConfig();
+
+        dialogConfig.disableClose = false;
+        dialogConfig.autoFocus = true;
+
+        dialogConfig.data = {
+            courseId: this.courseID
+        };
+
+        //this.copyDialog.open(CopyDialogComponent, dialogConfig);
+
+        let dialogRef = this.copyDialog.open(CopyDialogComponent, dialogConfig);
+        dialogRef.afterClosed().subscribe(()=>{console.log("dialog has been closed")});  
+    }
     
 
     // //logic for deleting course. Hardcoded, will update to user input
