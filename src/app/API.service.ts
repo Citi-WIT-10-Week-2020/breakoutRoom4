@@ -126,6 +126,33 @@ export type DeleteTopicInput = {
   id?: string | null;
 };
 
+export type CreateResourceGroupInput = {
+  id?: string | null;
+  course: string;
+  topic: string;
+  groupName: string;
+};
+
+export type ModelResourceGroupConditionInput = {
+  course?: ModelStringInput | null;
+  topic?: ModelStringInput | null;
+  groupName?: ModelStringInput | null;
+  and?: Array<ModelResourceGroupConditionInput | null> | null;
+  or?: Array<ModelResourceGroupConditionInput | null> | null;
+  not?: ModelResourceGroupConditionInput | null;
+};
+
+export type UpdateResourceGroupInput = {
+  id: string;
+  course?: string | null;
+  topic?: string | null;
+  groupName?: string | null;
+};
+
+export type DeleteResourceGroupInput = {
+  id?: string | null;
+};
+
 export type CreateFileInput = {
   id?: string | null;
   course: string;
@@ -214,6 +241,16 @@ export type ModelTopicFilterInput = {
   and?: Array<ModelTopicFilterInput | null> | null;
   or?: Array<ModelTopicFilterInput | null> | null;
   not?: ModelTopicFilterInput | null;
+};
+
+export type ModelResourceGroupFilterInput = {
+  id?: ModelIDInput | null;
+  course?: ModelStringInput | null;
+  topic?: ModelStringInput | null;
+  groupName?: ModelStringInput | null;
+  and?: Array<ModelResourceGroupFilterInput | null> | null;
+  or?: Array<ModelResourceGroupFilterInput | null> | null;
+  not?: ModelResourceGroupFilterInput | null;
 };
 
 export type ModelFileFilterInput = {
@@ -389,17 +426,14 @@ export type CreateTopicMutation = {
   TopicName: string;
   course: string;
   TopicDescription: string;
-  files: {
-    __typename: "ModelFileConnection";
+  resourceGroups: {
+    __typename: "ModelResourceGroupConnection";
     items: Array<{
-      __typename: "File";
+      __typename: "ResourceGroup";
       id: string;
       course: string;
       topic: string;
-      filename: string;
-      filetype: string;
-      fileDescription: string | null;
-      resourseGroup: string;
+      groupName: string;
       createdAt: string;
       updatedAt: string;
     } | null> | null;
@@ -416,6 +450,53 @@ export type UpdateTopicMutation = {
   TopicName: string;
   course: string;
   TopicDescription: string;
+  resourceGroups: {
+    __typename: "ModelResourceGroupConnection";
+    items: Array<{
+      __typename: "ResourceGroup";
+      id: string;
+      course: string;
+      topic: string;
+      groupName: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type DeleteTopicMutation = {
+  __typename: "Topic";
+  id: string;
+  professor: string;
+  TopicName: string;
+  course: string;
+  TopicDescription: string;
+  resourceGroups: {
+    __typename: "ModelResourceGroupConnection";
+    items: Array<{
+      __typename: "ResourceGroup";
+      id: string;
+      course: string;
+      topic: string;
+      groupName: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type CreateResourceGroupMutation = {
+  __typename: "ResourceGroup";
+  id: string;
+  course: string;
+  topic: string;
+  groupName: string;
   files: {
     __typename: "ModelFileConnection";
     items: Array<{
@@ -436,13 +517,38 @@ export type UpdateTopicMutation = {
   updatedAt: string;
 };
 
-export type DeleteTopicMutation = {
-  __typename: "Topic";
+export type UpdateResourceGroupMutation = {
+  __typename: "ResourceGroup";
   id: string;
-  professor: string;
-  TopicName: string;
   course: string;
-  TopicDescription: string;
+  topic: string;
+  groupName: string;
+  files: {
+    __typename: "ModelFileConnection";
+    items: Array<{
+      __typename: "File";
+      id: string;
+      course: string;
+      topic: string;
+      filename: string;
+      filetype: string;
+      fileDescription: string | null;
+      resourseGroup: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type DeleteResourceGroupMutation = {
+  __typename: "ResourceGroup";
+  id: string;
+  course: string;
+  topic: string;
+  groupName: string;
   files: {
     __typename: "ModelFileConnection";
     items: Array<{
@@ -608,6 +714,48 @@ export type GetTopicQuery = {
   TopicName: string;
   course: string;
   TopicDescription: string;
+  resourceGroups: {
+    __typename: "ModelResourceGroupConnection";
+    items: Array<{
+      __typename: "ResourceGroup";
+      id: string;
+      course: string;
+      topic: string;
+      groupName: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type ListTopicsQuery = {
+  __typename: "ModelTopicConnection";
+  items: Array<{
+    __typename: "Topic";
+    id: string;
+    professor: string;
+    TopicName: string;
+    course: string;
+    TopicDescription: string;
+    resourceGroups: {
+      __typename: "ModelResourceGroupConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  } | null> | null;
+  nextToken: string | null;
+};
+
+export type GetResourceGroupQuery = {
+  __typename: "ResourceGroup";
+  id: string;
+  course: string;
+  topic: string;
+  groupName: string;
   files: {
     __typename: "ModelFileConnection";
     items: Array<{
@@ -628,15 +776,14 @@ export type GetTopicQuery = {
   updatedAt: string;
 };
 
-export type ListTopicsQuery = {
-  __typename: "ModelTopicConnection";
+export type ListResourceGroupsQuery = {
+  __typename: "ModelResourceGroupConnection";
   items: Array<{
-    __typename: "Topic";
+    __typename: "ResourceGroup";
     id: string;
-    professor: string;
-    TopicName: string;
     course: string;
-    TopicDescription: string;
+    topic: string;
+    groupName: string;
     files: {
       __typename: "ModelFileConnection";
       nextToken: string | null;
@@ -689,6 +836,23 @@ export type ListFilesQuery = {
   nextToken: string | null;
 };
 
+export type ProfessorByNameQuery = {
+  __typename: "ModelProfessorConnection";
+  items: Array<{
+    __typename: "Professor";
+    id: string;
+    professorName: string;
+    universityName: string;
+    courses: {
+      __typename: "ModelCourseConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  } | null> | null;
+  nextToken: string | null;
+};
+
 export type CourseByProfessorQuery = {
   __typename: "ModelCourseConnection";
   items: Array<{
@@ -716,6 +880,24 @@ export type TopicByCourseByProfessorQuery = {
     TopicName: string;
     course: string;
     TopicDescription: string;
+    resourceGroups: {
+      __typename: "ModelResourceGroupConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  } | null> | null;
+  nextToken: string | null;
+};
+
+export type FileByCourseByTopicQuery = {
+  __typename: "ModelResourceGroupConnection";
+  items: Array<{
+    __typename: "ResourceGroup";
+    id: string;
+    course: string;
+    topic: string;
+    groupName: string;
     files: {
       __typename: "ModelFileConnection";
       nextToken: string | null;
@@ -726,30 +908,7 @@ export type TopicByCourseByProfessorQuery = {
   nextToken: string | null;
 };
 
-export type FileByCourseByTopicQuery = {
-  __typename: "ModelFileConnection";
-  items: Array<{
-    __typename: "File";
-    id: string;
-    course: string;
-    topic: string;
-    filename: string;
-    filetype: string;
-    fileDescription: string | null;
-    resourseGroup: string;
-    file: {
-      __typename: "S3Object";
-      bucket: string;
-      region: string;
-      key: string;
-    } | null;
-    createdAt: string;
-    updatedAt: string;
-  } | null> | null;
-  nextToken: string | null;
-};
-
-export type FileByResourceGroupQuery = {
+export type FileByTopicByResourceGroupQuery = {
   __typename: "ModelFileConnection";
   items: Array<{
     __typename: "File";
@@ -940,17 +1099,14 @@ export type OnCreateTopicSubscription = {
   TopicName: string;
   course: string;
   TopicDescription: string;
-  files: {
-    __typename: "ModelFileConnection";
+  resourceGroups: {
+    __typename: "ModelResourceGroupConnection";
     items: Array<{
-      __typename: "File";
+      __typename: "ResourceGroup";
       id: string;
       course: string;
       topic: string;
-      filename: string;
-      filetype: string;
-      fileDescription: string | null;
-      resourseGroup: string;
+      groupName: string;
       createdAt: string;
       updatedAt: string;
     } | null> | null;
@@ -967,6 +1123,53 @@ export type OnUpdateTopicSubscription = {
   TopicName: string;
   course: string;
   TopicDescription: string;
+  resourceGroups: {
+    __typename: "ModelResourceGroupConnection";
+    items: Array<{
+      __typename: "ResourceGroup";
+      id: string;
+      course: string;
+      topic: string;
+      groupName: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnDeleteTopicSubscription = {
+  __typename: "Topic";
+  id: string;
+  professor: string;
+  TopicName: string;
+  course: string;
+  TopicDescription: string;
+  resourceGroups: {
+    __typename: "ModelResourceGroupConnection";
+    items: Array<{
+      __typename: "ResourceGroup";
+      id: string;
+      course: string;
+      topic: string;
+      groupName: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnCreateResourceGroupSubscription = {
+  __typename: "ResourceGroup";
+  id: string;
+  course: string;
+  topic: string;
+  groupName: string;
   files: {
     __typename: "ModelFileConnection";
     items: Array<{
@@ -987,13 +1190,38 @@ export type OnUpdateTopicSubscription = {
   updatedAt: string;
 };
 
-export type OnDeleteTopicSubscription = {
-  __typename: "Topic";
+export type OnUpdateResourceGroupSubscription = {
+  __typename: "ResourceGroup";
   id: string;
-  professor: string;
-  TopicName: string;
   course: string;
-  TopicDescription: string;
+  topic: string;
+  groupName: string;
+  files: {
+    __typename: "ModelFileConnection";
+    items: Array<{
+      __typename: "File";
+      id: string;
+      course: string;
+      topic: string;
+      filename: string;
+      filetype: string;
+      fileDescription: string | null;
+      resourseGroup: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnDeleteResourceGroupSubscription = {
+  __typename: "ResourceGroup";
+  id: string;
+  course: string;
+  topic: string;
+  groupName: string;
   files: {
     __typename: "ModelFileConnection";
     items: Array<{
@@ -1321,17 +1549,14 @@ export class APIService {
           TopicName
           course
           TopicDescription
-          files {
+          resourceGroups {
             __typename
             items {
               __typename
               id
               course
               topic
-              filename
-              filetype
-              fileDescription
-              resourseGroup
+              groupName
               createdAt
               updatedAt
             }
@@ -1364,17 +1589,14 @@ export class APIService {
           TopicName
           course
           TopicDescription
-          files {
+          resourceGroups {
             __typename
             items {
               __typename
               id
               course
               topic
-              filename
-              filetype
-              fileDescription
-              resourseGroup
+              groupName
               createdAt
               updatedAt
             }
@@ -1407,6 +1629,45 @@ export class APIService {
           TopicName
           course
           TopicDescription
+          resourceGroups {
+            __typename
+            items {
+              __typename
+              id
+              course
+              topic
+              groupName
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <DeleteTopicMutation>response.data.deleteTopic;
+  }
+  async CreateResourceGroup(
+    input: CreateResourceGroupInput,
+    condition?: ModelResourceGroupConditionInput
+  ): Promise<CreateResourceGroupMutation> {
+    const statement = `mutation CreateResourceGroup($input: CreateResourceGroupInput!, $condition: ModelResourceGroupConditionInput) {
+        createResourceGroup(input: $input, condition: $condition) {
+          __typename
+          id
+          course
+          topic
+          groupName
           files {
             __typename
             items {
@@ -1436,7 +1697,91 @@ export class APIService {
     const response = (await API.graphql(
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
-    return <DeleteTopicMutation>response.data.deleteTopic;
+    return <CreateResourceGroupMutation>response.data.createResourceGroup;
+  }
+  async UpdateResourceGroup(
+    input: UpdateResourceGroupInput,
+    condition?: ModelResourceGroupConditionInput
+  ): Promise<UpdateResourceGroupMutation> {
+    const statement = `mutation UpdateResourceGroup($input: UpdateResourceGroupInput!, $condition: ModelResourceGroupConditionInput) {
+        updateResourceGroup(input: $input, condition: $condition) {
+          __typename
+          id
+          course
+          topic
+          groupName
+          files {
+            __typename
+            items {
+              __typename
+              id
+              course
+              topic
+              filename
+              filetype
+              fileDescription
+              resourseGroup
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <UpdateResourceGroupMutation>response.data.updateResourceGroup;
+  }
+  async DeleteResourceGroup(
+    input: DeleteResourceGroupInput,
+    condition?: ModelResourceGroupConditionInput
+  ): Promise<DeleteResourceGroupMutation> {
+    const statement = `mutation DeleteResourceGroup($input: DeleteResourceGroupInput!, $condition: ModelResourceGroupConditionInput) {
+        deleteResourceGroup(input: $input, condition: $condition) {
+          __typename
+          id
+          course
+          topic
+          groupName
+          files {
+            __typename
+            items {
+              __typename
+              id
+              course
+              topic
+              filename
+              filetype
+              fileDescription
+              resourseGroup
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <DeleteResourceGroupMutation>response.data.deleteResourceGroup;
   }
   async CreateFile(
     input: CreateFileInput,
@@ -1695,17 +2040,14 @@ export class APIService {
           TopicName
           course
           TopicDescription
-          files {
+          resourceGroups {
             __typename
             items {
               __typename
               id
               course
               topic
-              filename
-              filetype
-              fileDescription
-              resourseGroup
+              groupName
               createdAt
               updatedAt
             }
@@ -1738,7 +2080,7 @@ export class APIService {
             TopicName
             course
             TopicDescription
-            files {
+            resourceGroups {
               __typename
               nextToken
             }
@@ -1762,6 +2104,81 @@ export class APIService {
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
     return <ListTopicsQuery>response.data.listTopics;
+  }
+  async GetResourceGroup(id: string): Promise<GetResourceGroupQuery> {
+    const statement = `query GetResourceGroup($id: ID!) {
+        getResourceGroup(id: $id) {
+          __typename
+          id
+          course
+          topic
+          groupName
+          files {
+            __typename
+            items {
+              __typename
+              id
+              course
+              topic
+              filename
+              filetype
+              fileDescription
+              resourseGroup
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      id
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <GetResourceGroupQuery>response.data.getResourceGroup;
+  }
+  async ListResourceGroups(
+    filter?: ModelResourceGroupFilterInput,
+    limit?: number,
+    nextToken?: string
+  ): Promise<ListResourceGroupsQuery> {
+    const statement = `query ListResourceGroups($filter: ModelResourceGroupFilterInput, $limit: Int, $nextToken: String) {
+        listResourceGroups(filter: $filter, limit: $limit, nextToken: $nextToken) {
+          __typename
+          items {
+            __typename
+            id
+            course
+            topic
+            groupName
+            files {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          nextToken
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <ListResourceGroupsQuery>response.data.listResourceGroups;
   }
   async GetFile(id: string): Promise<GetFileQuery> {
     const statement = `query GetFile($id: ID!) {
@@ -1836,6 +2253,58 @@ export class APIService {
     )) as any;
     return <ListFilesQuery>response.data.listFiles;
   }
+  async ProfessorByName(
+    professorName?: string,
+    sortDirection?: ModelSortDirection,
+    filter?: ModelProfessorFilterInput,
+    limit?: number,
+    nextToken?: string
+  ): Promise<ProfessorByNameQuery> {
+    const statement = `query ProfessorByName($professorName: String, $sortDirection: ModelSortDirection, $filter: ModelProfessorFilterInput, $limit: Int, $nextToken: String) {
+        professorByName(professorName: $professorName, sortDirection: $sortDirection, filter: $filter, limit: $limit, nextToken: $nextToken) {
+          __typename
+          items {
+            __typename
+            id
+            professorName
+            universityName
+            courses {
+              __typename
+              nextToken
+              items
+              {
+                courseName
+                courseDescription
+                id
+              }
+            }
+            createdAt
+            updatedAt
+          }
+          nextToken
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (professorName) {
+      gqlAPIServiceArguments.professorName = professorName;
+    }
+    if (sortDirection) {
+      gqlAPIServiceArguments.sortDirection = sortDirection;
+    }
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <ProfessorByNameQuery>response.data.professorByName;
+  }
   async CourseByProfessor(
     professor?: string,
     sortDirection?: ModelSortDirection,
@@ -1901,7 +2370,7 @@ export class APIService {
             TopicName
             course
             TopicDescription
-            files {
+            resourceGroups {
               __typename
               nextToken
             }
@@ -1941,11 +2410,11 @@ export class APIService {
     course?: string,
     topic?: ModelStringKeyConditionInput,
     sortDirection?: ModelSortDirection,
-    filter?: ModelFileFilterInput,
+    filter?: ModelResourceGroupFilterInput,
     limit?: number,
     nextToken?: string
   ): Promise<FileByCourseByTopicQuery> {
-    const statement = `query FileByCourseByTopic($course: String, $topic: ModelStringKeyConditionInput, $sortDirection: ModelSortDirection, $filter: ModelFileFilterInput, $limit: Int, $nextToken: String) {
+    const statement = `query FileByCourseByTopic($course: String, $topic: ModelStringKeyConditionInput, $sortDirection: ModelSortDirection, $filter: ModelResourceGroupFilterInput, $limit: Int, $nextToken: String) {
         fileByCourseByTopic(course: $course, topic: $topic, sortDirection: $sortDirection, filter: $filter, limit: $limit, nextToken: $nextToken) {
           __typename
           items {
@@ -1953,15 +2422,10 @@ export class APIService {
             id
             course
             topic
-            filename
-            filetype
-            fileDescription
-            resourseGroup
-            file {
+            groupName
+            files {
               __typename
-              bucket
-              region
-              key
+              nextToken
             }
             createdAt
             updatedAt
@@ -1993,15 +2457,16 @@ export class APIService {
     )) as any;
     return <FileByCourseByTopicQuery>response.data.fileByCourseByTopic;
   }
-  async FileByResourceGroup(
-    resourseGroup?: string,
+  async FileByTopicByResourceGroup(
+    topic?: string,
+    resourseGroup?: ModelStringKeyConditionInput,
     sortDirection?: ModelSortDirection,
     filter?: ModelFileFilterInput,
     limit?: number,
     nextToken?: string
-  ): Promise<FileByResourceGroupQuery> {
-    const statement = `query FileByResourceGroup($resourseGroup: String, $sortDirection: ModelSortDirection, $filter: ModelFileFilterInput, $limit: Int, $nextToken: String) {
-        fileByResourceGroup(resourseGroup: $resourseGroup, sortDirection: $sortDirection, filter: $filter, limit: $limit, nextToken: $nextToken) {
+  ): Promise<FileByTopicByResourceGroupQuery> {
+    const statement = `query FileByTopicByResourceGroup($topic: String, $resourseGroup: ModelStringKeyConditionInput, $sortDirection: ModelSortDirection, $filter: ModelFileFilterInput, $limit: Int, $nextToken: String) {
+        fileByTopicByResourceGroup(topic: $topic, resourseGroup: $resourseGroup, sortDirection: $sortDirection, filter: $filter, limit: $limit, nextToken: $nextToken) {
           __typename
           items {
             __typename
@@ -2025,6 +2490,9 @@ export class APIService {
         }
       }`;
     const gqlAPIServiceArguments: any = {};
+    if (topic) {
+      gqlAPIServiceArguments.topic = topic;
+    }
     if (resourseGroup) {
       gqlAPIServiceArguments.resourseGroup = resourseGroup;
     }
@@ -2043,7 +2511,9 @@ export class APIService {
     const response = (await API.graphql(
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
-    return <FileByResourceGroupQuery>response.data.fileByResourceGroup;
+    return <FileByTopicByResourceGroupQuery>(
+      response.data.fileByTopicByResourceGroup
+    );
   }
   async FileByFilename(
     resourseGroup?: string,
@@ -2287,17 +2757,14 @@ export class APIService {
           TopicName
           course
           TopicDescription
-          files {
+          resourceGroups {
             __typename
             items {
               __typename
               id
               course
               topic
-              filename
-              filetype
-              fileDescription
-              resourseGroup
+              groupName
               createdAt
               updatedAt
             }
@@ -2320,17 +2787,14 @@ export class APIService {
           TopicName
           course
           TopicDescription
-          files {
+          resourceGroups {
             __typename
             items {
               __typename
               id
               course
               topic
-              filename
-              filetype
-              fileDescription
-              resourseGroup
+              groupName
               createdAt
               updatedAt
             }
@@ -2353,6 +2817,37 @@ export class APIService {
           TopicName
           course
           TopicDescription
+          resourceGroups {
+            __typename
+            items {
+              __typename
+              id
+              course
+              topic
+              groupName
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnDeleteTopicSubscription>;
+
+  OnCreateResourceGroupListener: Observable<
+    OnCreateResourceGroupSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnCreateResourceGroup {
+        onCreateResourceGroup {
+          __typename
+          id
+          course
+          topic
+          groupName
           files {
             __typename
             items {
@@ -2374,7 +2869,75 @@ export class APIService {
         }
       }`
     )
-  ) as Observable<OnDeleteTopicSubscription>;
+  ) as Observable<OnCreateResourceGroupSubscription>;
+
+  OnUpdateResourceGroupListener: Observable<
+    OnUpdateResourceGroupSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnUpdateResourceGroup {
+        onUpdateResourceGroup {
+          __typename
+          id
+          course
+          topic
+          groupName
+          files {
+            __typename
+            items {
+              __typename
+              id
+              course
+              topic
+              filename
+              filetype
+              fileDescription
+              resourseGroup
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnUpdateResourceGroupSubscription>;
+
+  OnDeleteResourceGroupListener: Observable<
+    OnDeleteResourceGroupSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnDeleteResourceGroup {
+        onDeleteResourceGroup {
+          __typename
+          id
+          course
+          topic
+          groupName
+          files {
+            __typename
+            items {
+              __typename
+              id
+              course
+              topic
+              filename
+              filetype
+              fileDescription
+              resourseGroup
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnDeleteResourceGroupSubscription>;
 
   OnCreateFileListener: Observable<OnCreateFileSubscription> = API.graphql(
     graphqlOperation(

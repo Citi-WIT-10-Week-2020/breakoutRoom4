@@ -54,6 +54,7 @@ export class TopicScreenComponent implements OnInit {
     console.log("ID",this.files[0].id);
     this.fileservice.downloadFile(this.files[0].id);
   }
+  
   getFiles(){
     const myObserver = {
       next: x => {

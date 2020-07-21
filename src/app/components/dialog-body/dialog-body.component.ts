@@ -1,4 +1,4 @@
-import {Component, Inject} from '@angular/core';
+import {Component, Inject, Input} from '@angular/core';
 import {OnInit} from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 import { FormControl, FormGroup } from '@angular/forms';
@@ -13,8 +13,9 @@ import { v4 as uuidv4 } from 'uuid';
 })
 
 export class DialogBodyComponent implements OnInit{
+  //@Input, pass in the professor Name
+  @Input() professorName : string;
   course : FormGroup;
-
   courseObject: ICourse; 
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, public dialogRef: MatDialogRef<DialogBodyComponent>, private courseservice:CourseService) {}
@@ -23,7 +24,7 @@ export class DialogBodyComponent implements OnInit{
     //create form group..will eventually have to pass in param for professor
     this.course = new FormGroup({
       courseName: new FormControl(''),
-      professor: new FormControl('Yong Yoon'),
+      professor: new FormControl(this.professorName),
       courseDescription: new FormControl(''),
       id: new FormControl(uuidv4())
     })
