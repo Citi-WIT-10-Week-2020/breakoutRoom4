@@ -18,7 +18,6 @@ import { HelpScreenComponent } from './components/help-screen/help-screen.compon
 import { CourseComponent } from './components/course/course.component';
 import { TopicComponent } from './components/topic/topic.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
@@ -39,6 +38,13 @@ import { FaqComponent } from './components/topic-screen-folder/faq/faq.component
 
 import { UpdateDialogComponent } from './components/update-dialog/update-dialog.component';
 import {TopicDialogComponent} from './components/topic-dialog/topic-dialog.component';
+import { UpdateTopicDialogComponent } from './components/update-topic-dialog/update-topic-dialog.component';
+import { DeleteDialogComponent } from './components/delete-dialog/delete-dialog.component';
+import { DeleteTopicDialogComponent } from './components/delete-topic-dialog/delete-topic-dialog.component';
+
+
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
 
 
 
@@ -60,6 +66,12 @@ import {TopicDialogComponent} from './components/topic-dialog/topic-dialog.compo
     TopicDialogComponent,
 
     HelpScreenComponent,
+
+    UpdateTopicDialogComponent,
+
+    DeleteDialogComponent,
+
+    DeleteTopicDialogComponent,
     
   ],
   imports: [
@@ -76,11 +88,10 @@ import {TopicDialogComponent} from './components/topic-dialog/topic-dialog.compo
     MatGridListModule,
     FlexLayoutModule,
     MatExpansionModule,
-
-  
+    MatFormFieldModule,
     MatDialogModule,
     ReactiveFormsModule,
-    
+    MatInputModule
   ],
   bootstrap: [AppComponent],
   entryComponents: [DialogBodyComponent, UpdateDialogComponent],

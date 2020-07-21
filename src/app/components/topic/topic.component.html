@@ -4,7 +4,7 @@
 
     <!--for when we have working topicIDs routerLink should be: ['/course', this.topicID-->
     
-    <mat-card-title   [routerLink]="['/topic', this.courseId, this.topicID, this.topic]" title="Click to go to topic">{{topic}}</mat-card-title>
+    <mat-card-title   [routerLink]="['/topic', this.topicDescription, this.topicID, this.topic]" title="Click to go to topic">{{topic}}</mat-card-title>
     <mat-card-content>
 
       <p>
@@ -12,7 +12,7 @@
       </p>
     </mat-card-content>
     <mat-card-actions>
-        <button mat-button (click)="updateTopic()">UPDATE</button>
-        <button mat-button (click)="deleteTopic()">DELETE</button>
+        <button mat-button (click)="openUpdateTopicDialog()">UPDATE</button>
+        <button mat-button (click)="openDeleteTopicDialog()">DELETE</button>
     </mat-card-actions>
 </mat-card>
