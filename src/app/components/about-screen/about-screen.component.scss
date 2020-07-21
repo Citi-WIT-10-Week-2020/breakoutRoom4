@@ -69,10 +69,10 @@
 
 .creators {
     color: black;
-    margin-right: 100px;
-    margin-left: 100px;
+    margin-right: 50px;
+    margin-left: 50px;
     margin-top: 30px;
-    padding: 50px;
+    padding: 25px;
 }
 
 .section-title {
@@ -91,11 +91,26 @@
 }
 
 .creator-card {
-    max-width: 250px;
+    max-width: 290px;
     min-width: 100px;
     max-height: 500px;
     margin: 20px 0;
 }
+
+.cardcont {
+    align-items: center;
+}
+
+.default-img {
+    max-height: 40px;
+}
+
+.example-header-image {
+    background-image: url('https://builtin.com/sites/default/files/styles/ckeditor_optimize/public/inline-images/women-in-tech-pillar-page-online-communities-for-women.png');
+    background-size: cover;
+}
+
+
 
 
 
