@@ -5,6 +5,7 @@ import { CourseService } from '../../shared/courses.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { UpdateDialogComponent } from 'src/app/components/update-dialog/update-dialog.component';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
 
 @Component({
   selector: 'app-course',
@@ -18,24 +19,24 @@ export class CourseComponent implements OnInit {
   @Input() description: string;
   @Input() professor: string;
 
-  constructor(private apiservice: APIService, private matDialog: MatDialog, private courseservice:CourseService) { }
+  constructor(private apiservice: APIService, private matDialog: MatDialog, private deleteDialog: MatDialog, private courseservice:CourseService) { }
       
   ngOnInit(): void { }
 
     
 
-    //logic for deleting course. Hardcoded, will update to user input
-    deleteCourse(){
-      const myObserver = {
-        next: x => {
-          console.log('Value: ' , x);
-        },
-        error: err => console.error('Observer got an error: ' + err),
-        complete: () => console.log('Observer got a complete notification'),
-      };
-      this.courseservice.deleteCourse(this.courseId).subscribe(myObserver);
+    // //logic for deleting course. Hardcoded, will update to user input
+    // deleteCourse(){
+    //   const myObserver = {
+    //     next: x => {
+    //       console.log('Value: ' , x);
+    //     },
+    //     error: err => console.error('Observer got an error: ' + err),
+    //     complete: () => console.log('Observer got a complete notification'),
+    //   };
+    //   this.courseservice.deleteCourse(this.courseId).subscribe(myObserver);
 
-    }
+    // }
 
     openUpdateDialog() {
       // courseName = this.name;
@@ -48,6 +49,15 @@ export class CourseComponent implements OnInit {
       instance.description = this.description;
       instance.courseId = this.courseId;
       instance.professor = this.professor;
+      dialogRef.afterClosed().subscribe(()=>{console.log("dialog has been closed")});
+     }
+
+     openDeleteDialog(){
+      console.log("dialog opened");
+      const dialogConfig = new MatDialogConfig();
+      let dialogRef = this.matDialog.open(DeleteDialogComponent, dialogConfig);
+      let instance =  dialogRef.componentInstance;
+      instance.courseId = this.courseId;
       dialogRef.afterClosed().subscribe(()=>{console.log("dialog has been closed")});
      }
 

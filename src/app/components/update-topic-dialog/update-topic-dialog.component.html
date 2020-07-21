@@ -1,27 +1,26 @@
-<h2 mat-dialog-title>Update Topic</h2>
+<h2 mat-dialog-title style ="text-align: center;">Update Topic</h2>
     <mat-dialog-content class ="container">
-        <form novalidate [formGroup]= "topicForm" > <!--(ngSubmit)="onSubmit(course)" -->
-            <label>
-                <span>Topic Name:</span>
-                <input type="text"  formControlName="topicName" placeholder={{topic}}>
-            </label>
+        <form novalidate class="topic-form" [formGroup]= "topicForm" > <!--(ngSubmit)="onSubmit(course)" -->
+            
+        <p> 
+            <mat-form-field appearance ="legacy" class="input-fields">
+                <mat-label style="font-size:18px; ">Topic Name</mat-label>
+                <input matInput type="text" formControlName="topicName" placeholder={{topic}}>
+            </mat-form-field>
+        </p> 
+           
+        <p>
+            <mat-form-field appearance ="legacy" class="input-fields">
+                <mat-label style="font-size:18px; ">Topic Description</mat-label>
+                <textarea matInput type="text" formControlName="topicDescription" placeholder={{topicDescription}}></textarea>
+            </mat-form-field>
+         </p>
 
-           <br>
-           <label>
-                <span>Topic Description:</span>
-                <input type="text" formControlName="topicDescription" placeholder={{topicDescription}}> 
-            </label>
-           <br>
-
-           <!-- <label> [name]="item.courseName" [courseId]="item.id" [description]="item.courseDescription"
-                <span>id:</span>           
-            <input type="string" formControlName="id">
-            </label> -->
         </form>
 
     </mat-dialog-content>
 
 <mat-dialog-actions>
-    <button class="btn-cancel" class="mat-raised-button" style="padding: 5px 30px;margin: auto" (click)="cancel()">Cancel</button>
-    <button type ="btn-submit" class="mat-raised-button"style="padding: 5px 30px;margin: auto" (click)="onSubmit()">Update</button>   
+    <button class="btn-cancel" class="mat-raised-button" style="padding: 5px 30px;margin: auto;margin-bottom: 20px;" (click)="cancel()">Cancel</button>
+    <button type ="btn-submit" class="mat-raised-button"style="padding: 5px 30px;margin: auto;margin-bottom: 20px;" (click)="onSubmit()">Update</button>   
 </mat-dialog-actions>
