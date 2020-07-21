@@ -46,7 +46,7 @@ export class CourseComponent implements OnInit {
         dialogConfig.autoFocus = true;
 
         dialogConfig.data = {
-            courseId: this.courseId
+            courseId: this.courseId,
         };
       
         //this.copyDialog.open(CopyDialogComponent, dialogConfig);
