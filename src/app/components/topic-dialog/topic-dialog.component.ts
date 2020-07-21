@@ -17,7 +17,6 @@ export class TopicDialogComponent implements OnInit {
   @Input() professorName : string;
   @Input() courseName : string;
 
-
   ngOnInit() {
     this.topic = new FormGroup({
       TopicName: new FormControl(''),

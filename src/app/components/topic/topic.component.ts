@@ -19,7 +19,6 @@ export class TopicComponent implements OnInit {
   @Input() professor: string;
   @Input() topicDescription: string;
   @Input() className: string;
-  @Input() courseId: string;
 
   constructor(private apiservice: APIService, private matDialog: MatDialog, private topicservice:TopicsService) {}
 
