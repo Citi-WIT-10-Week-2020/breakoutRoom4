@@ -31,15 +31,25 @@ export class TopicScreenComponent implements OnInit {
   topicId: String;
   topicName: String;
   courseId: String;
-  rgObject: any;
+  rgObject: Array<any>;
+  playlistObject: Array<any>; 
 
   ngOnInit(): void {
 
 
-    this.rgObject={
-      rgName: "title",
-      fileName: "name of file",
-    };
+    this.rgObject=[
+      {
+        rgName: "title",
+        fileName: "name of file",
+      }
+  ];
+
+    this.playlistObject=[
+      {
+        videosrc: "https://media.geeksforgeeks.org/wp-content/uploads/20200409094356/Placement100-_-GeeksforGeeks2.mp4",
+        videoName: "Name of Video"
+      }
+    ]
 
 
     //gets courseID

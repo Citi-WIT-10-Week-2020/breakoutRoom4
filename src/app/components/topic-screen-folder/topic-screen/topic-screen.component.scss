@@ -156,11 +156,13 @@
 
 //all the css for expansion panel
 .rg {
-    background-color: rgba($color: #ffffff, $alpha: .65);
+    background-color: white;
 }
 
 .rg-title {
     font-size: x-large;
+    height: 30px;
+    padding-top: 6px;
 }
 
 .file {

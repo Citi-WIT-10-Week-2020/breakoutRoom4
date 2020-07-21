@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-playlist-video',
@@ -6,6 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./playlist-video.component.scss']
 })
 export class PlaylistVideoComponent implements OnInit {
+
+  @Input() videosrc: String;
+  @Input() videoName: String;
 
   constructor() { }
 

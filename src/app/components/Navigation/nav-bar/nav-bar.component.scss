@@ -54,3 +54,27 @@
     text-decoration: none;
     color: black;
 }
+
+
+@media only screen and (max-width: 750px) {
+
+    .header {
+        padding-right: 20px;
+    }
+    .welcome-space {
+        font-size: 16px;
+        padding-right: 5px;
+    }
+    .profile-btn {
+        width: 40px;
+    }
+    .profile-icon {
+        height: 40px;
+        width: 40px;
+        font-size: 40px;
+    }
+    .logo-img {
+        height: 40px;
+        padding-left: 20px;
+    }
+}
