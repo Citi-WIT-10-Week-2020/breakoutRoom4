@@ -29,6 +29,7 @@ export class CourseScreenComponent implements OnInit {
   
 
   ngOnInit(): void {
+
     //gets the course ID passed in from home-screen
     this.route.paramMap.subscribe(params => { 
       this.courseId = params.get('id'); 
