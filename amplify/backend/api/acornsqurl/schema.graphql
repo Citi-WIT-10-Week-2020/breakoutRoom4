@@ -1,4 +1,5 @@
-type Professor @model {
+type Professor @model 
+@key(name:"byProfessorName",fields:["professorName"],queryField:"professorByName"){
 	id: ID!
 	professorName: String!
 	universityName: String!
@@ -23,12 +24,21 @@ type Topic @model
 	TopicName: String!
 	course: String!
 	TopicDescription: String!
-	files: [File] @connection(keyName:"byCourseByTopic",fields:["course","TopicName"])
+	resourceGroups: [ResourceGroup] @connection(keyName:"byCourseByTopic",fields:["course","TopicName"])
+}
+
+type ResourceGroup @model 
+@key(name:"byCourseByTopic",fields:["course","topic"],queryField:"fileByCourseByTopic")
+{
+	id: ID!
+	course: String!
+	topic: String!
+	groupName: String!
+	files:[File] @connection(keyName:"byTopicbyResourceGroup",fields:["topic","groupName"])
 }
 
 type File @model
-@key(name:"byCourseByTopic",fields:["course","topic"],queryField:"fileByCourseByTopic")
-@key(name:"byResourseGroup",fields:["resourseGroup"],queryField:"fileByResourceGroup")
+@key(name:"byTopicbyResourceGroup",fields:["topic","resourseGroup"],queryField:"fileByTopicByResourceGroup")
 @key(name:"byFilename",fields:["resourseGroup"],queryField:"fileByFilename")
 {
 	id: ID!
@@ -38,4 +48,11 @@ type File @model
 	filetype:String!
 	fileDescription:String
 	resourseGroup: String!
+	file:S3Object
+}
+
+type S3Object {
+  bucket: String!
+  region: String!
+  key: String!
 }
