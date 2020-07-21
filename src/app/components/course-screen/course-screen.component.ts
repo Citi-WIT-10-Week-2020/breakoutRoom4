@@ -28,7 +28,7 @@ export class CourseScreenComponent implements OnInit {
   professorName: string;
   courseName: string;
 
-  constructor(private route: ActivatedRoute, private matDialog: MatDialog,private apiservice : APIService, private breakpointObserver: BreakpointObserver, private topicservice:TopicsService) { }
+  constructor(private route: ActivatedRoute, private matDialog: MatDialog, private apiservice : APIService, private breakpointObserver: BreakpointObserver, private topicservice:TopicsService) { }
   
 
   ngOnInit(): void {
