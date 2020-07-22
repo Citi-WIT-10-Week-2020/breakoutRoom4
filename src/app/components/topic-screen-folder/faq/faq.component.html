@@ -1,9 +1,9 @@
 
 <mat-expansion-panel class="rg">
     <mat-expansion-panel-header>
-      <mat-panel-title class="mat-elevation-z rg-title">Question 1</mat-panel-title>
+      <mat-panel-title class="mat-elevation-z rg-title">{{question}}</mat-panel-title>
     </mat-expansion-panel-header>
-      <div class="file">Answer 1</div>
-      <div class="file">Answer 2</div>
-      <div class="file">Answer 3</div>
+      <ng-container *ngFor="let item of answer">
+        <div class="file">{{item}}</div>
+      </ng-container>
   </mat-expansion-panel>

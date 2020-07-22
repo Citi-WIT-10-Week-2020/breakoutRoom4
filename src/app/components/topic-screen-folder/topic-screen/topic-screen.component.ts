@@ -4,7 +4,8 @@ import { title } from 'process';
 import { APIService } from '../../../API.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { FileService } from 'src/app/shared/file.service';
-
+import { FaqDialogComponent } from '../faq-dialog/faq-dialog.component';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 
 
 @Component({
@@ -27,7 +28,7 @@ export class TopicScreenComponent implements OnInit {
   private fileName;
   private fileType;
   files: Array<any>;
-  constructor(private route:ActivatedRoute,private fb: FormBuilder, private fileservice: FileService, private apiservice: APIService) { }
+  constructor(private route:ActivatedRoute,private fb: FormBuilder, private fileservice: FileService, private apiservice: APIService, private matDialog: MatDialog) { }
 
   topicId: String;
   topicName: String;
@@ -35,6 +36,7 @@ export class TopicScreenComponent implements OnInit {
   course: String;
   rgObject: Array<any>;
   playlistObject: Array<any>; 
+  faqObject: Array<any>;
 
   ngOnInit(): void {
 
@@ -51,7 +53,14 @@ export class TopicScreenComponent implements OnInit {
         videosrc: "https://media.geeksforgeeks.org/wp-content/uploads/20200409094356/Placement100-_-GeeksforGeeks2.mp4",
         videoName: "Name of Video"
       }
-    ]
+    ];
+
+    this.faqObject=[
+      {
+        question: "question1",
+        answer: ["answer1", "answer2", "answer3"],
+      }
+    ];
 
 
     //gets courseID
@@ -131,6 +140,16 @@ export class TopicScreenComponent implements OnInit {
     //console.log(newFile);
    this.fileservice.createFile(this.fileName,this.fileType,file);
   }
+
+  openFaqDialog() {
+    console.log("dialog opened");
+    const dialogConfig = new MatDialogConfig();
+    let dialogRef = this.matDialog.open(FaqDialogComponent, dialogConfig);
+    let instance =  dialogRef.componentInstance;
+    
+      
+    dialogRef.afterClosed().subscribe(()=>{console.log("dialog has been closed")});
+   } //instead of console log , refresh page
 
 }
 

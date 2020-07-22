@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-faq',
@@ -6,6 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./faq.component.scss']
 })
 export class FaqComponent implements OnInit {
+
+  @Input() question: string;
+  @Input() answer: Array<any>;
 
   constructor() { }
 

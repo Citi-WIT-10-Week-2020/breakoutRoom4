@@ -63,11 +63,12 @@
       </div>
       
       <div class="wrapper-2">
-        <div class="box3-title">FAQ <mat-icon class="add-file-btn">add_circle_outline</mat-icon></div>
+        <div class="box3-title">FAQ<button class="add-btn-bg" (click) = "openFaqDialog()"><mat-icon class="add-file-btn">add_circle_outline</mat-icon></button></div>
 
         <mat-accordion multi>
-          <app-faq></app-faq>
-          <app-faq></app-faq>
+          <ng-container *ngFor="let item of faqObject">
+            <app-faq [question]="item.question" [answer]="item.answer" ></app-faq>
+          </ng-container>
         </mat-accordion>
 
       </div>   
