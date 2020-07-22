@@ -56,3 +56,5 @@ type S3Object {
   region: String!
   key: String!
 }
+
+
