@@ -2,7 +2,7 @@
 .div-body {
 
     display: block;
-    min-height: 790px;
+    min-height: 780px;
     margin: 0;
 }
 
@@ -22,7 +22,7 @@
 }
 
 .title-item a {
-    font-size: 50px;
+    font-size: 60px;
     text-decoration: none;
     padding-right: 10px;
     color: rgb(85, 32, 116);
@@ -46,6 +46,10 @@
     width: 40px;
     height: 30px;
     color: rgb(85, 32, 116);
+}
+
+.add-btn:hover {
+    color: white;
 }
 
 .add-btn-bg {

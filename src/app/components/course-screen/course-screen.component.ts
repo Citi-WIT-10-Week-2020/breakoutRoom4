@@ -21,6 +21,8 @@ import {CourseService} from '../../shared/courses.service';
 
 export class CourseScreenComponent implements OnInit {
   
+  
+
   courseId: string;
   topics: Array<any>;
   topicObject: ITopic;

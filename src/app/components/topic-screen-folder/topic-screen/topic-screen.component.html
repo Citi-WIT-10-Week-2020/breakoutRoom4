@@ -2,83 +2,67 @@
 
 <div class="div-body">
 
-
-
-
-
     <div class="nav-container">
-      <span><a routerLink='/course'>Courses > </a></span>
-      <span><a [routerLink]="['/course', this.courseId]">{{this.course}} ></a></span>
-      <!--very important that this.courseId is here for routing!-->
+      <span><a routerLink='/course'>Courses</a></span>
+      <span class="nav-dec">></span>
+      <span><a [routerLink]="['/course', this.courseId]">{{this.course}}</a></span>
+      <span class="nav-dec">></span>
       <span><a [routerLink]="['/topic', this.courseId, this.topicId, this.topicName]">{{topicName}}</a></span>
+    </div>
+
+      <h1>Upload file</h1>
+    <form [formGroup] = "formGroup" (ngSubmit)="onSubmit()">
+        <input type="file" (change)="onFileChange($event)" />
+        <input type="submit" [disabled]="formGroup.invalid" value="upload" />
+    </form>
+    <h1>DownLoad File</h1>
+    <button (click)="onDownload()">download</button>
     
-  </div>
-  <h1>Upload file</h1>
-  <form [formGroup] = "formGroup" (ngSubmit)="onSubmit()">
-      <input type="file" (change)="onFileChange($event)" />
-      <input type="submit" [disabled]="formGroup.invalid" value="upload" />
-  </form>
-  <h1>DownLoad File</h1>
-  <button (click)="onDownload()">download</button>
 
 
     <div class="title-container">
       <!--this.courseId is v important!-->
         <span class="title-item"><a [routerLink]="['/topic', this.courseId, this.topicId, this.topicName]">{{topicName}}</a></span>
-        
         <span> <!--<button class="add-btn-bg" (click) = "createCourse()"> --><mat-icon class="add-btn">add_circle_outline</mat-icon><!--</button>--></span>
-      </div>
+    </div>
 
       <div class="wrapper">
         <div class="box1">
-          <div class="box1-title">Files <mat-icon>add_circle_outline</mat-icon></div>
+          <div class="box1-title">Files <mat-icon class="add-file-btn">add_circle_outline</mat-icon></div>
 
           <mat-accordion multi>
-            <app-resource-group></app-resource-group>
-            <app-resource-group></app-resource-group>
-            <app-playlist-video></app-playlist-video>
+
+            <ng-container *ngFor="let item of rgObject">
+              <app-resource-group [rgName]="item.rgName" [fileName]="item.fileName" ></app-resource-group>
+            </ng-container>
+            
+            <mat-expansion-panel class="rg">
+              <mat-expansion-panel-header>
+                <mat-panel-title class="mat-elevation-z rg-title">Playlist</mat-panel-title>
+              </mat-expansion-panel-header>
+
+              <div class="playlist-container" fxLayout="row wrap" fxLayoutGap="50px" fxLayoutAlign="flex-start" fxLayout.gt-sm="column">
+                  
+                <ng-container *ngFor="let item of playlistObject">
+                  <app-playlist-video [videosrc]="item.videosrc" [fileName]="item.videoName" ></app-playlist-video>
+                </ng-container>
+                 
+              </div>
+            </mat-expansion-panel>
           </mat-accordion>
 
-
-
         </div>
-
-        <!--<div class="box2">
-          <div class="box2-title">Playlist<mat-icon>add_circle_outline</mat-icon></div>
-          <div class="video-container">
-            <div class="video-item">item</div>
-            <div class="video-item">item</div>
-            
-              <video class="video-item" 
-                  controls poster= "https://media.geeksforgeeks.org/wp-content/cdn-uploads/20190710102234/download3.png"> 
-                <source src= "https://media.geeksforgeeks.org/wp-content/uploads/20200409094356/Placement100-_-GeeksforGeeks2.mp4"
-                   type="video/mp4">
-              </video>
-
-            <app-playlist-video></app-playlist-video>
-           
-            
-            
-              
-            </div>
-            
-          </div> -->
-
-        </div>
+      </div>
       
-
       <div class="wrapper-2">
-        <div class="box3-title">FAQ <mat-icon>add_circle_outline</mat-icon></div>
+        <div class="box3-title">FAQ <mat-icon class="add-file-btn">add_circle_outline</mat-icon></div>
 
         <mat-accordion multi>
           <app-faq></app-faq>
           <app-faq></app-faq>
         </mat-accordion>
 
-      </div>
-
-        
-      
+      </div>   
 </div>
 
 
