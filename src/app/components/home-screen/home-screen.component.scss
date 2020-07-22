@@ -76,3 +76,9 @@
     font-size: 20px;
 }
 
+@media only screen and (max-width: 959px) {
+
+    .appcoursecont:last-child {
+        margin-right: 0;
+    }
+}
