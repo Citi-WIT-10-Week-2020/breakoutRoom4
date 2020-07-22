@@ -13,3 +13,10 @@
     cursor: pointer;
 }
   
+@media only screen and (max-width: 959px) {
+
+    .topic-card {
+        margin: 0;
+        width: auto;
+    }
+}
