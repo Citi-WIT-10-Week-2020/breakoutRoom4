@@ -15,15 +15,11 @@
         <span class="empty-screen-message">You do not currently have any courses. Click the plus sign to add one!</span>
       </div>
 
-        <div class="cardcont" fxLayout="row wrap" fxLayoutGap="50px" fxLayoutAlign="flex-start">
-          <ng-container *ngFor="let item of courses">
-            <app-course class="appcoursecont" fxFlex="0 1 auto" [name]="item.courseName" [professor] ="item.professor" [courseId]="item.id" [description]="item.courseDescription"></app-course>
-          </ng-container>
-        </div>
+      
 
-      <div class="cardcont" fxLayout="row wrap" fxLayoutGap="50px" fxLayoutAlign="flex-start" fxLayout.gt-sm="column">
+      <div class="cardcont" fxLayout="row wrap" fxLayoutGap="50px" fxLayoutAlign="flex-start" fxLayout.lt-md="column" >
         <ng-container *ngFor="let item of courses">
-          <app-course class="appcoursecont" fxFlex="0 1 auto" [name]="item.courseName" [professor] ="item.professor" [courseID]="item.id" [description]="item.courseDescription"></app-course>
+          <app-course class="appcoursecont" fxFlex="0 1 auto" [name]="item.courseName" [professor] ="item.professor" [courseId]="item.id" [description]="item.courseDescription"></app-course>
         </ng-container>
       </div>
 
