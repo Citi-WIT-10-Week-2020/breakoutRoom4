@@ -1,12 +1,15 @@
-html, body {
+
+.div-body {
+
     display: block;
-    min-height: 770px;
+    min-height: 780px;
     margin: 0;
 }
 
 .section-container {
     margin-left: 100px;
     margin-right: 100px;
+    margin-bottom: 50px;
 }
 
 .title-container {
@@ -19,13 +22,17 @@ html, body {
 }
 
 .title-item a {
-    font-size: 42px;
+    font-size: 60px;
     text-decoration: none;
+    padding-right: 10px;
+    color: rgb(85, 32, 116);
 }
+
 
 .space {
     flex: 1 1 auto;
 }
+
 .card-container {
     border: 1px solid black;
 }
@@ -35,10 +42,43 @@ html, body {
 }
 
 .add-btn {
-    font-size: 30px;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    vertical-align: center;
+    font-size: 35px;
+    width: 40px;
+    height: 30px;
+    color: rgb(85, 32, 116);
+}
+
+.add-btn:hover {
+    color: white;
+}
+
+.add-btn-bg {
+    border: none;
+    background: none;
+    
+}
+
+.add-btn:hover {
+    cursor: pointer;
+}
+
+.cardcont {
     align-items: center;
+}
+
+.appcoursecont:last-child {
+    margin-right: 50px;
+}
+
+.empty-screen-message {
+    text-align: center;
+    color: black;
+    font-size: 20px;
+}
+
+@media only screen and (max-width: 959px) {
+
+    .appcoursecont:last-child {
+        margin-right: 0;
+    }
 }

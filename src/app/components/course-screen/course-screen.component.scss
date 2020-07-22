@@ -1,3 +1,99 @@
-.add-button {
-    margin: 1em;
+.div-body {
+    display: block;
+    min-height: 740px;
+    margin: 0;
+    margin-left: 100px;
+    margin-right: 100px;
+}
+
+.nav-container {
+    margin-top: 20px;
+}
+
+.nav-container {
+    margin-top: 40px;
+    //padding-left: 10px;
+}
+
+.nav-container a {
+    text-decoration: none;
+    font-size: 22px;
+    color: white;
+    font-weight: 300;
+
+}
+
+.nav-container a:hover {
+    color: rgb(85, 32, 116);
+}
+
+.nav-dec {
+    padding: 0 10px;
+    font-size: 22px;
+    color: white;
+    font-weight: 300;
+}
+
+.title-container {
+    display: flex;  
+    align-items: center;
+    vertical-align: center;
+    padding: 38px 0 30px;
+    text-decoration: none;
+    
+    
+}
+
+.title-item a {
+    font-size: 50px;
+    font-weight: 400;
+    text-decoration: none;
+    padding-right: 10px;
+    color: rgb(85, 32, 116);
+}
+
+
+.space {
+    flex: 1 1 auto;
+}
+
+.add-btn {
+    font-size: 35px;
+    width: 40px;
+    height: 30px;
+    color: rgb(85, 32, 116);
+}
+
+.add-btn:hover {
+    color: white;
+}
+
+.add-btn:hover {
+    cursor: pointer;
+}
+
+.add-btn-bg {
+    border: none;
+    background: none;
+    
+}
+
+.cardcont {
+    align-items: center;
+}
+
+.empty-screen-message {
+    text-align: center;
+    color: black;
+    font-size: 20px;
+}
+.apptopiccont:last-child {
+    margin-right: 50px;
+}
+
+@media only screen and (max-width: 959px) {
+
+    .apptopiccont:last-child {
+        margin-right: 0;
+    }
 }

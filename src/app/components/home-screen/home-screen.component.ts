@@ -1,7 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { APIService } from '../../API.service';
 import { v4 as uuidv4 } from 'uuid';
+import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
+import {LayoutModule} from '@angular/cdk/layout';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
+import { DialogBodyComponent } from 'src/app/components/dialog-body/dialog-body.component'
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import {CourseService} from '../../shared/courses.service';
+import { ICourse } from '../../shared/course';
+
+import { UserinfoService } from 'src/app/shared/userinfo.service';
 
 /* May use for grid */
 export interface Tile {
@@ -11,79 +20,69 @@ export interface Tile {
   text: string;
 }
 
-
-import {CourseService} from '../../shared/courses.service';
-
-import { ICourse } from '../../shared/course';
 @Component({
   selector: 'app-home-screen',
   templateUrl: './home-screen.component.html',
   styleUrls: ['./home-screen.component.scss'],
-  providers:[CourseService]
+  providers:[CourseService,UserinfoService]
 })
 export class HomeScreenComponent implements OnInit {
 
-  /* May use for grid */
-  tiles: Tile[] = [
-    {text: 'One', cols: 1, rows: 5, color: 'lightblue'},
-    {text: 'Two', cols: 1, rows: 2, color: 'lightgreen'},
-    {text: 'Three', cols: 1, rows: 1, color: 'lightpink'},
-    {text: 'Four', cols: 1, rows: 1, color: '#DDBDF1'},
-  ];
-   styles = {
-    cols:1,
-    rows: 3,
-    color:'lightblue'
-  }
-  courses: Array<any>;
-  courseObject: ICourse;  //to be deleted
+  courses: Array<any>;  
+  user: any;
   
-  constructor(private apiservice: APIService,private courseservice:CourseService) { }
-  
-  ngOnInit(): void {
-    //initializes the course object. This will eventually be deleted and replaced with user input
-    this.courseObject={
-      courseName:"A test Course, in object",
-      courseDescription:"TESTING TESTING HAHAHA",
-      professor:"haku",
-      id:uuidv4()
-    };
+  constructor(private userinfo: UserinfoService, private apiservice: APIService,private matDialog: MatDialog, private courseservice:CourseService, private breakpointObserver: BreakpointObserver) { 
 
+    /* //Might use this for the responsive layout (uses breakpoint import statment)
+    breakpointObserver.observe([
+      Breakpoints.HandsetLandscape,
+      Breakpoints.HandsetPortrait
+    ]).subscribe(result => {
+      if (result.matches) {
+        this.activateHandsetLayout();
+      }
+    });*/
+  } 
+
+
+  ngOnInit(): void {
+    this.getUser();
    
-    //get all courses
+    this.subscribeToCourseCreations();
+    this.subscribeToCourseUpdates();
+    this.subscribeToCourseDeletions();
+  }
+  getUser(){
+    console.log("Getting User");
     const myObserver = {
       next: x => {
-        console.log('Value: ' , x);
-        this.courses = x.items;
+        console.log('User: ' , x);
+        this.user = x;
+        //call get professor using the username. If that doesn't exist, create a professor
+        this.apiservice.ProfessorByName(this.user.username).then((evt)=>{
+          console.log(evt);
+          if(evt.items.length == 0){
+            console.log("NULL! Create professor");
+            this.apiservice.CreateProfessor({id:uuidv4(),professorName:this.user.username, universityName:"Default"}).then((evt)=>{
+              console.log("Professor was created!");
+              this.getCourses();
+            });
+          }
+          else{
+            this.getCourses();
+          }
+        });
+
+        
       },
       error: err => console.error('Observer got an error: ' + err),
       complete: () => console.log('Observer got a complete notification'),
     };
-    this.courseservice.getCourses().subscribe(myObserver);
+   // from(Auth.currentUserInfo()).subscribe(myObserver);
+    this.userinfo.getUserInfo().subscribe(myObserver);
+  }
 
-
-    //subscribes to any new course creations
-    this.apiservice.OnCreateCourseListener.subscribe((evt)=>{
-      const data = (evt as any).value.data.onCreateCourse;
-      this.courses =[...this.courses,data];
-    });
-
-      //subscribes to any course updates
-    this.apiservice.OnUpdateCourseListener.subscribe((evt)=>{
-     
-      const data = (evt as any).value.data.onUpdateCourse;
-      this.courses =[...this.courses,data];
-      console.log("An update has occurred!");
-      //search thru array, find original, and replace it with the new one
-      this.courses = this.courses.map((course)=>{
-        if(course.id == data.id){
-          return data;
-        }
-        else return course;
-      })
-    });
-
-    //subscribes to any course deletions
+  subscribeToCourseDeletions(){
     this.apiservice.OnDeleteCourseListener.subscribe((evt)=>{
       console.log("A deletion has occured!");
       const data = (evt as any).value.data.onDeleteCourse;
@@ -96,21 +95,56 @@ export class HomeScreenComponent implements OnInit {
     });
   }
 
-  
+  subscribeToCourseCreations(){
+    this.apiservice.OnCreateCourseListener.subscribe((evt)=>{
+      const data = (evt as any).value.data.onCreateCourse;
+      this.courses =[...this.courses,data];
+    });
+  }
+  subscribeToCourseUpdates(){
+    this.apiservice.OnUpdateCourseListener.subscribe((evt)=>{
+     
+      const data = (evt as any).value.data.onUpdateCourse;
+      
+      console.log("An update has occurred!");
+      //search thru array, find original, and replace it with the new one
+      this.courses = this.courses.map((course)=>{
+        if(course.id == data.id){
+          return data;
+        }
+        else return course;
+      })
+    });
 
- 
-  //code for creating a course. This will eventually be moved to the popup for CreateCourse
-  async createCourse(){
+  }
+
+  
+  getCourses(){
+    console.log("Getting Courses", this.user.username);
     const myObserver = {
       next: x => {
         console.log('Value: ' , x);
+        console.log()
+        this.courses = x.items[0].courses.items;
       },
-      error: err => console.error('Observer got an error: ' , err),
+      error: err => console.error('Observer got an error: ' + err),
       complete: () => console.log('Observer got a complete notification'),
     };
-    this.courseObject.id = uuidv4();
-    this.courseservice.createCourse(this.courseObject).subscribe(myObserver);
+    this.courseservice.getCourses(this.user.username).subscribe(myObserver);
   }
+
+  openCourseDialog() {
+    console.log("dialog opened");
+    const dialogConfig = new MatDialogConfig();
+    let dialogRef = this.matDialog.open(DialogBodyComponent, dialogConfig);
+    let instance =  dialogRef.componentInstance;
+      instance.professorName = this.user.username;
+      
+    dialogRef.afterClosed().subscribe(()=>{console.log("dialog has been closed")});
+   } //instead of console log , refresh page
+ 
+  
+  
 }
 
 

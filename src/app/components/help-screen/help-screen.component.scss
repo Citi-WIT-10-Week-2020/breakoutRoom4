@@ -1,0 +1,103 @@
+
+
+.div-body {
+
+    display: block;
+    min-height: 790px;
+    margin: 0;
+}
+
+.nav-back a {
+    text-decoration: none;
+    color: black;
+    padding: 20px;
+    font-size: 15px;
+}
+
+.nav-back {
+    margin: 30px 30px 30px;
+    padding: 10px 0 10px;
+}
+
+.title-header {
+    display: flex;  
+    align-items: left;
+    vertical-align: center;
+    padding: 20px 0 30px;
+    text-decoration: none;
+    flex-direction: column;
+}
+
+.title {
+    font-size: 50px;
+    text-decoration: none;
+    padding: 30px;
+    color: rgb(94, 12, 119);
+}
+
+.subtitle-section {
+    display: flex;  
+    align-items: center;
+    vertical-align: center;
+    text-decoration: none;
+    padding-top: 15px;
+}
+
+.section-link a {
+    text-decoration: none;
+    font-size: 20px;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-top: 20px;
+    color: white;
+}
+
+.section-link a:hover{
+    color: rgb(94, 12, 119);
+    cursor: pointer;
+}
+
+.section-title {
+    color: black;
+    margin-bottom: 30px;
+    font-size: 30px;
+}
+
+.faq {
+    background-color: rgba(255,255,255,0.75);
+    color: black;
+    margin-top: 50px;
+    margin-left: 100px;
+    margin-right: 100px;
+    margin-bottom: 100px;
+    padding: 50px;
+    border-radius: .25em;
+}
+
+.faq-item {
+    padding: 10px;
+}
+
+.hr {
+    padding-top: 10px;
+}
+
+.examples {
+    background-color: rgba(255,255,255,0.75);
+    color: black;
+    margin: 100px;
+    padding: 50px;
+    border-radius: .25em;
+}
+
+.question {
+    color: rgb(94, 12, 119);
+}
+
+.example-item {
+    color: rgb(94, 12, 119);
+    padding: 10px;
+}
+
+
+

@@ -1,17 +1,29 @@
-<!DOCTYPE html>
-<html>
-  <head></head>
-  <body>
+
+  <div class="div-body">
+ 
 
 
     <div class="section-container">
 
       <div class="title-container">
-        <span class="title-item"><a routerLink='/course'>Courses</a></span>
-        <span class="space"></span>
-        <span><button class="add-btn" (click) = "createCourse()">+</button></span>
+        <span class="title-item"><a routerLink='/home'>Courses</a></span>
+        
+        <span><button class="add-btn-bg" (click) = "openCourseDialog()"><mat-icon class="add-btn">add_circle_outline</mat-icon></button></span>
       </div>
 
+      <div *ngIf="courses == undefined || courses.length == 0">
+        <span class="empty-screen-message">You do not currently have any courses. Click the plus sign to add one!</span>
+      </div>
+
+      
+
+      <div class="cardcont" fxLayout="row wrap" fxLayoutGap="50px" fxLayoutAlign="flex-start" fxLayout.lt-md="column" >
+        <ng-container *ngFor="let item of courses">
+          <app-course class="appcoursecont" fxFlex="0 1 auto" [name]="item.courseName" [professor] ="item.professor" [courseId]="item.id" [description]="item.courseDescription"></app-course>
+        </ng-container>
+      </div>
+
+     
 
       <!--
       <mat-grid-list cols="1" rowHeight="200px">
@@ -28,32 +40,18 @@
       
       </mat-grid-list>-->
 
-      <mat-grid-list class="container" cols="4" rowHeight="150px">
-        <mat-grid-tile
-            *ngFor="let item of courses"
-            [colspan]="styles.cols"
-            [rowspan]="styles.rows"
-            >
-            <app-course [name]="item.courseName" [courseID]="item.id" [description]="item.courseDescription"></app-course>
-        </mat-grid-tile>
-      </mat-grid-list>
 
 
-      <div class="container">
-        <mat-grid-list cols="4" rowHeight="25px" gutterSize="10px">
-          <mat-grid-tile class="card-container" >One</mat-grid-tile>
-          <mat-grid-tile class="card-container" >Two</mat-grid-tile>
-          <mat-grid-tile class="card-container" >Three</mat-grid-tile>
-          <mat-grid-tile class="card-container" >Four</mat-grid-tile>
-    
-        </mat-grid-list>
-      </div>
+      
     </div>
-    
-    
 
-  </body>
-</html>
+
+  </div>
+
+  
+  
+
+
 
 
 

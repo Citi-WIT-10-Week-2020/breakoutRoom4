@@ -132,15 +132,12 @@ subscription OnCreateTopic {
     TopicName
     course
     TopicDescription
-    files {
+    resourceGroups {
       items {
         id
         course
         topic
-        filename
-        filetype
-        fileDescription
-        resourseGroup
+        groupName
         createdAt
         updatedAt
       }
@@ -157,6 +154,49 @@ subscription OnUpdateTopic {
     TopicName
     course
     TopicDescription
+    resourceGroups {
+      items {
+        id
+        course
+        topic
+        groupName
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteTopic {
+  onDeleteTopic {
+    id
+    professor
+    TopicName
+    course
+    TopicDescription
+    resourceGroups {
+      items {
+        id
+        course
+        topic
+        groupName
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnCreateResourceGroup {
+  onCreateResourceGroup {
+    id
+    course
+    topic
+    groupName
     files {
       items {
         id
@@ -175,13 +215,36 @@ subscription OnUpdateTopic {
     updatedAt
   }
 }
-subscription OnDeleteTopic {
-  onDeleteTopic {
+subscription OnUpdateResourceGroup {
+  onUpdateResourceGroup {
     id
-    professor
-    TopicName
     course
-    TopicDescription
+    topic
+    groupName
+    files {
+      items {
+        id
+        course
+        topic
+        filename
+        filetype
+        fileDescription
+        resourseGroup
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteResourceGroup {
+  onDeleteResourceGroup {
+    id
+    course
+    topic
+    groupName
     files {
       items {
         id
@@ -209,6 +272,11 @@ subscription OnCreateFile {
     filetype
     fileDescription
     resourseGroup
+    file {
+      bucket
+      region
+      key
+    }
     createdAt
     updatedAt
   }
@@ -222,6 +290,11 @@ subscription OnUpdateFile {
     filetype
     fileDescription
     resourseGroup
+    file {
+      bucket
+      region
+      key
+    }
     createdAt
     updatedAt
   }
@@ -235,6 +308,11 @@ subscription OnDeleteFile {
     filetype
     fileDescription
     resourseGroup
+    file {
+      bucket
+      region
+      key
+    }
     createdAt
     updatedAt
   }

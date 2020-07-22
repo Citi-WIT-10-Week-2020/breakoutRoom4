@@ -7,6 +7,7 @@
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
 @import '~@angular/material/theming';
+
 // Plus imports for other components in your app.
 
 // Include the common styles for Angular Material. We include this here so that you only
@@ -32,23 +33,27 @@ $acornSQURL-theme: mat-light-theme($acornSQURL-primary, $acornSQURL-accent, $aco
 @include angular-material-theme($acornSQURL-theme);
 
 /* You can add global styles to this file, and also import other style files */
-body{
     
-        background: rgb(176,165,209);
-        
+
     
     
-}
-html, body { 
-        height: 100%;
-        margin: 0;
-        
- }
+
+
 
 body { 
         font-family: Roboto, "Helvetica Neue", sans-serif; 
         text-decoration: none;
+        height: 100%;
+        margin: 0;
+        
+        background: linear-gradient(0.30turn, rgba(168, 125, 197, 0.65), rgba(52, 12, 160, 0.651));
+        
+       
+        
+       
+
 }
+
 
 :root {
         --amplify-primary-color: #9687ce;

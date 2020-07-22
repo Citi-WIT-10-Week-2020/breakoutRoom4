@@ -1,20 +1,24 @@
 
 .header {
-    background-color: rgb(233, 233, 233);
-    height: 72px;
+    background-color: rgb(255, 255, 255);
+    height: 85px;
     display: flex;
     justify-content: center;
     align-items: center;
+    padding-right: 40px;
 }
 
 .header-spacer {
     flex: 1 1 auto;
+    
   }
 
 .welcome-space {
-    padding-right: 10px;
+    padding-right: 25px;
+    font-size: 24px;
     
 }
+
 
 .profile-btn {
     background-color: transparent;
@@ -31,11 +35,10 @@
     
     height: 64px;
     width: 64px;
-    font-size: 50px;
+    font-size: 60px;
     display: flex;
     justify-content: center;
     align-items: center;
-
 }
 
 .logo-img {
@@ -43,8 +46,35 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    padding-left: 40px;
 }
 
-.sign-out {
-    color: blue;
+
+.menu-item {
+    text-decoration: none;
+    color: black;
+}
+
+
+@media only screen and (max-width: 750px) {
+
+    .header {
+        padding-right: 20px;
+    }
+    .welcome-space {
+        font-size: 16px;
+        padding-right: 5px;
+    }
+    .profile-btn {
+        width: 40px;
+    }
+    .profile-icon {
+        height: 40px;
+        width: 40px;
+        font-size: 40px;
+    }
+    .logo-img {
+        height: 40px;
+        padding-left: 20px;
+    }
 }

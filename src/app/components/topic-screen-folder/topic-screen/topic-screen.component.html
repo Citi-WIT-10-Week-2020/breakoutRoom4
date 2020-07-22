@@ -1,0 +1,72 @@
+
+
+<div class="div-body">
+
+    <div class="nav-container">
+      <span><a routerLink='/course'>Courses</a></span>
+      <span class="nav-dec">></span>
+      <span><a [routerLink]="['/course', this.courseId]">{{this.course}}</a></span>
+      <span class="nav-dec">></span>
+      <span><a [routerLink]="['/topic', this.courseId, this.topicId, this.topicName]">{{topicName}}</a></span>
+    </div>
+
+      <h1>Upload file</h1>
+    <form [formGroup] = "formGroup" (ngSubmit)="onSubmit()">
+        <input type="file" (change)="onFileChange($event)" />
+        <input type="submit" [disabled]="formGroup.invalid" value="upload" />
+    </form>
+    <h1>DownLoad File</h1>
+    <button (click)="onDownload()">download</button>
+    
+
+
+    <div class="title-container">
+        <span class="title-item"><a [routerLink]="['/topic', this.courseId, this.topicId, this.topicName]">{{topicName}}</a></span>
+       
+    </div>
+
+      <div class="wrapper">
+        <div class="box1">
+          <div class="box1-title">Files <mat-icon class="add-file-btn">add_circle_outline</mat-icon></div>
+
+          <mat-accordion multi>
+
+            <ng-container *ngFor="let item of rgObject">
+              <app-resource-group [rgName]="item.rgName" [fileName]="item.fileName" ></app-resource-group>
+            </ng-container>
+            
+            <mat-expansion-panel class="rg">
+              <mat-expansion-panel-header>
+                <mat-panel-title class="mat-elevation-z rg-title">Playlist</mat-panel-title>
+              </mat-expansion-panel-header>
+
+              <div class="playlist-container" fxLayout="row wrap" fxLayoutGap="50px" fxLayoutAlign="flex-start" fxLayout.gt-sm="column">
+                  
+                <ng-container *ngFor="let item of playlistObject">
+                  <app-playlist-video [videosrc]="item.videosrc" [fileName]="item.videoName" ></app-playlist-video>
+                </ng-container>
+                 
+              </div>
+            </mat-expansion-panel>
+          </mat-accordion>
+
+        </div>
+      </div>
+      
+      <div class="wrapper-2">
+        <div class="box3-title">FAQ <mat-icon class="add-file-btn">add_circle_outline</mat-icon></div>
+
+        <mat-accordion multi>
+          <app-faq></app-faq>
+          <app-faq></app-faq>
+        </mat-accordion>
+
+      </div>   
+</div>
+
+
+  
+
+     
+
+

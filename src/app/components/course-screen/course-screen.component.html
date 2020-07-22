@@ -1,11 +1,47 @@
-<p>course-screen works! {{courseId}}</p>
-<h1>TOPICS</h1>
-<button mat-raised-button class="add-button" (click)="createTopic()">ADD TOPIC</button>
 
-<app-topic [professor]="this.topicObject.professor" [topic]="this.topicObject.TopicName" [topicDescription]="this.topicObject.TopicDescription" [topicID]="this.topicObject.id"></app-topic>
+    <div class="div-body">
+       <!-- <p>course-screen works! {{courseId}}</p> -->
+        
 
-<ul>
-    <li *ngFor="let item of topics"><app-topic [professor]="item.professor" [topic]="item.TopicName" [topicDescription]="item.TopicDescription" [topicID]="item.id"></app-topic></li>
-  </ul>
 
-<a routerLink='/topic'>Go to Topic Screen</a>
+            <div class="nav-container">
+                <span><a routerLink='/course'>Courses</a></span>
+                <span class="nav-dec">></span>
+                <span><a [routerLink]="['/course', this.courseId]">{{this.course}}</a></span>
+                
+            </div>
+
+            
+
+
+            <div class="title-container">
+                <span class="title-item"><a [routerLink]="['/course', this.courseId]">Topics</a></span>
+                <span><button class="add-btn-bg" (click) = "openTopicDialog()"><mat-icon class="add-btn">add_circle_outline</mat-icon></button></span>
+            </div>
+            
+            <!--this is just an example topic! delete when we have real working topics-->
+           <!-- <app-topic [professor]="this.topicObject.professor" [topic]="this.topicObject.TopicName" [topicDescription]="this.topicObject.TopicDescription" [topicID]="this.topicObject.id"></app-topic> -->
+
+                
+           
+               
+            <!--actual flex layout for real topics-->
+          
+
+            <ng-container *ngIf="topics.length == 0">
+                <span class="empty-screen-message">You do not currently have any topics. Click the plus sign to add one!</span>
+            </ng-container>
+
+            <div class="cardcont" fxLayout="row wrap" fxLayoutGap="50px" fxLayoutAlign="flex-start" fxLayout.lt-md="column" >
+                <ng-container *ngFor="let item of topics">
+                  <app-topic class="apptopiccont" fxFlex="0 1 auto" [className]="item.course" [professor]="item.professor" [topic]="item.TopicName" [topicDescription]="item.TopicDescription" [topicID]="item.id" [courseId]="this.courseId"></app-topic>
+                </ng-container>
+            </div>
+            
+
+        
+
+    </div>
+
+
+
