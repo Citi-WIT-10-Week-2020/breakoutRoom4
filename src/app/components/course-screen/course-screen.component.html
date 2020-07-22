@@ -22,7 +22,9 @@
             <!--this is just an example topic! delete when we have real working topics-->
            <!-- <app-topic [professor]="this.topicObject.professor" [topic]="this.topicObject.TopicName" [topicDescription]="this.topicObject.TopicDescription" [topicID]="this.topicObject.id"></app-topic> -->
 
-                
+            <ng-container *ngIf="topics.length == 0">
+                <span class="empty-screen-message">You do not currently have any topics. Click the plus sign to add one!</span>
+            </ng-container>    
            
                
             <!--actual flex layout for real topics-->
@@ -33,9 +35,7 @@
                 </ng-container>
             </div>
 
-            <ng-container *ngIf="topics == undefined || topics.length == 0">
-                <span class="empty-screen-message">You do not currently have any topics. Click the plus sign to add one!</span>
-            </ng-container>
+            
 
             
 
