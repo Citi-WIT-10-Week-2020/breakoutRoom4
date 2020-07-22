@@ -9,6 +9,7 @@
     <div class="nav-container">
       <span><a routerLink='/course'>Courses > </a></span>
       <span><a [routerLink]="['/course', this.courseId]">{{this.course}} ></a></span>
+      <!--very important that this.courseId is here for routing!-->
       <span><a [routerLink]="['/topic', this.courseId, this.topicId, this.topicName]">{{topicName}}</a></span>
     
   </div>
@@ -22,6 +23,7 @@
 
 
     <div class="title-container">
+      <!--this.courseId is v important!-->
         <span class="title-item"><a [routerLink]="['/topic', this.courseId, this.topicId, this.topicName]">{{topicName}}</a></span>
         
         <span> <!--<button class="add-btn-bg" (click) = "createCourse()"> --><mat-icon class="add-btn">add_circle_outline</mat-icon><!--</button>--></span>
