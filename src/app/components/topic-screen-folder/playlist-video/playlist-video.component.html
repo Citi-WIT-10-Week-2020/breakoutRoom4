@@ -9,19 +9,13 @@
     </video>
 </div> -->
 
-<mat-expansion-panel class="rg">
-    <mat-expansion-panel-header>
-      <mat-panel-title class="mat-elevation-z rg-title">Playlist</mat-panel-title>
-    </mat-expansion-panel-header>
-    <div class="playlist-container" fxLayout="row wrap" fxLayoutGap="50px" fxLayoutAlign="flex-start">
+
         <div class="video-comp">
             <video class="video-item" 
             controls poster= "https://media.geeksforgeeks.org/wp-content/cdn-uploads/20190710102234/download3.png"> 
-            <source src= "https://media.geeksforgeeks.org/wp-content/uploads/20200409094356/Placement100-_-GeeksforGeeks2.mp4"
+            <source src= {{videosrc}}
             type="video/mp4">
             </video>
-            <span class="vidname">The title of this video is long Biochemistry-word</span>
+            <span class="vidname">{{videoName}}</span>
         </div>
        
-      </div>
-  </mat-expansion-panel>

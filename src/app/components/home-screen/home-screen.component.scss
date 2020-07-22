@@ -2,7 +2,7 @@
 .div-body {
 
     display: block;
-    min-height: 790px;
+    min-height: 780px;
     margin: 0;
 }
 
@@ -22,7 +22,7 @@
 }
 
 .title-item a {
-    font-size: 50px;
+    font-size: 60px;
     text-decoration: none;
     padding-right: 10px;
     color: rgb(85, 32, 116);
@@ -48,6 +48,10 @@
     color: rgb(85, 32, 116);
 }
 
+.add-btn:hover {
+    color: white;
+}
+
 .add-btn-bg {
     border: none;
     background: none;
@@ -66,3 +70,15 @@
     margin-right: 50px;
 }
 
+.empty-screen-message {
+    text-align: center;
+    color: black;
+    font-size: 20px;
+}
+
+@media only screen and (max-width: 959px) {
+
+    .appcoursecont:last-child {
+        margin-right: 0;
+    }
+}

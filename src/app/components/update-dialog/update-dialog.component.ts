@@ -18,7 +18,7 @@ export class UpdateDialogComponent implements OnInit {
   @Input() name : string;
   @Input() description : string;
   @Input() professor : string;
-  @Input() courseID : string;
+  @Input() courseId : string;
 
   course : FormGroup;
   courseObject: ICourse;
@@ -29,15 +29,12 @@ export class UpdateDialogComponent implements OnInit {
       courseName : this.name,
       courseDescription : this.description,
       professor : this.professor,
-      id : this.courseID
+      id : this.courseId
     }
-
-    console.log("INPUT NAME: " + this.name);
-    console.log("INPUT PROF: " + this.professor);
 
     this.course = new FormGroup({
       courseName: new FormControl(''),
-      courseDescription: new FormControl(''),
+      courseDescription: new FormControl('')
     })
     console.log("OLD INFO", this.courseObject);
 
@@ -53,7 +50,7 @@ export class UpdateDialogComponent implements OnInit {
       this.name = this.course.get('courseName').value;
       console.log("new course name");
     }
-    else{this.courseObject.courseName = this.name;}
+    else {this.courseObject.courseName = this.name;}
 
     if(this.course.get('courseDescription').value != ''){
       this.courseObject.courseDescription = this.course.get('courseDescription').value;
@@ -61,17 +58,12 @@ export class UpdateDialogComponent implements OnInit {
       console.log("new course description");
     }
     else {this.courseObject.courseDescription = this.description;}
-    // this.name = this.course.get('courseName').value;
-    // this.description = this.course.get('courseDescription').value;
-    //this.courseObject = this.course.value;
-    console.log("@Input Course Name:",this.name);
-    console.log("CourseObject Name:",this.courseObject.courseName);
-    console.log("@Input Course Description:",this.description);
-    console.log("CourseObject Description:",this.courseObject.courseDescription);
+    
+    console.log("NEW INFO", this.courseObject);
+
 
     this.updateCourse();
     this.dialogRef.close();
-
   }
 
   cancel(): void{
@@ -89,6 +81,5 @@ export class UpdateDialogComponent implements OnInit {
       complete: () => console.log('Observer got a complete notification'),
     };
     this.courseservice.updateCourse(this.courseObject).subscribe(myObserver);
-
 }
 }
