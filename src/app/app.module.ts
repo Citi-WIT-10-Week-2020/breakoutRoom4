@@ -18,7 +18,6 @@ import { HelpScreenComponent } from './components/help-screen/help-screen.compon
 import { CourseComponent } from './components/course/course.component';
 import { TopicComponent } from './components/topic/topic.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
@@ -31,6 +30,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { ResourceGroupComponent } from './components/topic-screen-folder/resource-group/resource-group.component';
 import { DialogBodyComponent } from './components/dialog-body/dialog-body.component';
+import {ClipboardModule} from '@angular/cdk/clipboard';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { PlaylistVideoComponent } from './components/topic-screen-folder/playlist-video/playlist-video.component';
 import { FaqComponent } from './components/topic-screen-folder/faq/faq.component';
 
@@ -39,6 +40,18 @@ import { FaqComponent } from './components/topic-screen-folder/faq/faq.component
 
 import { UpdateDialogComponent } from './components/update-dialog/update-dialog.component';
 import {TopicDialogComponent} from './components/topic-dialog/topic-dialog.component';
+
+import { CopyDialogComponent } from './components/copy-dialog/copy-dialog.component';
+import { AboutScreenComponent } from './components/about-screen/about-screen.component';
+
+import { UpdateTopicDialogComponent } from './components/update-topic-dialog/update-topic-dialog.component';
+import { DeleteDialogComponent } from './components/delete-dialog/delete-dialog.component';
+import { DeleteTopicDialogComponent } from './components/delete-topic-dialog/delete-topic-dialog.component';
+
+
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+
 
 
 
@@ -60,6 +73,18 @@ import {TopicDialogComponent} from './components/topic-dialog/topic-dialog.compo
     TopicDialogComponent,
 
     HelpScreenComponent,
+
+
+    CopyDialogComponent,
+
+    AboutScreenComponent,
+
+    UpdateTopicDialogComponent,
+
+    DeleteDialogComponent,
+
+    DeleteTopicDialogComponent,
+
     
   ],
   imports: [
@@ -77,10 +102,14 @@ import {TopicDialogComponent} from './components/topic-dialog/topic-dialog.compo
     FlexLayoutModule,
     MatExpansionModule,
 
-  
+    ClipboardModule,
+    MatSnackBarModule,
+
+    MatFormFieldModule,
+
     MatDialogModule,
     ReactiveFormsModule,
-    
+    MatInputModule
   ],
   bootstrap: [AppComponent],
   entryComponents: [DialogBodyComponent, UpdateDialogComponent],

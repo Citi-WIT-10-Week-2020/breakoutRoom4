@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { title } from 'process';
+import { APIService } from '../../../API.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { FileService } from 'src/app/shared/file.service';
 
@@ -15,25 +17,57 @@ import { FileService } from 'src/app/shared/file.service';
 
 
 export class TopicScreenComponent implements OnInit {
+
+  
+  
+  
   public formGroup = this.fb.group({
     file:[null,Validators.required]
   });
   private fileName;
   private fileType;
   files: Array<any>;
-  constructor(private route:ActivatedRoute,private fb: FormBuilder, private fileservice: FileService) { }
+  constructor(private route:ActivatedRoute,private fb: FormBuilder, private fileservice: FileService, private apiservice: APIService) { }
 
   topicId: String;
   topicName: String;
   courseId: String;
+  course: String;
+  rgObject: Array<any>;
+  playlistObject: Array<any>; 
 
   ngOnInit(): void {
+
+
+    this.rgObject=[
+      {
+        rgName: "title",
+        fileName: "name of file",
+      }
+  ];
+
+    this.playlistObject=[
+      {
+        videosrc: "https://media.geeksforgeeks.org/wp-content/uploads/20200409094356/Placement100-_-GeeksforGeeks2.mp4",
+        videoName: "Name of Video"
+      }
+    ]
+
 
     //gets courseID
     this.route.paramMap.subscribe(params => {
       this.courseId = params.get('courseId');
     });
     console.log(this.courseId);
+
+    //gets the course name using courseId
+    this.apiservice.GetCourse(this.courseId.toString()).then((evt)=>{
+      console.log("course", evt);
+      this.course = evt.courseName;
+      console.log('this.course', this.course);
+    }).catch((err)=>{
+      console.log(err);
+    });
 
     //gets topicID
     this.route.paramMap.subscribe(params => { 

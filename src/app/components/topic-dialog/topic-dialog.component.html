@@ -1,26 +1,30 @@
-<h2 mat-dialog-title>Add Topic</h2>
+<h2 mat-dialog-title style ="text-align: center;">Add Topic</h2>
     <mat-dialog-content class ="container">
-        <form novalidate [formGroup]= "topic" > <!--(ngSubmit)="onSubmit(course)" -->
-            <label>
-                <span>Topic Name:</span>
-                <input type="text" formControlName="TopicName">
-            </label>
+        <form novalidate class="topic-form" [formGroup]= "topic" > <!--(ngSubmit)="onSubmit(course)" -->
+         <p> 
+            <mat-form-field appearance ="legacy" class="input-fields">
+                <mat-label style="font-size:18px; ">Topic Name</mat-label>
+                <input matInput type="text" formControlName="TopicName">
+            </mat-form-field>
+        </p> 
+        <p>
+            <mat-form-field appearance ="legacy" class="input-fields">
+                <mat-label style="font-size:18px; ">Topic Description</mat-label>
+                <textarea matInput type="text" formControlName="TopicDescription"></textarea>
+            </mat-form-field>
+        </p>
 
-           <br>
-           <label>
-                <span>Topic Description:</span>
-                <input type="text" formControlName="TopicDescription">
-            </label>
-           <br>
-           <!-- <label>
-                <span>id:</span>           
-            <input type="string" formControlName="id">
-            </label> -->
+           <!-- <p>
+            <mat-form-field appearance ="legacy" class="input-fields">
+                <mat-label style="font-size:18px; ">Course Name</mat-label>
+                <input matInput type="text" formControlName="courseName" value={{name}}>
+            </mat-form-field>
+        </p> -->
         </form>
 
     </mat-dialog-content>
 
 <mat-dialog-actions>
-    <button class="btn-cancel" class="mat-raised-button" stye="padding: 5px 30px;" (click)="cancel()">Cancel</button>
-    <button type ="btn-submit" class="mat-raised-button" (click)="onSubmit()">Create</button>   
+    <button class="btn-cancel" class="mat-raised-button" style="padding: 5px 30px;margin: auto;margin-bottom: 20px;" (click)="cancel()">Cancel</button>
+    <button type ="btn-submit" class="mat-raised-button" style="padding: 5px 30px;margin: auto;margin-bottom: 20px;" (click)="onSubmit()">Create</button>   
 </mat-dialog-actions>

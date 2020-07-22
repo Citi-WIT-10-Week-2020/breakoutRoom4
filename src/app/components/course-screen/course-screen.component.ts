@@ -10,6 +10,7 @@ import { Tile } from '../home-screen/home-screen.component';
 import { ConsoleLogger } from '@aws-amplify/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import {TopicDialogComponent} from '../topic-dialog/topic-dialog.component';
+import {CourseService} from '../../shared/courses.service';
 
 @Component({
   selector: 'app-course-screen',
@@ -20,32 +21,50 @@ import {TopicDialogComponent} from '../topic-dialog/topic-dialog.component';
 
 export class CourseScreenComponent implements OnInit {
   
+  
+
   courseId: string;
   topics: Array<any>;
-  professorName : string;
-  courseName : string;
+  topicObject: ITopic;
+  course: String;
+  professorName: string;
+  courseName: string;
 
   constructor(private route: ActivatedRoute, private matDialog: MatDialog,private apiservice : APIService, private breakpointObserver: BreakpointObserver, private topicservice:TopicsService) { }
   
 
   ngOnInit(): void {
+
     //gets the course ID passed in from home-screen
     this.route.paramMap.subscribe(params => { 
       this.courseId = params.get('id'); 
       console.log("courseId", this.courseId);
     });
+
     
- /*   
-    //gets all the topics using courseId
+    //gets the course name using courseId
     this.apiservice.GetCourse(this.courseId.toString()).then((evt)=>{
-      console.log("topic", evt);
-      this.topics = evt.topics.items;
-      console.log('this.topics', this.topics);
+      console.log("course", evt);
+      this.course = evt.courseName;
+      console.log('this.course', this.course);
     }).catch((err)=>{
       console.log(err);
     });
-*/    
-   
+
+   //gets all the topics using courseId
+   const myObserver = {
+    next: x => {
+    //  console.log("get topics" , x);
+      this.topics = x.items;
+      console.log("topics", this.topics);
+    },
+    error: err => console.error('Observer got an error: ' + err),
+    complete: () => console.log('Observer got a complete notification'),
+  };
+    this.topicservice.getTopics(this.courseId).subscribe(myObserver);
+
+
+    //subscribe to any topic creations
    
    this.getTopics();
    this.subscibeToTopicCreations();
