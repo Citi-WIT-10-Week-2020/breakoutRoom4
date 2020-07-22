@@ -28,7 +28,7 @@ export class TopicScreenComponent implements OnInit {
   private fileName;
   private fileType;
   files: Array<any>;
-  resourceGroups : Array<any>;
+  resourceGroups : Array<any>;  //DINA, THE RESOURCE GROUPS ARE IN HERE :)
   topic: any;
  
 
@@ -93,7 +93,7 @@ export class TopicScreenComponent implements OnInit {
   }
 
   subscribeToFileEvents(){
-    
+
   }
    checkResourceGroups(){
     const myObserver = {
