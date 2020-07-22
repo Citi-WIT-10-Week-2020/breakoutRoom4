@@ -1,0 +1,88 @@
+
+
+<div class="div-body">
+
+
+        
+
+    <div class="nav-container">
+      <span><a routerLink='/course'>Courses ></a></span>
+      <span><a [routerLink]="['/course', this.courseId]">{{this.course}} ></a></span>
+      <span><a [routerLink]="['/topic', this.courseId, this.topicId, this.topicName]">{{topicName}}</a></span>
+    
+  </div>
+
+
+  <h1>Upload file</h1>
+  <form [formGroup] = "formGroup" (ngSubmit)="onSubmit()">
+      <input type="file" (change)="onFileChange($event)" />
+      <input type="submit" [disabled]="formGroup.invalid" value="upload" />
+  </form>
+  <h1>DownLoad File</h1>
+  <button (click)="onDownload()">download</button>
+  </div>
+
+
+    <div class="title-container">
+        <span class="title-item"><a [routerLink]="['/topic', this.courseId, this.topicId, this.topicName]">{{topicName}}</a></span>
+        
+        <span> <!--<button class="add-btn-bg" (click) = "createCourse()"> --><mat-icon class="add-btn">add_circle_outline</mat-icon><!--</button>--></span>
+      </div>
+
+      <div class="wrapper">
+        <div class="box1">
+          <div class="box1-title">Files</div>
+          
+          <mat-accordion>
+            <mat-expansion-panel class="rg">
+              <mat-expansion-panel-header>
+                <mat-panel-title class="mat-elevation-z rg-title">Resource Group 1</mat-panel-title>
+              </mat-expansion-panel-header>
+                <div class="file">Link to file 1</div>
+                <div class="file">Link to file 2</div>
+                <div class="file">Link to file 3</div>
+            </mat-expansion-panel>
+
+            <mat-expansion-panel class="rg">
+              <mat-expansion-panel-header>
+                <mat-panel-title class="mat-elevation-z rg-title">Resource Group 2</mat-panel-title>
+              </mat-expansion-panel-header>
+                <div class="file">Link to file 1</div>
+                <div class="file">Link to file 2</div>
+                <div class="file">Link to file 3</div>
+            </mat-expansion-panel>
+          </mat-accordion>
+          
+
+          <mat-accordion>
+            <app-resource-group></app-resource-group>
+          </mat-accordion>
+
+
+
+        </div>
+
+        <div class="box2">
+          <div class="box2-title">Playlist</div>
+          <div class="video-container">
+            <div class="video-item">item</div>
+            <div class="video-item">item</div>
+            <div class="video-item">item</div>
+            
+          </div>
+
+        </div>
+      </div>
+
+      <div class="wrapper-2">FAQ</div>
+
+        
+      
+</div>
+
+
+  
+
+     
+
+

@@ -1,7 +1,8 @@
-<button mat-button class="nav-back"><a routerLink=''> < Back to Home</a></button>
+
 <div class="div-body">
+    <button mat-flat-button class="nav-back"><a routerLink=''> < Home</a></button>
     <div class="title-header">
-        <h1 class="title">Help Page</h1>
+        <span class="title">Help Page</span>
         <div class="subtitle-section">
             <span class="section-link"><a href="/help#faq">FAQ</a></span>
             <span class="section-link"><a href="/help#examples">Examples</a></span>
@@ -9,59 +10,95 @@
     </div>
     <a name="faq"></a>
     <div class="faq">
-        <h2 class="section-title">Frequently Asked Questions</h2>
-        <div class="faq-item">
-            <h2 class="question">#1: How to Add a Course</h2>
-            <p class="answer">This is a lengthy answer</p>
-            <hr>
-        </div>
-        <div class="faq-item">
-            <h2 class="question">#2: How to Add a Topic</h2>
-            <p class="answer">This is a lengthy answer</p>
-            <hr>
-        </div>
-        <div class="faq-item">
-            <h2 class="question">#3: How to Add a Resource Group</h2>
-            <p class="answer">This is a lengthy answer</p>
-            <hr>
-        </div>
-        <div class="faq-item">
-            <h2 class="question">#4: How to Add a File</h2>
-            <p class="answer">This is a lengthy answer</p>
-            <hr>
-        </div>
-        <div class="faq-item">
-            <h2 class="question">#5: How to Add a Zoom Video</h2>
-            <p class="answer">This is a lengthy answer</p>
-            <hr>
-        </div>
-        <div class="faq-item">
-            <h2 class="question">#6: How to Add a Question to the FAQ</h2>
-            <p class="answer">This is a lengthy answer</p>
-        </div>
+        <div class="section-title">Frequently Asked Questions</div>
+        <mat-accordion multi="true">
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title class="question">#1: How to Add a Course</mat-panel-title>
+                </mat-expansion-panel-header>
+                <div class="answer">
+                    <p>To add a course, press the plus sign button next to the Courses title on the home page page.</p>
+                    <p>From here, a pop-up will appear. Enter the name and description of your Course that you would like students to see.</p>
+                    <p>Don’t worry, a unique ID for students to be able to join your course will be automatically assigned to your Course. This Course ID can be shared by clicking the “Copy ID” button, which will copy the ID to your clipboard and then share with your students however you see fit.</p>
+                    <p>After you press the “Create” button on the pop-up, you should see the Course appear on your home page.
+                    </p>
+                </div>
+            </mat-expansion-panel>
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title class="question">#2: How to Add a Topic</mat-panel-title>
+                </mat-expansion-panel-header>
+                <div class="answer">
+                    <p>To navigate to the page for one of your courses, simply click on the desired course. This should take you to a Topics page.</p>
+                    <p> To add a Topic, click the plus sign next to the Topics title.</p>
+                    <p> A pop-up should appear where you may enter the name and description for the Topic. </p>
+                    <p> Unlike adding a Course, your Topics will not be assigned a unique ID. Any student who has access to a Course will have access to the Topics you create within that Course. </p>
+                    <p> When you press the “Create” button on the pop-up, your newly-created Topic should appear on the screen.
+                    </p>   
+                </div>
+            </mat-expansion-panel>
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title class="question">#3: How to Add a Resource Group</mat-panel-title>
+                </mat-expansion-panel-header>
+                <p class="answer">This is a lengthy answer</p>   
+            </mat-expansion-panel>
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title class="question">#4: How to Add a File</mat-panel-title>
+                </mat-expansion-panel-header>
+                <p class="answer">This is a lengthy answer</p>   
+            </mat-expansion-panel>
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title class="question">#5: How to Add a Zoom Video</mat-panel-title>
+                </mat-expansion-panel-header>
+                <p class="answer">This is a lengthy answer</p>   
+            </mat-expansion-panel>
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title class="question">#6: How to Add a Question to the FAQ</mat-panel-title>
+                </mat-expansion-panel-header>
+                <p class="answer">This is a lengthy answer</p>   
+            </mat-expansion-panel>
+        </mat-accordion>
     </div>
     <a name="examples"></a>
     <div class="examples">
-        <h2 class="section-title">Examples to Get Started</h2>
-        <div class="example-item">
-            <h2 class="example-name">Example of Topics as Units</h2>
-            <p class="answer">This is a lengthy explanation.</p>
-            <hr>
-        </div>
-        <div class="example-item">
-            <h2 class="example-name">Example of Topics as Chapters</h2>
-            <p class="answer">This is a lengthy explanation.</p>
-            <hr>
-        </div>
-        <div class="example-item">
-            <h2 class="example-name">Example of Topics as Weeks</h2>
-            <p class="answer">This is a lengthy explanation.</p>
-            <hr>
-        </div>
-        <div class="example-item">
-            <h2 class="example-name">Example of Topics as Books or Readings</h2>
-            <p class="answer">This is a lengthy explanation.</p>
-        </div>
+        <div class="section-title">Examples</div>
+        <mat-accordion multi="true">
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title class="example-item">Example of Topics as Units</mat-panel-title>
+                </mat-expansion-panel-header>
+                <p class="answer">In this example, the Professor makes the choice to use the Topics to display units. This format may lend itself to Courses that follow a textbook, or more science-related courses. Each Topic should correspond to a unit in the Course. Within the Topic, you could create resource groups that correspond to chapters or other inner components of the unit, or you could organize the resource group by file type. All videos for the Unit would be in the same playlist, and the FAQ would also be for the entire Unit.
+                </p>   
+            </mat-expansion-panel>
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title class="example-item">Example of Topics as Chapters</mat-panel-title>
+                </mat-expansion-panel-header>
+                <p class="answer">In this example, the Professor makes the choice to use the Topics to display individual chapters. Again, this organization technique lends itself to Courses that follow a textbook. However, the Topics would likely contain less information than in the units example, so there would likely be more individual Topics overall. Each Resource Group could be segments of the chapter (ex. “Chapter 3.1”, etc.), or could simply be organized by file type. The playlist and FAQ would be for the entire Topic/chapter. 
+                    NB: Choosing between designating Topics as units or chapters is a matter of personal preference for how one chooses to organize their Course. We recommend taking into account how you plan to lay out your syllabus and how the textbook is arranged, and then ask yourself what the natural way to organize your resources would be to best match these other aspects of your Course.                    
+                </p>   
+            </mat-expansion-panel>
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title class="example-item">Example of Topics as Weeks</mat-panel-title>
+                </mat-expansion-panel-header>
+                <p class="answer">In this example, the Professor decides to use the Topics to display information for an individual week. This method of organization works particularly well with Courses that are organized as such. For example, if every week of the Course corresponds to a new concentration or conversation, or if every week ends with a quiz or paper or other method of student evaluation. With this method, every Topic should be titled “Week One, Week Two, etc.” preferably along with some other information to help the student understand what the focus of the week will be, e.g. “Week One: Descartes.” Within the Topic, the Professor may choose to make Resource Groups correspond to sub-topics (e.g. “Descartes’ Background”) or to file types. The playlist and FAQ would correspond to the entire week.
+                    NB: Though weeks is the unit of time used in this example, this method could work for any unit of time, for example every two weeks or every month depending on how one organizes their Course.
+                    </p>   
+            </mat-expansion-panel>
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title class="example-item">Example of Topics as Books or Readings
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <p class="answer">In this example, the Professor chooses to use the Topics to organize resources by certain books or readings.This method works especially well with History or Literature classes where, instead of textbooks, there may be individual books or readings assigned. Each Topic would correspond to one of these books or readings, or you may choose to group together some related readings, e.g. naming a Topic  “Readings on Descartes.” Within each Topic, the resource groups may be organized by individual readings (if the Topic includes multiple) or simply by file type. The playlist and FAQ would correspond with the entire Topic.
+                </p>   
+            </mat-expansion-panel>
+        </mat-accordion>
     </div>
 
 </div>
