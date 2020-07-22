@@ -1,6 +1,6 @@
 .div-body {
     display: block;
-    min-height: 790px;
+    min-height: 740px;
     margin: 0;
     margin-left: 100px;
     margin-right: 100px;
@@ -21,6 +21,17 @@
     color: white;
     font-weight: 300;
 
+}
+
+.nav-container a:hover {
+    color: rgb(85, 32, 116);
+}
+
+.nav-dec {
+    padding: 0 10px;
+    font-size: 22px;
+    color: white;
+    font-weight: 300;
 }
 
 .title-container {
@@ -53,6 +64,9 @@
     color: rgb(85, 32, 116);
 }
 
+.add-btn:hover {
+    color: white;
+}
 
 .add-btn:hover {
     cursor: pointer;

@@ -1,6 +1,6 @@
 .div-body {
     display: block;
-    min-height: 700px;
+    min-height: 695px;
     margin: 0;
     margin-left: 100px;
     margin-right: 100px;
@@ -18,6 +18,17 @@
     color: white;
     font-weight: 300;
 
+}
+
+.nav-container a:hover {
+    color: rgb(85, 32, 116);
+}
+
+.nav-dec {
+    padding: 0 10px;
+    font-size: 22px;
+    color: white;
+    font-weight: 300;
 }
 
 .title-container {
@@ -45,10 +56,18 @@
     color: rgb(85, 32, 116);
 }
 
+.add-btn:hover {
+    color: white;
+}
+
 .add-btn-bg {
     border: none;
     background: none;
     
+}
+
+.add-file-btn:hover {
+    color: white;
 }
 
 .wrapper {
@@ -137,11 +156,13 @@
 
 //all the css for expansion panel
 .rg {
-    background-color: rgba($color: #ffffff, $alpha: .65);
+    background-color: white;
 }
 
 .rg-title {
     font-size: x-large;
+    height: 30px;
+    padding-top: 6px;
 }
 
 .file {
