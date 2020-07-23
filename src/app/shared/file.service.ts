@@ -8,6 +8,7 @@ import {IFile} from '../shared/file'
 //functions to create, get, update, and delete courses
 import config from '../../aws-exports'
 import { HttpClient } from '@angular/common/http';
+import { IResourceGroup } from './resourceGroup';
 @Injectable(
    
 )
@@ -16,9 +17,12 @@ export class FileService{
     
     fileInput: IFile;
     constructor(private apiservice: APIService,private http: HttpClient){}
-
+    getTopic(topicId:string){
+        return from(this.apiservice.GetTopic(topicId));
+    }
     //function to get Files from database
     getFiles(): Observable<any>{
+        //change to getResourceGroup
         return from(this.apiservice.ListFiles());
     }
     //function to download a file
@@ -42,6 +46,10 @@ export class FileService{
         })
         //open window and prompt save
        
+    }
+
+    async createResourceGroup(group: IResourceGroup) : Promise<any>{
+        return await this.apiservice.CreateResourceGroup(group);
     }
     //create / upload file
     async createFile(fileName,fileType,file){

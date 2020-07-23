@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { APIService } from '../../API.service';
 import { v4 as uuidv4 } from 'uuid';
 import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
@@ -22,7 +22,7 @@ export interface Tile {
 
 @Component({
   selector: 'app-home-screen',
-  templateUrl: './home-screen.component.html',
+  templateUrl: './home-screen.component.html', 
   styleUrls: ['./home-screen.component.scss'],
   providers:[CourseService,UserinfoService]
 })

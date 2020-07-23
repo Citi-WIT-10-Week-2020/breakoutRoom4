@@ -4,7 +4,7 @@
 import { Injectable } from "@angular/core";
 import API, { graphqlOperation } from "@aws-amplify/api";
 import { GraphQLResult } from "@aws-amplify/api/lib/types";
-import * as Observable from "zen-observable";
+import { Observable } from "zen-observable-ts";
 
 export type CreateProfessorInput = {
   id?: string | null;
@@ -2254,13 +2254,13 @@ export class APIService {
     return <ListFilesQuery>response.data.listFiles;
   }
   async ProfessorByName(
-    professorName?: string,
+    professorName: string,
     sortDirection?: ModelSortDirection,
     filter?: ModelProfessorFilterInput,
     limit?: number,
     nextToken?: string
   ): Promise<ProfessorByNameQuery> {
-    const statement = `query ProfessorByName($professorName: String, $sortDirection: ModelSortDirection, $filter: ModelProfessorFilterInput, $limit: Int, $nextToken: String) {
+    const statement = `query ProfessorByName($professorName: String!, $sortDirection: ModelSortDirection, $filter: ModelProfessorFilterInput, $limit: Int, $nextToken: String) {
         professorByName(professorName: $professorName, sortDirection: $sortDirection, filter: $filter, limit: $limit, nextToken: $nextToken) {
           __typename
           items {
@@ -2271,8 +2271,7 @@ export class APIService {
             courses {
               __typename
               nextToken
-              items
-              {
+              items {
                 courseName
                 courseDescription
                 id
@@ -2284,10 +2283,9 @@ export class APIService {
           nextToken
         }
       }`;
-    const gqlAPIServiceArguments: any = {};
-    if (professorName) {
-      gqlAPIServiceArguments.professorName = professorName;
-    }
+    const gqlAPIServiceArguments: any = {
+      professorName
+    };
     if (sortDirection) {
       gqlAPIServiceArguments.sortDirection = sortDirection;
     }
@@ -2306,13 +2304,13 @@ export class APIService {
     return <ProfessorByNameQuery>response.data.professorByName;
   }
   async CourseByProfessor(
-    professor?: string,
+    professor: string,
     sortDirection?: ModelSortDirection,
     filter?: ModelCourseFilterInput,
     limit?: number,
     nextToken?: string
   ): Promise<CourseByProfessorQuery> {
-    const statement = `query CourseByProfessor($professor: String, $sortDirection: ModelSortDirection, $filter: ModelCourseFilterInput, $limit: Int, $nextToken: String) {
+    const statement = `query CourseByProfessor($professor: String!, $sortDirection: ModelSortDirection, $filter: ModelCourseFilterInput, $limit: Int, $nextToken: String) {
         courseByProfessor(professor: $professor, sortDirection: $sortDirection, filter: $filter, limit: $limit, nextToken: $nextToken) {
           __typename
           items {
@@ -2331,10 +2329,9 @@ export class APIService {
           nextToken
         }
       }`;
-    const gqlAPIServiceArguments: any = {};
-    if (professor) {
-      gqlAPIServiceArguments.professor = professor;
-    }
+    const gqlAPIServiceArguments: any = {
+      professor
+    };
     if (sortDirection) {
       gqlAPIServiceArguments.sortDirection = sortDirection;
     }
@@ -2353,14 +2350,14 @@ export class APIService {
     return <CourseByProfessorQuery>response.data.courseByProfessor;
   }
   async TopicByCourseByProfessor(
-    professor?: string,
+    professor: string,
     course?: ModelStringKeyConditionInput,
     sortDirection?: ModelSortDirection,
     filter?: ModelTopicFilterInput,
     limit?: number,
     nextToken?: string
   ): Promise<TopicByCourseByProfessorQuery> {
-    const statement = `query TopicByCourseByProfessor($professor: String, $course: ModelStringKeyConditionInput, $sortDirection: ModelSortDirection, $filter: ModelTopicFilterInput, $limit: Int, $nextToken: String) {
+    const statement = `query TopicByCourseByProfessor($professor: String!, $course: ModelStringKeyConditionInput, $sortDirection: ModelSortDirection, $filter: ModelTopicFilterInput, $limit: Int, $nextToken: String) {
         topicByCourseByProfessor(professor: $professor, course: $course, sortDirection: $sortDirection, filter: $filter, limit: $limit, nextToken: $nextToken) {
           __typename
           items {
@@ -2380,10 +2377,9 @@ export class APIService {
           nextToken
         }
       }`;
-    const gqlAPIServiceArguments: any = {};
-    if (professor) {
-      gqlAPIServiceArguments.professor = professor;
-    }
+    const gqlAPIServiceArguments: any = {
+      professor
+    };
     if (course) {
       gqlAPIServiceArguments.course = course;
     }
@@ -2407,14 +2403,14 @@ export class APIService {
     );
   }
   async FileByCourseByTopic(
-    course?: string,
+    course: string,
     topic?: ModelStringKeyConditionInput,
     sortDirection?: ModelSortDirection,
     filter?: ModelResourceGroupFilterInput,
     limit?: number,
     nextToken?: string
   ): Promise<FileByCourseByTopicQuery> {
-    const statement = `query FileByCourseByTopic($course: String, $topic: ModelStringKeyConditionInput, $sortDirection: ModelSortDirection, $filter: ModelResourceGroupFilterInput, $limit: Int, $nextToken: String) {
+    const statement = `query FileByCourseByTopic($course: String!, $topic: ModelStringKeyConditionInput, $sortDirection: ModelSortDirection, $filter: ModelResourceGroupFilterInput, $limit: Int, $nextToken: String) {
         fileByCourseByTopic(course: $course, topic: $topic, sortDirection: $sortDirection, filter: $filter, limit: $limit, nextToken: $nextToken) {
           __typename
           items {
@@ -2433,10 +2429,9 @@ export class APIService {
           nextToken
         }
       }`;
-    const gqlAPIServiceArguments: any = {};
-    if (course) {
-      gqlAPIServiceArguments.course = course;
-    }
+    const gqlAPIServiceArguments: any = {
+      course
+    };
     if (topic) {
       gqlAPIServiceArguments.topic = topic;
     }
@@ -2458,14 +2453,14 @@ export class APIService {
     return <FileByCourseByTopicQuery>response.data.fileByCourseByTopic;
   }
   async FileByTopicByResourceGroup(
-    topic?: string,
+    topic: string,
     resourseGroup?: ModelStringKeyConditionInput,
     sortDirection?: ModelSortDirection,
     filter?: ModelFileFilterInput,
     limit?: number,
     nextToken?: string
   ): Promise<FileByTopicByResourceGroupQuery> {
-    const statement = `query FileByTopicByResourceGroup($topic: String, $resourseGroup: ModelStringKeyConditionInput, $sortDirection: ModelSortDirection, $filter: ModelFileFilterInput, $limit: Int, $nextToken: String) {
+    const statement = `query FileByTopicByResourceGroup($topic: String!, $resourseGroup: ModelStringKeyConditionInput, $sortDirection: ModelSortDirection, $filter: ModelFileFilterInput, $limit: Int, $nextToken: String) {
         fileByTopicByResourceGroup(topic: $topic, resourseGroup: $resourseGroup, sortDirection: $sortDirection, filter: $filter, limit: $limit, nextToken: $nextToken) {
           __typename
           items {
@@ -2489,10 +2484,9 @@ export class APIService {
           nextToken
         }
       }`;
-    const gqlAPIServiceArguments: any = {};
-    if (topic) {
-      gqlAPIServiceArguments.topic = topic;
-    }
+    const gqlAPIServiceArguments: any = {
+      topic
+    };
     if (resourseGroup) {
       gqlAPIServiceArguments.resourseGroup = resourseGroup;
     }
@@ -2516,13 +2510,13 @@ export class APIService {
     );
   }
   async FileByFilename(
-    resourseGroup?: string,
+    resourseGroup: string,
     sortDirection?: ModelSortDirection,
     filter?: ModelFileFilterInput,
     limit?: number,
     nextToken?: string
   ): Promise<FileByFilenameQuery> {
-    const statement = `query FileByFilename($resourseGroup: String, $sortDirection: ModelSortDirection, $filter: ModelFileFilterInput, $limit: Int, $nextToken: String) {
+    const statement = `query FileByFilename($resourseGroup: String!, $sortDirection: ModelSortDirection, $filter: ModelFileFilterInput, $limit: Int, $nextToken: String) {
         fileByFilename(resourseGroup: $resourseGroup, sortDirection: $sortDirection, filter: $filter, limit: $limit, nextToken: $nextToken) {
           __typename
           items {
@@ -2546,10 +2540,9 @@ export class APIService {
           nextToken
         }
       }`;
-    const gqlAPIServiceArguments: any = {};
-    if (resourseGroup) {
-      gqlAPIServiceArguments.resourseGroup = resourseGroup;
-    }
+    const gqlAPIServiceArguments: any = {
+      resourseGroup
+    };
     if (sortDirection) {
       gqlAPIServiceArguments.sortDirection = sortDirection;
     }

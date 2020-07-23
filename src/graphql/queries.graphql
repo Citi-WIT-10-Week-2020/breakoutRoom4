@@ -211,7 +211,7 @@ query ListFiles(
   }
 }
 query ProfessorByName(
-  $professorName: String
+  $professorName: String!
   $sortDirection: ModelSortDirection
   $filter: ModelProfessorFilterInput
   $limit: Int
@@ -238,7 +238,7 @@ query ProfessorByName(
   }
 }
 query CourseByProfessor(
-  $professor: String
+  $professor: String!
   $sortDirection: ModelSortDirection
   $filter: ModelCourseFilterInput
   $limit: Int
@@ -266,7 +266,7 @@ query CourseByProfessor(
   }
 }
 query TopicByCourseByProfessor(
-  $professor: String
+  $professor: String!
   $course: ModelStringKeyConditionInput
   $sortDirection: ModelSortDirection
   $filter: ModelTopicFilterInput
@@ -297,7 +297,7 @@ query TopicByCourseByProfessor(
   }
 }
 query FileByCourseByTopic(
-  $course: String
+  $course: String!
   $topic: ModelStringKeyConditionInput
   $sortDirection: ModelSortDirection
   $filter: ModelResourceGroupFilterInput
@@ -327,7 +327,7 @@ query FileByCourseByTopic(
   }
 }
 query FileByTopicByResourceGroup(
-  $topic: String
+  $topic: String!
   $resourseGroup: ModelStringKeyConditionInput
   $sortDirection: ModelSortDirection
   $filter: ModelFileFilterInput
@@ -362,7 +362,7 @@ query FileByTopicByResourceGroup(
   }
 }
 query FileByFilename(
-  $resourseGroup: String
+  $resourseGroup: String!
   $sortDirection: ModelSortDirection
   $filter: ModelFileFilterInput
   $limit: Int
