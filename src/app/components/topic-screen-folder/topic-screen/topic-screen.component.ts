@@ -6,6 +6,8 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { FileService } from 'src/app/shared/file.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import  {ResourceDialogComponent} from '../resource-dialog/resource-dialog.component'
+import { IResourceGroup } from 'src/app/shared/resourceGroup';
+import { v4 as uuidv4 } from 'uuid';
 
 
 @Component({
@@ -28,11 +30,16 @@ export class TopicScreenComponent implements OnInit {
   private fileName;
   private fileType;
   files: Array<any>;
+  resourceGroups : Array<any>;  //DINA, THE RESOURCE GROUPS ARE IN HERE :)
+  topic: any;
+ 
+
+  topicId: string;
+  topicName: string;
+  courseId: string;
   constructor(private route:ActivatedRoute,private fb: FormBuilder,private matDialog: MatDialog, private fileservice: FileService, private apiservice: APIService) { }
 
-  topicId: String;
-  topicName: String;
-  courseId: String;
+  
   course: String;
   rgObject: Array<any>;
   playlistObject: Array<any>; 
@@ -80,8 +87,63 @@ export class TopicScreenComponent implements OnInit {
     console.log(this.topicName);
 
     this.getFiles();
-
+    this.checkResourceGroups();
   
+  }
+  subscribeToResourceGroupEvents(){
+
+  }
+
+  subscribeToFileEvents(){
+
+  }
+   checkResourceGroups(){
+    const myObserver = {
+      next: x => {
+        console.log('THE TOPIC: ' , x);
+        this.topic = x;
+        //if resource groups are empty, createresource groups
+        if(x.resourceGroups.items.length == 0){
+          console.log("creating resourceGroups");
+           this.createInitialResourceGroups();
+        }
+        else{
+          this.resourceGroups = x.resourceGroups.items;
+          console.log("GROUPS", this.resourceGroups);
+        }
+      },
+      error: err => console.error('Observer got an error: ' + err),
+      complete: () => console.log('Observer got a complete notification'),
+    };
+
+    
+    this.fileservice.getTopic(this.topicId).subscribe(myObserver);
+  }
+
+  async createInitialResourceGroups(){
+    let playlist :IResourceGroup = {
+      id: uuidv4(),
+      course: this.topic.course,
+      groupName: "Playlist",
+      topic:this.topic.TopicName
+    }
+
+    let faq : IResourceGroup = {
+      id:uuidv4(),
+      course:this.topic.course,
+      groupName: "FAQ",
+      topic:this.topic.TopicName
+    }
+    //create Playlist
+    await this.fileservice.createResourceGroup(playlist);
+    //create FAQ
+    await this.fileservice.createResourceGroup(faq);
+    //check to see if the resourcegroups are there
+    this.fileservice.getTopic(this.topicId).subscribe((x)=>{
+      console.log(x);
+      this.resourceGroups = x.resourceGroups.items;
+      console.log("GROUPS", this.resourceGroups);
+    })
   }
   onDownload(){
     console.log("Downloading!");
