@@ -4,8 +4,8 @@ import { title } from 'process';
 import { APIService } from '../../../API.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { FileService } from 'src/app/shared/file.service';
-//import { IResourceGroup } from 'src/app/shared/resourceGroup';
-//import { v4 as uuidv4 } from 'uuid';
+import { IResourceGroup } from 'src/app/shared/resourceGroup';
+import { v4 as uuidv4 } from 'uuid';
 
 
 @Component({
@@ -85,7 +85,7 @@ export class TopicScreenComponent implements OnInit {
     console.log(this.topicName);
 
     this.getFiles();
-    //this.checkResourceGroups();
+    this.checkResourceGroups();
   
   }
   subscribeToResourceGroupEvents(){
@@ -103,7 +103,7 @@ export class TopicScreenComponent implements OnInit {
   subscribeToFileEvents(){
 
   }
-  /* checkResourceGroups(){
+   checkResourceGroups(){
     const myObserver = {
       next: x => {
         console.log('THE TOPIC: ' , x);
@@ -150,7 +150,7 @@ export class TopicScreenComponent implements OnInit {
       this.resourceGroups = x.resourceGroups.items;
       console.log("GROUPS", this.resourceGroups);
     })
-  }*/
+  }
   onDownload(){
     console.log("Downloading!");
     //Download the file
