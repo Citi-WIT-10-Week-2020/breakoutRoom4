@@ -15,19 +15,20 @@
         <input type="file" (change)="onFileChange($event)" />
         <input type="submit" [disabled]="formGroup.invalid" value="upload" />
     </form>
-    <h1>DownLoad File</h1>
+    <h1>Download File</h1>
     <button (click)="onDownload()">download</button>
     
+    <!-- <span><button class="add-btn-bg" (click) = "openCourseDialog()"><mat-icon class="add-btn">add_circle_outline</mat-icon></button></span> -->
 
 
     <div class="title-container">
         <span class="title-item"><a [routerLink]="['/topic', this.courseId, this.topicId, this.topicName]">{{topicName}}</a></span>
-        <span> <!--<button class="add-btn-bg" (click) = "createCourse()"> --><mat-icon class="add-btn">add_circle_outline</mat-icon><!--</button>--></span>
+        <span> <mat-icon class="add-btn">add_circle_outline</mat-icon></span>
     </div>
 
       <div class="wrapper">
         <div class="box1">
-          <div class="box1-title">Files <mat-icon class="add-file-btn">add_circle_outline</mat-icon></div>
+          <div class="box1-title">Files <button class="add-btn-bg" (click) = "openResourceDialog()"><mat-icon class="add-file-btn">add_circle_outline</mat-icon></button></div>
 
           <mat-accordion multi>
 

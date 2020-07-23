@@ -1,0 +1,88 @@
+import { Component, OnInit, Inject, Input } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
+import { FormControl, FormGroup } from '@angular/forms';
+import { FileService } from 'src/app/shared/file.service';
+import { IFile } from 'src/app/shared/file';
+import { FormBuilder, Validators } from '@angular/forms';
+
+@Component({
+  selector: 'app-resource-dialog',
+  templateUrl: './resource-dialog.component.html',
+  styleUrls: ['./resource-dialog.component.scss'],
+  providers: [FileService]
+})
+export class ResourceDialogComponent implements OnInit {
+  
+  @Input() rgName : string;
+ // @Input() fileName : string;
+
+  fileTypeSelected : string;
+  files: Array<any>;
+  private fileName;
+  private fileType;
+
+  public getFileGroup = this.fb.group({
+    file:[null,Validators.required]
+  });
+
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private fb: FormBuilder,public dialogRef: MatDialogRef<ResourceDialogComponent>, private fileservice:FileService) {}
+
+  fileGroup : FormGroup;
+  fileObject: IFile;
+
+  ngOnInit(): void {
+    this.fileGroup = new FormGroup({
+      fileName: new FormControl(''),
+      rgName: new FormControl(''),
+      url: new FormControl('') })
+};
+
+cancel(){
+  this.dialogRef.close();
+}
+
+// getFiles(){
+//   const myObserver = {
+//     next: x => {
+//       console.log('FILES: ' , x);
+//       this.files = x.items;
+//     },
+//     error: err => console.error('Observer got an error: ' + err),
+//     complete: () => console.log('Observer got a complete notification'),
+//   };
+//   this.fileservice.getFiles().subscribe(myObserver);
+// }
+
+//  onFileChange(event){
+//   const reader = new FileReader();
+
+//   if (event.target.files && event.target.files.length) {
+//     this.fileName = event.target.files[0].name;
+//     this.fileType = event.target.files[0].type;
+//     console.log(this.fileName,this.fileType);
+//     const [file1] = event.target.files;
+//     console.log("ORIGi", file1);
+//     this.fileGroup.patchValue({
+//       file: file1
+//     });
+//     /*reader.readAsDataURL(file);
+   
+//     reader.onload = () => {
+//       this.formGroup.patchValue({
+//         file: reader.result
+//       });
+//     };*/
+//   }
+// }
+
+// onSubmit(){
+//   //console.log(this.fileName);
+//   let file = this.fileGroup.get('file').value;
+//   console.log("INONSUBMIT",file);
+//   //let newFile = file.replace(/^data:image\/[a-z]+;base64,/, "");
+//   //console.log(newFile);
+//  this.fileservice.createFile(this.fileName,this.fileType,file);
+// }
+
+
+}

@@ -1,0 +1,93 @@
+<h2 mat-dialog-title style ="text-align: center;">ADD A FILE</h2>
+    <mat-dialog-content class ="container">
+
+
+        <mat-tab-group>
+            <mat-tab label="File">
+            <form novalidate class="resource-form" [formGroup]= "fileGroup"  > <!--(ngSubmit)="onSubmit(course)" -->
+
+                <p> 
+                    <mat-form-field appearance ="legacy" class="input-fields">
+                        <mat-label style="font-size:15px; ">File Name</mat-label>
+                        <input matInput type="text" formControlName="fileName" >
+                    </mat-form-field>
+                </p>
+                <p>
+                    <mat-form-field appearance="legacy" class="input-fields">
+                        <mat-label style="font-size:15px;">Resource Group</mat-label>
+                        <mat-select >
+                            <!-- <mat-option *ngFor="let item of rgObject" [value]=item.rgName>
+                                {{item.rgName}}
+                            </mat-option> -->
+                            <mat-option value ="Resource Group 1">Resource Group 1</mat-option>
+                            <mat-option value ="Resource Group 2">Resource Group 2</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </p>
+                <p>
+                    <mat-form-field appearance="legacy" class="input-fields">
+                        <mat-label style="font-size:15px;">File Type</mat-label>
+                        <mat-select [(value)]="fileTypeSelected">
+                            <mat-option value ="link" style="color: indigo; text-emphasis: bold;" >link</mat-option>
+                            <mat-option value =".pdf">.pdf</mat-option>
+                            <mat-option value =".doc/docx" >.doc/docx</mat-option>
+                            <mat-option value =".ppt">.ppt</mat-option>
+                        </mat-select>             
+                    </mat-form-field>
+
+                    <ng-container *ngIf="fileTypeSelected == 'link'">
+                        <p> 
+                            <mat-form-field appearance ="legacy" class="input-fields">
+                                <mat-label style="font-size:15px; ">URL</mat-label>
+                                <input matInput type="url" formControlName="url" >
+                            </mat-form-field>
+                        </p>
+                    </ng-container>
+
+                    <ng-container *ngIf="fileTypeSelected != 'link'">
+                         
+                            <form [formGroup] = "getFileGroup" (ngSubmit)="onSubmit()">
+                                <input matInput type="file" (change)="onFileChange($event)" />
+                                <input matInput type="submit" [disabled]="fileGroup.invalid" value="upload" />
+                            </form>
+                        
+                    </ng-container>
+                </p>
+               
+
+            </form>
+            </mat-tab>
+
+
+            <mat-tab label="Video">  
+                <form novalidate class="resource-form" [formGroup]= "fileGroup"  > <!--(ngSubmit)="onSubmit(course)" -->
+
+                    <p>
+                        <!-- <mat-form-field appearance ="legacy" class="input-fields">
+                            <mat-label style="font-size:18px; ">Course Name</mat-label>
+                            <input matInput type="text" formControlName="courseName" >
+                        </mat-form-field> -->
+                    </p>  
+            
+                    <p>
+                        <!-- <mat-form-field appearance ="legacy" class="input-fields">
+                            <mat-label style="font-size:18px;">Course Description</mat-label>
+                            <textarea matInput type="text" formControlName="courseDescription"> </textarea> 
+                        </mat-form-field> -->
+                    </p>
+            
+                    </form>
+
+            </mat-tab>
+          </mat-tab-group>
+
+
+        
+
+
+    </mat-dialog-content>
+
+<mat-dialog-actions>
+    <button class="btn-cancel" class="mat-raised-button" style="padding: 5px 30px; margin: auto; margin-bottom: 20px;" (click)="cancel()">Cancel</button>
+    <button type ="btn-submit" class="mat-raised-button" style="padding: 5px 30px;margin: auto;margin-bottom: 20px;" (click)="onSubmit()">Update</button>   
+</mat-dialog-actions>

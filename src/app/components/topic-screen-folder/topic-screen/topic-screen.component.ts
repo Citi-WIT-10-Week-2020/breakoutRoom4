@@ -4,7 +4,8 @@ import { title } from 'process';
 import { APIService } from '../../../API.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { FileService } from 'src/app/shared/file.service';
-
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import  {ResourceDialogComponent} from '../resource-dialog/resource-dialog.component'
 
 
 @Component({
@@ -27,7 +28,7 @@ export class TopicScreenComponent implements OnInit {
   private fileName;
   private fileType;
   files: Array<any>;
-  constructor(private route:ActivatedRoute,private fb: FormBuilder, private fileservice: FileService, private apiservice: APIService) { }
+  constructor(private route:ActivatedRoute,private fb: FormBuilder,private matDialog: MatDialog, private fileservice: FileService, private apiservice: APIService) { }
 
   topicId: String;
   topicName: String;
@@ -130,6 +131,17 @@ export class TopicScreenComponent implements OnInit {
     //let newFile = file.replace(/^data:image\/[a-z]+;base64,/, "");
     //console.log(newFile);
    this.fileservice.createFile(this.fileName,this.fileType,file);
+  }
+
+  openResourceDialog()
+  {
+    console.log("dialog opened");
+    const dialogConfig = new MatDialogConfig();
+    let dialogRef = this.matDialog.open(ResourceDialogComponent, dialogConfig);
+    //let instance =  dialogRef.componentInstance;
+      //instance.professorName = this.user.username;
+      
+    dialogRef.afterClosed().subscribe(()=>{console.log("dialog has been closed")});
   }
 
 }
