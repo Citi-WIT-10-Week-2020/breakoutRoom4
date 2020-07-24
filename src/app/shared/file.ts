@@ -5,7 +5,7 @@ export interface IFile{
 	topic: string
 	filename: string
 	filetype:string
-	fileDescription:string
+	fileDescription:string //url if available
 	resourseGroup: string
 	file: {
         bucket: string

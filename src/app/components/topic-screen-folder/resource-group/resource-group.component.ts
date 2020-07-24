@@ -7,7 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class ResourceGroupComponent implements OnInit {
 
-
+  @Input() resourceGroups: Array<any>
   @Input() rgName: String;
   
 
