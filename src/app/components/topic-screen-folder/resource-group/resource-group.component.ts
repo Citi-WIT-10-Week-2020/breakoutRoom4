@@ -7,13 +7,14 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class ResourceGroupComponent implements OnInit {
 
-  @Input() resourceGroups: Array<any>
+  @Input() files: Array<any>
   @Input() rgName: String;
   
 
   constructor() { }
 
   ngOnInit(): void {
+    console.log("IN RESOURCE GROUP",this.files);
   }
 
 }
