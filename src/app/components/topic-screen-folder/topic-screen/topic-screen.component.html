@@ -10,13 +10,13 @@
       <span><a [routerLink]="['/topic', this.courseId, this.topicId, this.topicName]">{{topicName}}</a></span>
     </div>
 
-      <h1>Upload file</h1>
+      <!--<h1>Upload file</h1>
     <form [formGroup] = "formGroup" (ngSubmit)="onSubmit()">
         <input type="file" (change)="onFileChange($event)" />
         <input type="submit" [disabled]="formGroup.invalid" value="upload" />
     </form>
     <h1>Download File</h1>
-    <button (click)="onDownload()">download</button>
+    <button (click)="onDownload()">download</button>-->
     
     <!-- <span><button class="add-btn-bg" (click) = "openCourseDialog()"><mat-icon class="add-btn">add_circle_outline</mat-icon></button></span> -->
 
@@ -43,26 +43,26 @@
             </ng-container> -->
 
             <ng-container *ngFor="let item of resourceGroups">
-              <app-resource-group [rgName]="item.groupName" ></app-resource-group>
+              <app-resource-group [rgName]="item.groupName" [files]="item.files.items"></app-resource-group>
             </ng-container>
             
-            <!-- <mat-expansion-panel class="rg">
+             <mat-expansion-panel class="rg">
               <mat-expansion-panel-header>
                 <mat-panel-title class="mat-elevation-z rg-title">Playlist</mat-panel-title>
               </mat-expansion-panel-header>
 
-              <div class="playlist-container" fxLayout="row wrap" fxLayoutGap="50px" fxLayoutAlign="flex-start" fxLayout.gt-sm="column">
+              <div class="playlist-container" fxLayout="row wrap" fxLayoutGap="50px" fxLayoutAlign="flex-start" fxLayout.1t-md="column">
                   
                 <div *ngIf="playlistObject.length == 0">
                   <span class="empty-screen-message">You do not currently have any videos. Click the plus sign to add one!</span>
                 </div>
 
                 <ng-container *ngFor="let item of playlistObject">
-                  <app-playlist-video [videosrc]="item.videosrc" [fileName]="item.videoName" ></app-playlist-video>
+                  <app-playlist-video class="videocards" [videosrc]="item.videosrc" [videoName]="item.videoName" ></app-playlist-video>
                 </ng-container>
                  
               </div>
-            </mat-expansion-panel> -->
+            </mat-expansion-panel> 
           </mat-accordion>
 
         </div>

@@ -2,41 +2,85 @@
 
 * {
     font-family: montserrat;
+    width: 100%;
+} 
+
+
+.flex {   
+  // disappears when after logging in
+  //Outside container
+  height: 750px;
+  padding-top: 200px;
+  background-color: rgb(181, 154, 231);
+  display: flex;       
+  justify-content: space-evenly;
+  margin: auto;
+  //flex-wrap: wrap;
+  
 }
 
 
 .logo-img {   //disappears after logging in
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+    //display: block;
+    //margin-left: auto;
+    //margin-right: auto;
     border-radius: 5px 5px 5px 5px;
-    height: 200px;
+    //height: 200px;
   //  display: flex;
   //  justify-content: center;
-    margin-top: 40px;
-    margin-bottom: 20px;
+    
   //  border: 3px solid rgb(198, 194, 206);
-    background-color: rgb(237, 231, 238);
-    opacity: 0.65;
+    //background-color: rgb(237, 231, 238);
+    //opacity: 0.65;
   //  margin-left: 200px;   
   //  margin-right: 50px;
     flex-direction: row;
     
+    
+    
+    width: 600px;
+    
+    
+
+    margin: 0px 50px 20px 200px;
+    padding: 0 100px 0 30px;
+
+
+    text-align: center;
+    font-size: 100px;
    
 }
 
+img.logo-img {
+  margin: 0px 110px 20px 140px;
+}
 
-#center {   // disappears when after logging in
+
+#signin {   // disappears when after logging in
    justify-content: center;
    display: flex;
+   
+  
+   //margin-left: 120px;
 }
 
-
-.flex {    // disappears when after logging in
-    display: flex;       
-    justify-content: space-evenly;
-    margin: auto;
+.description {
+  font-family: montserrat;
+  width: 650px;
+  font-size: 45px;
+  color: white;
 }
+
+h3.description {
+  font-size: 20px;
+  font-weight: 200;
+}
+
+section.section {
+  margin-right: 100px;
+}
+
+@media only screen and (max-width: 750px) {}
 
 
 //below styles for hover/overlay effect

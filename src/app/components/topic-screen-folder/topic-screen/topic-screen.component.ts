@@ -25,11 +25,11 @@ export class TopicScreenComponent implements OnInit {
   
   
   
-  public formGroup = this.fb.group({
+  /*public formGroup = this.fb.group({
     file:[null,Validators.required]
   });
   private fileName;
-  private fileType;
+  private fileType;*/
   files: Array<any>;
   resourceGroups : Array<any>;  //DINA, THE RESOURCE GROUPS ARE IN HERE :)
   topic: any;
@@ -48,6 +48,7 @@ export class TopicScreenComponent implements OnInit {
   rgObject: Array<any>;
   playlistObject: Array<any>; 
   faqObject: Array<any>;
+  fileList: Array<any>;
 
   ngOnInit(): void {
 
@@ -57,25 +58,56 @@ export class TopicScreenComponent implements OnInit {
         id: this.topicId,
         course: this.courseName,
         topic: this.topicName,
-        groupName: this.groupName
+        groupName: this.groupName,
         // rgName: "title",
         // fileName: "name of file",
+        rgName: "title",
+        fileName: "Name of File", //fileName is not connected to anything right now
+        
       }
-  ];
+    ];
+//fileList is not connected to anything right now
+    this.fileList=[
+      {
+        fileName: "name of file",
+        
+      }
+    ];
 
     this.playlistObject=[
       {
         videosrc: "https://media.geeksforgeeks.org/wp-content/uploads/20200409094356/Placement100-_-GeeksforGeeks2.mp4",
         videoName: "Name of Video"
-      }
-    ];
+      },
+    
+    {
+      videosrc: "https://media.geeksforgeeks.org/wp-content/uploads/20200409094356/Placement100-_-GeeksforGeeks2.mp4",
+      videoName: "Name of Video"
+    },
+    {
+      videosrc: "https://media.geeksforgeeks.org/wp-content/uploads/20200409094356/Placement100-_-GeeksforGeeks2.mp4",
+      videoName: "Name of Video"
+    },
+    {
+      videosrc: "https://media.geeksforgeeks.org/wp-content/uploads/20200409094356/Placement100-_-GeeksforGeeks2.mp4",
+      videoName: "Name of Video"
+    },
+    {
+      videosrc: "https://media.geeksforgeeks.org/wp-content/uploads/20200409094356/Placement100-_-GeeksforGeeks2.mp4",
+      videoName: "Name of Video"
+    },
+    {
+      videosrc: "https://media.geeksforgeeks.org/wp-content/uploads/20200409094356/Placement100-_-GeeksforGeeks2.mp4",
+      videoName: "Name of Video"
+    },
+  ]
 
     this.faqObject=[
       {
         question: "question1",
         answer: "answer1",
       }
-    ];
+    ]
 
 
     //gets courseID
@@ -110,12 +142,39 @@ export class TopicScreenComponent implements OnInit {
 
     //creations
     this.apiservice.OnCreateResourceGroupListener.subscribe((evt)=>{
+      console.log("RESOURCE GROUP CREATED");
       const data = (evt as any).value.data.onCreateResourceGroup;
       this.resourceGroups = [...this.resourceGroups,data];
     });
 
     //deletions
-    
+    this.apiservice.OnDeleteResourceGroupListener.subscribe((evt)=>{
+      console.log("RESOURCE GROUP DELETED");
+      const data = (evt as any).value.data.onDeleteResourceGroup;
+      console.log(data);
+      //basically, search thru array, find original, remove it
+      this.resourceGroups = this.resourceGroups.filter((group)=>{
+          return (group.id != data.id)
+      });
+      console.log(this.resourceGroups);
+    });
+
+    //updates
+    this.apiservice.OnUpdateResourceGroupListener.subscribe((evt)=>{
+      const data = (evt as any).value.data.onUpdateResourceGroup;
+      console.log("Update", data);
+      
+      console.log("An update has occurred!");
+      //search thru array, find original, and replace it with the new one
+      this.resourceGroups = this.resourceGroups.map((group)=>{
+        if(group.id == data.id){
+          return data;
+        }
+        else return group;
+      })
+    });
+
+
   }
 
   subscribeToFileEvents(){
@@ -169,13 +228,7 @@ export class TopicScreenComponent implements OnInit {
       console.log("GROUPS", this.resourceGroups);
     })
   }
-  onDownload(){
-    console.log("Downloading!");
-    //Download the file
-    console.log("ID",this.files[0].id);
-    this.fileservice.downloadFile(this.files[0].id);
-  }
-  
+
   getFiles(){
     const myObserver = {
       next: x => {
@@ -187,6 +240,16 @@ export class TopicScreenComponent implements OnInit {
     };
     this.fileservice.getFiles().subscribe(myObserver);
   }
+
+  /*
+  onDownload(){
+    console.log("Downloading!");
+    //Download the file
+    console.log("ID",this.files[0].id);
+    this.fileservice.downloadFile(this.files[0].id);
+  }
+  
+  
 
    onFileChange(event){
     const reader = new FileReader();
@@ -206,18 +269,18 @@ export class TopicScreenComponent implements OnInit {
         this.formGroup.patchValue({
           file: reader.result
         });
-      };*/
+      };
     }
   }
 
-  onSubmit(){
+  /*onSubmit(){
     //console.log(this.fileName);
     let file = this.formGroup.get('file').value;
     console.log("INONSUBMIT",file);
     //let newFile = file.replace(/^data:image\/[a-z]+;base64,/, "");
     //console.log(newFile);
    this.fileservice.createFile(this.fileName,this.fileType,file, this.courseName, this.topicName, this.fileDescription, this.groupName);
-  }
+  }*/
 
   openResourceDialog()
   {

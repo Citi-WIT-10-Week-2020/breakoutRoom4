@@ -24,7 +24,7 @@ export class CourseScreenComponent implements OnInit {
   
 
   courseId: string; //passed in from home
-  topics: Array<any>; //all the topics
+  topics: Array<any>; //all the topics from the course
   
   course: String;
   professorName: string;
