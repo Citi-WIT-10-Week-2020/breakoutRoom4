@@ -90,6 +90,14 @@ export class TopicScreenComponent implements OnInit {
   }
   subscribeToResourceGroupEvents(){
 
+    //creations
+    this.apiservice.OnCreateResourceGroupListener.subscribe((evt)=>{
+      const data = (evt as any).value.data.onCreateResourceGroup;
+      this.resourceGroups = [...this.resourceGroups,data];
+    });
+
+    //deletions
+    
   }
 
   subscribeToFileEvents(){
