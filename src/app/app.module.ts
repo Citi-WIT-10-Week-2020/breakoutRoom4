@@ -51,7 +51,9 @@ import { DeleteTopicDialogComponent } from './components/delete-topic-dialog/del
 
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
-
+import { ResourceDialogComponent } from './components/topic-screen-folder/resource-dialog/resource-dialog.component';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatSelectModule} from '@angular/material/select';
 
 
 
@@ -85,6 +87,8 @@ import {MatInputModule} from '@angular/material/input';
 
     DeleteTopicDialogComponent,
 
+    ResourceDialogComponent,
+
     
   ],
   imports: [
@@ -109,7 +113,9 @@ import {MatInputModule} from '@angular/material/input';
 
     MatDialogModule,
     ReactiveFormsModule,
-    MatInputModule
+    MatInputModule,
+    MatTabsModule,
+    MatSelectModule,
   ],
   bootstrap: [AppComponent],
   entryComponents: [DialogBodyComponent, UpdateDialogComponent],
