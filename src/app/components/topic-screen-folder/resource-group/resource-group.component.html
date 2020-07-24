@@ -6,6 +6,9 @@
 
   <!--this is where the ng For would go-->
   <!--list of files would be generated here-->
-  <app-file-list></app-file-list>
-
+ 
+  <ng-container *ngFor="let file of files">
+    
+    <app-file-list [fileName]="file.filename"></app-file-list>
+  </ng-container>
 </mat-expansion-panel>
