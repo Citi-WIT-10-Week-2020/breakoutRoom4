@@ -53,7 +53,7 @@
 
                     <ng-container *ngIf="fileTypeSelected == 'File'">
                         <!-- upload a file -->
-                            <form [formGroup] = "getFileGroup" (ngSubmit)="onSubmit()">
+                            <form [formGroup] = "getFileGroup" >
                                 <mat-button><input type="file" (change)="onFileChange($event)" /> </mat-button>
                                 <!-- <input type="submit" [disabled]="getFileGroup.invalid" value="upload" /> -->
                             </form>
@@ -117,6 +117,9 @@
 <mat-dialog-actions>
     <button class="btn-cancel" class="mat-raised-button" style="padding: 5px 30px; margin: auto; margin-bottom: 20px;" (click)="cancel()">Cancel</button>
 
+    <!--<ng-container >
+        <button type ="btn-submit" class="mat-raised-button" style="padding: 5px 30px;margin: auto;margin-bottom: 20px;" (click)="onResourceSubmit()">Add</button>   
+    </ng-container>-->
     <ng-container *ngIf="resourceGroupSelected == 'New Resource Group'">
         <button type ="btn-submit" class="mat-raised-button" style="padding: 5px 30px;margin: auto;margin-bottom: 20px;" (click)="addResource(true)">Add</button>   
     </ng-container>
@@ -124,4 +127,5 @@
     <ng-container *ngIf="resourceGroupSelected != 'New Resource Group'">
         <button type ="btn-submit" class="mat-raised-button" style="padding: 5px 30px;margin: auto;margin-bottom: 20px;" (click)="addResource(false)">Add</button>   
     </ng-container>
+    
 </mat-dialog-actions>

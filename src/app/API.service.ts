@@ -2050,6 +2050,13 @@ export class APIService {
               groupName
               createdAt
               updatedAt
+              files{
+                __typename
+                items
+                {id
+                filetype
+                filename}
+              }
             }
             nextToken
           }
