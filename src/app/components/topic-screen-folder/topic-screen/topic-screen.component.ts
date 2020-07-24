@@ -46,6 +46,7 @@ export class TopicScreenComponent implements OnInit {
   course: string;
   rgObject: Array<any>;
   playlistObject: Array<any>; 
+  fileList: Array<any>;
 
   ngOnInit(): void {
 
@@ -55,17 +56,47 @@ export class TopicScreenComponent implements OnInit {
         id: this.topicId,
         course: this.courseName,
         topic: this.topicName,
-        groupName: this.groupName
+        groupName: this.groupName,
         // rgName: "title",
         // fileName: "name of file",
+        rgName: "title",
+        fileName: "Name of File", //fileName is not connected to anything right now
+        
       }
-  ];
+    ];
+//fileList is not connected to anything right now
+    this.fileList=[
+      {
+        fileName: "name of file",
+        
+      }
+    ];
 
     this.playlistObject=[
       {
         videosrc: "https://media.geeksforgeeks.org/wp-content/uploads/20200409094356/Placement100-_-GeeksforGeeks2.mp4",
         videoName: "Name of Video"
-      }
+      },
+      {
+        videosrc: "https://media.geeksforgeeks.org/wp-content/uploads/20200409094356/Placement100-_-GeeksforGeeks2.mp4",
+        videoName: "Name of Video"
+      },
+      {
+        videosrc: "https://media.geeksforgeeks.org/wp-content/uploads/20200409094356/Placement100-_-GeeksforGeeks2.mp4",
+        videoName: "Name of Video"
+      },
+      {
+        videosrc: "https://media.geeksforgeeks.org/wp-content/uploads/20200409094356/Placement100-_-GeeksforGeeks2.mp4",
+        videoName: "Name of Video"
+      },
+      {
+        videosrc: "https://media.geeksforgeeks.org/wp-content/uploads/20200409094356/Placement100-_-GeeksforGeeks2.mp4",
+        videoName: "Name of Video"
+      },
+      {
+        videosrc: "https://media.geeksforgeeks.org/wp-content/uploads/20200409094356/Placement100-_-GeeksforGeeks2.mp4",
+        videoName: "Name of Video"
+      },
     ]
 
 

@@ -10,6 +10,8 @@
 }
 
 .file {
+    display: flex;
+    vertical-align: center;
     margin-top: 20px;
     margin-bottom: 20px;
     color: rgb(94, 12, 119);
@@ -18,4 +20,8 @@
 
 .mat-expansion-panel:not([class*='mat-elevation-z']) {
     box-shadow: none;
+}
+
+.spacer {
+    flex: 1 1 auto;
 }
