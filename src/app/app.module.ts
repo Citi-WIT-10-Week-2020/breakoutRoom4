@@ -24,7 +24,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { HttpClientModule} from '@angular/common/http';
 import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 import { ReactiveFormsModule } from '@angular/forms';
-import { FooterComponent } from './components/navigation/footer/footer.component';
+import { FooterComponent } from './components/Navigation/footer/footer.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatExpansionModule } from '@angular/material/expansion';
