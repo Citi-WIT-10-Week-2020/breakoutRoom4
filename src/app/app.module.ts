@@ -57,6 +57,7 @@ import { FileListComponent } from './components/topic-screen-folder/file-list/fi
 import { ResourceDialogComponent } from './components/topic-screen-folder/resource-dialog/resource-dialog.component';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatSelectModule} from '@angular/material/select';
+import { VideoLinksComponent } from './components/topic-screen-folder/video-links/video-links.component';
 
 
 
@@ -93,6 +94,7 @@ import {MatSelectModule} from '@angular/material/select';
     FaqDialogComponent,
     FileListComponent,
     ResourceDialogComponent,
+    VideoLinksComponent,
 
     
   ],
