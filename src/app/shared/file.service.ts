@@ -52,7 +52,7 @@ export class FileService{
       }
     
     //create / upload file
-    async createFile(fileName,fileType,file, course, topic, fileDescription, resourceGroup){
+    async createFile(fileName,fileType,file, course, topic, fileDescription, resourceGroup,resourceName:string){
         let id = uuidv4()
         const key = `${id}${fileName}`;
         console.log(key);
@@ -61,7 +61,7 @@ export class FileService{
             id:key,
             course:course,
             topic:topic,
-            filename: fileName,
+            filename: resourceName,
             filetype: fileType,
             fileDescription:fileDescription,
             resourseGroup: resourceGroup,
@@ -71,10 +71,15 @@ export class FileService{
                 region:config.aws_user_files_s3_bucket_region
             }
         }
+
+        
         try{
-            await Storage.put(key,file,{
-            contentType:fileType
-            });
+            if(file){
+                await Storage.put(key,file,{
+                contentType:fileType
+                });
+            }
+            
             let returned = await this.apiservice.CreateFile(this.fileInput);
             console.log(returned);
         }
