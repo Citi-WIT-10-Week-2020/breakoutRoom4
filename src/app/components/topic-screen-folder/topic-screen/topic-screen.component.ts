@@ -65,7 +65,7 @@ export class TopicScreenComponent implements OnInit {
     this.faqObject=[
       {
         question: "question1",
-        answer: ["answer1", "answer2", "answer3"],
+        answer: "answer1",
       }
     ];
 
