@@ -10,7 +10,7 @@
       <span><a [routerLink]="['/topic', this.courseId, this.topicId, this.topicName]">{{topicName}}</a></span>
     </div>
 
-      <h1>Upload file</h1>
+      <!--<h1>Upload file</h1>
     <form [formGroup] = "formGroup" (ngSubmit)="onSubmit()">
         <input type="file" (change)="onFileChange($event)" />
         <input type="submit" [disabled]="formGroup.invalid" value="upload" />
@@ -18,7 +18,7 @@
     <h1>Download File</h1>
     <button (click)="onDownload()">download</button>
     
-    <!-- <span><button class="add-btn-bg" (click) = "openCourseDialog()"><mat-icon class="add-btn">add_circle_outline</mat-icon></button></span> -->
+     <span><button class="add-btn-bg" (click) = "openCourseDialog()"><mat-icon class="add-btn">add_circle_outline</mat-icon></button></span> -->
 
 
     <div class="title-container">
@@ -54,6 +54,8 @@
               </div>
             </mat-expansion-panel> 
           </mat-accordion>
+
+          <app-video-links></app-video-links>
 
         </div>
       </div>
