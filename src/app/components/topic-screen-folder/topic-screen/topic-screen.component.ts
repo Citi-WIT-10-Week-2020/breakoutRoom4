@@ -6,6 +6,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { FileService } from 'src/app/shared/file.service';
 import { FaqDialogComponent } from '../faq-dialog/faq-dialog.component';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import  {ResourceDialogComponent} from '../resource-dialog/resource-dialog.component'
 import { IResourceGroup } from 'src/app/shared/resourceGroup';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -37,21 +38,28 @@ export class TopicScreenComponent implements OnInit {
   topicId: string;
   topicName: string;
   courseId: string;
-  constructor(private route:ActivatedRoute,private fb: FormBuilder, private fileservice: FileService, private apiservice: APIService, private matDialog: MatDialog) { }
+  courseName: string;
+  groupName: string;
+  fileDescription: string;
 
-  
-  course: String;
+  constructor(private route:ActivatedRoute,private fb: FormBuilder,private matDialog: MatDialog, private fileservice: FileService, private apiservice: APIService) { }
+
+  course: string;
   rgObject: Array<any>;
   playlistObject: Array<any>; 
   faqObject: Array<any>;
 
   ngOnInit(): void {
 
-
+   
     this.rgObject=[
       {
-        rgName: "title",
-        fileName: "name of file",
+        id: this.topicId,
+        course: this.courseName,
+        topic: this.topicName,
+        groupName: this.groupName
+        // rgName: "title",
+        // fileName: "name of file",
       }
   ];
 
@@ -100,6 +108,14 @@ export class TopicScreenComponent implements OnInit {
   }
   subscribeToResourceGroupEvents(){
 
+    //creations
+    this.apiservice.OnCreateResourceGroupListener.subscribe((evt)=>{
+      const data = (evt as any).value.data.onCreateResourceGroup;
+      this.resourceGroups = [...this.resourceGroups,data];
+    });
+
+    //deletions
+    
   }
 
   subscribeToFileEvents(){
@@ -200,7 +216,20 @@ export class TopicScreenComponent implements OnInit {
     console.log("INONSUBMIT",file);
     //let newFile = file.replace(/^data:image\/[a-z]+;base64,/, "");
     //console.log(newFile);
-   this.fileservice.createFile(this.fileName,this.fileType,file);
+   this.fileservice.createFile(this.fileName,this.fileType,file, this.courseName, this.topicName, this.fileDescription, this.groupName);
+  }
+
+  openResourceDialog()
+  {
+    console.log("dialog opened");
+    const dialogConfig = new MatDialogConfig();
+    let dialogRef = this.matDialog.open(ResourceDialogComponent, dialogConfig);
+    let instance =  dialogRef.componentInstance;
+      //instance.professorName = this.user.username;
+      instance.resourceGroups = this.resourceGroups;
+      instance.courseName = this.course;
+      instance.topicName = this.topicName;
+    dialogRef.afterClosed().subscribe(()=>{console.log("dialog has been closed")});
   }
 
   openFaqDialog() {
