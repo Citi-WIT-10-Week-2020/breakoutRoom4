@@ -1,0 +1,29 @@
+<div>
+<span mat-dialog-title style ="text-align: center;">ADD FAQ ITEM</span>
+    <mat-dialog-content class ="container">
+        
+        <form novalidate class ="faq-form" [formGroup]= "faq" > <!--(ngSubmit)="onSubmit(course)" -->
+        <p>
+            <mat-form-field appearance ="legacy" class="input-fields">
+                <mat-label style="font-size:18px;">Question</mat-label>
+                <input matInput type="text" formControlName="courseName" id="className">
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field appearance ="legacy" class="input-fields">
+                <mat-label style="font-size:18px;">Answer</mat-label>
+                <textarea matInput type="text" formControlName="courseDescription" id="courseDescrip"></textarea>
+            </mat-form-field>
+        </p>
+
+        </form>
+
+
+    </mat-dialog-content>
+
+<mat-dialog-actions style ="align-items:center">
+    <button class="btn-cancel" class="mat-raised-button" style="padding: 5px 30px; margin: auto; margin-bottom: 20px;" (click)="cancel()">Cancel</button>
+    <button type ="btn-submit" class="mat-raised-button" style="padding: 5px 30px; margin: auto; margin-bottom: 20px;" (click)="onSubmit()">Create</button>   
+</mat-dialog-actions>
+</div>
+

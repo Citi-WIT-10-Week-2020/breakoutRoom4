@@ -4,6 +4,7 @@ import { title } from 'process';
 import { APIService } from '../../../API.service';
 import { FormBuilder, Validators } from '@angular/forms';
 import { FileService } from 'src/app/shared/file.service';
+import { FaqDialogComponent } from '../faq-dialog/faq-dialog.component';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import  {ResourceDialogComponent} from '../resource-dialog/resource-dialog.component'
 import { IResourceGroup } from 'src/app/shared/resourceGroup';
@@ -46,6 +47,7 @@ export class TopicScreenComponent implements OnInit {
   course: string;
   rgObject: Array<any>;
   playlistObject: Array<any>; 
+  faqObject: Array<any>;
   fileList: Array<any>;
 
   ngOnInit(): void {
@@ -77,26 +79,34 @@ export class TopicScreenComponent implements OnInit {
         videosrc: "https://media.geeksforgeeks.org/wp-content/uploads/20200409094356/Placement100-_-GeeksforGeeks2.mp4",
         videoName: "Name of Video"
       },
+    
+    {
+      videosrc: "https://media.geeksforgeeks.org/wp-content/uploads/20200409094356/Placement100-_-GeeksforGeeks2.mp4",
+      videoName: "Name of Video"
+    },
+    {
+      videosrc: "https://media.geeksforgeeks.org/wp-content/uploads/20200409094356/Placement100-_-GeeksforGeeks2.mp4",
+      videoName: "Name of Video"
+    },
+    {
+      videosrc: "https://media.geeksforgeeks.org/wp-content/uploads/20200409094356/Placement100-_-GeeksforGeeks2.mp4",
+      videoName: "Name of Video"
+    },
+    {
+      videosrc: "https://media.geeksforgeeks.org/wp-content/uploads/20200409094356/Placement100-_-GeeksforGeeks2.mp4",
+      videoName: "Name of Video"
+    },
+    {
+      videosrc: "https://media.geeksforgeeks.org/wp-content/uploads/20200409094356/Placement100-_-GeeksforGeeks2.mp4",
+      videoName: "Name of Video"
+    },
+  ]
+
+    this.faqObject=[
       {
-        videosrc: "https://media.geeksforgeeks.org/wp-content/uploads/20200409094356/Placement100-_-GeeksforGeeks2.mp4",
-        videoName: "Name of Video"
-      },
-      {
-        videosrc: "https://media.geeksforgeeks.org/wp-content/uploads/20200409094356/Placement100-_-GeeksforGeeks2.mp4",
-        videoName: "Name of Video"
-      },
-      {
-        videosrc: "https://media.geeksforgeeks.org/wp-content/uploads/20200409094356/Placement100-_-GeeksforGeeks2.mp4",
-        videoName: "Name of Video"
-      },
-      {
-        videosrc: "https://media.geeksforgeeks.org/wp-content/uploads/20200409094356/Placement100-_-GeeksforGeeks2.mp4",
-        videoName: "Name of Video"
-      },
-      {
-        videosrc: "https://media.geeksforgeeks.org/wp-content/uploads/20200409094356/Placement100-_-GeeksforGeeks2.mp4",
-        videoName: "Name of Video"
-      },
+        question: "question1",
+        answer: "answer1",
+      }
     ]
 
 
@@ -284,6 +294,16 @@ export class TopicScreenComponent implements OnInit {
       instance.topicName = this.topicName;
     dialogRef.afterClosed().subscribe(()=>{console.log("dialog has been closed")});
   }
+
+  openFaqDialog() {
+    console.log("dialog opened");
+    const dialogConfig = new MatDialogConfig();
+    let dialogRef = this.matDialog.open(FaqDialogComponent, dialogConfig);
+    let instance =  dialogRef.componentInstance;
+    
+      
+    dialogRef.afterClosed().subscribe(()=>{console.log("dialog has been closed")});
+   } //instead of console log , refresh page
 
 }
 

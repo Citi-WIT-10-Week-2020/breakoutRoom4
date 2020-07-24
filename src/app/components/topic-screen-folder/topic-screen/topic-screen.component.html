@@ -22,6 +22,7 @@
 
 
     <div class="title-container">
+      <!--this.courseId is v important!-->
         <span class="title-item"><a [routerLink]="['/topic', this.courseId, this.topicId, this.topicName]">{{topicName}}</a></span>
        
     </div>
@@ -31,6 +32,11 @@
           <div class="box1-title">Files <button class="add-btn-bg" (click) = "openResourceDialog()"><mat-icon class="add-file-btn">add_circle_outline</mat-icon></button></div>
 
           <mat-accordion multi>
+
+            <div *ngIf="resourceGroups.length == 0">
+              <span class="empty-screen-message">You do not currently have any resource groups. Click the plus sign to add one!</span>
+            </div> 
+
 
             <!-- <ng-container *ngFor="let item of rgObject">
               <app-resource-group [rgName]="item.rgName" [fileName]="item.fileName" ></app-resource-group>
@@ -47,6 +53,10 @@
 
               <div class="playlist-container" fxLayout="row wrap" fxLayoutGap="50px" fxLayoutAlign="flex-start" fxLayout.1t-md="column">
                   
+                <div *ngIf="playlistObject.length == 0">
+                  <span class="empty-screen-message">You do not currently have any videos. Click the plus sign to add one!</span>
+                </div>
+
                 <ng-container *ngFor="let item of playlistObject">
                   <app-playlist-video class="videocards" [videosrc]="item.videosrc" [videoName]="item.videoName" ></app-playlist-video>
                 </ng-container>
@@ -59,11 +69,16 @@
       </div>
       
       <div class="wrapper-2">
-        <div class="box3-title">FAQ <mat-icon class="add-file-btn">add_circle_outline</mat-icon></div>
+        <div class="box3-title">FAQ<button class="add-btn-bg" (click) = "openFaqDialog()"><mat-icon class="add-file-btn">add_circle_outline</mat-icon></button></div>
 
         <mat-accordion multi>
-          <app-faq></app-faq>
-          <app-faq></app-faq>
+          <div *ngIf="faqObject.length == 0">
+            <span class="empty-screen-message">You do not currently have any questions or answers. Click the plus sign to add one!</span>
+          </div>
+
+          <ng-container *ngFor="let item of faqObject">
+            <app-faq [question]="item.question" [answer]="item.answer" ></app-faq>
+          </ng-container>
         </mat-accordion>
 
       </div>   

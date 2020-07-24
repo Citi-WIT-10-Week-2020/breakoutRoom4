@@ -51,6 +51,7 @@ import { DeleteTopicDialogComponent } from './components/delete-topic-dialog/del
 
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
+import { FaqDialogComponent } from './components/topic-screen-folder/faq-dialog/faq-dialog.component';
 import { FileListComponent } from './components/topic-screen-folder/file-list/file-list.component';
 
 import { ResourceDialogComponent } from './components/topic-screen-folder/resource-dialog/resource-dialog.component';
@@ -89,6 +90,7 @@ import {MatSelectModule} from '@angular/material/select';
 
     DeleteTopicDialogComponent,
 
+    FaqDialogComponent,
     FileListComponent,
     ResourceDialogComponent,
 
