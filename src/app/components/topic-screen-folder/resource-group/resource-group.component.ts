@@ -9,7 +9,7 @@ export class ResourceGroupComponent implements OnInit {
 
 
   @Input() rgName: String;
-  @Input() fileName: String;
+  
 
   constructor() { }
 

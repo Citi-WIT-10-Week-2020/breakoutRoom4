@@ -15,6 +15,7 @@
   display: flex;       
   justify-content: space-evenly;
   margin: auto;
+  //flex-wrap: wrap;
   
 }
 
@@ -34,6 +35,8 @@
   //  margin-left: 200px;   
   //  margin-right: 50px;
     flex-direction: row;
+    
+    
     
     width: 600px;
     
@@ -56,6 +59,8 @@ img.logo-img {
 #signin {   // disappears when after logging in
    justify-content: center;
    display: flex;
+   
+  
    //margin-left: 120px;
 }
 
@@ -71,6 +76,11 @@ h3.description {
   font-weight: 200;
 }
 
+section.section {
+  margin-right: 100px;
+}
+
+@media only screen and (max-width: 750px) {}
 
 
 //below styles for hover/overlay effect

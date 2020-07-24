@@ -40,10 +40,10 @@
                 <mat-panel-title class="mat-elevation-z rg-title">Playlist</mat-panel-title>
               </mat-expansion-panel-header>
 
-              <div class="playlist-container" fxLayout="row wrap" fxLayoutGap="50px" fxLayoutAlign="flex-start" fxLayout.gt-sm="column">
+              <div class="playlist-container" fxLayout="row wrap" fxLayoutGap="50px" fxLayoutAlign="flex-start" fxLayout.1t-md="column">
                   
                 <ng-container *ngFor="let item of playlistObject">
-                  <app-playlist-video [videosrc]="item.videosrc" [fileName]="item.videoName" ></app-playlist-video>
+                  <app-playlist-video class="videocards" [videosrc]="item.videosrc" [videoName]="item.videoName" ></app-playlist-video>
                 </ng-container>
                  
               </div>
