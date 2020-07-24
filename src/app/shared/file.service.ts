@@ -47,24 +47,24 @@ export class FileService{
         //open window and prompt save
        
     }
-
     async createResourceGroup(group: IResourceGroup) : Promise<any>{
         return await this.apiservice.CreateResourceGroup(group);
-    }
+      }
+    
     //create / upload file
-    async createFile(fileName,fileType,file){
+    async createFile(fileName,fileType,file, course, topic, fileDescription, resourceGroup){
         let id = uuidv4()
         const key = `${id}${fileName}`;
         console.log(key);
         console.log(config);
         this.fileInput={
             id:key,
-            course:"dflsadf",
-            topic:"adsfdf",
+            course:course,
+            topic:topic,
             filename: fileName,
             filetype: fileType,
-            fileDescription:"a random thing",
-            resourseGroup: "haha",
+            fileDescription:fileDescription,
+            resourseGroup: resourceGroup,
             file:{
                 key,
                 bucket: config.aws_user_files_s3_bucket,
