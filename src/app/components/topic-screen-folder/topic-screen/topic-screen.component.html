@@ -9,16 +9,8 @@
       <span class="nav-dec">></span>
       <span><a [routerLink]="['/topic', this.courseId, this.topicId, this.topicName]">{{topicName}}</a></span>
     </div>
-
-      <!--<h1>Upload file</h1>
-    <form [formGroup] = "formGroup" (ngSubmit)="onSubmit()">
-        <input type="file" (change)="onFileChange($event)" />
-        <input type="submit" [disabled]="formGroup.invalid" value="upload" />
-    </form>
-    <h1>Download File</h1>
-    <button (click)="onDownload()">download</button>-->
     
-     <span><button class="add-btn-bg" (click) = "openCourseDialog()"><mat-icon class="add-btn">add_circle_outline</mat-icon></button></span> -->
+     <!--<span><button class="add-btn-bg" (click) = "openCourseDialog()"><mat-icon class="add-btn">add_circle_outline</mat-icon></button></span> -->
 
 
     <div class="title-container">
@@ -33,9 +25,7 @@
 
           <mat-accordion multi>
 
-            <div *ngIf="resourceGroups.length == 0">
-              <span class="empty-screen-message">You do not currently have any resource groups. Click the plus sign to add one!</span>
-            </div> 
+           
 
 
             <!-- <ng-container *ngFor="let item of rgObject">
@@ -53,11 +43,11 @@
 
               <div class="playlist-container" fxLayout="row wrap" fxLayoutGap="50px" fxLayoutAlign="flex-start" fxLayout.1t-md="column">
                   
-                <div *ngIf="playlistObject.length == 0">
+                <div *ngIf="playlist.files.items == 0">
                   <span class="empty-screen-message">You do not currently have any videos. Click the plus sign to add one!</span>
                 </div>
 
-                <ng-container *ngFor="let item of playlistObject">
+                <ng-container *ngFor="let item of playlist.files.items">
                   <app-playlist-video class="videocards" [videosrc]="item.videosrc" [videoName]="item.videoName" ></app-playlist-video>
                 </ng-container>
                  
@@ -65,22 +55,27 @@
             </mat-expansion-panel> 
           </mat-accordion>
 
-          <app-video-links></app-video-links>
+          <!--<app-video-links></app-video-links>-->
 
         </div>
       </div>
       
       <div class="wrapper-2">
-        <div class="box3-title">FAQ<button class="add-btn-bg" (click) = "openFaqDialog()"><mat-icon class="add-file-btn">add_circle_outline</mat-icon></button></div>
-
         <mat-accordion multi>
-          <div *ngIf="faqObject.length == 0">
+        <div class="box3-title">FAQ<button class="add-btn-bg" (click) = "openFaqDialog()"><mat-icon class="add-file-btn">add_circle_outline</mat-icon></button></div>
+        <mat-expansion-panel class="rg">
+        <mat-expansion-panel-header>
+          <mat-panel-title class="mat-elevation-z rg-title">FAQ</mat-panel-title>
+        </mat-expansion-panel-header>
+        
+          <div *ngIf="faq.files.items.length == 0">
             <span class="empty-screen-message">You do not currently have any questions or answers. Click the plus sign to add one!</span>
           </div>
 
-          <ng-container *ngFor="let item of faqObject">
-            <app-faq [question]="item.question" [answer]="item.answer" ></app-faq>
+          <ng-container *ngFor="let item of faq.files.items">
+            <app-faq [question]="item.filename" [answer]="item.fileDescription" ></app-faq>
           </ng-container>
+        </mat-expansion-panel> 
         </mat-accordion>
 
       </div>   

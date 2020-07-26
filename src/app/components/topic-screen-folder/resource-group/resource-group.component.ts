@@ -35,7 +35,7 @@ export class ResourceGroupComponent implements OnInit {
     });
 
     //deletions
-    this.apiservice.OnDeleteResourceGroupListener.subscribe((evt)=>{
+    this.apiservice.OnDeleteFileListener.subscribe((evt)=>{
 
       console.log("FILE DELETED");
       const data = (evt as any).value.data.onDeleteFile;
@@ -49,7 +49,7 @@ export class ResourceGroupComponent implements OnInit {
     });
 
     //updates
-    this.apiservice.OnUpdateResourceGroupListener.subscribe((evt)=>{
+    this.apiservice.OnUpdateFileListener.subscribe((evt)=>{
       const data = (evt as any).value.data.onUpdateFile;
       console.log("Update", data);
       

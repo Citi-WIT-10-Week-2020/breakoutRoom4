@@ -2055,7 +2055,8 @@ export class APIService {
                 items
                 {id
                 filetype
-                filename}
+                filename
+              fileDescription}
               }
             }
             nextToken
