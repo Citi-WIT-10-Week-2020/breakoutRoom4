@@ -52,7 +52,9 @@ export class ResourceDialogComponent implements OnInit {
       fileType: new FormControl(''),
       id: new FormControl(uuidv4()) })
 
-};
+  };
+
+
 subscibeToResourceGroupEvents(){
   //creations
   this.apiservice.OnCreateResourceGroupListener.subscribe((evt)=>{
@@ -61,6 +63,7 @@ subscibeToResourceGroupEvents(){
     this.resourceGroups = [...this.resourceGroups,data];
   });
 }
+
 cancel(){
   this.dialogRef.close();
   console.log(this.resourceGroups);

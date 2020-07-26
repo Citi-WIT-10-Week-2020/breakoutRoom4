@@ -22,15 +22,6 @@ import { v4 as uuidv4 } from 'uuid';
 
 export class TopicScreenComponent implements OnInit {
 
-  
-  
-  
-  /*public formGroup = this.fb.group({
-    file:[null,Validators.required]
-  });
-  private fileName;
-  private fileType;*/
-  files: Array<any>;
   resourceGroups : Array<any>;  //DINA, THE RESOURCE GROUPS ARE IN HERE :)
   topic: any;
  
@@ -45,34 +36,14 @@ export class TopicScreenComponent implements OnInit {
   constructor(private route:ActivatedRoute,private fb: FormBuilder,private matDialog: MatDialog, private fileservice: FileService, private apiservice: APIService) { }
 
   course: string;
-  rgObject: Array<any>;
-  playlistObject: Array<any>; 
-  faqObject: Array<any>;
-  fileList: Array<any>;
+  
+  playlistObject: Array<any>; //to be deleted
+  faqObject: Array<any>;  //to be deleted
+  
+  playlist: any;
+  faq : any;
 
   ngOnInit(): void {
-
-   
-    this.rgObject=[
-      {
-        id: this.topicId,
-        course: this.courseName,
-        topic: this.topicName,
-        groupName: this.groupName,
-        // rgName: "title",
-        // fileName: "name of file",
-        rgName: "title",
-        fileName: "Name of File", //fileName is not connected to anything right now
-        
-      }
-    ];
-//fileList is not connected to anything right now
-    this.fileList=[
-      {
-        fileName: "name of file",
-        
-      }
-    ];
 
     this.playlistObject=[
       {
@@ -134,8 +105,9 @@ export class TopicScreenComponent implements OnInit {
     console.log(this.topicId);
     console.log(this.topicName);
 
-    this.getFiles();
+    //this.getFiles();
     this.checkResourceGroups();
+    this.subscribeToResourceGroupEvents();
   
   }
   subscribeToResourceGroupEvents(){
@@ -177,9 +149,7 @@ export class TopicScreenComponent implements OnInit {
 
   }
 
-  subscribeToFileEvents(){
-
-  }
+  
    checkResourceGroups(){
     const myObserver = {
       next: x => {
@@ -191,7 +161,18 @@ export class TopicScreenComponent implements OnInit {
            this.createInitialResourceGroups();
         }
         else{
-          this.resourceGroups = x.resourceGroups.items;
+          //find faq and playlist
+          this.faq = x.resourceGroups.items.find((item)=>{
+            return (item.groupName == "FAQ")
+          });
+          console.log("FAQ",this.faq);
+          this.playlist = x.resourceGroups.items.find((item)=>{
+            return (item.groupName == "Playlist")
+          });
+          console.log("PLAYLIST",this.playlist);
+          this.resourceGroups = x.resourceGroups.items.filter((item)=>{
+            return(item.groupName != "Playlist" && item.groupName != "FAQ")
+          });
           console.log("GROUPS", this.resourceGroups);
         }
       },
@@ -204,6 +185,7 @@ export class TopicScreenComponent implements OnInit {
   }
 
   async createInitialResourceGroups(){
+
     let playlist :IResourceGroup = {
       id: uuidv4(),
       course: this.topic.course,
@@ -218,18 +200,20 @@ export class TopicScreenComponent implements OnInit {
       topic:this.topic.TopicName
     }
     //create Playlist
-    await this.fileservice.createResourceGroup(playlist);
+    this.playlist = await this.fileservice.createResourceGroup(playlist);
+    console.log("PLAYLIST",this.playlist);
     //create FAQ
-    await this.fileservice.createResourceGroup(faq);
+    this.faq = await this.fileservice.createResourceGroup(faq);
+    console.log(this.faq,faq);
     //check to see if the resourcegroups are there
-    this.fileservice.getTopic(this.topicId).subscribe((x)=>{
+   /* this.fileservice.getTopic(this.topicId).subscribe((x)=>{
       console.log(x);
       this.resourceGroups = x.resourceGroups.items;
       console.log("GROUPS", this.resourceGroups);
-    })
+    })*/
   }
 
-  getFiles(){
+  /*getFiles(){
     const myObserver = {
       next: x => {
         console.log('FILES: ' , x);
@@ -239,7 +223,7 @@ export class TopicScreenComponent implements OnInit {
       complete: () => console.log('Observer got a complete notification'),
     };
     this.fileservice.getFiles().subscribe(myObserver);
-  }
+  }*/
 
   /*
   onDownload(){

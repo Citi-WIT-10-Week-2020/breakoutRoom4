@@ -94,8 +94,13 @@ export class FileService{
 
     }
     //delete files
-    deleteFile(){
+    async deleteFile(key:string){
+        //delete from s3
+        let result = await Storage.remove(key);
+        console.log(result);
+        //delete from dynamodb
 
+        await this.apiservice.DeleteFile({id:key});
     }
     
 }
