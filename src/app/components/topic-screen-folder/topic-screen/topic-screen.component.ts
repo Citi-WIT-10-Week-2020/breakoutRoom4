@@ -37,9 +37,6 @@ export class TopicScreenComponent implements OnInit {
 
   course: string;
   
-  playlistObject: Array<any>; //to be deleted
-  faqObject: Array<any>;  //to be deleted
-  
   playlist: any;
   faq : any;
 
@@ -78,7 +75,41 @@ export class TopicScreenComponent implements OnInit {
   }
 
   subscibeToFileEvents(){
+     //creations
+     this.apiservice.OnCreateFileListener.subscribe((evt)=>{
+      //console.log("FILE CREATED",evt);
+      const data = (evt as any).value.data.onCreateFile;
+      console.log(data.resourseGroup)
+      if(data.resourseGroup == "Playlist"){
+        this.playlist.files.items = [...this.playlist.files.items,data];
+      }
+      else if(data.resourseGroup == "FAQ"){
+        this.faq.files.items = [...this.faq.files.items,data];
+      }
+      
+    });
 
+    //deletions
+    this.apiservice.OnDeleteFileListener.subscribe((evt)=>{
+
+      //console.log("FILE DELETED");
+      const data = (evt as any).value.data.onDeleteFile;
+      console.log(data);
+      //basically, search thru array, find original, remove it
+
+      if(data.resourseGroup == "Playlist"){
+        this.playlist.files.items = this.playlist.files.items.filter((video)=>{
+          return(video.id != data.id)
+        })
+      }
+      else if(data.resourseGroup == "FAQ"){
+        this.faq.files.items = this.faq.files.items.filter((question)=>{
+          return(question.id != data.id)
+        })
+      }
+    });
+
+   
   }
   subscribeToResourceGroupEvents(){
 
@@ -89,7 +120,8 @@ export class TopicScreenComponent implements OnInit {
       if(this.resourceGroups== undefined){
         this.resourceGroups = [];
       }
-      if(evt.groupName != "Playlist" && evt.groupName != "FAQ"){
+      console.log(evt);
+      if(data.groupName != "Playlist" && data.groupName != "FAQ"){
         this.resourceGroups = [...this.resourceGroups,data];
       }
       
