@@ -75,6 +75,7 @@ export class FileService{
         
         try{
             if(file){
+                
                 await Storage.put(key,file,{
                 contentType:fileType
                 });

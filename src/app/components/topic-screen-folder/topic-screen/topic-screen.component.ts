@@ -45,41 +45,6 @@ export class TopicScreenComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.playlistObject=[
-      {
-        videosrc: "https://media.geeksforgeeks.org/wp-content/uploads/20200409094356/Placement100-_-GeeksforGeeks2.mp4",
-        videoName: "Name of Video"
-      },
-    
-    {
-      videosrc: "https://media.geeksforgeeks.org/wp-content/uploads/20200409094356/Placement100-_-GeeksforGeeks2.mp4",
-      videoName: "Name of Video"
-    },
-    {
-      videosrc: "https://media.geeksforgeeks.org/wp-content/uploads/20200409094356/Placement100-_-GeeksforGeeks2.mp4",
-      videoName: "Name of Video"
-    },
-    {
-      videosrc: "https://media.geeksforgeeks.org/wp-content/uploads/20200409094356/Placement100-_-GeeksforGeeks2.mp4",
-      videoName: "Name of Video"
-    },
-    {
-      videosrc: "https://media.geeksforgeeks.org/wp-content/uploads/20200409094356/Placement100-_-GeeksforGeeks2.mp4",
-      videoName: "Name of Video"
-    },
-    {
-      videosrc: "https://media.geeksforgeeks.org/wp-content/uploads/20200409094356/Placement100-_-GeeksforGeeks2.mp4",
-      videoName: "Name of Video"
-    },
-  ]
-
-    this.faqObject=[
-      {
-        question: "question1",
-        answer: "answer1",
-      }
-    ]
-
 
     //gets courseID
     this.route.paramMap.subscribe(params => {
@@ -108,7 +73,12 @@ export class TopicScreenComponent implements OnInit {
     //this.getFiles();
     this.checkResourceGroups();
     this.subscribeToResourceGroupEvents();
+    this.subscibeToFileEvents();
   
+  }
+
+  subscibeToFileEvents(){
+
   }
   subscribeToResourceGroupEvents(){
 
@@ -116,7 +86,13 @@ export class TopicScreenComponent implements OnInit {
     this.apiservice.OnCreateResourceGroupListener.subscribe((evt)=>{
       console.log("RESOURCE GROUP CREATED");
       const data = (evt as any).value.data.onCreateResourceGroup;
-      this.resourceGroups = [...this.resourceGroups,data];
+      if(this.resourceGroups== undefined){
+        this.resourceGroups = [];
+      }
+      if(evt.groupName != "Playlist" && evt.groupName != "FAQ"){
+        this.resourceGroups = [...this.resourceGroups,data];
+      }
+      
     });
 
     //deletions
@@ -213,58 +189,7 @@ export class TopicScreenComponent implements OnInit {
     })*/
   }
 
-  /*getFiles(){
-    const myObserver = {
-      next: x => {
-        console.log('FILES: ' , x);
-        this.files = x.items;
-      },
-      error: err => console.error('Observer got an error: ' + err),
-      complete: () => console.log('Observer got a complete notification'),
-    };
-    this.fileservice.getFiles().subscribe(myObserver);
-  }*/
-
-  /*
-  onDownload(){
-    console.log("Downloading!");
-    //Download the file
-    console.log("ID",this.files[0].id);
-    this.fileservice.downloadFile(this.files[0].id);
-  }
   
-  
-
-   onFileChange(event){
-    const reader = new FileReader();
-
-    if (event.target.files && event.target.files.length) {
-      this.fileName = event.target.files[0].name;
-      this.fileType = event.target.files[0].type;
-      console.log(this.fileName,this.fileType);
-      const [file1] = event.target.files;
-      console.log("ORIGi", file1);
-      this.formGroup.patchValue({
-        file: file1
-      });
-      /*reader.readAsDataURL(file);
-     
-      reader.onload = () => {
-        this.formGroup.patchValue({
-          file: reader.result
-        });
-      };
-    }
-  }
-
-  /*onSubmit(){
-    //console.log(this.fileName);
-    let file = this.formGroup.get('file').value;
-    console.log("INONSUBMIT",file);
-    //let newFile = file.replace(/^data:image\/[a-z]+;base64,/, "");
-    //console.log(newFile);
-   this.fileservice.createFile(this.fileName,this.fileType,file, this.courseName, this.topicName, this.fileDescription, this.groupName);
-  }*/
 
   openResourceDialog()
   {
@@ -284,7 +209,7 @@ export class TopicScreenComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     let dialogRef = this.matDialog.open(FaqDialogComponent, dialogConfig);
     let instance =  dialogRef.componentInstance;
-    
+    instance.faqObject = this.faq;
       
     dialogRef.afterClosed().subscribe(()=>{console.log("dialog has been closed")});
    } //instead of console log , refresh page
