@@ -10,6 +10,7 @@ import { v4 as uuidv4 } from 'uuid'
 })
 export class FaqDialogComponent implements OnInit {
 
+  faqObject: any;
   faq: FormGroup;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, public dialogRef: MatDialogRef<FaqDialogComponent>) { }

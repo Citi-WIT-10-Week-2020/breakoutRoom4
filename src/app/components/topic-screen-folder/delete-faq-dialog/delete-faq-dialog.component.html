@@ -1,1 +1,5 @@
-<p>delete-faq-dialog works!</p>
+<h2 mat-dialog-title style ="text-align: center;">Delete this FAQ item?</h2>
+<mat-dialog-actions>
+    <button class="btn-cancel" class="mat-raised-button" style="padding: 5px 30px;margin: 5px" (click)="cancel()">Cancel</button>
+    <button type ="btn-submit" class="mat-raised-button" style="padding: 5px 30px;margin: 5px" (click)="deleteFaq()">Delete</button>   
+</mat-dialog-actions>

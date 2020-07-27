@@ -1,14 +1,14 @@
-.rg {
+.faq {
     background-color: white;
 }
 
-.rg-title {
+.faq-title {
     font-size: x-large;
     height: 30px;
     padding-top: 6px;
 }
 
-.file {
+.answer {
     margin-top: 20px;
     margin-bottom: 20px;
     color: rgb(94, 12, 119);
@@ -20,6 +20,24 @@
 }
 
 .buttons {
+    //display: flex;
+    //align-items: right;
+    color: rgb(94, 12, 119);
+}
+
+.buttons:hover {
+    color: black;
+}
+
+.spacer {
+    flex: 1 1 auto;
+}
+
+.ans {
     display: flex;
-    align-items: right;
+    vertical-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: rgb(94, 12, 119);
+    font-size: large;
 }

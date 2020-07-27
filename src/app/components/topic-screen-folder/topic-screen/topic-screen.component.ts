@@ -45,15 +45,15 @@ export class TopicScreenComponent implements OnInit {
   constructor(private route:ActivatedRoute,private fb: FormBuilder,private matDialog: MatDialog, private fileservice: FileService, private apiservice: APIService) { }
 
   course: string;
-  rgObject: Array<any>;
-  playlistObject: Array<any>; 
-  faqObject: Array<any>;
-  fileList: Array<any>;
+ // rgObject: Array<any>;
+ // playlistObject: Array<any>; 
+  faq: any;
+ // fileList: Array<any>;
 
   ngOnInit(): void {
 
    
-    this.rgObject=[
+    /*this.rgObject=[
       {
         id: this.topicId,
         course: this.courseName,
@@ -102,12 +102,12 @@ export class TopicScreenComponent implements OnInit {
     },
   ]
 
-    this.faqObject=[
+    this.faq=[
       {
         question: "question1",
         answer: "answer1",
       }
-    ]
+    ]*/
 
 
     //gets courseID
@@ -300,7 +300,7 @@ export class TopicScreenComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     let dialogRef = this.matDialog.open(FaqDialogComponent, dialogConfig);
     let instance =  dialogRef.componentInstance;
-    
+    instance.faqObject = this.faq;
       
     dialogRef.afterClosed().subscribe(()=>{console.log("dialog has been closed")});
    } //instead of console log , refresh page
