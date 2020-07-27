@@ -37,6 +37,7 @@
     vertical-align: center;
     padding: 38px 0 30px;
     text-decoration: none;
+    
     //height: 120px;
     
 }
@@ -47,6 +48,7 @@
     text-decoration: none;
     padding-right: 10px;
     color: rgb(85, 32, 116);
+    line-height: 90%;
 }
 
 .add-btn {
@@ -127,13 +129,19 @@
     
 }
 
+.playlist-contaner {
+    display: flex;
+    flex-wrap: wrap;
+}
+
 .video-container {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     align-items: stretch;
     height: 500;
     padding-left: 40px;
+    flex-wrap: wrap;
 
 }
 
@@ -149,6 +157,13 @@
     border-radius: 5px;
 }
 
+.videocards {
+    width: 250px;
+}
+
+.videocards:last-child {
+    margin-right: 50px;
+}
 
 .faq-item {
     flex-grow: initial;
@@ -180,3 +195,15 @@
 .apprg {
     margin-bottom: px;
 }
+
+@media only screen and (max-width: 959px) {
+
+    .playlist-container {
+        display: flex;
+        justify-content: center;
+    }
+
+    .videocards:last-child {
+        margin-right: 0;
+        }
+    }

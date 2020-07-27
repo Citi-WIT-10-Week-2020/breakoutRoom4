@@ -69,8 +69,8 @@
 
 .creators {
     color: black;
-    margin-right: 50px;
-    margin-left: 50px;
+    margin-right: 40px;
+    margin-left: 40px;
     margin-top: 30px;
     padding: 25px;
 }
@@ -91,7 +91,7 @@
 }
 
 .creator-card {
-    max-width: 290px;
+    max-width: 310px;
     min-width: 100px;
     max-height: 500px;
     margin: 20px 0;
@@ -108,6 +108,13 @@
 .example-header-image {
     background-image: url('https://builtin.com/sites/default/files/styles/ckeditor_optimize/public/inline-images/women-in-tech-pillar-page-online-communities-for-women.png');
     background-size: cover;
+    height: 64px;
+    width: 64px;
+    margin-bottom: 10px;
+}
+
+.caitlin-image {
+    background-image: url('src/assets/caitlin-prof-pic.jpg');
 }
 
 

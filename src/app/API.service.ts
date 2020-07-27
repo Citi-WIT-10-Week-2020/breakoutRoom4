@@ -4,7 +4,7 @@
 import { Injectable } from "@angular/core";
 import API, { graphqlOperation } from "@aws-amplify/api";
 import { GraphQLResult } from "@aws-amplify/api/lib/types";
-import { Observable } from "zen-observable-ts";
+import * as Observable from "zen-observable";
 
 export type CreateProfessorInput = {
   id?: string | null;
@@ -66,6 +66,70 @@ export type UpdateProfessorInput = {
 };
 
 export type DeleteProfessorInput = {
+  id?: string | null;
+};
+
+export type CreateStudentInput = {
+  id?: string | null;
+  studentName: string;
+  universityName: string;
+};
+
+export type ModelStudentConditionInput = {
+  studentName?: ModelIDInput | null;
+  universityName?: ModelStringInput | null;
+  and?: Array<ModelStudentConditionInput | null> | null;
+  or?: Array<ModelStudentConditionInput | null> | null;
+  not?: ModelStudentConditionInput | null;
+};
+
+export type ModelIDInput = {
+  ne?: string | null;
+  eq?: string | null;
+  le?: string | null;
+  lt?: string | null;
+  ge?: string | null;
+  gt?: string | null;
+  contains?: string | null;
+  notContains?: string | null;
+  between?: Array<string | null> | null;
+  beginsWith?: string | null;
+  attributeExists?: boolean | null;
+  attributeType?: ModelAttributeTypes | null;
+  size?: ModelSizeInput | null;
+};
+
+export type UpdateStudentInput = {
+  id: string;
+  studentName?: string | null;
+  universityName?: string | null;
+};
+
+export type DeleteStudentInput = {
+  id?: string | null;
+};
+
+export type CreateStudentCourseInput = {
+  id?: string | null;
+  studentID: string;
+  courseID: string;
+};
+
+export type ModelStudentCourseConditionInput = {
+  studentID?: ModelIDInput | null;
+  courseID?: ModelIDInput | null;
+  and?: Array<ModelStudentCourseConditionInput | null> | null;
+  or?: Array<ModelStudentCourseConditionInput | null> | null;
+  not?: ModelStudentCourseConditionInput | null;
+};
+
+export type UpdateStudentCourseInput = {
+  id: string;
+  studentID?: string | null;
+  courseID?: string | null;
+};
+
+export type DeleteStudentCourseInput = {
   id?: string | null;
 };
 
@@ -206,20 +270,13 @@ export type ModelProfessorFilterInput = {
   not?: ModelProfessorFilterInput | null;
 };
 
-export type ModelIDInput = {
-  ne?: string | null;
-  eq?: string | null;
-  le?: string | null;
-  lt?: string | null;
-  ge?: string | null;
-  gt?: string | null;
-  contains?: string | null;
-  notContains?: string | null;
-  between?: Array<string | null> | null;
-  beginsWith?: string | null;
-  attributeExists?: boolean | null;
-  attributeType?: ModelAttributeTypes | null;
-  size?: ModelSizeInput | null;
+export type ModelStudentFilterInput = {
+  id?: ModelIDInput | null;
+  studentName?: ModelIDInput | null;
+  universityName?: ModelStringInput | null;
+  and?: Array<ModelStudentFilterInput | null> | null;
+  or?: Array<ModelStudentFilterInput | null> | null;
+  not?: ModelStudentFilterInput | null;
 };
 
 export type ModelCourseFilterInput = {
@@ -347,10 +404,199 @@ export type DeleteProfessorMutation = {
   updatedAt: string;
 };
 
+export type CreateStudentMutation = {
+  __typename: "Student";
+  id: string;
+  studentName: string;
+  universityName: string;
+  courses: {
+    __typename: "ModelStudentCourseConnection";
+    items: Array<{
+      __typename: "StudentCourse";
+      id: string;
+      studentID: string;
+      courseID: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type UpdateStudentMutation = {
+  __typename: "Student";
+  id: string;
+  studentName: string;
+  universityName: string;
+  courses: {
+    __typename: "ModelStudentCourseConnection";
+    items: Array<{
+      __typename: "StudentCourse";
+      id: string;
+      studentID: string;
+      courseID: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type DeleteStudentMutation = {
+  __typename: "Student";
+  id: string;
+  studentName: string;
+  universityName: string;
+  courses: {
+    __typename: "ModelStudentCourseConnection";
+    items: Array<{
+      __typename: "StudentCourse";
+      id: string;
+      studentID: string;
+      courseID: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type CreateStudentCourseMutation = {
+  __typename: "StudentCourse";
+  id: string;
+  studentID: string;
+  courseID: string;
+  student: {
+    __typename: "Student";
+    id: string;
+    studentName: string;
+    universityName: string;
+    courses: {
+      __typename: "ModelStudentCourseConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  };
+  course: {
+    __typename: "Course";
+    id: string;
+    professor: string;
+    students: {
+      __typename: "ModelStudentCourseConnection";
+      nextToken: string | null;
+    } | null;
+    courseName: string;
+    courseDescription: string;
+    topics: {
+      __typename: "ModelTopicConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  };
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type UpdateStudentCourseMutation = {
+  __typename: "StudentCourse";
+  id: string;
+  studentID: string;
+  courseID: string;
+  student: {
+    __typename: "Student";
+    id: string;
+    studentName: string;
+    universityName: string;
+    courses: {
+      __typename: "ModelStudentCourseConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  };
+  course: {
+    __typename: "Course";
+    id: string;
+    professor: string;
+    students: {
+      __typename: "ModelStudentCourseConnection";
+      nextToken: string | null;
+    } | null;
+    courseName: string;
+    courseDescription: string;
+    topics: {
+      __typename: "ModelTopicConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  };
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type DeleteStudentCourseMutation = {
+  __typename: "StudentCourse";
+  id: string;
+  studentID: string;
+  courseID: string;
+  student: {
+    __typename: "Student";
+    id: string;
+    studentName: string;
+    universityName: string;
+    courses: {
+      __typename: "ModelStudentCourseConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  };
+  course: {
+    __typename: "Course";
+    id: string;
+    professor: string;
+    students: {
+      __typename: "ModelStudentCourseConnection";
+      nextToken: string | null;
+    } | null;
+    courseName: string;
+    courseDescription: string;
+    topics: {
+      __typename: "ModelTopicConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  };
+  createdAt: string;
+  updatedAt: string;
+};
+
 export type CreateCourseMutation = {
   __typename: "Course";
   id: string;
   professor: string;
+  students: {
+    __typename: "ModelStudentCourseConnection";
+    items: Array<{
+      __typename: "StudentCourse";
+      id: string;
+      studentID: string;
+      courseID: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
   courseName: string;
   courseDescription: string;
   topics: {
@@ -375,6 +621,18 @@ export type UpdateCourseMutation = {
   __typename: "Course";
   id: string;
   professor: string;
+  students: {
+    __typename: "ModelStudentCourseConnection";
+    items: Array<{
+      __typename: "StudentCourse";
+      id: string;
+      studentID: string;
+      courseID: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
   courseName: string;
   courseDescription: string;
   topics: {
@@ -399,6 +657,18 @@ export type DeleteCourseMutation = {
   __typename: "Course";
   id: string;
   professor: string;
+  students: {
+    __typename: "ModelStudentCourseConnection";
+    items: Array<{
+      __typename: "StudentCourse";
+      id: string;
+      studentID: string;
+      courseID: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
   courseName: string;
   courseDescription: string;
   topics: {
@@ -665,10 +935,60 @@ export type ListProfessorsQuery = {
   nextToken: string | null;
 };
 
+export type GetStudentQuery = {
+  __typename: "Student";
+  id: string;
+  studentName: string;
+  universityName: string;
+  courses: {
+    __typename: "ModelStudentCourseConnection";
+    items: Array<{
+      __typename: "StudentCourse";
+      id: string;
+      studentID: string;
+      courseID: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type ListStudentsQuery = {
+  __typename: "ModelStudentConnection";
+  items: Array<{
+    __typename: "Student";
+    id: string;
+    studentName: string;
+    universityName: string;
+    courses: {
+      __typename: "ModelStudentCourseConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  } | null> | null;
+  nextToken: string | null;
+};
+
 export type GetCourseQuery = {
   __typename: "Course";
   id: string;
   professor: string;
+  students: {
+    __typename: "ModelStudentCourseConnection";
+    items: Array<{
+      __typename: "StudentCourse";
+      id: string;
+      studentID: string;
+      courseID: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
   courseName: string;
   courseDescription: string;
   topics: {
@@ -695,6 +1015,10 @@ export type ListCoursesQuery = {
     __typename: "Course";
     id: string;
     professor: string;
+    students: {
+      __typename: "ModelStudentCourseConnection";
+      nextToken: string | null;
+    } | null;
     courseName: string;
     courseDescription: string;
     topics: {
@@ -853,12 +1177,33 @@ export type ProfessorByNameQuery = {
   nextToken: string | null;
 };
 
+export type StudentByNameQuery = {
+  __typename: "ModelStudentConnection";
+  items: Array<{
+    __typename: "Student";
+    id: string;
+    studentName: string;
+    universityName: string;
+    courses: {
+      __typename: "ModelStudentCourseConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  } | null> | null;
+  nextToken: string | null;
+};
+
 export type CourseByProfessorQuery = {
   __typename: "ModelCourseConnection";
   items: Array<{
     __typename: "Course";
     id: string;
     professor: string;
+    students: {
+      __typename: "ModelStudentCourseConnection";
+      nextToken: string | null;
+    } | null;
     courseName: string;
     courseDescription: string;
     topics: {
@@ -1020,10 +1365,199 @@ export type OnDeleteProfessorSubscription = {
   updatedAt: string;
 };
 
+export type OnCreateStudentSubscription = {
+  __typename: "Student";
+  id: string;
+  studentName: string;
+  universityName: string;
+  courses: {
+    __typename: "ModelStudentCourseConnection";
+    items: Array<{
+      __typename: "StudentCourse";
+      id: string;
+      studentID: string;
+      courseID: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnUpdateStudentSubscription = {
+  __typename: "Student";
+  id: string;
+  studentName: string;
+  universityName: string;
+  courses: {
+    __typename: "ModelStudentCourseConnection";
+    items: Array<{
+      __typename: "StudentCourse";
+      id: string;
+      studentID: string;
+      courseID: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnDeleteStudentSubscription = {
+  __typename: "Student";
+  id: string;
+  studentName: string;
+  universityName: string;
+  courses: {
+    __typename: "ModelStudentCourseConnection";
+    items: Array<{
+      __typename: "StudentCourse";
+      id: string;
+      studentID: string;
+      courseID: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnCreateStudentCourseSubscription = {
+  __typename: "StudentCourse";
+  id: string;
+  studentID: string;
+  courseID: string;
+  student: {
+    __typename: "Student";
+    id: string;
+    studentName: string;
+    universityName: string;
+    courses: {
+      __typename: "ModelStudentCourseConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  };
+  course: {
+    __typename: "Course";
+    id: string;
+    professor: string;
+    students: {
+      __typename: "ModelStudentCourseConnection";
+      nextToken: string | null;
+    } | null;
+    courseName: string;
+    courseDescription: string;
+    topics: {
+      __typename: "ModelTopicConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  };
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnUpdateStudentCourseSubscription = {
+  __typename: "StudentCourse";
+  id: string;
+  studentID: string;
+  courseID: string;
+  student: {
+    __typename: "Student";
+    id: string;
+    studentName: string;
+    universityName: string;
+    courses: {
+      __typename: "ModelStudentCourseConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  };
+  course: {
+    __typename: "Course";
+    id: string;
+    professor: string;
+    students: {
+      __typename: "ModelStudentCourseConnection";
+      nextToken: string | null;
+    } | null;
+    courseName: string;
+    courseDescription: string;
+    topics: {
+      __typename: "ModelTopicConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  };
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type OnDeleteStudentCourseSubscription = {
+  __typename: "StudentCourse";
+  id: string;
+  studentID: string;
+  courseID: string;
+  student: {
+    __typename: "Student";
+    id: string;
+    studentName: string;
+    universityName: string;
+    courses: {
+      __typename: "ModelStudentCourseConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  };
+  course: {
+    __typename: "Course";
+    id: string;
+    professor: string;
+    students: {
+      __typename: "ModelStudentCourseConnection";
+      nextToken: string | null;
+    } | null;
+    courseName: string;
+    courseDescription: string;
+    topics: {
+      __typename: "ModelTopicConnection";
+      nextToken: string | null;
+    } | null;
+    createdAt: string;
+    updatedAt: string;
+  };
+  createdAt: string;
+  updatedAt: string;
+};
+
 export type OnCreateCourseSubscription = {
   __typename: "Course";
   id: string;
   professor: string;
+  students: {
+    __typename: "ModelStudentCourseConnection";
+    items: Array<{
+      __typename: "StudentCourse";
+      id: string;
+      studentID: string;
+      courseID: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
   courseName: string;
   courseDescription: string;
   topics: {
@@ -1048,6 +1582,18 @@ export type OnUpdateCourseSubscription = {
   __typename: "Course";
   id: string;
   professor: string;
+  students: {
+    __typename: "ModelStudentCourseConnection";
+    items: Array<{
+      __typename: "StudentCourse";
+      id: string;
+      studentID: string;
+      courseID: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
   courseName: string;
   courseDescription: string;
   topics: {
@@ -1072,6 +1618,18 @@ export type OnDeleteCourseSubscription = {
   __typename: "Course";
   id: string;
   professor: string;
+  students: {
+    __typename: "ModelStudentCourseConnection";
+    items: Array<{
+      __typename: "StudentCourse";
+      id: string;
+      studentID: string;
+      courseID: string;
+      createdAt: string;
+      updatedAt: string;
+    } | null> | null;
+    nextToken: string | null;
+  } | null;
   courseName: string;
   courseDescription: string;
   topics: {
@@ -1417,6 +1975,279 @@ export class APIService {
     )) as any;
     return <DeleteProfessorMutation>response.data.deleteProfessor;
   }
+  async CreateStudent(
+    input: CreateStudentInput,
+    condition?: ModelStudentConditionInput
+  ): Promise<CreateStudentMutation> {
+    const statement = `mutation CreateStudent($input: CreateStudentInput!, $condition: ModelStudentConditionInput) {
+        createStudent(input: $input, condition: $condition) {
+          __typename
+          id
+          studentName
+          universityName
+          courses {
+            __typename
+            items {
+              __typename
+              id
+              studentID
+              courseID
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <CreateStudentMutation>response.data.createStudent;
+  }
+  async UpdateStudent(
+    input: UpdateStudentInput,
+    condition?: ModelStudentConditionInput
+  ): Promise<UpdateStudentMutation> {
+    const statement = `mutation UpdateStudent($input: UpdateStudentInput!, $condition: ModelStudentConditionInput) {
+        updateStudent(input: $input, condition: $condition) {
+          __typename
+          id
+          studentName
+          universityName
+          courses {
+            __typename
+            items {
+              __typename
+              id
+              studentID
+              courseID
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <UpdateStudentMutation>response.data.updateStudent;
+  }
+  async DeleteStudent(
+    input: DeleteStudentInput,
+    condition?: ModelStudentConditionInput
+  ): Promise<DeleteStudentMutation> {
+    const statement = `mutation DeleteStudent($input: DeleteStudentInput!, $condition: ModelStudentConditionInput) {
+        deleteStudent(input: $input, condition: $condition) {
+          __typename
+          id
+          studentName
+          universityName
+          courses {
+            __typename
+            items {
+              __typename
+              id
+              studentID
+              courseID
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <DeleteStudentMutation>response.data.deleteStudent;
+  }
+  async CreateStudentCourse(
+    input: CreateStudentCourseInput,
+    condition?: ModelStudentCourseConditionInput
+  ): Promise<CreateStudentCourseMutation> {
+    const statement = `mutation CreateStudentCourse($input: CreateStudentCourseInput!, $condition: ModelStudentCourseConditionInput) {
+        createStudentCourse(input: $input, condition: $condition) {
+          __typename
+          id
+          studentID
+          courseID
+          student {
+            __typename
+            id
+            studentName
+            universityName
+            courses {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          course {
+            __typename
+            id
+            professor
+            students {
+              __typename
+              nextToken
+            }
+            courseName
+            courseDescription
+            topics {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <CreateStudentCourseMutation>response.data.createStudentCourse;
+  }
+  async UpdateStudentCourse(
+    input: UpdateStudentCourseInput,
+    condition?: ModelStudentCourseConditionInput
+  ): Promise<UpdateStudentCourseMutation> {
+    const statement = `mutation UpdateStudentCourse($input: UpdateStudentCourseInput!, $condition: ModelStudentCourseConditionInput) {
+        updateStudentCourse(input: $input, condition: $condition) {
+          __typename
+          id
+          studentID
+          courseID
+          student {
+            __typename
+            id
+            studentName
+            universityName
+            courses {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          course {
+            __typename
+            id
+            professor
+            students {
+              __typename
+              nextToken
+            }
+            courseName
+            courseDescription
+            topics {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <UpdateStudentCourseMutation>response.data.updateStudentCourse;
+  }
+  async DeleteStudentCourse(
+    input: DeleteStudentCourseInput,
+    condition?: ModelStudentCourseConditionInput
+  ): Promise<DeleteStudentCourseMutation> {
+    const statement = `mutation DeleteStudentCourse($input: DeleteStudentCourseInput!, $condition: ModelStudentCourseConditionInput) {
+        deleteStudentCourse(input: $input, condition: $condition) {
+          __typename
+          id
+          studentID
+          courseID
+          student {
+            __typename
+            id
+            studentName
+            universityName
+            courses {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          course {
+            __typename
+            id
+            professor
+            students {
+              __typename
+              nextToken
+            }
+            courseName
+            courseDescription
+            topics {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      input
+    };
+    if (condition) {
+      gqlAPIServiceArguments.condition = condition;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <DeleteStudentCourseMutation>response.data.deleteStudentCourse;
+  }
   async CreateCourse(
     input: CreateCourseInput,
     condition?: ModelCourseConditionInput
@@ -1426,6 +2257,18 @@ export class APIService {
           __typename
           id
           professor
+          students {
+            __typename
+            items {
+              __typename
+              id
+              studentID
+              courseID
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           courseName
           courseDescription
           topics {
@@ -1466,6 +2309,18 @@ export class APIService {
           __typename
           id
           professor
+          students {
+            __typename
+            items {
+              __typename
+              id
+              studentID
+              courseID
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           courseName
           courseDescription
           topics {
@@ -1506,6 +2361,18 @@ export class APIService {
           __typename
           id
           professor
+          students {
+            __typename
+            items {
+              __typename
+              id
+              studentID
+              courseID
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           courseName
           courseDescription
           topics {
@@ -1958,12 +2825,93 @@ export class APIService {
     )) as any;
     return <ListProfessorsQuery>response.data.listProfessors;
   }
+  async GetStudent(id: string): Promise<GetStudentQuery> {
+    const statement = `query GetStudent($id: ID!) {
+        getStudent(id: $id) {
+          __typename
+          id
+          studentName
+          universityName
+          courses {
+            __typename
+            items {
+              __typename
+              id
+              studentID
+              courseID
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {
+      id
+    };
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <GetStudentQuery>response.data.getStudent;
+  }
+  async ListStudents(
+    filter?: ModelStudentFilterInput,
+    limit?: number,
+    nextToken?: string
+  ): Promise<ListStudentsQuery> {
+    const statement = `query ListStudents($filter: ModelStudentFilterInput, $limit: Int, $nextToken: String) {
+        listStudents(filter: $filter, limit: $limit, nextToken: $nextToken) {
+          __typename
+          items {
+            __typename
+            id
+            studentName
+            universityName
+            courses {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          nextToken
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <ListStudentsQuery>response.data.listStudents;
+  }
   async GetCourse(id: string): Promise<GetCourseQuery> {
     const statement = `query GetCourse($id: ID!) {
         getCourse(id: $id) {
           __typename
           id
           professor
+          students {
+            __typename
+            items {
+              __typename
+              id
+              studentID
+              courseID
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           courseName
           courseDescription
           topics {
@@ -2004,6 +2952,10 @@ export class APIService {
             __typename
             id
             professor
+            students {
+              __typename
+              nextToken
+            }
             courseName
             courseDescription
             topics {
@@ -2050,6 +3002,14 @@ export class APIService {
               groupName
               createdAt
               updatedAt
+              files{
+                __typename
+                items
+                {id
+                filetype
+                filename
+              fileDescription}
+              }
             }
             nextToken
           }
@@ -2254,13 +3214,13 @@ export class APIService {
     return <ListFilesQuery>response.data.listFiles;
   }
   async ProfessorByName(
-    professorName: string,
+    professorName?: string,
     sortDirection?: ModelSortDirection,
     filter?: ModelProfessorFilterInput,
     limit?: number,
     nextToken?: string
   ): Promise<ProfessorByNameQuery> {
-    const statement = `query ProfessorByName($professorName: String!, $sortDirection: ModelSortDirection, $filter: ModelProfessorFilterInput, $limit: Int, $nextToken: String) {
+    const statement = `query ProfessorByName($professorName: String, $sortDirection: ModelSortDirection, $filter: ModelProfessorFilterInput, $limit: Int, $nextToken: String) {
         professorByName(professorName: $professorName, sortDirection: $sortDirection, filter: $filter, limit: $limit, nextToken: $nextToken) {
           __typename
           items {
@@ -2283,9 +3243,10 @@ export class APIService {
           nextToken
         }
       }`;
-    const gqlAPIServiceArguments: any = {
-      professorName
-    };
+    const gqlAPIServiceArguments: any = {};
+    if (professorName) {
+      gqlAPIServiceArguments.professorName = professorName;
+    }
     if (sortDirection) {
       gqlAPIServiceArguments.sortDirection = sortDirection;
     }
@@ -2303,20 +3264,70 @@ export class APIService {
     )) as any;
     return <ProfessorByNameQuery>response.data.professorByName;
   }
+  async StudentByName(
+    studentName?: string,
+    sortDirection?: ModelSortDirection,
+    filter?: ModelStudentFilterInput,
+    limit?: number,
+    nextToken?: string
+  ): Promise<StudentByNameQuery> {
+    const statement = `query StudentByName($studentName: ID, $sortDirection: ModelSortDirection, $filter: ModelStudentFilterInput, $limit: Int, $nextToken: String) {
+        studentByName(studentName: $studentName, sortDirection: $sortDirection, filter: $filter, limit: $limit, nextToken: $nextToken) {
+          __typename
+          items {
+            __typename
+            id
+            studentName
+            universityName
+            courses {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          nextToken
+        }
+      }`;
+    const gqlAPIServiceArguments: any = {};
+    if (studentName) {
+      gqlAPIServiceArguments.studentName = studentName;
+    }
+    if (sortDirection) {
+      gqlAPIServiceArguments.sortDirection = sortDirection;
+    }
+    if (filter) {
+      gqlAPIServiceArguments.filter = filter;
+    }
+    if (limit) {
+      gqlAPIServiceArguments.limit = limit;
+    }
+    if (nextToken) {
+      gqlAPIServiceArguments.nextToken = nextToken;
+    }
+    const response = (await API.graphql(
+      graphqlOperation(statement, gqlAPIServiceArguments)
+    )) as any;
+    return <StudentByNameQuery>response.data.studentByName;
+  }
   async CourseByProfessor(
-    professor: string,
+    professor?: string,
     sortDirection?: ModelSortDirection,
     filter?: ModelCourseFilterInput,
     limit?: number,
     nextToken?: string
   ): Promise<CourseByProfessorQuery> {
-    const statement = `query CourseByProfessor($professor: String!, $sortDirection: ModelSortDirection, $filter: ModelCourseFilterInput, $limit: Int, $nextToken: String) {
+    const statement = `query CourseByProfessor($professor: String, $sortDirection: ModelSortDirection, $filter: ModelCourseFilterInput, $limit: Int, $nextToken: String) {
         courseByProfessor(professor: $professor, sortDirection: $sortDirection, filter: $filter, limit: $limit, nextToken: $nextToken) {
           __typename
           items {
             __typename
             id
             professor
+            students {
+              __typename
+              nextToken
+            }
             courseName
             courseDescription
             topics {
@@ -2329,9 +3340,10 @@ export class APIService {
           nextToken
         }
       }`;
-    const gqlAPIServiceArguments: any = {
-      professor
-    };
+    const gqlAPIServiceArguments: any = {};
+    if (professor) {
+      gqlAPIServiceArguments.professor = professor;
+    }
     if (sortDirection) {
       gqlAPIServiceArguments.sortDirection = sortDirection;
     }
@@ -2350,14 +3362,14 @@ export class APIService {
     return <CourseByProfessorQuery>response.data.courseByProfessor;
   }
   async TopicByCourseByProfessor(
-    professor: string,
+    professor?: string,
     course?: ModelStringKeyConditionInput,
     sortDirection?: ModelSortDirection,
     filter?: ModelTopicFilterInput,
     limit?: number,
     nextToken?: string
   ): Promise<TopicByCourseByProfessorQuery> {
-    const statement = `query TopicByCourseByProfessor($professor: String!, $course: ModelStringKeyConditionInput, $sortDirection: ModelSortDirection, $filter: ModelTopicFilterInput, $limit: Int, $nextToken: String) {
+    const statement = `query TopicByCourseByProfessor($professor: String, $course: ModelStringKeyConditionInput, $sortDirection: ModelSortDirection, $filter: ModelTopicFilterInput, $limit: Int, $nextToken: String) {
         topicByCourseByProfessor(professor: $professor, course: $course, sortDirection: $sortDirection, filter: $filter, limit: $limit, nextToken: $nextToken) {
           __typename
           items {
@@ -2377,9 +3389,10 @@ export class APIService {
           nextToken
         }
       }`;
-    const gqlAPIServiceArguments: any = {
-      professor
-    };
+    const gqlAPIServiceArguments: any = {};
+    if (professor) {
+      gqlAPIServiceArguments.professor = professor;
+    }
     if (course) {
       gqlAPIServiceArguments.course = course;
     }
@@ -2403,14 +3416,14 @@ export class APIService {
     );
   }
   async FileByCourseByTopic(
-    course: string,
+    course?: string,
     topic?: ModelStringKeyConditionInput,
     sortDirection?: ModelSortDirection,
     filter?: ModelResourceGroupFilterInput,
     limit?: number,
     nextToken?: string
   ): Promise<FileByCourseByTopicQuery> {
-    const statement = `query FileByCourseByTopic($course: String!, $topic: ModelStringKeyConditionInput, $sortDirection: ModelSortDirection, $filter: ModelResourceGroupFilterInput, $limit: Int, $nextToken: String) {
+    const statement = `query FileByCourseByTopic($course: String, $topic: ModelStringKeyConditionInput, $sortDirection: ModelSortDirection, $filter: ModelResourceGroupFilterInput, $limit: Int, $nextToken: String) {
         fileByCourseByTopic(course: $course, topic: $topic, sortDirection: $sortDirection, filter: $filter, limit: $limit, nextToken: $nextToken) {
           __typename
           items {
@@ -2429,9 +3442,10 @@ export class APIService {
           nextToken
         }
       }`;
-    const gqlAPIServiceArguments: any = {
-      course
-    };
+    const gqlAPIServiceArguments: any = {};
+    if (course) {
+      gqlAPIServiceArguments.course = course;
+    }
     if (topic) {
       gqlAPIServiceArguments.topic = topic;
     }
@@ -2453,14 +3467,14 @@ export class APIService {
     return <FileByCourseByTopicQuery>response.data.fileByCourseByTopic;
   }
   async FileByTopicByResourceGroup(
-    topic: string,
+    topic?: string,
     resourseGroup?: ModelStringKeyConditionInput,
     sortDirection?: ModelSortDirection,
     filter?: ModelFileFilterInput,
     limit?: number,
     nextToken?: string
   ): Promise<FileByTopicByResourceGroupQuery> {
-    const statement = `query FileByTopicByResourceGroup($topic: String!, $resourseGroup: ModelStringKeyConditionInput, $sortDirection: ModelSortDirection, $filter: ModelFileFilterInput, $limit: Int, $nextToken: String) {
+    const statement = `query FileByTopicByResourceGroup($topic: String, $resourseGroup: ModelStringKeyConditionInput, $sortDirection: ModelSortDirection, $filter: ModelFileFilterInput, $limit: Int, $nextToken: String) {
         fileByTopicByResourceGroup(topic: $topic, resourseGroup: $resourseGroup, sortDirection: $sortDirection, filter: $filter, limit: $limit, nextToken: $nextToken) {
           __typename
           items {
@@ -2484,9 +3498,10 @@ export class APIService {
           nextToken
         }
       }`;
-    const gqlAPIServiceArguments: any = {
-      topic
-    };
+    const gqlAPIServiceArguments: any = {};
+    if (topic) {
+      gqlAPIServiceArguments.topic = topic;
+    }
     if (resourseGroup) {
       gqlAPIServiceArguments.resourseGroup = resourseGroup;
     }
@@ -2510,13 +3525,13 @@ export class APIService {
     );
   }
   async FileByFilename(
-    resourseGroup: string,
+    resourseGroup?: string,
     sortDirection?: ModelSortDirection,
     filter?: ModelFileFilterInput,
     limit?: number,
     nextToken?: string
   ): Promise<FileByFilenameQuery> {
-    const statement = `query FileByFilename($resourseGroup: String!, $sortDirection: ModelSortDirection, $filter: ModelFileFilterInput, $limit: Int, $nextToken: String) {
+    const statement = `query FileByFilename($resourseGroup: String, $sortDirection: ModelSortDirection, $filter: ModelFileFilterInput, $limit: Int, $nextToken: String) {
         fileByFilename(resourseGroup: $resourseGroup, sortDirection: $sortDirection, filter: $filter, limit: $limit, nextToken: $nextToken) {
           __typename
           items {
@@ -2540,9 +3555,10 @@ export class APIService {
           nextToken
         }
       }`;
-    const gqlAPIServiceArguments: any = {
-      resourseGroup
-    };
+    const gqlAPIServiceArguments: any = {};
+    if (resourseGroup) {
+      gqlAPIServiceArguments.resourseGroup = resourseGroup;
+    }
     if (sortDirection) {
       gqlAPIServiceArguments.sortDirection = sortDirection;
     }
@@ -2650,6 +3666,231 @@ export class APIService {
     )
   ) as Observable<OnDeleteProfessorSubscription>;
 
+  OnCreateStudentListener: Observable<
+    OnCreateStudentSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnCreateStudent {
+        onCreateStudent {
+          __typename
+          id
+          studentName
+          universityName
+          courses {
+            __typename
+            items {
+              __typename
+              id
+              studentID
+              courseID
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnCreateStudentSubscription>;
+
+  OnUpdateStudentListener: Observable<
+    OnUpdateStudentSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnUpdateStudent {
+        onUpdateStudent {
+          __typename
+          id
+          studentName
+          universityName
+          courses {
+            __typename
+            items {
+              __typename
+              id
+              studentID
+              courseID
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnUpdateStudentSubscription>;
+
+  OnDeleteStudentListener: Observable<
+    OnDeleteStudentSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnDeleteStudent {
+        onDeleteStudent {
+          __typename
+          id
+          studentName
+          universityName
+          courses {
+            __typename
+            items {
+              __typename
+              id
+              studentID
+              courseID
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnDeleteStudentSubscription>;
+
+  OnCreateStudentCourseListener: Observable<
+    OnCreateStudentCourseSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnCreateStudentCourse {
+        onCreateStudentCourse {
+          __typename
+          id
+          studentID
+          courseID
+          student {
+            __typename
+            id
+            studentName
+            universityName
+            courses {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          course {
+            __typename
+            id
+            professor
+            students {
+              __typename
+              nextToken
+            }
+            courseName
+            courseDescription
+            topics {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnCreateStudentCourseSubscription>;
+
+  OnUpdateStudentCourseListener: Observable<
+    OnUpdateStudentCourseSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnUpdateStudentCourse {
+        onUpdateStudentCourse {
+          __typename
+          id
+          studentID
+          courseID
+          student {
+            __typename
+            id
+            studentName
+            universityName
+            courses {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          course {
+            __typename
+            id
+            professor
+            students {
+              __typename
+              nextToken
+            }
+            courseName
+            courseDescription
+            topics {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnUpdateStudentCourseSubscription>;
+
+  OnDeleteStudentCourseListener: Observable<
+    OnDeleteStudentCourseSubscription
+  > = API.graphql(
+    graphqlOperation(
+      `subscription OnDeleteStudentCourse {
+        onDeleteStudentCourse {
+          __typename
+          id
+          studentID
+          courseID
+          student {
+            __typename
+            id
+            studentName
+            universityName
+            courses {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          course {
+            __typename
+            id
+            professor
+            students {
+              __typename
+              nextToken
+            }
+            courseName
+            courseDescription
+            topics {
+              __typename
+              nextToken
+            }
+            createdAt
+            updatedAt
+          }
+          createdAt
+          updatedAt
+        }
+      }`
+    )
+  ) as Observable<OnDeleteStudentCourseSubscription>;
+
   OnCreateCourseListener: Observable<OnCreateCourseSubscription> = API.graphql(
     graphqlOperation(
       `subscription OnCreateCourse {
@@ -2657,6 +3898,18 @@ export class APIService {
           __typename
           id
           professor
+          students {
+            __typename
+            items {
+              __typename
+              id
+              studentID
+              courseID
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           courseName
           courseDescription
           topics {
@@ -2687,6 +3940,18 @@ export class APIService {
           __typename
           id
           professor
+          students {
+            __typename
+            items {
+              __typename
+              id
+              studentID
+              courseID
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           courseName
           courseDescription
           topics {
@@ -2717,6 +3982,18 @@ export class APIService {
           __typename
           id
           professor
+          students {
+            __typename
+            items {
+              __typename
+              id
+              studentID
+              courseID
+              createdAt
+              updatedAt
+            }
+            nextToken
+          }
           courseName
           courseDescription
           topics {

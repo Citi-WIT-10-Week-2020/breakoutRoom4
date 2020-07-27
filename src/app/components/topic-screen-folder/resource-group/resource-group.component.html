@@ -3,7 +3,12 @@
   <mat-expansion-panel-header>
     <mat-panel-title class="mat-elevation-z rg-title">{{rgName}}</mat-panel-title>
   </mat-expansion-panel-header>
-    <div class="file">{{fileName}}</div>
-    <div class="file">Link to file 2</div>
-    <div class="file">Link to file 3</div>
+
+  <!--this is where the ng For would go-->
+  <!--list of files would be generated here-->
+ 
+  <ng-container *ngFor="let file of files">
+    
+    <app-file-list [fileName]="file.filename" [fileId]="file.id"></app-file-list>
+  </ng-container>
 </mat-expansion-panel>
