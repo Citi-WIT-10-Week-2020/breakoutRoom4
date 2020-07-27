@@ -7,7 +7,7 @@
             <form novalidate class="resource-form" [formGroup]= "fileForm"  > <!--(ngSubmit)="onSubmit(course)" -->
 
                 <p> 
-                    <mat-form-field appearance ="legacy" class="input-fields">
+                    <mat-form-field style="margin-top:15px" appearance ="legacy" class="input-fields">
                         <mat-label style="font-size:15px; ">Resource Name</mat-label>
                         <input matInput type="text" formControlName="fileName" >
                     </mat-form-field>
@@ -54,7 +54,7 @@
                     <ng-container *ngIf="fileTypeSelected == 'File'">
                         <!-- upload a file -->
                             <form [formGroup] = "getFileGroup" (ngSubmit)="onSubmit()">
-                                <mat-button><input type="file" (change)="onFileChange($event)" /> </mat-button>
+                                <input type="file" (change)="onFileChange($event)" />
                                 <!-- <input type="submit" [disabled]="getFileGroup.invalid" value="upload" /> -->
                             </form>
                         
@@ -70,7 +70,7 @@
                 <form novalidate class="resource-form" [formGroup]= "fileForm"  > <!--(ngSubmit)="onSubmit(course)" -->
 
                     <p> 
-                        <mat-form-field appearance ="legacy" class="input-fields">
+                        <mat-form-field style="margin-top:15px" appearance ="legacy" class="input-fields">
                             <mat-label style="font-size:15px;">Video Name</mat-label>
                             <input matInput type="text" formControlName="fileName" >
                             <mat-hint style="font-size: 12px;">*all videos added can be found in the playlist</mat-hint>

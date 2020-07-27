@@ -23,7 +23,7 @@ export class ResourceDialogComponent implements OnInit {
   fileTypeSelected : string;
   resourceGroupSelected : string;
   files: Array<any>;
-  private filename;
+  private fileName;
   private fileType;
   _undefined: undefined
 
@@ -38,12 +38,11 @@ export class ResourceDialogComponent implements OnInit {
   resourceGroupObject: IResourceGroup;
   course: string; //PASSED IN
   topic: string; //PASSED IN
-  fileDescription: string; //get from userInput <if URL = url, if file this = ""
+  fileDescription: string; //get from userInput, if URL = url, if file this = ""
   groupName: string; //get from userInput
 
 
   ngOnInit(): void {
-    
 
     this.fileForm = new FormGroup({
       fileName: new FormControl(''),
@@ -57,7 +56,6 @@ export class ResourceDialogComponent implements OnInit {
 cancel(){
   this.dialogRef.close();
   console.log(this.resourceGroups);
-  
 }
 
 // getFiles(){
@@ -76,9 +74,9 @@ cancel(){
   const reader = new FileReader();
 
   if (event.target.files && event.target.files.length) {
-    this.filename = event.target.files[0].name;
+    this.fileName = event.target.files[0].name;
     this.fileType = event.target.files[0].type;
-    console.log(this.filename,this.fileType);
+    console.log(this.fileName,this.fileType);
     const [file1] = event.target.files;
     console.log("ORIGi", file1);
     this.getFileGroup.patchValue({
@@ -101,10 +99,10 @@ onSubmit(){
   if(this.fileDescription == undefined){
     this.fileDescription = "empty";
   }
+  this.fileName = this.fileForm.get('fileName').value;
+  console.log(this.fileName, this.fileType," DESC ", this.fileDescription, this.groupName);
 
-  console.log(this.filename, this.fileType," DESC ", this.fileDescription, this.groupName);
-
-  this.fileservice.createFile(this.filename, this.fileType, file, this.courseName, this.topicName, this.fileDescription, this.groupName); //PASS IN MORE PARAMS
+  this.fileservice.createFile(this.fileName, this.fileType, file, this.courseName, this.topicName, this.fileDescription, this.groupName); //PASS IN MORE PARAMS
 }
 
 addResource(newGroup : boolean){

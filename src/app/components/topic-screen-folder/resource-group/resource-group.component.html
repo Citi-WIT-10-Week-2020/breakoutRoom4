@@ -4,5 +4,7 @@
     <mat-panel-title class="mat-elevation-z rg-title">{{rgName}}</mat-panel-title>
   </mat-expansion-panel-header>
     <div class="file">{{fileName}}</div>
-    <div class="file">Link to file 2</div>
+    <div class="file" *ngFor="let item of files">
+      {{item.fileName}}
+    </div>
 </mat-expansion-panel>

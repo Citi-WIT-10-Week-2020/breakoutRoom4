@@ -11,7 +11,8 @@
         <p>
             <mat-form-field appearance ="legacy" class="input-fields">
                 <mat-label style="font-size:18px;">Course Description</mat-label>
-                <textarea matInput type="text" formControlName="courseDescription" id="courseDescrip"></textarea>
+                <textarea maxlength="180" matInput type="text" ng-init="limit = 150" formControlName="courseDescription" id="courseDescrip"></textarea>
+                <mat-hint>*character limit 180</mat-hint>
             </mat-form-field>
         </p>
 

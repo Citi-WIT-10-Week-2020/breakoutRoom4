@@ -52,16 +52,16 @@ export class FileService{
       }
     
     //create / upload file
-    async createFile(fileName,fileType,file, course, topic, fileDescription, resourceGroup){
+    async createFile(filename,fileType,file, course, topic, fileDescription, resourceGroup){
         let id = uuidv4()
-        const key = `${id}${fileName}`;
+        const key = `${id}${filename}`;
         console.log(key);
         console.log(config);
         this.fileInput={
             id:key,
             course:course,
             topic:topic,
-            filename: fileName,
+            filename: filename,
             filetype: fileType,
             fileDescription:fileDescription,
             resourseGroup: resourceGroup,

@@ -12,7 +12,8 @@
         <p>
             <mat-form-field appearance ="legacy" class="input-fields">
                 <mat-label style="font-size:18px; ">Topic Description</mat-label>
-                <textarea matInput type="text" formControlName="topicDescription" placeholder={{topicDescription}}></textarea>
+                <textarea maxlength="180"matInput type="text" formControlName="topicDescription" placeholder={{topicDescription}}></textarea>
+                <mat-hint>*character limit 180</mat-hint>
             </mat-form-field>
          </p>
 

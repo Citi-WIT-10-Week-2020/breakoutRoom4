@@ -172,6 +172,7 @@ export class TopicScreenComponent implements OnInit {
       next: x => {
         console.log('FILES: ' , x);
         this.files = x.items;
+        console.log('FILES ARRAY: ' , this.files);
       },
       error: err => console.error('Observer got an error: ' + err),
       complete: () => console.log('Observer got a complete notification'),
