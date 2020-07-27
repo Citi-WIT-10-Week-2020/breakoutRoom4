@@ -22,15 +22,6 @@ import { v4 as uuidv4 } from 'uuid';
 
 export class TopicScreenComponent implements OnInit {
 
-  
-  
-  
-  /*public formGroup = this.fb.group({
-    file:[null,Validators.required]
-  });
-  private fileName;
-  private fileType;*/
-  files: Array<any>;
   resourceGroups : Array<any>;  //DINA, THE RESOURCE GROUPS ARE IN HERE :)
   topic: any;
  
@@ -45,69 +36,11 @@ export class TopicScreenComponent implements OnInit {
   constructor(private route:ActivatedRoute,private fb: FormBuilder,private matDialog: MatDialog, private fileservice: FileService, private apiservice: APIService) { }
 
   course: string;
- // rgObject: Array<any>;
- // playlistObject: Array<any>; 
-  faq: any;
- // fileList: Array<any>;
+  
+  playlist: any;
+  faq : any;
 
   ngOnInit(): void {
-
-   
-    /*this.rgObject=[
-      {
-        id: this.topicId,
-        course: this.courseName,
-        topic: this.topicName,
-        groupName: this.groupName,
-        // rgName: "title",
-        // fileName: "name of file",
-        rgName: "title",
-        fileName: "Name of File", //fileName is not connected to anything right now
-        
-      }
-    ];
-//fileList is not connected to anything right now
-    this.fileList=[
-      {
-        fileName: "name of file",
-        
-      }
-    ];
-
-    this.playlistObject=[
-      {
-        videosrc: "https://media.geeksforgeeks.org/wp-content/uploads/20200409094356/Placement100-_-GeeksforGeeks2.mp4",
-        videoName: "Name of Video"
-      },
-    
-    {
-      videosrc: "https://media.geeksforgeeks.org/wp-content/uploads/20200409094356/Placement100-_-GeeksforGeeks2.mp4",
-      videoName: "Name of Video"
-    },
-    {
-      videosrc: "https://media.geeksforgeeks.org/wp-content/uploads/20200409094356/Placement100-_-GeeksforGeeks2.mp4",
-      videoName: "Name of Video"
-    },
-    {
-      videosrc: "https://media.geeksforgeeks.org/wp-content/uploads/20200409094356/Placement100-_-GeeksforGeeks2.mp4",
-      videoName: "Name of Video"
-    },
-    {
-      videosrc: "https://media.geeksforgeeks.org/wp-content/uploads/20200409094356/Placement100-_-GeeksforGeeks2.mp4",
-      videoName: "Name of Video"
-    },
-    {
-      videosrc: "https://media.geeksforgeeks.org/wp-content/uploads/20200409094356/Placement100-_-GeeksforGeeks2.mp4",
-      videoName: "Name of Video"
-    },
-  ]
-
-    this.faq=[
-      {
-        question: "question1",
-        answer: "answer1",
-      }
-    ]*/
 
 
     //gets courseID
@@ -134,9 +67,49 @@ export class TopicScreenComponent implements OnInit {
     console.log(this.topicId);
     console.log(this.topicName);
 
-    this.getFiles();
+    //this.getFiles();
     this.checkResourceGroups();
+    this.subscribeToResourceGroupEvents();
+    this.subscibeToFileEvents();
   
+  }
+
+  subscibeToFileEvents(){
+     //creations
+     this.apiservice.OnCreateFileListener.subscribe((evt)=>{
+      //console.log("FILE CREATED",evt);
+      const data = (evt as any).value.data.onCreateFile;
+      console.log(data.resourseGroup)
+      if(data.resourseGroup == "Playlist"){
+        this.playlist.files.items = [...this.playlist.files.items,data];
+      }
+      else if(data.resourseGroup == "FAQ"){
+        this.faq.files.items = [...this.faq.files.items,data];
+      }
+      
+    });
+
+    //deletions
+    this.apiservice.OnDeleteFileListener.subscribe((evt)=>{
+
+      //console.log("FILE DELETED");
+      const data = (evt as any).value.data.onDeleteFile;
+      console.log(data);
+      //basically, search thru array, find original, remove it
+
+      if(data.resourseGroup == "Playlist"){
+        this.playlist.files.items = this.playlist.files.items.filter((video)=>{
+          return(video.id != data.id)
+        })
+      }
+      else if(data.resourseGroup == "FAQ"){
+        this.faq.files.items = this.faq.files.items.filter((question)=>{
+          return(question.id != data.id)
+        })
+      }
+    });
+
+   
   }
   subscribeToResourceGroupEvents(){
 
@@ -144,7 +117,14 @@ export class TopicScreenComponent implements OnInit {
     this.apiservice.OnCreateResourceGroupListener.subscribe((evt)=>{
       console.log("RESOURCE GROUP CREATED");
       const data = (evt as any).value.data.onCreateResourceGroup;
-      this.resourceGroups = [...this.resourceGroups,data];
+      if(this.resourceGroups== undefined){
+        this.resourceGroups = [];
+      }
+      console.log(evt);
+      if(data.groupName != "Playlist" && data.groupName != "FAQ"){
+        this.resourceGroups = [...this.resourceGroups,data];
+      }
+      
     });
 
     //deletions
@@ -177,9 +157,7 @@ export class TopicScreenComponent implements OnInit {
 
   }
 
-  subscribeToFileEvents(){
-
-  }
+  
    checkResourceGroups(){
     const myObserver = {
       next: x => {
@@ -191,7 +169,18 @@ export class TopicScreenComponent implements OnInit {
            this.createInitialResourceGroups();
         }
         else{
-          this.resourceGroups = x.resourceGroups.items;
+          //find faq and playlist
+          this.faq = x.resourceGroups.items.find((item)=>{
+            return (item.groupName == "FAQ")
+          });
+          console.log("FAQ",this.faq);
+          this.playlist = x.resourceGroups.items.find((item)=>{
+            return (item.groupName == "Playlist")
+          });
+          console.log("PLAYLIST",this.playlist);
+          this.resourceGroups = x.resourceGroups.items.filter((item)=>{
+            return(item.groupName != "Playlist" && item.groupName != "FAQ")
+          });
           console.log("GROUPS", this.resourceGroups);
         }
       },
@@ -204,6 +193,7 @@ export class TopicScreenComponent implements OnInit {
   }
 
   async createInitialResourceGroups(){
+
     let playlist :IResourceGroup = {
       id: uuidv4(),
       course: this.topic.course,
@@ -218,69 +208,20 @@ export class TopicScreenComponent implements OnInit {
       topic:this.topic.TopicName
     }
     //create Playlist
-    await this.fileservice.createResourceGroup(playlist);
+    this.playlist = await this.fileservice.createResourceGroup(playlist);
+    console.log("PLAYLIST",this.playlist);
     //create FAQ
-    await this.fileservice.createResourceGroup(faq);
+    this.faq = await this.fileservice.createResourceGroup(faq);
+    console.log(this.faq,faq);
     //check to see if the resourcegroups are there
-    this.fileservice.getTopic(this.topicId).subscribe((x)=>{
+   /* this.fileservice.getTopic(this.topicId).subscribe((x)=>{
       console.log(x);
       this.resourceGroups = x.resourceGroups.items;
       console.log("GROUPS", this.resourceGroups);
-    })
+    })*/
   }
 
-  getFiles(){
-    const myObserver = {
-      next: x => {
-        console.log('FILES: ' , x);
-        this.files = x.items;
-      },
-      error: err => console.error('Observer got an error: ' + err),
-      complete: () => console.log('Observer got a complete notification'),
-    };
-    this.fileservice.getFiles().subscribe(myObserver);
-  }
-
-  /*
-  onDownload(){
-    console.log("Downloading!");
-    //Download the file
-    console.log("ID",this.files[0].id);
-    this.fileservice.downloadFile(this.files[0].id);
-  }
   
-  
-
-   onFileChange(event){
-    const reader = new FileReader();
-
-    if (event.target.files && event.target.files.length) {
-      this.fileName = event.target.files[0].name;
-      this.fileType = event.target.files[0].type;
-      console.log(this.fileName,this.fileType);
-      const [file1] = event.target.files;
-      console.log("ORIGi", file1);
-      this.formGroup.patchValue({
-        file: file1
-      });
-      /*reader.readAsDataURL(file);
-     
-      reader.onload = () => {
-        this.formGroup.patchValue({
-          file: reader.result
-        });
-      };
-    }
-  }
-
-  /*onSubmit(){
-    //console.log(this.fileName);
-    let file = this.formGroup.get('file').value;
-    console.log("INONSUBMIT",file);
-    //let newFile = file.replace(/^data:image\/[a-z]+;base64,/, "");
-    //console.log(newFile);
-   this.fileservice.createFile(this.fileName,this.fileType,file, this.courseName, this.topicName, this.fileDescription, this.groupName);
-  }*/
 
   openResourceDialog()
   {

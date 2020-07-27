@@ -9,6 +9,6 @@
  
   <ng-container *ngFor="let file of files">
     
-    <app-file-list [fileName]="file.filename"></app-file-list>
+    <app-file-list [fileName]="file.filename" [fileId]="file.id"></app-file-list>
   </ng-container>
 </mat-expansion-panel>

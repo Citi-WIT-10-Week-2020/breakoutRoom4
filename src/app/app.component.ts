@@ -4,6 +4,7 @@ import { FormFieldTypes } from '@aws-amplify/ui-components';
 import { Hub, Logger} from 'aws-amplify';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 //import {HomeScreenComponent} from './components/home-screen.component'
 
 
@@ -17,7 +18,9 @@ export class AppComponent {
   formFields: FormFieldTypes;
   displayLogo = false;
 
-  constructor() {
+  constructor(
+    private router: Router
+  ) {
     this.formFields = [
       {
         type: "given_name",
@@ -68,7 +71,8 @@ export class AppComponent {
      
    // this.displayFunction();   // listens for sign in/sign out
     this.signIn();
-  
+    
+    this.router.navigate(['/']);
 }
   
 // wait for sign in to change displayLogo variable 
@@ -76,6 +80,7 @@ export class AppComponent {
  async signIn () {
     console.log("signed in", (await Auth.currentCredentials()).authenticated);
     let current = (await Auth.currentCredentials()).authenticated;
+    
     if (current == undefined){
       this.displayLogo = true;
     } else if (current == true){
@@ -84,7 +89,7 @@ export class AppComponent {
       //removes flex class and center id
       document.getElementById("removable").removeAttribute("class");
       document.getElementById("center").removeAttribute("id"); 
-      
+     
     }
   }
 
