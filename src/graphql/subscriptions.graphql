@@ -59,10 +59,176 @@ subscription OnDeleteProfessor {
     updatedAt
   }
 }
+subscription OnCreateStudent {
+  onCreateStudent {
+    id
+    studentName
+    universityName
+    courses {
+      items {
+        id
+        studentID
+        courseID
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateStudent {
+  onUpdateStudent {
+    id
+    studentName
+    universityName
+    courses {
+      items {
+        id
+        studentID
+        courseID
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteStudent {
+  onDeleteStudent {
+    id
+    studentName
+    universityName
+    courses {
+      items {
+        id
+        studentID
+        courseID
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnCreateStudentCourse {
+  onCreateStudentCourse {
+    id
+    studentID
+    courseID
+    student {
+      id
+      studentName
+      universityName
+      courses {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    course {
+      id
+      professor
+      students {
+        nextToken
+      }
+      courseName
+      courseDescription
+      topics {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateStudentCourse {
+  onUpdateStudentCourse {
+    id
+    studentID
+    courseID
+    student {
+      id
+      studentName
+      universityName
+      courses {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    course {
+      id
+      professor
+      students {
+        nextToken
+      }
+      courseName
+      courseDescription
+      topics {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteStudentCourse {
+  onDeleteStudentCourse {
+    id
+    studentID
+    courseID
+    student {
+      id
+      studentName
+      universityName
+      courses {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    course {
+      id
+      professor
+      students {
+        nextToken
+      }
+      courseName
+      courseDescription
+      topics {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
 subscription OnCreateCourse {
   onCreateCourse {
     id
     professor
+    students {
+      items {
+        id
+        studentID
+        courseID
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
     courseName
     courseDescription
     topics {
@@ -85,6 +251,16 @@ subscription OnUpdateCourse {
   onUpdateCourse {
     id
     professor
+    students {
+      items {
+        id
+        studentID
+        courseID
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
     courseName
     courseDescription
     topics {
@@ -107,6 +283,16 @@ subscription OnDeleteCourse {
   onDeleteCourse {
     id
     professor
+    students {
+      items {
+        id
+        studentID
+        courseID
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
     courseName
     courseDescription
     topics {
