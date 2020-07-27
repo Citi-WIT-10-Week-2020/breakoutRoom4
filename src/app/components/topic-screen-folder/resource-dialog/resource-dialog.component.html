@@ -96,8 +96,8 @@
                         </ng-container>
     
                         <ng-container *ngIf="fileTypeSelected == '.mp4'">
-                            <form [formGroup] = "getFileGroup">
-                                <input type="file" (change)="onFileChange($event)" /> 
+                            <form  [formGroup] = "getFileGroup">
+                                <input  type="file" (change)="onFileChange($event)" /> 
                                 <!-- <input type="submit" [disabled]="getFileGroup.invalid" value="upload" /> -->
                             </form>
                         </ng-container>
