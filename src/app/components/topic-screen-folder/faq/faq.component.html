@@ -4,4 +4,13 @@
       <mat-panel-title class="mat-elevation-z rg-title">{{question}}</mat-panel-title>
     </mat-expansion-panel-header>
         <div class="file">{{answer}}</div>
+        <div class="buttons">
+          <button mat-icon-button title="UPDATE" (click)="openUpdateFaqDialog()">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button title="DELETE" (click)="openDeleteFaqDialog()">
+            <mat-icon>delete</mat-icon>
+          </button>
+      </div>
   </mat-expansion-panel>
+
