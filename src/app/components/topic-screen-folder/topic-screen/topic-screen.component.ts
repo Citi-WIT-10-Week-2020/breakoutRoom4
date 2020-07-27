@@ -49,8 +49,16 @@ export class TopicScreenComponent implements OnInit {
   playlistObject: Array<any>; 
   faqObject: Array<any>;
   fileList: Array<any>;
+  videoLink: Array<any>;
 
   ngOnInit(): void {
+
+    this.videoLink=[
+      {
+        videourl: "http://google.com",
+        linkName: "Name of Video"
+      }
+    ];
 
    
     this.rgObject=[
