@@ -1,0 +1,28 @@
+<h2 mat-dialog-title style ="text-align: center;">EDIT PROFILE</h2>
+    <mat-dialog-content class ="container">
+        
+        <form novalidate class="account-form" [formGroup]= "accountForm" > <!--(ngSubmit)="onSubmit(course)" -->
+        <p>
+            <mat-form-field appearance ="legacy" class="input-fields">
+                <mat-label style="font-size:18px;">First Name</mat-label>
+                <input matInput type="text" formControlName="accountName">
+            </mat-form-field>
+        </p>
+         <p>
+            <mat-form-field appearance ="legacy" class="input-fields">
+                <mat-label style="font-size:18px;">University Name</mat-label>
+                <input matInput type="text" formControlName="universityName" id="courseDescrip">
+            </mat-form-field>
+        </p> 
+
+        </form>
+
+
+    </mat-dialog-content>
+
+<mat-dialog-actions style ="align-items:center">
+    <button class="btn-cancel" class="mat-raised-button" style="padding: 5px 30px; margin: auto; margin-bottom: 20px;" (click)="close()">Cancel</button>
+    <button type ="btn-submit" class="mat-raised-button" style="padding: 5px 30px; margin: auto; margin-bottom: 20px;" (click)="onSubmit()">Update</button>   
+</mat-dialog-actions>
+
+

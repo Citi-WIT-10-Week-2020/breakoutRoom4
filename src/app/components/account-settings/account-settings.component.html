@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+        <div class="div-body">
+            <button mat-flat-button class="nav-back"><a routerLink=''>  Home</a></button>
+            <div class="title-header">
+                <span class="title">Account Settings</span>
+                <div class="background">
+                  <!--  <button (click)="openAccountDialog()" class="button">Edit</button> -->
+                    <span><button class="add-btn-bg" (click) = "openAccountDialog()"><mat-icon class="add-btn">edit</mat-icon></button></span>
+                    <span><img class="image" src="https://freesvg.org/img/abstract-user-flat-4.png"></span>
+                    <p class="user">{{user}}</p>
+                    <p class="details">{{studentProf}}</p>
+                    <p class="details">{{univName}}</p>
+                    <p class="details">{{email}}</p>
+                    <p class="details">xxx-xxx-{{last4}}</p>
+                </div>
+            </div>
+
+        </div>
+
+    
+
+            
+</html>
+   
