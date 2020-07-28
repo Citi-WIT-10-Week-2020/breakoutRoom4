@@ -88,7 +88,7 @@ export class AppComponent {
       
       //removes flex class and center id
       document.getElementById("removable").removeAttribute("class");
-      document.getElementById("center").removeAttribute("id"); 
+     document.getElementById("center").removeAttribute("id"); 
      
     }
   }

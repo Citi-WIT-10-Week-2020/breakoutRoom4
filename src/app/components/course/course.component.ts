@@ -54,20 +54,6 @@ export class CourseComponent implements OnInit {
         let dialogRef = this.copyDialog.open(CopyDialogComponent, dialogConfig);
         dialogRef.afterClosed().subscribe(()=>{console.log("dialog has been closed")});  
     }
-    
-
-    // //logic for deleting course. Hardcoded, will update to user input
-    // deleteCourse(){
-    //   const myObserver = {
-    //     next: x => {
-    //       console.log('Value: ' , x);
-    //     },
-    //     error: err => console.error('Observer got an error: ' + err),
-    //     complete: () => console.log('Observer got a complete notification'),
-    //   };
-    //   this.courseservice.deleteCourse(this.courseId).subscribe(myObserver);
-
-    // }
 
     openUpdateDialog() {
       // courseName = this.name;
@@ -92,9 +78,7 @@ export class CourseComponent implements OnInit {
       dialogRef.afterClosed().subscribe(()=>{console.log("dialog has been closed")});
      }
 
-     //logic for updating the course. Will eventually be in the update-course-component (popup thing)
- 
-    //this.courseservice.updateCourse(this.courseObject).subscribe(myObserver);
+     
   }
   
 
