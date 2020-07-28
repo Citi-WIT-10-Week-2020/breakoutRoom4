@@ -13,7 +13,6 @@ import { TopicComponent } from '../../topic/topic.component';
 })
 export class FaqDialogComponent implements OnInit {
 
-  faqObject: any;
   faq: FormGroup;
   @Input() faqObject: any;
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, public dialogRef: MatDialogRef<FaqDialogComponent>, private fileservice:FileService) { }

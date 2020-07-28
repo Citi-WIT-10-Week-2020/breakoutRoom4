@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Inject } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
 
+
 @Component({
   selector: 'app-update-faq-dialog',
   templateUrl: './update-faq-dialog.component.html',
