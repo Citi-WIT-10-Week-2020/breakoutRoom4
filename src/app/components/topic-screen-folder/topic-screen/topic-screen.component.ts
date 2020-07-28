@@ -162,23 +162,25 @@ export class TopicScreenComponent implements OnInit {
     const myObserver = {
       next: x => {
         console.log('THE TOPIC: ' , x);
-        this.topic = x;
+        this.topic = x.data.getTopic;
+        console.log("ACTUAL TOPIC",this.topic.resourceGroups);
         //if resource groups are empty, createresource groups
-        if(x.resourceGroups.items.length == 0){
+        if(this.topic.resourceGroups.items.length == 0){
           console.log("creating resourceGroups");
            this.createInitialResourceGroups();
         }
         else{
           //find faq and playlist
-          this.faq = x.resourceGroups.items.find((item)=>{
+          console.log("RESOURCE GROUP ASSIGNMENT");
+          this.faq = this.topic.resourceGroups.items.find((item)=>{
             return (item.groupName == "FAQ")
           });
           console.log("FAQ",this.faq);
-          this.playlist = x.resourceGroups.items.find((item)=>{
+          this.playlist = this.topic.resourceGroups.items.find((item)=>{
             return (item.groupName == "Playlist")
           });
           console.log("PLAYLIST",this.playlist);
-          this.resourceGroups = x.resourceGroups.items.filter((item)=>{
+          this.resourceGroups = this.topic.resourceGroups.items.filter((item)=>{
             return(item.groupName != "Playlist" && item.groupName != "FAQ")
           });
           console.log("GROUPS", this.resourceGroups);
