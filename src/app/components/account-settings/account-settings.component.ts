@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { APIService } from '../../API.service';
 import { Auth } from 'aws-amplify';
-import { ResourceLoader } from '@angular/compiler';
+import { ResourceLoader, ConditionalExpr } from '@angular/compiler';
 import { UserinfoService } from 'src/app/shared/userinfo.service';
 import { FormBuilder } from '@angular/forms';
 import { AccountDialogComponent } from '../account-dialog/account-dialog.component';
@@ -31,6 +31,9 @@ export class AccountSettingsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    console.log("univ name first", this.univName);
+
     this.getInfo();
 
 
@@ -48,6 +51,8 @@ export class AccountSettingsComponent implements OnInit {
         this.email = x.username;
         this.phone = x.attributes.phone_number;
         this.last4 = this.phone.substring(8, 12);
+
+        
         
       },
       error: err => console.error('Observer got an error: ' + err),
@@ -75,50 +80,18 @@ export class AccountSettingsComponent implements OnInit {
         const data = (evt as any).value.data.onUpdateProfessor;
         console.log("subscribe update", data);
         //assign values to local variables for display
-        //user = first + last
+        this.user = data.firstName + " " + data.lastName;
+        this.univName = data.universityName;
+
+        
       });
+
+      
     }
 
 
 }
 
   
-/*
 
-  getInfo() {
-     const myObserver = {
-      next: x => {
-      this.id = x.id;
-      console.log("id", x.id);
-     //this.email = x.username;
-
-      this.apiservice.ProfessorByName(this.email).then((evt) => {
-
-        this.apiservice.UpdateProfessor({id:this.id,professorName:this.accountForm.get('accountName').value, universityName:this.accountForm.get('universityName').value}).then((evt)=> {
-        // evt.professorName = this.accountForm.get('accountName').value;
-        // evt.universityName = this.accountForm.get('universityName').value;
-         console.log("name", evt.professorName);
-         console.log("univName", evt.universityName);
-         console.log("updated");
-        });
-    });
-
-      
-      this.apiservice.UpdateProfessor({id:this.id,professorName:this.accountForm.get('accountName').value, universityName:this.accountForm.get('universityName').value}).then((evt)=> {
-        // evt.professorName = this.accountForm.get('accountName').value;
-        // evt.universityName = this.accountForm.get('universityName').value;
-         console.log("name", evt.professorName);
-         console.log("univName", evt.universityName);
-         console.log("updated");
-       });
-
-       
-    },
-    error: err => console.error('Observer got an error: ' + err),
-    complete: () => console.log('Observer got a complete notification'),
-  };
-  this.userinfo.getUserInfo().subscribe(myObserver);
-  
-}
-*/
 

@@ -20,8 +20,8 @@ import { async } from 'q';
 
 export class AccountDialogComponent implements OnInit {
   
-  @Input() firstName: string;
-  @Input() lastName: string;
+  @Input() firstname: string;
+  @Input() lastname: string;
   @Input() universityName: string;
   @Input() id: string
   
@@ -37,14 +37,15 @@ export class AccountDialogComponent implements OnInit {
   ngOnInit() {
 
     this.accountObject = {
-      firstName: this.firstName,
-      lastName: this.lastName,
+      firstName: this.firstname,
+      lastName: this.lastname,
       univName: this.universityName,
       id: this.id
     }
 
     this.accountForm = new FormGroup({
-      accountName: new FormControl(''),
+      firstName: new FormControl(''),
+      lastName: new FormControl(''),
       universityName: new FormControl('')
     })
   }
@@ -54,11 +55,11 @@ export class AccountDialogComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.firstName = this.accountForm.get('firstName').value;
-    this.lastName = this.accountForm.get('lastName').value;
+    this.firstname = this.accountForm.get('firstName').value;
+    this.lastname = this.accountForm.get('lastName').value;
     this.universityName = this.accountForm.get('universityName').value;
-    console.log("first name", this.firstName);
-    console.log("last name", this.lastName);
+    console.log("first name", this.firstname);
+    console.log("last name", this.lastname);
     console.log("univName", this.universityName);
 
     this.updateAccount();
@@ -80,13 +81,13 @@ export class AccountDialogComponent implements OnInit {
          this.apiservice.UpdateProfessor(
            {id:this.id,
            // professorName:this.accountForm.get('accountName').value, 
-            universityName:this.accountForm.get('universityName').value}).
-            // firstName: this.accountForm.get('firstName').value,
-            // lastName: this.accountForm.get('lastName').value,
+            universityName:this.accountForm.get('universityName').value,
+            firstName: this.accountForm.get('firstName').value,
+            lastName: this.accountForm.get('lastName').value}).
             
             then((evt)=> {
-           //   console.log("first name", evt.firstName);
-           //   console.log("name", evt.lastName);
+              console.log("first name", evt.firstName);
+              console.log("last name", evt.lastName);
               console.log("univName", evt.universityName);
          }).catch (
            (evt)=>{

@@ -36,7 +36,8 @@
               <app-resource-group [rgName]="item.groupName" [files]="item.files.items"></app-resource-group>
             </ng-container>
             
-             <mat-expansion-panel class="rg">
+            
+              <mat-expansion-panel class="rg">
               <mat-expansion-panel-header>
                 <mat-panel-title class="mat-elevation-z rg-title">Playlist</mat-panel-title>
               </mat-expansion-panel-header>
@@ -50,12 +51,21 @@
                 <ng-container *ngFor="let item of playlist.files.items">
                   <app-playlist-video class="videocards" [videosrc]="item.videosrc" [videoName]="item.videoName" ></app-playlist-video>
                 </ng-container>
-                 
+
+                <!--<ng-container *ngFor="let item of videoLink">
+                  <app-video-links class="videocards" [videourl]="item.videourl" [linkName]="item.linkName" ></app-video-links>
+                </ng-container>-->
+                <app-video-links></app-video-links>
+                
+                
+                  
               </div>
-            </mat-expansion-panel> 
+              </mat-expansion-panel> 
+
+
           </mat-accordion>
 
-          <!--<app-video-links></app-video-links>-->
+          
 
         </div>
       </div>
