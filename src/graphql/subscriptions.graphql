@@ -4,6 +4,8 @@ subscription OnCreateProfessor {
     id
     professorName
     universityName
+    firstName
+    lastName
     courses {
       items {
         id
@@ -24,6 +26,8 @@ subscription OnUpdateProfessor {
     id
     professorName
     universityName
+    firstName
+    lastName
     courses {
       items {
         id
@@ -44,6 +48,8 @@ subscription OnDeleteProfessor {
     id
     professorName
     universityName
+    firstName
+    lastName
     courses {
       items {
         id
