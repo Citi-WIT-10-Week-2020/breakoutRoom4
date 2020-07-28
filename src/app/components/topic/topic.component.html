@@ -1,6 +1,6 @@
 
 
-<mat-card class="topic-card" tabindex="0">
+<mat-card class="topic-card mat-elevation-z" tabindex="0">
   <div class="click-area" [routerLink]="['/topic', this.courseId, this.topicID, this.topic]" title="Click to go to topic">
     <mat-card-header class="card-header">
       <mat-card-title id="topic-title">{{topic}}</mat-card-title>
@@ -15,8 +15,8 @@
   
   <div class="footer">
     <div class="actions">
-      <button mat-button (click)="openUpdateTopicDialog()">UPDATE</button>
-      <button mat-button (click)="openDeleteTopicDialog()">DELETE</button>
+      <button class="action-btn" (click)="openUpdateTopicDialog()">UPDATE</button>
+      <button class="action-btn" (click)="openDeleteTopicDialog()">DELETE</button>
     </div>
   </div>
 </mat-card>
