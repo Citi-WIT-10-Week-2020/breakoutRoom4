@@ -60,6 +60,7 @@ import {MatSelectModule} from '@angular/material/select';
 import { VideoLinksComponent } from './components/topic-screen-folder/video-links/video-links.component';
 import { UpdateFaqDialogComponent } from './components/topic-screen-folder/update-faq-dialog/update-faq-dialog.component';
 import { DeleteFaqDialogComponent } from './components/topic-screen-folder/delete-faq-dialog/delete-faq-dialog.component';
+import { PlaylistContainerComponent } from './components/topic-screen-folder/playlist-container/playlist-container.component';
 
 
 
@@ -99,6 +100,7 @@ import { DeleteFaqDialogComponent } from './components/topic-screen-folder/delet
     VideoLinksComponent,
     UpdateFaqDialogComponent,
     DeleteFaqDialogComponent,
+    PlaylistContainerComponent,
 
     
   ],
