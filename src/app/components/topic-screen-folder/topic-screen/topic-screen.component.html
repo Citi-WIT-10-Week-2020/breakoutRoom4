@@ -52,9 +52,10 @@
                   <app-playlist-video class="videocards" [videosrc]="item.videosrc" [videoName]="item.videoName" ></app-playlist-video>
                 </ng-container>
 
-                <ng-container *ngFor="let item of videoLink">
+                <!--<ng-container *ngFor="let item of videoLink">
                   <app-video-links class="videocards" [videourl]="item.videourl" [linkName]="item.linkName" ></app-video-links>
-                </ng-container>
+                </ng-container>-->
+                <app-video-links></app-video-links>
                 
                 
                   
