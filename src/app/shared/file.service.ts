@@ -52,16 +52,16 @@ export class FileService{
       }
     
     //create / upload file
-    async createFile(filename,fileType,file, course, topic, fileDescription, resourceGroup){
+    async createFile(fileName,fileType,file, course, topic, fileDescription, resourceGroup,resourceName:string){
         let id = uuidv4()
-        const key = `${id}${filename}`;
+        const key = `${id}${fileName}`;
         console.log(key);
         console.log(config);
         this.fileInput={
             id:key,
             course:course,
             topic:topic,
-            filename: filename,
+            filename: resourceName,
             filetype: fileType,
             fileDescription:fileDescription,
             resourseGroup: resourceGroup,
@@ -71,10 +71,16 @@ export class FileService{
                 region:config.aws_user_files_s3_bucket_region
             }
         }
+
+        
         try{
-            await Storage.put(key,file,{
-            contentType:fileType
-            });
+            if(file){
+                
+                await Storage.put(key,file,{
+                contentType:fileType
+                });
+            }
+            
             let returned = await this.apiservice.CreateFile(this.fileInput);
             console.log(returned);
         }
@@ -89,8 +95,13 @@ export class FileService{
 
     }
     //delete files
-    deleteFile(){
+    async deleteFile(key:string){
+        //delete from s3
+        let result = await Storage.remove(key);
+        console.log(result);
+        //delete from dynamodb
 
+        await this.apiservice.DeleteFile({id:key});
     }
     
 }

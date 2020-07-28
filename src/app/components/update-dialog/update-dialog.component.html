@@ -4,14 +4,14 @@
         <p>
             <mat-form-field appearance ="legacy" class="input-fields">
                 <mat-label style="font-size:18px; ">Course Name</mat-label>
-                <input matInput type="text" formControlName="courseName" value={{name}}>
+                <input required matInput type="text" formControlName="courseName" placeholder={{name}}>
             </mat-form-field>
         </p>  
 
         <p>
             <mat-form-field appearance ="legacy" class="input-fields">
                 <mat-label style="font-size:18px;">Course Description</mat-label>
-                <textarea maxlength="180" matInput type="text" formControlName="courseDescription" value={{description}}> </textarea> 
+                <textarea required maxlength="180" matInput type="text" formControlName="courseDescription" value={{description}}> </textarea> 
                 <mat-hint>*character limit 180</mat-hint>
             </mat-form-field>
         </p>

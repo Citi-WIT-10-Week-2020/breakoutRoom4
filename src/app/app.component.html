@@ -3,32 +3,26 @@
 <div id="removable" class="flex">
 
     <div *ngIf="displayLogo" class="container">
-      <img  class="logo-img" src="assets/logo_outline.png"> 
-      <div class="overlay">
+      
+      <img  class="logo-img" src="assets/signin-logo.png"> 
+
+      <div class="logo-img">
          <h1 class="description">Welcome to Acorn! </h1>
-      <!--  <h3 class="description"> <br>The vision behind this application is to provide a simple, 
-        user-friendly repository for students and teachers to store/access resources for courses.
-      Login to visit the About page in the menu on the top right corner to learn more about Acorn!
-        </h3>  -->
+        <h3 class="description"> 
+            The vision behind this application is to provide a simple, 
+            user-friendly repository for students and teachers to store/access resources for courses.
+            Login to visit the About page in the menu on the top right corner to learn more about Acorn!
+        </h3> 
     
       </div>
     </div> 
-
-
-<amplify-authenticator id="center" usernameAlias="email" > 
-
-   
-     <amplify-sign-up
-      slot="sign-up"
-      usernameAlias="email"
-      [formFields]="formFields"
-
-      ></amplify-sign-up>
     
-        <amplify-sign-in  header-text = "Sign In." slot="sign-in" usernameAlias="email" ></amplify-sign-in>
+  <amplify-authenticator id="signin" usernameAlias="email"> 
+
+    <amplify-sign-up slot="sign-up" usernameAlias="email" [formFields]="formFields"></amplify-sign-up>
+    <amplify-sign-in  header-text = "Sign In." slot="sign-in" usernameAlias="email" ></amplify-sign-in>
    
-      
- <!-- <amplify-authenticator> -->
+    <!-- <amplify-authenticator> -->
 
     <div>
       <app-nav-bar></app-nav-bar>
