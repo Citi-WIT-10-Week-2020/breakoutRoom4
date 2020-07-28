@@ -1,0 +1,69 @@
+{
+	"providers": {
+		"awscloudformation": {
+			"AuthRoleName": "amplify-acornsqurl-apidev-204118-authRole",
+			"UnauthRoleArn": "arn:aws:iam::451696402673:role/amplify-acornsqurl-apidev-204118-unauthRole",
+			"AuthRoleArn": "arn:aws:iam::451696402673:role/amplify-acornsqurl-apidev-204118-authRole",
+			"Region": "us-east-1",
+			"DeploymentBucketName": "amplify-acornsqurl-apidev-204118-deployment",
+			"UnauthRoleName": "amplify-acornsqurl-apidev-204118-unauthRole",
+			"StackName": "amplify-acornsqurl-apidev-204118",
+			"StackId": "arn:aws:cloudformation:us-east-1:451696402673:stack/amplify-acornsqurl-apidev-204118/43810fa0-b4ea-11ea-bc10-0aa958b6917a",
+			"AmplifyAppId": "d1hvojxerhxo03"
+		},
+		"categories": {
+			"auth": {
+				"acornsqurl6b065b4d": {}
+			}
+		}
+	},
+	"auth": {
+		"acornsqurl6b065b4d": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": [],
+			"customAuth": false,
+			"output": {
+				"AppClientSecret": "ekco7em0a54f141oi8kjbbnjk6v2q3eppufpmr6qsutquu0aj1n",
+				"UserPoolId": "us-east-1_GPlpcfsZo",
+				"AppClientIDWeb": "3uqk3b7ok2c4hj1c5cac5dakhq",
+				"AppClientID": "1vpi962h65lu3j0imsgl1mpq3o",
+				"IdentityPoolId": "us-east-1:a8f77933-6d75-4845-915e-61da2e9cb0b4",
+				"IdentityPoolName": "acornsqurl6b065b4d_identitypool_6b065b4d__apidev",
+				"UserPoolName": "acornsqurl6b065b4d_userpool_6b065b4d"
+			},
+			"lastPushTimeStamp": "2020-07-12T21:48:36.486Z",
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/amplify-acornsqurl-apidev-204118-deployment/amplify-cfn-templates/auth/acornsqurl6b065b4d-cloudformation-template.yml",
+				"logicalId": "authacornsqurl6b065b4d"
+			},
+			"lastPushDirHash": "i+nt35UA7A9OCCRua6naQddfPSE="
+		}
+	},
+	"api": {
+		"acornsqurl": {
+			"service": "AppSync",
+			"providerPlugin": "awscloudformation",
+			"output": {
+				"authConfig": {
+					"additionalAuthenticationProviders": [],
+					"defaultAuthentication": {
+						"authenticationType": "API_KEY",
+						"apiKeyConfig": {
+							"description": "default-key",
+							"apiKeyExpirationDays": "100"
+						}
+					}
+				},
+				"GraphQLAPIIdOutput": "gy3s27sygvftbgfaw5ruebtvo4",
+				"GraphQLAPIEndpointOutput": "https://sebwbkkojrbmtc7n5iuf3atppi.appsync-api.us-east-1.amazonaws.com/graphql",
+				"GraphQLAPIKeyOutput": "da2-pg73nvtijnhylpskab43kkn3di"
+			},
+			"lastPushTimeStamp": "2020-07-12T21:48:36.467Z",
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/amplify-acornsqurl-apidev-204118-deployment/amplify-cfn-templates/api/cloudformation-template.json",
+				"logicalId": "apiacornsqurl"
+			}
+		}
+	}
+}
