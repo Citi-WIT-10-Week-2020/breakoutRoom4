@@ -51,8 +51,11 @@ import { DeleteTopicDialogComponent } from './components/delete-topic-dialog/del
 
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
+import { AccountSettingsComponent } from './components/account-settings/account-settings.component';
 
-
+import { FormsModule } from '@angular/forms';
+import { AccountDialogComponent } from './components/account-dialog/account-dialog.component';
+//import { HttpModule } from '@angular/http';
 
 
 @NgModule({
@@ -85,6 +88,10 @@ import {MatInputModule} from '@angular/material/input';
 
     DeleteTopicDialogComponent,
 
+    AccountSettingsComponent,
+
+    AccountDialogComponent,
+
     
   ],
   imports: [
@@ -109,7 +116,10 @@ import {MatInputModule} from '@angular/material/input';
 
     MatDialogModule,
     ReactiveFormsModule,
-    MatInputModule
+    MatInputModule,
+
+  //  HttpModule,
+    ReactiveFormsModule,
   ],
   bootstrap: [AppComponent],
   entryComponents: [DialogBodyComponent, UpdateDialogComponent],
