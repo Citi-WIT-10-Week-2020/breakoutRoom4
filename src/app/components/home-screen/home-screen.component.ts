@@ -135,11 +135,12 @@ export class HomeScreenComponent implements OnInit {
     console.log("Getting Courses", this.user.username);
     const myObserver = {
       next: x => {
-        console.log('Value: ' , x);
-        console.log()
-        this.courses = x.items[0].courses.items;
+        console.log('GETCOURSE VALUE: ' , x);
+        this.courses = x.data.professorByName.items[0].courses.items;
+        console.log(this.courses);
+        //this.courses = x.items[0].courses.items;
       },
-      error: err => console.error('Observer got an error: ' + err),
+      error: err => console.error('Observer got an error: ' , err),
       complete: () => console.log('Observer got a complete notification'),
     };
     this.courseservice.getCourses(this.user.username).subscribe(myObserver);
