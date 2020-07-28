@@ -7,6 +7,8 @@ mutation CreateProfessor(
     id
     professorName
     universityName
+    firstName
+    lastName
     courses {
       items {
         id
@@ -30,6 +32,8 @@ mutation UpdateProfessor(
     id
     professorName
     universityName
+    firstName
+    lastName
     courses {
       items {
         id
@@ -53,6 +57,8 @@ mutation DeleteProfessor(
     id
     professorName
     universityName
+    firstName
+    lastName
     courses {
       items {
         id

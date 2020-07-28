@@ -70,7 +70,13 @@ export class HomeScreenComponent implements OnInit {
             console.log(evt);
             if(evt.items.length == 0){
               console.log("NULL! Create professor");
-              this.apiservice.CreateProfessor({id:uuidv4(),professorName:this.user.username, universityName:"Default"}).then((evt)=>{
+              this.apiservice.CreateProfessor({
+                id:uuidv4(),
+                professorName:this.user.username, 
+                universityName:"Default",
+                firstName: this.user.attributes.given_name,
+                lastName: this.user.attributes.family_name
+                }).then((evt)=>{
                 console.log("Professor was created!");
                 this.getCourses();
               });
