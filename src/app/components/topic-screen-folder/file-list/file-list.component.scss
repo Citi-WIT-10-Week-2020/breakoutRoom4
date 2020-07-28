@@ -12,11 +12,48 @@
     flex: 1 1 auto;
 }
 
-.add-btn-bg {
+.file-btn {
+    position: relative;
+    display: inline-block;
     border: none;
     background: none;
     
 }
+
+.file-btn .tooltiptext {
+    visibility: hidden;
+    width: 100px;
+    background-color: none;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    padding-left: 7px;
+    padding-bottom: 3px;
+    padding-top: 10px;
+    position: absolute;
+    z-index: 1;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  
+  .file-btn .tooltiptext::after {
+    content: "";
+    position: absolute;
+    /*top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;*/
+  }
+  
+  .file-btn:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+  }
 
 .btn {
     color: #5F5173;
