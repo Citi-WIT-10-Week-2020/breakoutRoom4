@@ -6,11 +6,32 @@ type Professor @model
 	courses: [Course] @connection(keyName:"byProfessor",fields:["professorName"])
 }
 
+type Student @model
+@key(name:"byStudentName",fields:["studentName"],queryField:"studentByName"){
+	id:ID!
+	studentName: ID!
+	universityName: String!
+	courses: [StudentCourse] @connection(keyName:"byStudent",fields:["studentName"])
+}
+
+
+type StudentCourse @model(queries: null)
+@key(name:"byStudent",fields:["studentID"])
+@key(name:"byCourse",fields:["courseID"])
+{
+	id:ID!
+	studentID: ID!
+	courseID: ID!
+	student: Student! @connection(fields:["studentID"])
+	course: Course! @connection(fields:["courseID"])
+}
+
 type Course @model
 @key(name:"byProfessor",fields:["professor"],queryField:"courseByProfessor")
 {
 	id:ID!
 	professor: String!
+	students: [StudentCourse] @connection(keyName:"byCourse",fields:["id"])
 	courseName: String!
 	courseDescription: String!
 	topics: [Topic] @connection(keyName:"byCourseByProfessor",fields:["professor","courseName"])

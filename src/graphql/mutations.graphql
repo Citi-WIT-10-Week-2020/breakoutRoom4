@@ -68,6 +68,180 @@ mutation DeleteProfessor(
     updatedAt
   }
 }
+mutation CreateStudent(
+  $input: CreateStudentInput!
+  $condition: ModelStudentConditionInput
+) {
+  createStudent(input: $input, condition: $condition) {
+    id
+    studentName
+    universityName
+    courses {
+      items {
+        id
+        studentID
+        courseID
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateStudent(
+  $input: UpdateStudentInput!
+  $condition: ModelStudentConditionInput
+) {
+  updateStudent(input: $input, condition: $condition) {
+    id
+    studentName
+    universityName
+    courses {
+      items {
+        id
+        studentID
+        courseID
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteStudent(
+  $input: DeleteStudentInput!
+  $condition: ModelStudentConditionInput
+) {
+  deleteStudent(input: $input, condition: $condition) {
+    id
+    studentName
+    universityName
+    courses {
+      items {
+        id
+        studentID
+        courseID
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation CreateStudentCourse(
+  $input: CreateStudentCourseInput!
+  $condition: ModelStudentCourseConditionInput
+) {
+  createStudentCourse(input: $input, condition: $condition) {
+    id
+    studentID
+    courseID
+    student {
+      id
+      studentName
+      universityName
+      courses {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    course {
+      id
+      professor
+      students {
+        nextToken
+      }
+      courseName
+      courseDescription
+      topics {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateStudentCourse(
+  $input: UpdateStudentCourseInput!
+  $condition: ModelStudentCourseConditionInput
+) {
+  updateStudentCourse(input: $input, condition: $condition) {
+    id
+    studentID
+    courseID
+    student {
+      id
+      studentName
+      universityName
+      courses {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    course {
+      id
+      professor
+      students {
+        nextToken
+      }
+      courseName
+      courseDescription
+      topics {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteStudentCourse(
+  $input: DeleteStudentCourseInput!
+  $condition: ModelStudentCourseConditionInput
+) {
+  deleteStudentCourse(input: $input, condition: $condition) {
+    id
+    studentID
+    courseID
+    student {
+      id
+      studentName
+      universityName
+      courses {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    course {
+      id
+      professor
+      students {
+        nextToken
+      }
+      courseName
+      courseDescription
+      topics {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
 mutation CreateCourse(
   $input: CreateCourseInput!
   $condition: ModelCourseConditionInput
@@ -75,6 +249,16 @@ mutation CreateCourse(
   createCourse(input: $input, condition: $condition) {
     id
     professor
+    students {
+      items {
+        id
+        studentID
+        courseID
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
     courseName
     courseDescription
     topics {
@@ -100,6 +284,16 @@ mutation UpdateCourse(
   updateCourse(input: $input, condition: $condition) {
     id
     professor
+    students {
+      items {
+        id
+        studentID
+        courseID
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
     courseName
     courseDescription
     topics {
@@ -125,6 +319,16 @@ mutation DeleteCourse(
   deleteCourse(input: $input, condition: $condition) {
     id
     professor
+    students {
+      items {
+        id
+        studentID
+        courseID
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
     courseName
     courseDescription
     topics {

@@ -38,10 +38,58 @@ query ListProfessors(
     nextToken
   }
 }
+query GetStudent($id: ID!) {
+  getStudent(id: $id) {
+    id
+    studentName
+    universityName
+    courses {
+      items {
+        id
+        studentID
+        courseID
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+  }
+}
+query ListStudents(
+  $filter: ModelStudentFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listStudents(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      studentName
+      universityName
+      courses {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
 query GetCourse($id: ID!) {
   getCourse(id: $id) {
     id
     professor
+    students {
+      items {
+        id
+        studentID
+        courseID
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
     courseName
     courseDescription
     topics {
@@ -69,6 +117,9 @@ query ListCourses(
     items {
       id
       professor
+      students {
+        nextToken
+      }
       courseName
       courseDescription
       topics {
@@ -211,7 +262,7 @@ query ListFiles(
   }
 }
 query ProfessorByName(
-  $professorName: String!
+  $professorName: String
   $sortDirection: ModelSortDirection
   $filter: ModelProfessorFilterInput
   $limit: Int
@@ -237,8 +288,35 @@ query ProfessorByName(
     nextToken
   }
 }
+query StudentByName(
+  $studentName: ID
+  $sortDirection: ModelSortDirection
+  $filter: ModelStudentFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  studentByName(
+    studentName: $studentName
+    sortDirection: $sortDirection
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      id
+      studentName
+      universityName
+      courses {
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
 query CourseByProfessor(
-  $professor: String!
+  $professor: String
   $sortDirection: ModelSortDirection
   $filter: ModelCourseFilterInput
   $limit: Int
@@ -254,6 +332,9 @@ query CourseByProfessor(
     items {
       id
       professor
+      students {
+        nextToken
+      }
       courseName
       courseDescription
       topics {
@@ -266,7 +347,7 @@ query CourseByProfessor(
   }
 }
 query TopicByCourseByProfessor(
-  $professor: String!
+  $professor: String
   $course: ModelStringKeyConditionInput
   $sortDirection: ModelSortDirection
   $filter: ModelTopicFilterInput
@@ -297,7 +378,7 @@ query TopicByCourseByProfessor(
   }
 }
 query FileByCourseByTopic(
-  $course: String!
+  $course: String
   $topic: ModelStringKeyConditionInput
   $sortDirection: ModelSortDirection
   $filter: ModelResourceGroupFilterInput
@@ -327,7 +408,7 @@ query FileByCourseByTopic(
   }
 }
 query FileByTopicByResourceGroup(
-  $topic: String!
+  $topic: String
   $resourseGroup: ModelStringKeyConditionInput
   $sortDirection: ModelSortDirection
   $filter: ModelFileFilterInput
@@ -362,7 +443,7 @@ query FileByTopicByResourceGroup(
   }
 }
 query FileByFilename(
-  $resourseGroup: String!
+  $resourseGroup: String
   $sortDirection: ModelSortDirection
   $filter: ModelFileFilterInput
   $limit: Int

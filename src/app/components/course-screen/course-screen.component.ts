@@ -23,9 +23,9 @@ export class CourseScreenComponent implements OnInit {
   
   
 
-  courseId: string;
-  topics: Array<any>;
-  topicObject: ITopic;
+  courseId: string; //passed in from home
+  topics: Array<any>; //all the topics from the course
+  
   course: String;
   professorName: string;
   courseName: string;
@@ -40,32 +40,6 @@ export class CourseScreenComponent implements OnInit {
       this.courseId = params.get('id'); 
       console.log("courseId", this.courseId);
     });
-
-    
-    //gets the course name using courseId
-    this.apiservice.GetCourse(this.courseId.toString()).then((evt)=>{
-      console.log("course", evt);
-      this.course = evt.courseName;
-      console.log('this.course', this.course);
-    }).catch((err)=>{
-      console.log(err);
-    });
-
-   //gets all the topics using courseId
-   const myObserver = {
-    next: x => {
-    //  console.log("get topics" , x);
-      this.topics = x.items;
-      console.log("topics", this.topics);
-    },
-    error: err => console.error('Observer got an error: ' + err),
-    complete: () => console.log('Observer got a complete notification'),
-  };
-    this.topicservice.getTopics(this.courseId).subscribe(myObserver);
-
-
-    //subscribe to any topic creations
-   
    this.getTopics();
    this.subscibeToTopicCreations();
    this.subscribeToTopicDeletions();
@@ -111,7 +85,7 @@ export class CourseScreenComponent implements OnInit {
     const myObserver = {
       next: x => {
        console.log("get topics" , x);
-       
+       this.course = x.courseName;
         this.topics = x.topics.items;
         console.log("topics", this.topics);
         //also set professor and course name

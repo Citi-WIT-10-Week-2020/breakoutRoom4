@@ -1,7 +1,10 @@
 <div class="course-cards">
+  
   <mat-card class="course-card" tabindex="0">
-      <mat-card-header [routerLink]="['/course', this.courseId]" title="Click to go to course">
-        <mat-card-title>{{name}}</mat-card-title>
+    <div class="click-area" [routerLink]="['/course', this.courseId]" title="Click to go to course">
+      <mat-card-header class="card-header">
+        <img mat-card-avatar class="card-icon" src="assets/computer-icon.png">
+        <mat-card-title id="course-title">{{name}}</mat-card-title>
       </mat-card-header>
       <!--<img mat-card-image class="default-img" src="https://peerfinance101.com/wp-content/uploads/2016/03/personal-finance-scholarship-essay.jpg" alt="Photo of a college students">-->
       <mat-card-content>
@@ -9,10 +12,13 @@
           {{description}}
         </p>
       </mat-card-content>
-      <mat-card-actions>
-        <button mat-button [title]="this.courseId" (click)="openCopyDialog()">COPY ID</button>
+    </div>
+      <div class="footer">
+        <div class="actions">
+          <button mat-button [title]="this.courseId" (click)="openCopyDialog()">COPY ID</button>
           <button mat-button (click)="openUpdateDialog()">UPDATE</button>
           <button mat-button (click)="openDeleteDialog()">DELETE</button>
-      </mat-card-actions>
+        </div>
+      </div>
   </mat-card>
 </div>

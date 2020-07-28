@@ -8,6 +8,8 @@ import {IFile} from '../shared/file'
 //functions to create, get, update, and delete courses
 import config from '../../aws-exports'
 import { HttpClient } from '@angular/common/http';
+import { IResourceGroup } from './resourceGroup';
+
 @Injectable(
    
 )
@@ -16,9 +18,40 @@ export class FileService{
     
     fileInput: IFile;
     constructor(private apiservice: APIService,private http: HttpClient){}
-
+    
+    getTopic(topicId:string){
+        const getTopic = `query getTopic($id: ID!){
+            getTopic(id:$id){
+              professor
+              TopicName
+              course
+              TopicDescription
+              resourceGroups{
+                items{
+                  id
+                  course
+                  topic
+                  groupName
+                  files{
+                    items{
+                      id
+                      filename
+                      filetype
+                      fileDescription
+                    }
+                  }
+                }
+              }
+            }
+          }`;
+          return from(API.graphql(graphqlOperation(getTopic,{id: topicId})));
+        //return from(this.apiservice.GetTopic(topicId));
+    }
+    
+    
     //function to get Files from database
     getFiles(): Observable<any>{
+        //change to getResourceGroup
         return from(this.apiservice.ListFiles());
     }
     //function to download a file
@@ -43,30 +76,40 @@ export class FileService{
         //open window and prompt save
        
     }
+    async createResourceGroup(group: IResourceGroup) : Promise<any>{
+        return await this.apiservice.CreateResourceGroup(group);
+      }
+    
     //create / upload file
-    async createFile(fileName,fileType,file){
+    async createFile(fileName,fileType,file, course, topic, fileDescription, resourceGroup,resourceName:string){
         let id = uuidv4()
         const key = `${id}${fileName}`;
         console.log(key);
         console.log(config);
         this.fileInput={
             id:key,
-            course:"dflsadf",
-            topic:"adsfdf",
-            filename: fileName,
+            course:course,
+            topic:topic,
+            filename: resourceName,
             filetype: fileType,
-            fileDescription:"a random thing",
-            resourseGroup: "haha",
+            fileDescription:fileDescription,
+            resourseGroup: resourceGroup,
             file:{
                 key,
                 bucket: config.aws_user_files_s3_bucket,
                 region:config.aws_user_files_s3_bucket_region
             }
         }
+
+        
         try{
-            await Storage.put(key,file,{
-            contentType:fileType
-            });
+            if(file){
+                
+                await Storage.put(key,file,{
+                contentType:fileType
+                });
+            }
+            
             let returned = await this.apiservice.CreateFile(this.fileInput);
             console.log(returned);
         }
@@ -81,8 +124,13 @@ export class FileService{
 
     }
     //delete files
-    deleteFile(){
+    async deleteFile(key:string){
+        //delete from s3
+        let result = await Storage.remove(key);
+        console.log(result);
+        //delete from dynamodb
 
+        await this.apiservice.DeleteFile({id:key});
     }
     
 }

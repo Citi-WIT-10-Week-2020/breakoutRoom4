@@ -30,7 +30,7 @@ export class HomeScreenComponent implements OnInit {
 
   courses: Array<any>;  
   user: any;
-  
+  userStatus: string ;
   constructor(private userinfo: UserinfoService, private apiservice: APIService,private matDialog: MatDialog, private courseservice:CourseService, private breakpointObserver: BreakpointObserver) { 
 
     /* //Might use this for the responsive layout (uses breakpoint import statment)
@@ -52,26 +52,38 @@ export class HomeScreenComponent implements OnInit {
     this.subscribeToCourseUpdates();
     this.subscribeToCourseDeletions();
   }
+
+
   getUser(){
     console.log("Getting User");
     const myObserver = {
       next: x => {
         console.log('User: ' , x);
         this.user = x;
-        //call get professor using the username. If that doesn't exist, create a professor
-        this.apiservice.ProfessorByName(this.user.username).then((evt)=>{
-          console.log(evt);
-          if(evt.items.length == 0){
-            console.log("NULL! Create professor");
-            this.apiservice.CreateProfessor({id:uuidv4(),professorName:this.user.username, universityName:"Default"}).then((evt)=>{
-              console.log("Professor was created!");
+        this.userStatus = x.attributes.name;
+        console.log("THE USER IS A ", this.userStatus);
+        
+
+        if(this.userStatus == "Professor"){
+          //call get professor using the username. If that doesn't exist, create a professor
+          this.apiservice.ProfessorByName(this.user.username).then((evt)=>{
+            console.log(evt);
+            if(evt.items.length == 0){
+              console.log("NULL! Create professor");
+              this.apiservice.CreateProfessor({id:uuidv4(),professorName:this.user.username, universityName:"Default"}).then((evt)=>{
+                console.log("Professor was created!");
+                this.getCourses();
+              });
+            }
+            else{
               this.getCourses();
-            });
-          }
-          else{
-            this.getCourses();
-          }
-        });
+            }
+          });
+        }
+        else{
+          //eventually, call get student using the username. If that doesn't exist, create a Student
+        }
+        
 
         
       },
@@ -123,11 +135,12 @@ export class HomeScreenComponent implements OnInit {
     console.log("Getting Courses", this.user.username);
     const myObserver = {
       next: x => {
-        console.log('Value: ' , x);
-        console.log()
-        this.courses = x.items[0].courses.items;
+        console.log('GETCOURSE VALUE: ' , x);
+        this.courses = x.data.professorByName.items[0].courses.items;
+        console.log(this.courses);
+        //this.courses = x.items[0].courses.items;
       },
-      error: err => console.error('Observer got an error: ' + err),
+      error: err => console.error('Observer got an error: ' , err),
       complete: () => console.log('Observer got a complete notification'),
     };
     this.courseservice.getCourses(this.user.username).subscribe(myObserver);

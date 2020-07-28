@@ -24,7 +24,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { HttpClientModule} from '@angular/common/http';
 import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 import { ReactiveFormsModule } from '@angular/forms';
-import { FooterComponent } from './components/navigation/footer/footer.component';
+import { FooterComponent } from './components/Navigation/footer/footer.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatExpansionModule } from '@angular/material/expansion';
@@ -56,6 +56,14 @@ import { AccountSettingsComponent } from './components/account-settings/account-
 import { FormsModule } from '@angular/forms';
 import { AccountDialogComponent } from './components/account-dialog/account-dialog.component';
 //import { HttpModule } from '@angular/http';
+import { FaqDialogComponent } from './components/topic-screen-folder/faq-dialog/faq-dialog.component';
+import { FileListComponent } from './components/topic-screen-folder/file-list/file-list.component';
+
+import { ResourceDialogComponent } from './components/topic-screen-folder/resource-dialog/resource-dialog.component';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatSelectModule} from '@angular/material/select';
+import { VideoLinksComponent } from './components/topic-screen-folder/video-links/video-links.component';
+
 
 
 @NgModule({
@@ -91,6 +99,10 @@ import { AccountDialogComponent } from './components/account-dialog/account-dial
     AccountSettingsComponent,
 
     AccountDialogComponent,
+    FaqDialogComponent,
+    FileListComponent,
+    ResourceDialogComponent,
+    VideoLinksComponent,
 
     
   ],
@@ -117,9 +129,8 @@ import { AccountDialogComponent } from './components/account-dialog/account-dial
     MatDialogModule,
     ReactiveFormsModule,
     MatInputModule,
-
-  //  HttpModule,
-    ReactiveFormsModule,
+    MatTabsModule,
+    MatSelectModule,
   ],
   bootstrap: [AppComponent],
   entryComponents: [DialogBodyComponent, UpdateDialogComponent],
