@@ -74,7 +74,8 @@ export class AccountSettingsComponent implements OnInit {
       this.apiservice.OnUpdateProfessorListener.subscribe((evt)=> {
         const data = (evt as any).value.data.onUpdateProfessor;
         console.log("subscribe update", data);
-        //???
+        //assign values to local variables for display
+        //user = first + last
       });
     }
 

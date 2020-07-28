@@ -1,5 +1,6 @@
 export interface IAccount{
-    professor: string;
+    firstName: string;
+    lastName: string;
     univName: string;
     id: string;
 }

@@ -20,9 +20,11 @@ import { async } from 'q';
 
 export class AccountDialogComponent implements OnInit {
   
-  @Input() name: string;
+  @Input() firstName: string;
+  @Input() lastName: string;
   @Input() universityName: string;
   @Input() id: string
+  
 
   email;
 
@@ -35,7 +37,8 @@ export class AccountDialogComponent implements OnInit {
   ngOnInit() {
 
     this.accountObject = {
-      professor: this.name,
+      firstName: this.firstName,
+      lastName: this.lastName,
       univName: this.universityName,
       id: this.id
     }
@@ -51,9 +54,11 @@ export class AccountDialogComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.name = this.accountForm.get('accountName').value;
+    this.firstName = this.accountForm.get('firstName').value;
+    this.lastName = this.accountForm.get('lastName').value;
     this.universityName = this.accountForm.get('universityName').value;
-    console.log("name", this.name);
+    console.log("first name", this.firstName);
+    console.log("last name", this.lastName);
     console.log("univName", this.universityName);
 
     this.updateAccount();
@@ -72,10 +77,17 @@ export class AccountDialogComponent implements OnInit {
           this.id = professor.items[0].id;
           console.log("id", this.id);
 
-         this.apiservice.UpdateProfessor({id:this.id,professorName:this.accountForm.get('accountName').value, universityName:this.accountForm.get('universityName').value}).then((evt)=> {
-          console.log("name", evt.professorName);
-          console.log("univName", evt.universityName);
-          console.log("updated");
+         this.apiservice.UpdateProfessor(
+           {id:this.id,
+           // professorName:this.accountForm.get('accountName').value, 
+            universityName:this.accountForm.get('universityName').value}).
+            // firstName: this.accountForm.get('firstName').value,
+            // lastName: this.accountForm.get('lastName').value,
+            
+            then((evt)=> {
+           //   console.log("first name", evt.firstName);
+           //   console.log("name", evt.lastName);
+              console.log("univName", evt.universityName);
          }).catch (
            (evt)=>{
              console.log("error", evt);
