@@ -9,6 +9,8 @@
 }
 
 .answer {
+    display: flex;
+    vertical-align: center;
     margin-top: 20px;
     margin-bottom: 20px;
     color: #5F5173;
@@ -22,12 +24,13 @@
 .buttons {
     //display: flex;
     //align-items: right;
-    color: rgb(94, 12, 119);
+    color: #5F5173;
+    position: relative;
+    display: inline-block;
+    border: none;
+    background: none;
 }
 
-.buttons:hover {
-    color: black;
-}
 
 .spacer {
     flex: 1 1 auto;
@@ -38,6 +41,41 @@
     vertical-align: center;
     margin-top: 20px;
     margin-bottom: 20px;
-    color: rgb(94, 12, 119);
+    color: #5F5173;
     font-size: large;
 }
+
+.buttons .tooltip-text {
+    visibility: hidden;
+    width: 100px;
+    background-color: none;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    padding-left: 7px;
+    padding-bottom: 3px;
+    padding-top: 10px;
+    position: absolute;
+    z-index: 1;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .buttons .tooltip-text::after {
+    content: "";
+    position: absolute;
+    /*top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;*/
+  }
+  
+  .buttons:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+  }

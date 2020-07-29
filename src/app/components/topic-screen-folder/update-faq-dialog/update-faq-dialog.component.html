@@ -5,14 +5,14 @@
         <p>
             <mat-form-field appearance ="legacy" class="input-fields">
                 <mat-label style="font-size:18px; ">Question</mat-label>
-                <input matInput type="text" formControlName="question" placeholder={{filename}}>
+                <input matInput type="text" formControlName="filename" placeholder={{question}}>
             </mat-form-field>
         </p>  
 
         <p>
             <mat-form-field appearance ="legacy" class="input-fields">
                 <mat-label style="font-size:18px;">Answer</mat-label>
-                <textarea matInput type="text" formControlName="answer" placeholder={{fileDescription}}> </textarea> 
+                <textarea matInput type="text" formControlName="fileDescription" placeholder={{this.answer}}> </textarea> 
             </mat-form-field>
         </p>
 

@@ -21,13 +21,7 @@ export class DeleteFaqDialogComponent implements OnInit {
 
 
   deleteFaq() {
-    /*const myObserver = {
-      next: x => {
-        console.log('Value: ' , x);
-      },
-      error: err => console.error('Observer got an error: ' + err),
-      complete: () => console.log('Observer got a complete notification'),
-    };*/
+    console.log(this.id);
     this.fileservice.deleteFile(this.id);
     this.dialogRef.close();
   }

@@ -14,8 +14,8 @@ export class UpdateFaqDialogComponent implements OnInit {
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, public dialogRef: MatDialogRef<UpdateFaqDialogComponent>, private fileservice:FileService) { }
 
-  @Input() filename: string;
-  @Input() fileDescription: string;
+  @Input() question: string;
+  @Input() answer: string;
 
 
   faq: FormGroup;
@@ -24,8 +24,8 @@ export class UpdateFaqDialogComponent implements OnInit {
   ngOnInit(): void {
 
     /*this.faqObject = {
-      filename : this.filename,
-      fileDescription : this.fileDescription,
+      filename : this.question,
+      fileDescription : this.answer,
       filetype: "Question/Answer",
       id: null,
     }*/
