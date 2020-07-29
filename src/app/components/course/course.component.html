@@ -1,6 +1,6 @@
 <div class="course-cards">
   
-  <mat-card class="course-card" tabindex="0">
+  <mat-card class="course-card mat-elevation-z" tabindex="0">
     <div class="click-area" [routerLink]="['/course', this.courseId]" title="Click to go to course">
       <mat-card-header class="card-header">
         <img mat-card-avatar class="card-icon" src="assets/computer-icon.png">
@@ -15,9 +15,9 @@
     </div>
       <div class="footer">
         <div class="actions">
-          <button mat-button [title]="this.courseId" (click)="openCopyDialog()">COPY ID</button>
-          <button mat-button (click)="openUpdateDialog()">UPDATE</button>
-          <button mat-button (click)="openDeleteDialog()">DELETE</button>
+          <button class="action-btn" [title]="this.courseId" (click)="openCopyDialog()">COPY ID</button>
+          <button class="action-btn" (click)="openUpdateDialog()">UPDATE</button>
+          <button class="action-btn" (click)="openDeleteDialog()">DELETE</button>
         </div>
       </div>
   </mat-card>

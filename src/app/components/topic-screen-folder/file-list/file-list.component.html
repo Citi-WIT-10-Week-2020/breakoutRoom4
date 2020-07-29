@@ -2,19 +2,17 @@
 <div class="file">
     <span>{{fileName}}</span>
     <span class="spacer"></span>
-    <span>
-      <button class="add-btn-bg" (click)="onDownload()">
+    <span title="I am hovering over the text">
+      <button class="file-btn" (click)="onDownload()">
         <mat-icon class="btn">get_app</mat-icon>
+        <span class="tooltiptext">Download</span>
       </button>
     </span>
+    
     <span>
-      <button class="add-btn-bg" (click)="onUpdate()">
-        <mat-icon class="btn">update</mat-icon>
-      </button>
-    </span>
-    <span>
-      <button class="add-btn-bg" (click)="onDelete()">
+      <button class="file-btn" (click)="onDelete()">
         <mat-icon class="btn">delete</mat-icon>
+        <span class="tooltiptext">Delete</span>
       </button>
     </span>
   </div>

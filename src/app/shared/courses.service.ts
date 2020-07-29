@@ -3,6 +3,7 @@ import { APIService } from '../API.service';
 import { v4 as uuidv4 } from 'uuid';
 import { Observable, of ,from} from 'rxjs';
 import { ICourse } from './course';
+import API, { graphqlOperation } from "@aws-amplify/api";
 //functions to create, get, update, and delete courses
 
 @Injectable(
@@ -13,7 +14,23 @@ export class CourseService{
 
     getCourses(professor:string) : Observable<any> {
         //return from(this.apiservice.ListCourses());
-        return from(this.apiservice.ProfessorByName(professor));
+        const professorByName = `query ProfessorByName($professorName:String){
+            professorByName(professorName:$professorName){
+              items{
+                professorName
+                universityName
+                courses{
+                  items{
+                    courseName
+                    courseDescription
+                    id
+                  }
+                }
+              }
+            }
+          }`
+        return from(API.graphql(graphqlOperation(professorByName,{professorName: professor})));
+        //return from(this.apiservice.ProfessorByName(professor));
     }
 
     createCourse(course:ICourse){

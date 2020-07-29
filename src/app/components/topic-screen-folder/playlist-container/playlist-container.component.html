@@ -1,0 +1,18 @@
+
+<mat-expansion-panel class="rg">
+    <mat-expansion-panel-header>
+      <mat-panel-title class="mat-elevation-z rg-title">Playlist</mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <div class="playlist-container" fxLayout="row wrap" fxLayoutGap="50px" fxLayoutAlign="flex-start" fxLayout.1t-md="column">
+        
+      <div *ngIf="playlistObject.length == 0">
+        <span class="empty-screen-message">You do not currently have any videos. Click the plus sign to add one!</span>
+      </div>
+
+      <ng-container *ngFor="let item of playlistObject">
+        <app-playlist-video class="videocards" [videosrc]="item.videosrc" [videoName]="item.videoName" ></app-playlist-video>
+      </ng-container>
+       
+    </div>
+  </mat-expansion-panel> 

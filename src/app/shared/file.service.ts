@@ -9,6 +9,7 @@ import {IFile} from '../shared/file'
 import config from '../../aws-exports'
 import { HttpClient } from '@angular/common/http';
 import { IResourceGroup } from './resourceGroup';
+
 @Injectable(
    
 )
@@ -17,9 +18,37 @@ export class FileService{
     
     fileInput: IFile;
     constructor(private apiservice: APIService,private http: HttpClient){}
+    
     getTopic(topicId:string){
-        return from(this.apiservice.GetTopic(topicId));
+        const getTopic = `query getTopic($id: ID!){
+            getTopic(id:$id){
+              professor
+              TopicName
+              course
+              TopicDescription
+              resourceGroups{
+                items{
+                  id
+                  course
+                  topic
+                  groupName
+                  files{
+                    items{
+                      id
+                      filename
+                      filetype
+                      fileDescription
+                    }
+                  }
+                }
+              }
+            }
+          }`;
+          return from(API.graphql(graphqlOperation(getTopic,{id: topicId})));
+        //return from(this.apiservice.GetTopic(topicId));
     }
+    
+    
     //function to get Files from database
     getFiles(): Observable<any>{
         //change to getResourceGroup
