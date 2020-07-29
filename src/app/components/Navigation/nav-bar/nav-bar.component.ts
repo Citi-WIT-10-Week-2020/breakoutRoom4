@@ -66,24 +66,7 @@ ngOnInit(): void {
     console.log("in the function");
     Hub.listen('auth', listener);
   }
-
-  /// when user signs in or signs out, the displayUserName function is called to 
-  // read the name using currentUserInfo
-  
   displayUserName() {
-    //wrap in observable, and have profName subscribe :) rxjs 
-    /*
-    const observable =Auth.currentUserInfo().then((evt)=>{
-      console.log(evt);
-      this.profName = evt.username;
-      console.log("CHANGED PROFNAME: " + this.profName);
-    });
-    */
-
- 
-  //this.userinfo.getUserInfo();
- // this.profName = this.userinfo.getUsername();
-  //console.log("nav bar name", this.profName); //name not here
 
     console.log("in displayUserName");
     
