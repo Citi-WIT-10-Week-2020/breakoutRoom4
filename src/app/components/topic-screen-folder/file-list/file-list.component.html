@@ -1,6 +1,9 @@
 <!--fileName is not connected to anything right now-->
 <div class="file">
-    <span>{{fileName}}</span>
+    <span class="file-name">
+      <span>{{fileName}}</span>
+      <span class="tooltiptext">{{fileId}}</span>
+    </span>
     <span class="spacer"></span>
     <span>
       <button class="file-btn" (click)="onDownload()">
