@@ -54,7 +54,6 @@ ngOnInit(): void {
               this.displayUserName();
               break;
           case 'signUp':
-              location.reload();
               this.displayUserName();
               break;
           case 'signOut':
