@@ -1,29 +1,38 @@
 
 
 .div-body {
-
     display: block;
-    min-height: 790px;
+    min-height: 695px;
     margin: 0;
+    margin-left: 100px;
+    margin-right: 100px;
+    margin-bottom: 50px;
 }
 
 .nav-back a {
     text-decoration: none;
-    color: black;
-    padding: 20px;
-    font-size: 15px;
+    font-size: 22px;
+    color: white;
+    font-weight: 300;
 }
 
 .nav-back {
-    margin: 30px 30px 30px;
-    padding: 10px 0 10px;
+    //margin: 30px 30px 30px;
+    //padding: 10px 0 10px;
+    margin-top: 40px;
+    background: none;
+    border: none;
+}
+
+.nav-back a:hover {
+    color: #5F5173;
 }
 
 .title-header {
     display: flex;  
     align-items: left;
     vertical-align: center;
-    padding: 20px 0 30px;
+    padding: 38px 0 30px;
     text-decoration: none;
     flex-direction: column;
 }
@@ -31,8 +40,9 @@
 .title {
     font-size: 50px;
     text-decoration: none;
-    padding: 30px;
-    color: rgb(94, 12, 119);
+    //padding: 30px;
+    color: #5F5173;
+    margin-bottom: 20px;
 }
 
 .subtitle-section {
@@ -46,14 +56,15 @@
 .section-link a {
     text-decoration: none;
     font-size: 20px;
-    padding-left: 40px;
+    //padding-left: 40px;
     padding-right: 40px;
     padding-top: 20px;
     color: white;
+    font-weight: 300;
 }
 
 .section-link a:hover{
-    color: rgb(94, 12, 119);
+    color: #5F5173;
     cursor: pointer;
 }
 
@@ -91,11 +102,11 @@
 }
 
 .question {
-    color: rgb(94, 12, 119);
+    color: #5F5173;
 }
 
 .example-item {
-    color: rgb(94, 12, 119);
+    color: #5F5173;
     padding: 10px;
 }
 
