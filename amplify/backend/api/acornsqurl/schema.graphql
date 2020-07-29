@@ -3,6 +3,8 @@ type Professor @model
 	id: ID!
 	professorName: String!
 	universityName: String!
+	firstName: String
+	lastName: String
 	courses: [Course] @connection(keyName:"byProfessor",fields:["professorName"])
 }
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-video-links',
@@ -6,6 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./video-links.component.scss']
 })
 export class VideoLinksComponent implements OnInit {
+
+  @Input() videourl: String;
+  @Input() linkName: String;
 
   constructor() { }
 

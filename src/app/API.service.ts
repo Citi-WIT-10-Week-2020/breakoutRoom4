@@ -10,11 +10,15 @@ export type CreateProfessorInput = {
   id?: string | null;
   professorName: string;
   universityName: string;
+  firstName?: string | null;
+  lastName?: string | null;
 };
 
 export type ModelProfessorConditionInput = {
   professorName?: ModelStringInput | null;
   universityName?: ModelStringInput | null;
+  firstName?: ModelStringInput | null;
+  lastName?: ModelStringInput | null;
   and?: Array<ModelProfessorConditionInput | null> | null;
   or?: Array<ModelProfessorConditionInput | null> | null;
   not?: ModelProfessorConditionInput | null;
@@ -63,6 +67,8 @@ export type UpdateProfessorInput = {
   id: string;
   professorName?: string | null;
   universityName?: string | null;
+  firstName?: string | null;
+  lastName?: string | null;
 };
 
 export type DeleteProfessorInput = {
@@ -265,6 +271,8 @@ export type ModelProfessorFilterInput = {
   id?: ModelIDInput | null;
   professorName?: ModelStringInput | null;
   universityName?: ModelStringInput | null;
+  firstName?: ModelStringInput | null;
+  lastName?: ModelStringInput | null;
   and?: Array<ModelProfessorFilterInput | null> | null;
   or?: Array<ModelProfessorFilterInput | null> | null;
   not?: ModelProfessorFilterInput | null;
@@ -343,6 +351,8 @@ export type CreateProfessorMutation = {
   id: string;
   professorName: string;
   universityName: string;
+  firstName: string | null;
+  lastName: string | null;
   courses: {
     __typename: "ModelCourseConnection";
     items: Array<{
@@ -365,6 +375,8 @@ export type UpdateProfessorMutation = {
   id: string;
   professorName: string;
   universityName: string;
+  firstName: string | null;
+  lastName: string | null;
   courses: {
     __typename: "ModelCourseConnection";
     items: Array<{
@@ -387,6 +399,8 @@ export type DeleteProfessorMutation = {
   id: string;
   professorName: string;
   universityName: string;
+  firstName: string | null;
+  lastName: string | null;
   courses: {
     __typename: "ModelCourseConnection";
     items: Array<{
@@ -901,6 +915,8 @@ export type GetProfessorQuery = {
   id: string;
   professorName: string;
   universityName: string;
+  firstName: string | null;
+  lastName: string | null;
   courses: {
     __typename: "ModelCourseConnection";
     items: Array<{
@@ -925,6 +941,8 @@ export type ListProfessorsQuery = {
     id: string;
     professorName: string;
     universityName: string;
+    firstName: string | null;
+    lastName: string | null;
     courses: {
       __typename: "ModelCourseConnection";
       nextToken: string | null;
@@ -1167,6 +1185,8 @@ export type ProfessorByNameQuery = {
     id: string;
     professorName: string;
     universityName: string;
+    firstName: string | null;
+    lastName: string | null;
     courses: {
       __typename: "ModelCourseConnection";
       nextToken: string | null;
@@ -1304,6 +1324,8 @@ export type OnCreateProfessorSubscription = {
   id: string;
   professorName: string;
   universityName: string;
+  firstName: string | null;
+  lastName: string | null;
   courses: {
     __typename: "ModelCourseConnection";
     items: Array<{
@@ -1326,6 +1348,8 @@ export type OnUpdateProfessorSubscription = {
   id: string;
   professorName: string;
   universityName: string;
+  firstName: string | null;
+  lastName: string | null;
   courses: {
     __typename: "ModelCourseConnection";
     items: Array<{
@@ -1348,6 +1372,8 @@ export type OnDeleteProfessorSubscription = {
   id: string;
   professorName: string;
   universityName: string;
+  firstName: string | null;
+  lastName: string | null;
   courses: {
     __typename: "ModelCourseConnection";
     items: Array<{
@@ -1871,6 +1897,8 @@ export class APIService {
           id
           professorName
           universityName
+          firstName
+          lastName
           courses {
             __typename
             items {
@@ -1909,6 +1937,8 @@ export class APIService {
           id
           professorName
           universityName
+          firstName
+          lastName
           courses {
             __typename
             items {
@@ -1947,6 +1977,8 @@ export class APIService {
           id
           professorName
           universityName
+          firstName
+          lastName
           courses {
             __typename
             items {
@@ -2762,6 +2794,8 @@ export class APIService {
           id
           professorName
           universityName
+          firstName
+          lastName
           courses {
             __typename
             items {
@@ -2800,6 +2834,8 @@ export class APIService {
             id
             professorName
             universityName
+            firstName
+            lastName
             courses {
               __typename
               nextToken
@@ -3002,14 +3038,6 @@ export class APIService {
               groupName
               createdAt
               updatedAt
-              files{
-                __typename
-                items
-                {id
-                filetype
-                filename
-              fileDescription}
-              }
             }
             nextToken
           }
@@ -3228,14 +3256,11 @@ export class APIService {
             id
             professorName
             universityName
+            firstName
+            lastName
             courses {
               __typename
               nextToken
-              items {
-                courseName
-                courseDescription
-                id
-              }
             }
             createdAt
             updatedAt
@@ -3586,6 +3611,8 @@ export class APIService {
           id
           professorName
           universityName
+          firstName
+          lastName
           courses {
             __typename
             items {
@@ -3616,6 +3643,8 @@ export class APIService {
           id
           professorName
           universityName
+          firstName
+          lastName
           courses {
             __typename
             items {
@@ -3646,6 +3675,8 @@ export class APIService {
           id
           professorName
           universityName
+          firstName
+          lastName
           courses {
             __typename
             items {

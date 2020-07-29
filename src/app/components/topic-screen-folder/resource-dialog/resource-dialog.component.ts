@@ -35,6 +35,7 @@ export class ResourceDialogComponent implements OnInit {
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, private fb: FormBuilder,public dialogRef: MatDialogRef<ResourceDialogComponent>, private fileservice:FileService, private apiservice: APIService) {}
 
   fileForm : FormGroup;
+  videoForm : FormGroup;
   fileObject: IFile;
   resourceGroupObject: IResourceGroup;
   course: string; //PASSED IN
@@ -51,8 +52,15 @@ export class ResourceDialogComponent implements OnInit {
       groupName: new FormControl(''),
       fileDescription: new FormControl(''), //url
       fileType: new FormControl(''),
-      id: new FormControl(uuidv4()) })
-
+      id: new FormControl(uuidv4()) 
+    });
+    
+      this.videoForm = new FormGroup({
+        videoName : new FormControl(''),
+        groupName: new FormControl('Playlist'),
+        fileDescription: new FormControl('')
+        
+      })
   };
 
   tabChanged(tabChangeEvent: MatTabChangeEvent): void {
@@ -74,6 +82,7 @@ subscibeToResourceGroupEvents(){
     const data = (evt as any).value.data.onCreateResourceGroup;
     this.resourceGroups = [...this.resourceGroups,data];
   });
+  //deletions
 }
 
 cancel(){

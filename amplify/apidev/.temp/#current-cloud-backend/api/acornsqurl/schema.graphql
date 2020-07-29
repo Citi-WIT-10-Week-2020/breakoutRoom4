@@ -1,0 +1,41 @@
+type Professor @model {
+	id: ID!
+	professorName: String!
+	universityName: String!
+	courses: [Course] @connection(keyName:"byProfessor",fields:["professorName"])
+}
+
+type Course @model
+@key(name:"byProfessor",fields:["professor"],queryField:"courseByProfessor")
+{
+	id:ID!
+	professor: String!
+	courseName: String!
+	courseDescription: String!
+	topics: [Topic] @connection(keyName:"byCourseByProfessor",fields:["professor","courseName"])
+}
+
+type Topic @model
+@key(name:"byCourseByProfessor",fields:["professor","course"],queryField:"topicByCourseByProfessor")
+{
+	id:ID!
+	professor:String!
+	TopicName: String!
+	course: String!
+	TopicDescription: String!
+	files: [File] @connection(keyName:"byCourseByTopic",fields:["course","TopicName"])
+}
+
+type File @model
+@key(name:"byCourseByTopic",fields:["course","topic"],queryField:"fileByCourseByTopic")
+@key(name:"byResourseGroup",fields:["resourseGroup"],queryField:"fileByResourceGroup")
+@key(name:"byFilename",fields:["resourseGroup"],queryField:"fileByFilename")
+{
+	id: ID!
+	course:String!
+	topic: String!
+	filename: String!
+	filetype:String!
+	fileDescription:String
+	resourseGroup: String!
+}

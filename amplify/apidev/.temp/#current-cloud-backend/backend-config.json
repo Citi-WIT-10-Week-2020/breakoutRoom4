@@ -1,0 +1,28 @@
+{
+	"auth": {
+		"acornsqurl6b065b4d": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": [],
+			"customAuth": false
+		}
+	},
+	"api": {
+		"acornsqurl": {
+			"service": "AppSync",
+			"providerPlugin": "awscloudformation",
+			"output": {
+				"authConfig": {
+					"additionalAuthenticationProviders": [],
+					"defaultAuthentication": {
+						"authenticationType": "API_KEY",
+						"apiKeyConfig": {
+							"description": "default-key",
+							"apiKeyExpirationDays": "100"
+						}
+					}
+				}
+			}
+		}
+	}
+}

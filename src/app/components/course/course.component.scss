@@ -1,17 +1,23 @@
 
+.mat-expansion-panel:not([class*='mat-elevation-z']) {
+    box-shadow: none;
+}
+
 .course-card {
     //height: flex;
     width: 375px;
     height: 250px;
     margin: 20px 0;
-    border-top: 15px solid rgba(58, 23, 153, 0.35);
-    //border-bottom: 15px solid rgb(85, 32, 116);
+    border-top: 15px solid #937FB3;
+    border-bottom: 5px solid #937FB3;
     padding: 0px;
     background-color: white;
+   
 }
 
 .course-card:hover {
-    background-color: rgb(237, 221, 241);
+    background-color: rgb(224, 207, 248);
+    color: rgb(255, 255, 255);
     cursor: pointer;
 }
 
@@ -19,11 +25,11 @@
     height: 190px;
     //background-color: white;
     padding: 10px 10px 0 10px;
-    margin:  15px 15px 0 15px;
+    margin:  0 15px;
 }
 
 .click-area:hover {
-    background-color: rgb(237, 221, 241);
+    background-color: rgb(224, 207, 248);
     cursor: pointer;
 }
 
@@ -43,6 +49,8 @@
     width: 54px;
   }
 
+  
+
 
 #course-title {
     padding-top: 10px;
@@ -57,6 +65,11 @@
     max-width: 250px;
 }
 
+p {
+    padding-left: 21px;
+    padding-right: 21px;
+}
+
 .mat-button {
     padding: 0;
     margin: 0;
@@ -68,12 +81,24 @@
     padding: 0;
     width: 100%;
     height: 40px;
-    background-color:rgba(58, 23, 153, 0.65);
+    background-color:#937FB3;
     color: white;
     padding-bottom: 10px;
 }
+
+.action-btn {
+    padding-top: 7px;
+    background: none;
+    border: none;
+    color: white;
+}
+
+.action-btn:hover {
+    color: rgb(224, 207, 248);
+}
+
 .actions {
-    padding-top: 5px;
+    padding-top: 10px;
     display: flex;
     justify-content: space-evenly;
 }
