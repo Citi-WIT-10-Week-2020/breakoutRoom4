@@ -51,11 +51,6 @@ import { DeleteTopicDialogComponent } from './components/delete-topic-dialog/del
 
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
-import { AccountSettingsComponent } from './components/account-settings/account-settings.component';
-
-import { FormsModule } from '@angular/forms';
-import { AccountDialogComponent } from './components/account-dialog/account-dialog.component';
-//import { HttpModule } from '@angular/http';
 import { FaqDialogComponent } from './components/topic-screen-folder/faq-dialog/faq-dialog.component';
 import { FileListComponent } from './components/topic-screen-folder/file-list/file-list.component';
 
@@ -97,9 +92,6 @@ import { PlaylistContainerComponent } from './components/topic-screen-folder/pla
 
     DeleteTopicDialogComponent,
 
-    AccountSettingsComponent,
-
-    AccountDialogComponent,
     FaqDialogComponent,
     FileListComponent,
     ResourceDialogComponent,

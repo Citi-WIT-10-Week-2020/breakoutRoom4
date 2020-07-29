@@ -5,7 +5,6 @@ import { Hub, Logger} from 'aws-amplify';
 import { Observable, of ,from} from 'rxjs';
 import { ResourceLoader } from '@angular/compiler';
 import { UserinfoService } from '../../../shared/userinfo.service';
-import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-nav-bar',
@@ -19,7 +18,7 @@ export class NavBarComponent implements OnInit {
   profName:String;
 
 
-  constructor(private userinfo: UserinfoService, private router: Router) {}
+  constructor(private userinfo: UserinfoService) {}
 
 ngOnInit(): void {
 
@@ -50,11 +49,9 @@ ngOnInit(): void {
 
          case 'signIn':
               location.reload();
-   //           this.router.navigateByUrl("/home");
               this.displayUserName();
               break;
           case 'signUp':
-              location.reload();
               this.displayUserName();
               break;
           case 'signOut':
@@ -62,7 +59,6 @@ ngOnInit(): void {
              console.log(this.profName);
              console.log("sign out");
              location.reload();
-             
           // this.userinfo.logout(this.profName);
              break;
       }
