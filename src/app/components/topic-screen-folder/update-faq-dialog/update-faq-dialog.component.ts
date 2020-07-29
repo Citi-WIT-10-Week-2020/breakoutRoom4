@@ -24,10 +24,8 @@ export class UpdateFaqDialogComponent implements OnInit {
   ngOnInit(): void {
 
     /*this.faqObject = {
-      filename : this.question,
-      fileDescription : this.answer,
-      filetype: "Question/Answer",
-      id: null,
+      filename: this.question,
+      fileDescription: this.answer
     }*/
 
     this.faq = new FormGroup({
@@ -43,8 +41,8 @@ export class UpdateFaqDialogComponent implements OnInit {
 
   cancel() {
     this.dialogRef.close();
- //   console.log("Question:",this.question);
-  //  console.log("Answer:",this.answer);
+    console.log("Question:",this.question);
+    console.log("Answer:",this.answer);
   }
 
 }
