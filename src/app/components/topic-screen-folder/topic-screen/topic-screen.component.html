@@ -1,47 +1,93 @@
 <div class="div-body">
-  <div class="nav-container">
-    <span><a routerLink='/course'>Courses</a></span>
-    <span class="nav-dec">></span>
-    <span><a [routerLink]="['/course', this.courseId]">{{this.course}}</a></span>
-    <span class="nav-dec">></span>
-    <span><a [routerLink]="['/topic', this.courseId, this.topicId, this.topicName]">{{topicName}}</a></span>
-  </div>
-   <!--<span><button class="add-btn-bg" (click) = "openCourseDialog()"><mat-icon class="add-btn">add_circle_outline</mat-icon></button></span> -->
-  <div class="title-container">
-    <!--this.courseId is v important!-->
-      <span class="title-item"><a [routerLink]="['/topic', this.courseId, this.topicId, this.topicName]">{{topicName}}</a></span>
-  </div>
-    <div class="wrapper">
-      <div class="box1">
-        <div class="box1-title">Files <button class="add-btn-bg" (click) = "openResourceDialog()"><mat-icon class="add-file-btn">add_circle_outline</mat-icon></button></div>
-        <mat-accordion multi>
-          <!-- <ng-container *ngFor="let item of rgObject">
-            <app-resource-group [rgName]="item.rgName" [fileName]="item.fileName" ></app-resource-group>
-          </ng-container> -->
-          <ng-container *ngFor="let item of resourceGroups">
-            <app-resource-group [rgName]="item.groupName" [files]="item.files.items"></app-resource-group>
-          </ng-container>
-            <mat-expansion-panel class="rg">
-            <mat-expansion-panel-header>
-              <mat-panel-title class="mat-elevation-z rg-title">Playlist</mat-panel-title>
-            </mat-expansion-panel-header>
-            <div class="playlist-container" fxLayout="row wrap" fxLayoutGap="50px" fxLayoutAlign="flex-start" fxLayout.1t-md="column">
-              <div *ngIf="playlist.files.items == 0">
-                <span class="empty-screen-message">You do not currently have any videos. Click the plus sign to add one!</span>
+
+    <div class="nav-container">
+      <span><a routerLink='/course'>Courses</a></span>
+      <span class="nav-dec">></span>
+      <span><a [routerLink]="['/course', this.courseId]">{{this.course}}</a></span>
+      <span class="nav-dec">></span>
+      <span><a [routerLink]="['/topic', this.courseId, this.topicId, this.topicName]">{{topicName}}</a></span>
+    </div>
+    
+     <!--<span><button class="add-btn-bg" (click) = "openCourseDialog()"><mat-icon class="add-btn">add_circle_outline</mat-icon></button></span> -->
+
+
+    <div class="title-container">
+      <!--this.courseId is v important!-->
+        <span class="title-item"><a [routerLink]="['/topic', this.courseId, this.topicId, this.topicName]">{{topicName}}</a></span>
+       
+    </div>
+
+      <div class="wrapper">
+        <div class="box1">
+          <div class="box1-title">Files <button class="add-btn-bg" (click) = "openResourceDialog()"><mat-icon class="add-file-btn">add_circle_outline</mat-icon></button></div>
+
+          <mat-accordion multi>
+
+           
+
+
+            <!-- <ng-container *ngFor="let item of rgObject">
+              <app-resource-group [rgName]="item.rgName" [fileName]="item.fileName" ></app-resource-group>
+            </ng-container> -->
+
+            <ng-container *ngFor="let item of resourceGroups">
+              <app-resource-group [rgName]="item.groupName" [files]="item.files.items"></app-resource-group>
+            </ng-container>
+            
+            
+              <mat-expansion-panel class="rg">
+              <mat-expansion-panel-header>
+                <mat-panel-title class="mat-elevation-z rg-title">Playlist</mat-panel-title>
+              </mat-expansion-panel-header>
+
+              <div class="playlist-container" fxLayout="row wrap" fxLayoutGap="50px" fxLayoutAlign="flex-start" fxLayout.1t-md="column">
+                  
+                <div *ngIf="playlist.files.items == 0"> <!--&& videoLink.items == 0-->
+                  <span class="empty-screen-message">You do not currently have any videos. Click the plus sign to add one!</span>
+                </div>
+
+                <ng-container *ngFor="let item of playlist.files.items">
+                  <app-playlist-video class="videocards" [videosrc]="item.videosrc" [videoName]="item.videoName" ></app-playlist-video>
+                </ng-container>
+
+                <!--<ng-container *ngFor="let item of videoLink">
+                  <app-video-links class="videocards" [videourl]="item.videourl" [linkName]="item.linkName" ></app-video-links>
+                </ng-container>-->
+                <!--<app-video-links></app-video-links>-->
+                
+                
+                  
               </div>
-              <ng-container *ngFor="let item of playlist.files.items">
-                <app-playlist-video class="videocards" [videosrc]="item.videosrc" [videoName]="item.videoName" ></app-playlist-video>
-              </ng-container>
-              <!--<ng-container *ngFor="let item of videoLink">
-                <app-video-links class="videocards" [videourl]="item.videourl" [linkName]="item.linkName" ></app-video-links>
-              </ng-container>-->
-              <!--<app-video-links></app-video-links>-->
-            </div>
-            </mat-expansion-panel> 
+              </mat-expansion-panel> 
+
+
+          </mat-accordion>
+
+          
+
+        </div>
+      </div>
+      
+      <div class="wrapper-2">
+        <mat-accordion multi>
+        <div class="box3-title">FAQ<button class="add-btn-bg" (click) = "openFaqDialog()"><mat-icon class="add-file-btn">add_circle_outline</mat-icon></button></div>
+        <!--<mat-expansion-panel class="rg">-->
+     <!-- <mat-expansion-panel-header>
+          <mat-panel-title class="mat-elevation-z rg-title">FAQ</mat-panel-title>
+        </mat-expansion-panel-header>-->
+        
+          <div *ngIf="faq.files.items.length == 0">
+            <span class="empty-screen-message">You do not currently have any questions or answers. Click the plus sign to add one!</span>
+          </div>
+
+          <ng-container *ngFor="let item of faq.files.items">
+            <app-faq [question]="item.filename" [answer]="item.fileDescription" [faqId]="item.id"></app-faq>
+          </ng-container>
+        <!--</mat-expansion-panel> -->
         </mat-accordion>
       </div>
     </div>
-    <div class="wrapper-2">
+    <!-- <div class="wrapper-2">
       <mat-accordion multi>
       <div class="box3-title">FAQ<button class="add-btn-bg" (click) = "openFaqDialog()"><mat-icon class="add-file-btn">add_circle_outline</mat-icon></button></div>
       <mat-expansion-panel class="rg">
@@ -56,5 +102,4 @@
         </ng-container>
       </mat-expansion-panel> 
       </mat-accordion>
-    </div>   
-</div>
+    </div>    -->
