@@ -2,20 +2,20 @@
     <mat-dialog-content class ="container">
 
 
-        <mat-tab-group>
+        <mat-tab-group #tabGroup (selectedTabChange)="tabChanged($event)">
             <mat-tab label="FILE / LINK">
             <form novalidate class="resource-form" [formGroup]= "fileForm"  > <!--(ngSubmit)="onSubmit(course)" -->
 
                 <p> 
-                    <mat-form-field appearance ="legacy" class="input-fields">
+                    <mat-form-field style="margin-top:15px" appearance ="legacy" class="input-fields">
                         <mat-label style="font-size:15px; ">Resource Name</mat-label>
-                        <input matInput type="text" formControlName="fileName" >
+                        <input required matInput type="text" formControlName="fileName" >
                     </mat-form-field>
                 </p>
                 <p>
                     <mat-form-field appearance="legacy" class="input-fields">
                         <mat-label style="font-size:15px;">Resource Group</mat-label>
-                        <mat-select [(value)]="resourceGroupSelected" formControlName="groupName">
+                        <mat-select required [(value)]="resourceGroupSelected" formControlName="groupName">
                             <mat-option *ngFor="let item of resourceGroups" [value]=item.groupName>
                                 {{item.groupName}}
                             </mat-option>
@@ -26,8 +26,8 @@
                     <ng-container *ngIf="resourceGroupSelected == 'New Resource Group'">
                         <p> 
                             <mat-form-field appearance ="legacy" class="input-fields">
-                                <mat-label style="font-size:15px; ">Resource Group Name</mat-label>
-                                <input matInput type="text" formControlName="groupName" >
+                                <mat-label style="font-size:15px;">Resource Group Name</mat-label>
+                                <input required matInput type="text" formControlName="groupName" >
                             </mat-form-field>
                         </p>
                     </ng-container>
@@ -36,7 +36,7 @@
                 <p>
                     <mat-form-field appearance="legacy" class="input-fields">
                         <mat-label style="font-size:15px;">File Type</mat-label>
-                        <mat-select [(value)]="fileTypeSelected" formControlName="fileType">
+                        <mat-select required [(value)]="fileTypeSelected" formControlName="fileType">
                             <mat-option value ="Link">Link</mat-option>
                             <mat-option value ="File">File</mat-option>
                         </mat-select>             
@@ -66,11 +66,11 @@
             </mat-tab>
 
 
-            <mat-tab label="VIDEO">  
+            <mat-tab label="VIDEO" >  
                 <form novalidate class="resource-form" [formGroup]= "fileForm"  > <!--(ngSubmit)="onSubmit(course)" -->
 
                     <p> 
-                        <mat-form-field appearance ="legacy" class="input-fields">
+                        <mat-form-field style="margin-top:15px" appearance ="legacy" class="input-fields">
                             <mat-label style="font-size:15px;">Video Name</mat-label>
                             <input matInput type="text" formControlName="fileName" >
                             <mat-hint style="font-size: 12px;">*all videos added can be found in the playlist</mat-hint>
@@ -101,6 +101,9 @@
                                 <!-- <input type="submit" [disabled]="getFileGroup.invalid" value="upload" /> -->
                             </form>
                         </ng-container>
+                        <!-- <ng-container *ngIf="label == 'VIDEO'">
+                            groupName = "Playlist"
+                        </ng-container> -->
                     </p>
             
                     </form>

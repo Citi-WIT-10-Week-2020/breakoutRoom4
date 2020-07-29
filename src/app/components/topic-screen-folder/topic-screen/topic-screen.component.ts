@@ -9,46 +9,31 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import  {ResourceDialogComponent} from '../resource-dialog/resource-dialog.component'
 import { IResourceGroup } from 'src/app/shared/resourceGroup';
 import { v4 as uuidv4 } from 'uuid';
-
-
 @Component({
   selector: 'app-topic-screen',
   templateUrl: './topic-screen.component.html',
   styleUrls: ['./topic-screen.component.scss'],
   providers:[FileService]
 })
-
-
-
 export class TopicScreenComponent implements OnInit {
-
   resourceGroups : Array<any>;  //DINA, THE RESOURCE GROUPS ARE IN HERE :)
   topic: any;
- 
-
   topicId: string;
   topicName: string;
   courseId: string;
   courseName: string;
   groupName: string;
   fileDescription: string;
-
   constructor(private route:ActivatedRoute,private fb: FormBuilder,private matDialog: MatDialog, private fileservice: FileService, private apiservice: APIService) { }
-
   course: string;
-  
   playlist: any;
   faq : any;
-
   ngOnInit(): void {
-
-
     //gets courseID
     this.route.paramMap.subscribe(params => {
       this.courseId = params.get('courseId');
     });
     console.log(this.courseId);
-
     //gets the course name using courseId
     this.apiservice.GetCourse(this.courseId.toString()).then((evt)=>{
       console.log("course", evt);
@@ -57,23 +42,18 @@ export class TopicScreenComponent implements OnInit {
     }).catch((err)=>{
       console.log(err);
     });
-
     //gets topicID
     this.route.paramMap.subscribe(params => { 
       this.topicId = params.get('id'); 
       this.topicName = params.get('TopicName'); 
     });
-
     console.log(this.topicId);
     console.log(this.topicName);
-
     //this.getFiles();
     this.checkResourceGroups();
     this.subscribeToResourceGroupEvents();
     this.subscibeToFileEvents();
-  
   }
-
   subscibeToFileEvents(){
      //creations
      this.apiservice.OnCreateFileListener.subscribe((evt)=>{
@@ -86,17 +66,13 @@ export class TopicScreenComponent implements OnInit {
       else if(data.resourseGroup == "FAQ"){
         this.faq.files.items = [...this.faq.files.items,data];
       }
-      
     });
-
     //deletions
     this.apiservice.OnDeleteFileListener.subscribe((evt)=>{
-
       //console.log("FILE DELETED");
       const data = (evt as any).value.data.onDeleteFile;
       console.log(data);
       //basically, search thru array, find original, remove it
-
       if(data.resourseGroup == "Playlist"){
         this.playlist.files.items = this.playlist.files.items.filter((video)=>{
           return(video.id != data.id)
@@ -108,11 +84,8 @@ export class TopicScreenComponent implements OnInit {
         })
       }
     });
-
-   
   }
   subscribeToResourceGroupEvents(){
-
     //creations
     this.apiservice.OnCreateResourceGroupListener.subscribe((evt)=>{
       console.log("RESOURCE GROUP CREATED");
@@ -124,9 +97,7 @@ export class TopicScreenComponent implements OnInit {
       if(data.groupName != "Playlist" && data.groupName != "FAQ"){
         this.resourceGroups = [...this.resourceGroups,data];
       }
-      
     });
-
     //deletions
     this.apiservice.OnDeleteResourceGroupListener.subscribe((evt)=>{
       console.log("RESOURCE GROUP DELETED");
@@ -138,12 +109,10 @@ export class TopicScreenComponent implements OnInit {
       });
       console.log(this.resourceGroups);
     });
-
     //updates
     this.apiservice.OnUpdateResourceGroupListener.subscribe((evt)=>{
       const data = (evt as any).value.data.onUpdateResourceGroup;
       console.log("Update", data);
-      
       console.log("An update has occurred!");
       //search thru array, find original, and replace it with the new one
       this.resourceGroups = this.resourceGroups.map((group)=>{
@@ -153,11 +122,7 @@ export class TopicScreenComponent implements OnInit {
         else return group;
       })
     });
-
-
   }
-
-  
    checkResourceGroups(){
     const myObserver = {
       next: x => {
@@ -189,20 +154,15 @@ export class TopicScreenComponent implements OnInit {
       error: err => console.error('Observer got an error: ' + err),
       complete: () => console.log('Observer got a complete notification'),
     };
-
-    
     this.fileservice.getTopic(this.topicId).subscribe(myObserver);
   }
-
   async createInitialResourceGroups(){
-
     let playlist :IResourceGroup = {
       id: uuidv4(),
       course: this.topic.course,
       groupName: "Playlist",
       topic:this.topic.TopicName
     }
-
     let faq : IResourceGroup = {
       id:uuidv4(),
       course:this.topic.course,
@@ -222,9 +182,6 @@ export class TopicScreenComponent implements OnInit {
       console.log("GROUPS", this.resourceGroups);
     })*/
   }
-
-  
-
   openResourceDialog()
   {
     console.log("dialog opened");
@@ -237,16 +194,12 @@ export class TopicScreenComponent implements OnInit {
       instance.topicName = this.topicName;
     dialogRef.afterClosed().subscribe(()=>{console.log("dialog has been closed")});
   }
-
   openFaqDialog() {
     console.log("dialog opened");
     const dialogConfig = new MatDialogConfig();
     let dialogRef = this.matDialog.open(FaqDialogComponent, dialogConfig);
     let instance =  dialogRef.componentInstance;
     instance.faqObject = this.faq;
-      
     dialogRef.afterClosed().subscribe(()=>{console.log("dialog has been closed")});
    } //instead of console log , refresh page
-
 }
-
