@@ -8,6 +8,37 @@
     font-size: large;
 }
 
+.file-name {
+  position: relative;
+  display: inline-block;
+}
+
+.file-name .tooltiptext {
+  visibility: hidden;
+  width: 600px;
+  background-color: none;
+  text-align: left;
+  font-size: 10px;
+  border-radius: 6px;
+  padding: 5px 0;
+  padding-left: 7px;
+  padding-bottom: 3px;
+  padding-top: 10px;
+  //position: absolute;
+  z-index: 1;
+  bottom: 100%;
+  left: 50%;
+  margin-left: 0px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.file-name:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
+
 .spacer {
     flex: 1 1 auto;
 }
@@ -21,22 +52,24 @@
 }
 
 .file-btn .tooltiptext {
-    visibility: hidden;
-    width: 100px;
-    background-color: none;
-    text-align: center;
-    border-radius: 6px;
-    padding: 5px 0;
-    padding-left: 7px;
-    padding-bottom: 3px;
-    padding-top: 10px;
-    position: absolute;
-    z-index: 1;
-    bottom: 100%;
-    left: 50%;
-    margin-left: -60px;
-    opacity: 0;
-    transition: opacity 0.3s;
+  color: #333;
+  visibility: hidden;
+  width: 100px;
+  background-color: none;
+  text-align: center;
+  font-size: 10px;
+  border-radius: 6px;
+  padding: 5px 0;
+  padding-left: 7px;
+  padding-bottom: 3px;
+  padding-top: 10px;
+  position: absolute;
+  z-index: 1;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -60px;
+  opacity: 0;
+  transition: opacity 0.3s;
   }
   
   .file-btn .tooltiptext::after {
