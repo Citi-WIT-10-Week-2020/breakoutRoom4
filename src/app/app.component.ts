@@ -91,6 +91,8 @@ export class AppComponent {
      document.getElementById("center").removeAttribute("id"); 
      
     }
+
+    
   }
 
   /*

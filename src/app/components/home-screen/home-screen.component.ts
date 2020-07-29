@@ -11,6 +11,7 @@ import {CourseService} from '../../shared/courses.service';
 import { ICourse } from '../../shared/course';
 
 import { UserinfoService } from 'src/app/shared/userinfo.service';
+import { Auth } from 'aws-amplify';
 
 /* May use for grid */
 export interface Tile {
@@ -47,7 +48,11 @@ export class HomeScreenComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUser();
-   
+    //display if we are in the group haha
+     Auth.currentSession().then((user)=>{
+      console.log("CHECKKKK",user);
+     });
+    
     this.subscribeToCourseCreations();
     this.subscribeToCourseUpdates();
     this.subscribeToCourseDeletions();

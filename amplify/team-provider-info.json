@@ -86,6 +86,11 @@
         "categories": {
             "auth": {
                 "acornsqurl6b065b4d": {}
+            },
+            "function": {
+                "acornsqurl6b065b4dPostConfirmation": {
+                    "GROUP": "Professor"
+                }
             }
         }
     }

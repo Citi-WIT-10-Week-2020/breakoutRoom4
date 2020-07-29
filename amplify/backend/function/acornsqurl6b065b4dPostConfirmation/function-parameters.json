@@ -1,0 +1,16 @@
+{
+    "trigger": true,
+    "modules": [
+        "add-to-group"
+    ],
+    "parentResource": "acornsqurl6b065b4d",
+    "functionName": "acornsqurl6b065b4dPostConfirmation",
+    "resourceName": "acornsqurl6b065b4dPostConfirmation",
+    "parentStack": "auth",
+    "triggerEnvs": [],
+    "triggerDir": "C:\\Users\\Mochiko\\AppData\\Roaming\\npm\\node_modules\\@aws-amplify\\cli\\node_modules\\amplify-category-auth\\provider-utils\\awscloudformation\\utils/../triggers/PostConfirmation",
+    "triggerTemplate": "PostConfirmation.json.ejs",
+    "roleName": "acornsqurl6b065b4dPostConfirmation",
+    "skipEdit": true,
+    "GROUP": "Professor"
+}
