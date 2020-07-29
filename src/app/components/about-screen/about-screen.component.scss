@@ -104,8 +104,8 @@
 
 .creator-card {
     max-width: 310px;
-    min-width: 100px;
-    max-height: 500px;
+    //min-width: 100px;
+    height: 250px;
     margin: 20px 0;
 }
 
@@ -127,6 +127,17 @@
 
 .caitlin-image {
     background-image: url('src/assets/caitlin-prof-pic.jpg');
+}
+
+
+.anjali-image {
+    background-image: url('src/assets/anjali-prof-pic.jpeg');
+}
+
+
+.ashley-image {
+    background-image: url('src/assets/ashleyprofilepic.jpg');
+
 }
 
 

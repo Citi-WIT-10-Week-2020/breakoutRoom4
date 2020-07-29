@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AccountSettingsComponent } from './account-settings.component';
+import { UpdateFaqDialogComponent } from './update-faq-dialog.component';
 
-describe('AccountSettingsComponent', () => {
-  let component: AccountSettingsComponent;
-  let fixture: ComponentFixture<AccountSettingsComponent>;
+describe('UpdateFaqDialogComponent', () => {
+  let component: UpdateFaqDialogComponent;
+  let fixture: ComponentFixture<UpdateFaqDialogComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AccountSettingsComponent ]
+      declarations: [ UpdateFaqDialogComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AccountSettingsComponent);
+    fixture = TestBed.createComponent(UpdateFaqDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -6,7 +6,6 @@ import { HomeScreenComponent } from './components/home-screen/home-screen.compon
 import { TopicScreenComponent } from './components/topic-screen-folder/topic-screen/topic-screen.component';
 import { HelpScreenComponent } from './components/help-screen/help-screen.component';
 import { AboutScreenComponent } from './components/about-screen/about-screen.component';
-import { AccountSettingsComponent } from './components/account-settings/account-settings.component';
 
 //here's where we add our routes
 const routes: Routes = [
@@ -15,7 +14,6 @@ const routes: Routes = [
   {path:'topic/:courseId/:id/:TopicName',component: TopicScreenComponent},
   {path: 'help', component: HelpScreenComponent},
   {path: 'about', component: AboutScreenComponent},
-  {path: 'account-settings', component: AccountSettingsComponent},
   {path:'home',component:HomeScreenComponent},
   {path:'**',component:HomeScreenComponent}
 ];
