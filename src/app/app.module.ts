@@ -61,7 +61,9 @@ import { VideoLinksComponent } from './components/topic-screen-folder/video-link
 import { UpdateFaqDialogComponent } from './components/topic-screen-folder/update-faq-dialog/update-faq-dialog.component';
 import { DeleteFaqDialogComponent } from './components/topic-screen-folder/delete-faq-dialog/delete-faq-dialog.component';
 import { PlaylistContainerComponent } from './components/topic-screen-folder/playlist-container/playlist-container.component';
-
+import { AccountSettingsComponent } from './components/account-settings/account-settings.component';
+import { AccountDialogComponent } from './components/account-dialog/account-dialog.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -101,6 +103,8 @@ import { PlaylistContainerComponent } from './components/topic-screen-folder/pla
     UpdateFaqDialogComponent,
     DeleteFaqDialogComponent,
     PlaylistContainerComponent,
+    AccountSettingsComponent,
+    AccountDialogComponent,
 
     
   ],

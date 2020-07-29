@@ -1,7 +1,10 @@
 <!--fileName is not connected to anything right now-->
 <ng-container *ngIf="fileType != 'Link'">
-<div class="file" >
-    <span>{{fileName}}</span>
+<div class="file">
+    <span class="file-name">
+      <span>{{fileName}}</span>
+      <span class="tooltiptext">{{fileId}}</span>
+    </span>
     <span class="spacer"></span>
     <span>
       <button class="file-btn" (click)="onDownload()">
