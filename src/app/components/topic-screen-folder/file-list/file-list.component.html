@@ -1,6 +1,10 @@
 <!--fileName is not connected to anything right now-->
+<ng-container *ngIf="fileType != 'Link'">
 <div class="file">
-    <span>{{fileName}}</span>
+    <span class="file-name">
+      <span>{{fileName}}</span>
+      <span class="tooltiptext">{{fileId}}</span>
+    </span>
     <span class="spacer"></span>
     <span>
       <button class="file-btn" (click)="onDownload()">
@@ -16,3 +20,26 @@
       </button>
     </span>
   </div>
+</ng-container>
+
+<ng-container *ngIf="fileType == 'Link'">
+  <div class="file" >
+      <span><a href="{{fileDescription}}" target="_blank">{{fileName}}</a></span>
+      <!-- <span>{{fileName}}</span> -->
+      <span class="spacer"></span>
+      <!-- <span>
+        <button class="file-btn" (click)="onDownload()">
+          <mat-icon class="btn">get_app</mat-icon>
+          <span class="tooltiptext">Download</span>
+        </button>
+      </span> -->
+      
+      <span>
+        <button class="file-btn" (click)="onDelete()">
+          <mat-icon class="btn">delete</mat-icon>
+          <span class="tooltiptext">Delete</span>
+        </button>
+      </span>
+    </div>
+  </ng-container>
+  
