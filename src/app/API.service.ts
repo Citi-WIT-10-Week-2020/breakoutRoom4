@@ -3038,6 +3038,7 @@ export class APIService {
               groupName
               createdAt
               updatedAt
+              
             }
             nextToken
           }

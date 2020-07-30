@@ -7,6 +7,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { IResourceGroup } from 'src/app/shared/resourceGroup';
 import { v4 as uuidv4 } from 'uuid';
 import { APIService } from 'src/app/API.service';
+import { MatTabChangeEvent } from '@angular/material/tabs';
 
 @Component({
   selector: 'app-resource-dialog',
@@ -39,9 +40,9 @@ export class ResourceDialogComponent implements OnInit {
   resourceGroupObject: IResourceGroup;
   course: string; //PASSED IN
   topic: string; //PASSED IN
-  fileDescription: string; //get from userInput <if URL = url, if file this = ""
+  fileDescription: string; //get from userInput, if URL = url, if file this = ""
   groupName: string; //get from userInput
-
+  tabLabel : boolean = true;
 
   ngOnInit(): void {
     this.subscibeToResourceGroupEvents();
@@ -62,6 +63,17 @@ export class ResourceDialogComponent implements OnInit {
       })
   };
 
+  tabChanged(tabChangeEvent: MatTabChangeEvent): void {
+    console.log('tabChangeEvent => ', tabChangeEvent);
+    console.log('index => ', tabChangeEvent.index);
+    if(tabChangeEvent.index == 1){
+      this.fileForm.get('groupName').setValue("Playlist");
+      this.groupName = "Playlist";
+    }
+    console.log("THIS GROUPNAME",this.groupName);
+    console.log("FORM CONTROL GROUPNAME",this.fileForm.get('groupName').value);
+
+  }
 
 subscibeToResourceGroupEvents(){
   //creations
@@ -76,7 +88,6 @@ subscibeToResourceGroupEvents(){
 cancel(){
   this.dialogRef.close();
   console.log(this.resourceGroups);
-  
 }
 
 
@@ -111,7 +122,8 @@ onResourceSubmit(){
     this.fileDescription = "empty";
   }  
   //if adding a new resource, do this
-  
+  this.filename = this.fileForm.get('fileName').value;
+  this.fileType = this.fileForm.get('fileType').value;
   this.fileDescription = this.fileForm.get('fileDescription').value;
   this.groupName = this.fileForm.get('groupName').value;
   console.log("GROUPNAME",this.groupName);

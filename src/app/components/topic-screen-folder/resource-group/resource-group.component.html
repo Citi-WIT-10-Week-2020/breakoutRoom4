@@ -2,6 +2,26 @@
 <mat-expansion-panel class="rg">
   <mat-expansion-panel-header>
     <mat-panel-title class="mat-elevation-z rg-title">{{rgName}}</mat-panel-title>
+    
+    <span class="spacer"></span>
+
+    <span>
+      <button class="file-btn">
+        <mat-icon class="btn">edit</mat-icon>
+        <span class="tooltiptext">Edit</span>
+      </button>
+    </span>
+
+    <span>
+      <button class="file-btn">
+        <mat-icon class="btn">delete</mat-icon>
+        <span class="tooltiptext">Delete</span>
+      </button>
+    </span>
+
+    
+  
+  
   </mat-expansion-panel-header>
 
   <!--this is where the ng For would go-->
@@ -9,6 +29,6 @@
  
   <ng-container *ngFor="let file of files">
     
-    <app-file-list [fileName]="file.filename" [fileId]="file.id"></app-file-list>
+    <app-file-list [fileType]="file.filetype" [fileDescription]="file.fileDescription" [fileName]="file.filename" [fileId]="file.id"></app-file-list>
   </ng-container>
 </mat-expansion-panel>

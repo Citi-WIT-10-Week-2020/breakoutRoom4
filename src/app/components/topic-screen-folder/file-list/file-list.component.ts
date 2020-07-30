@@ -9,13 +9,16 @@ import { FileService } from 'src/app/shared/file.service';
 export class FileListComponent implements OnInit {
 
   @Input() fileName: string;
+  @Input() fileType: string;
   @Input() fileId:string;
+  @Input() fileDescription:string;
   constructor(private fileservice:FileService) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void { 
+    console.log("FILE TYPE AND NAME ", this.fileType, " ", this.fileName);
   }
   onDownload(){
-    console.log("DOwnloading");
+    console.log("Downloading");
     this.fileservice.downloadFile(this.fileId);
   }
 
