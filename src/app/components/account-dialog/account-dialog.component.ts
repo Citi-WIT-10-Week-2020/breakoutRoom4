@@ -20,9 +20,9 @@ import { async } from 'q';
  
 export class AccountDialogComponent implements OnInit {
   @Input() firstname: string;
- @Input() lastname: string;
- @Input() universityName: string;
- @Input() id: string
+  @Input() lastname: string;
+  @Input() universityName: string;
+  @Input() id: string
  
  email;
  
@@ -52,9 +52,19 @@ export class AccountDialogComponent implements OnInit {
  }
  
  onSubmit(): void {
-   this.firstname = this.accountForm.get('firstName').value;
-   this.lastname = this.accountForm.get('lastName').value;
-   this.universityName = this.accountForm.get('universityName').value;
+
+  if(this.accountForm.get('firstName').value != ''){
+    this.firstname = this.accountForm.get('firstName').value;
+  }
+
+  if(this.accountForm.get('lastName').value != ''){
+    this.lastname = this.accountForm.get('lastName').value;
+  }
+
+  if(this.accountForm.get('universityName').value != ''){
+    this.universityName = this.accountForm.get('universityName').value;
+  }
+
    console.log("first name", this.firstname);
    console.log("last name", this.lastname);
    console.log("univName", this.universityName);
@@ -73,30 +83,58 @@ export class AccountDialogComponent implements OnInit {
          console.log("professor", professor);
          this.id = professor.items[0].id;
          console.log("id", this.id);
- 
+
+         if(this.accountForm.get('firstName').value != ''){
+          this.apiservice.UpdateProfessor(
+            {id:this.id,
+             firstName:this.accountForm.get('firstName').value,
+         });
+        }
+
+        if(this.accountForm.get('lastName').value != ''){
+          this.apiservice.UpdateProfessor(
+            {id:this.id,
+             lastName:this.accountForm.get('lastName').value,
+         });
+        }
+
+         if(this.accountForm.get('universityName').value != ''){
+          this.apiservice.UpdateProfessor(
+            {id:this.id,
+             universityName:this.accountForm.get('universityName').value,
+         });
+        }
+
+       
+/*
+      //update univName only if there is something
         this.apiservice.UpdateProfessor(
           {id:this.id,
-          // professorName:this.accountForm.get('accountName').value,
-           universityName:this.accountForm.get('universityName').value,
+    
+         //  universityName:this.accountForm.get('universityName').value,
            firstName: this.accountForm.get('firstName').value,
            lastName: this.accountForm.get('lastName').value}).
           
            then((evt)=> {
              console.log("first name", evt.firstName);
              console.log("last name", evt.lastName);
-             console.log("univName", evt.universityName);
+             
         }).catch (
           (evt)=>{
             console.log("error", evt);
           }
         )
+        */
       },
       error: err => console.error('Observer got an error: ' + err),
       complete: () => console.log('Observer got a complete notification'),
+
     };
+
+    
  
    this.userinfo.getUserInfo().subscribe(myObserver);
  
     
- }
+  }
  }

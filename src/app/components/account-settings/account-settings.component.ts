@@ -17,6 +17,9 @@ export type EditorType = 'name' | 'profile';
 })
  
 export class AccountSettingsComponent implements OnInit {
+
+ firstName: any;
+ lastName: any;
  user: any;
  studentProf: any;
  email: any;
@@ -29,14 +32,9 @@ export class AccountSettingsComponent implements OnInit {
  }
  
  ngOnInit(): void {
- 
-   console.log("univ name first", this.univName);
- 
    this.getInfo();
  
- 
    this.subscribeToUpdateProf();
- //  this.onSubmit();
  }
  
    getInfo() {
@@ -44,11 +42,18 @@ export class AccountSettingsComponent implements OnInit {
      const myObserver = {
        next: x => {
        console.log('User: ' , x);
-       this.user = x.attributes.given_name + " " + x.attributes.family_name;
+       this.firstName = x.attributes.given_name;
+       this.lastName = x.attributes.family_name;
        this.studentProf = x.attributes.name;
        this.email = x.username;
        this.phone = x.attributes.phone_number;
        this.last4 = this.phone.substring(8, 12);
+
+
+       //to get univName
+       this.apiservice.ProfessorByName(this.email).then((evt) => {
+          this.univName = evt.items[0].universityName;
+       });
  
       
       
@@ -73,17 +78,37 @@ export class AccountSettingsComponent implements OnInit {
    } //instead of console log , refresh page
  
  
+   //shows update values and updates backend
    subscribeToUpdateProf() {
      this.apiservice.OnUpdateProfessorListener.subscribe((evt)=> {
        const data = (evt as any).value.data.onUpdateProfessor;
-       console.log("subscribe update", data);
+       console.log("new data", data);
        //assign values to local variables for display
-       this.user = data.firstName + " " + data.lastName;
-       this.univName = data.universityName;
- 
+        //fix user firstname last name
+    //   this.user = data.firstName + " " + data.lastName;
+
+      if (data.universityName != ''){
+        this.univName = data.universityName;
+      }
+
+       //refresh works
+      if (data.firstName != '') {
+          this.firstName = data.firstName;
+          Auth.currentAuthenticatedUser().then((evt)=> {
+            Auth.updateUserAttributes(evt, {given_name: data.firstName})});
+      }
+
+      if (data.lastName != '') {
+          this.lastName = data.lastName;
+          Auth.currentAuthenticatedUser().then((evt)=> {
+            Auth.updateUserAttributes(evt, {family_name: data.lastName})});
+       }
+
+      
       
      });
- 
+     
+     
     
    }
  

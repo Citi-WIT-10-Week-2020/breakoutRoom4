@@ -1,7 +1,7 @@
 import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import Amplify, { Auth } from 'aws-amplify';
 import { Hub, Logger} from 'aws-amplify';
-
+import { APIService } from 'src/app/API.service';
 import { Observable, of ,from} from 'rxjs';
 import { ResourceLoader } from '@angular/compiler';
 import { UserinfoService } from '../../../shared/userinfo.service';
@@ -18,7 +18,7 @@ export class NavBarComponent implements OnInit {
   profName:String;
 
 
-  constructor(private userinfo: UserinfoService) {}
+  constructor(private apiservice: APIService, private userinfo: UserinfoService) {}
 
 ngOnInit(): void {
 
@@ -33,6 +33,7 @@ ngOnInit(): void {
    
     this.displayName();
 
+  //  this.subscribeToUpdateProf();
   }
 
   // uses Hub from Amplify to listen for sign in. sign up, and sign out
@@ -91,8 +92,19 @@ ngOnInit(): void {
       next: x => {
         console.log('Value: ' , x);
         this.profName = x.attributes.given_name + " " + x.attributes.family_name;
-        //this.profName = x.username;
         console.log(this.profName);
+/*
+        this.apiservice.OnUpdateProfessorListener.subscribe((evt)=> {
+          Auth.currentAuthenticatedUser().then((evt)=> {
+              if (this.profName != evt.given_name + " " + evt.family_name){
+                console.log("in await,", this.profName);
+                console.log("evt.given_name + evt.family_name", evt.given_name + " " + evt.family_name);
+                this.profName = evt.given_name + " " + evt.family_name;
+              }
+            }); 
+          
+       });
+     */
       },
       error: err => console.error('Observer got an error: ' + err),
       complete: () => console.log('Observer got a complete notification'),
@@ -102,10 +114,24 @@ ngOnInit(): void {
 
     //this.profName = await Auth.currentUserInfo().then((evt)=>  evt.username);
 
-    
-
    
   }
+
+/*
+  subscribeToUpdateProf() {
+    this.apiservice.OnUpdateProfessorListener.subscribe((evt)=> {
+      
+       Auth.currentAuthenticatedUser().then((evt)=> {
+       this.profName = evt.given_name + " " + evt.family_name;
+     }); 
+     
+    });
+  
+    
+   
+  }
+*/  
+  
 
  
 
