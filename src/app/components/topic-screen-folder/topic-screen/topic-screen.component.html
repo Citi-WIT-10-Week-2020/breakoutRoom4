@@ -83,7 +83,7 @@
           </div>
 
           <ng-container *ngFor="let item of faq.files.items">
-            <app-faq [question]="item.filename" [answer]="item.fileDescription" [faqId]="item.id"></app-faq>
+            <app-faq [question]="item.filename" [answer]="item.fileDescription" [faqId]="item.id" [course]="this.course" [topic]="this.topicName"></app-faq>
           </ng-container>
         <!--</mat-expansion-panel> -->
         </mat-accordion>
