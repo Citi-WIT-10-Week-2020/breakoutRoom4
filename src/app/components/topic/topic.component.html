@@ -14,9 +14,10 @@
   </div>
   
   <div class="footer">
-    <div class="actions">
+    <div class="actions" *ngIf ="isProfessor == true">
       <button class="action-btn" (click)="openUpdateTopicDialog()">UPDATE</button>
       <button class="action-btn" (click)="openDeleteTopicDialog()">DELETE</button>
     </div>
+
   </div>
 </mat-card>
