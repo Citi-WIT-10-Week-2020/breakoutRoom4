@@ -84,6 +84,19 @@ export class TopicScreenComponent implements OnInit {
         })
       }
     });
+    //updates
+    this.apiservice.OnUpdateFileListener.subscribe((evt)=>{
+      const data = (evt as any).value.data.onUpdateFile;
+      console.log("Update", data);
+      console.log("An update has occurred!");
+      //search thru array, find original, and replace it with the new one
+      this.faq.files.items = this.faq.files.items.map((question)=>{
+        if(question.id == data.id){
+          return data;
+        }
+        else return question;
+      })
+    });
   }
   subscribeToResourceGroupEvents(){
     //creations

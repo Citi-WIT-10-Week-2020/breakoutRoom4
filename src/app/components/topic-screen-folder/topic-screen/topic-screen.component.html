@@ -31,7 +31,7 @@
             </ng-container> -->
 
             <ng-container *ngFor="let item of resourceGroups">
-              <app-resource-group [rgName]="item.groupName" [files]="item.files.items"></app-resource-group>
+              <app-resource-group [rgName]="item.groupName" [files]="item.files.items" [rgId]="item.id"></app-resource-group>
             </ng-container>
             
             

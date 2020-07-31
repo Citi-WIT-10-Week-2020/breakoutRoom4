@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { APIService } from 'src/app/API.service';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { DeleteResourceDialogComponent } from 'src/app/components/topic-screen-folder/delete-resource-dialog/delete-resource-dialog.component';
 
 @Component({
   selector: 'app-resource-group',
@@ -10,14 +12,29 @@ export class ResourceGroupComponent implements OnInit {
 
   @Input() files: Array<any>
   @Input() rgName: String;
+  @Input() rgId: string;
   
 
-  constructor(private apiservice: APIService) { }
+  constructor(private apiservice: APIService, private matDialog: MatDialog) { }
 
   ngOnInit(): void {
     console.log("IN RESOURCE GROUP",this.files);
 
     this.subscribeToFileEvents();
+  }
+
+  openUpdateResourceGroupDialog() {
+
+  }
+
+  openDeleteResourceGroupDialog() {
+    console.log("dialog opened");
+    const dialogConfig = new MatDialogConfig();
+    let dialogRef = this.matDialog.open(DeleteResourceDialogComponent, dialogConfig);
+    let instance =  dialogRef.componentInstance;
+    instance.rgName = this.rgName;
+    instance.id = this.rgId;
+    dialogRef.afterClosed().subscribe(()=>{console.log("dialog has been closed")});
   }
 
 

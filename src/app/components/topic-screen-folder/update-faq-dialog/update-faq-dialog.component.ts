@@ -77,7 +77,7 @@ export class UpdateFaqDialogComponent implements OnInit {
 
   async updateFile(){
     //just need an updateFile method in fileservice/api!
-    //this.fileservice.updateFile(this.faqObject);
+    this.fileservice.updateFile(this.faqObject);
 }
 
 }
