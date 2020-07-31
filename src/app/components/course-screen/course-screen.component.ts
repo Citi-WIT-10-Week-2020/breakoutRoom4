@@ -30,6 +30,8 @@ export class CourseScreenComponent implements OnInit {
   professorName: string;
   courseName: string;
 
+  isProfessor: boolean = true;
+
   constructor(private route: ActivatedRoute, private matDialog: MatDialog,private apiservice : APIService, private breakpointObserver: BreakpointObserver, private topicservice:TopicsService) { }
   
 

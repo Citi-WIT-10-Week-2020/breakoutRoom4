@@ -72,7 +72,7 @@ export class AppComponent {
    // this.displayFunction();   // listens for sign in/sign out
     this.signIn();
     
-    this.router.navigate(['/']);
+    //this.router.navigate(['/']);
 }
   
 // wait for sign in to change displayLogo variable 
@@ -131,7 +131,7 @@ export class AppComponent {
 
   
 }
-
+/*
   displayLeftSide () {
     
     if (this.signedIn == false){
@@ -143,8 +143,8 @@ export class AppComponent {
     }
     
   }
-
-  */
+*/
+  
 
 
 }
