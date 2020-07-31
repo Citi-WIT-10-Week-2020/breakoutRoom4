@@ -7,6 +7,8 @@ import { FormBuilder } from '@angular/forms';
 import { AccountDialogComponent } from '../account-dialog/account-dialog.component';
 import { MatDialogConfig, MatDialog } from '@angular/material/dialog';
 import { IAccount } from 'src/app/shared/account';
+import { Router } from '@angular/router';
+import { NavBarComponent } from 'src/app/components/Navigation/nav-bar/nav-bar.component';
 export type EditorType = 'name' | 'profile';
  
 @Component({
@@ -26,15 +28,20 @@ export class AccountSettingsComponent implements OnInit {
  univName: string;
  phone: string;
  last4: string;
+ refresh: Boolean;
  
-  constructor(private userinfo: UserinfoService, private apiservice: APIService,private matDialog: MatDialog) {
+  constructor(private router: Router, private userinfo: UserinfoService, private apiservice: APIService,private matDialog: MatDialog) {
   
  }
  
  ngOnInit(): void {
+   this.refresh = false;
+   
    this.getInfo();
  
    this.subscribeToUpdateProf();
+
+ //  this.refreshNavBar();
  }
  
    getInfo() {
@@ -87,30 +94,47 @@ export class AccountSettingsComponent implements OnInit {
         //fix user firstname last name
     //   this.user = data.firstName + " " + data.lastName;
 
-      if (data.universityName != ''){
+      
         this.univName = data.universityName;
-      }
 
        //refresh works
       if (data.firstName != '') {
           this.firstName = data.firstName;
           Auth.currentAuthenticatedUser().then((evt)=> {
-            Auth.updateUserAttributes(evt, {given_name: data.firstName})});
+              Auth.updateUserAttributes(evt, {given_name: data.firstName})});
+      //  this.refreshNavBar();
+       //   let refresh = new NavBarComponent(this.apiservice, this.userinfo);
+       //   refresh.displayUserName();  
       }
 
       if (data.lastName != '') {
           this.lastName = data.lastName;
           Auth.currentAuthenticatedUser().then((evt)=> {
-            Auth.updateUserAttributes(evt, {family_name: data.lastName})});
-       }
-
+              Auth.updateUserAttributes(evt, {family_name: data.lastName})});
+       //   this.refreshNavBar();
+       //   let refresh = new NavBarComponent(this.apiservice, this.userinfo);
+       //   refresh.displayUserName();
+     }
       
-      
-     });
-     
-     
+     })
+     .next (() => {
+       console.log("in second .then");
+      let refreshNav = new NavBarComponent(this.apiservice, this.userinfo);
+      refreshNav.displayUserName();
+     }); 
+   
+    return true;
     
    }
  
+
+   async refreshNavBar(){
+    console.log("in refresh nav bar"); 
+    let refresh = await this.subscribeToUpdateProf();
+    if(refresh == true){
+      let refreshNav = new NavBarComponent(this.apiservice, this.userinfo);
+      refreshNav.displayUserName();
+    }
+   }
  
 }

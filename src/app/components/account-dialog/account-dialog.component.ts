@@ -85,6 +85,7 @@ export class AccountDialogComponent implements OnInit {
          console.log("id", this.id);
 
          if(this.accountForm.get('firstName').value != ''){
+          this.accountObject.firstName = this.accountForm.get('firstName').value;
           this.apiservice.UpdateProfessor(
             {id:this.id,
              firstName:this.accountForm.get('firstName').value,
@@ -92,6 +93,7 @@ export class AccountDialogComponent implements OnInit {
         }
 
         if(this.accountForm.get('lastName').value != ''){
+          this.accountObject.lastName = this.accountForm.get('lastName').value;
           this.apiservice.UpdateProfessor(
             {id:this.id,
              lastName:this.accountForm.get('lastName').value,
@@ -99,12 +101,14 @@ export class AccountDialogComponent implements OnInit {
         }
 
          if(this.accountForm.get('universityName').value != ''){
+          this.accountObject.univName = this.accountForm.get('universityName').value;
           this.apiservice.UpdateProfessor(
             {id:this.id,
              universityName:this.accountForm.get('universityName').value,
          });
         }
 
+        console.log('accountobject,', this.accountObject);
        
 /*
       //update univName only if there is something

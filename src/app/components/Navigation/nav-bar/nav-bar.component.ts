@@ -5,6 +5,8 @@ import { APIService } from 'src/app/API.service';
 import { Observable, of ,from} from 'rxjs';
 import { ResourceLoader } from '@angular/compiler';
 import { UserinfoService } from '../../../shared/userinfo.service';
+import { IAccount } from 'src/app/shared/account';
+import { listenerCount } from 'cluster';
 
 @Component({
   selector: 'app-nav-bar',
@@ -15,12 +17,13 @@ import { UserinfoService } from '../../../shared/userinfo.service';
 
 
 export class NavBarComponent implements OnInit {
+  accountObject: IAccount;
   profName:String;
 
 
   constructor(private apiservice: APIService, private userinfo: UserinfoService) {}
 
-ngOnInit(): void {
+  ngOnInit(): void {
 
     /*
     Auth.currentUserInfo().then((evt)=>{
@@ -64,7 +67,6 @@ ngOnInit(): void {
              break;
       }
     }
-    console.log("in the function");
     Hub.listen('auth', listener);
   }
 
@@ -72,6 +74,9 @@ ngOnInit(): void {
   // read the name using currentUserInfo
   
   displayUserName() {
+
+
+   
     //wrap in observable, and have profName subscribe :) rxjs 
     /*
     const observable =Auth.currentUserInfo().then((evt)=>{
@@ -86,25 +91,16 @@ ngOnInit(): void {
  // this.profName = this.userinfo.getUsername();
   //console.log("nav bar name", this.profName); //name not here
 
-    console.log("in displayUserName");
+ 
     
     const myObserver = {
-      next: x => {
+      next:  x => {
         console.log('Value: ' , x);
         this.profName = x.attributes.given_name + " " + x.attributes.family_name;
         console.log(this.profName);
-/*
-        this.apiservice.OnUpdateProfessorListener.subscribe((evt)=> {
-          Auth.currentAuthenticatedUser().then((evt)=> {
-              if (this.profName != evt.given_name + " " + evt.family_name){
-                console.log("in await,", this.profName);
-                console.log("evt.given_name + evt.family_name", evt.given_name + " " + evt.family_name);
-                this.profName = evt.given_name + " " + evt.family_name;
-              }
-            }); 
-          
-       });
-     */
+
+        console.log("HERE");
+
       },
       error: err => console.error('Observer got an error: ' + err),
       complete: () => console.log('Observer got a complete notification'),
@@ -117,30 +113,8 @@ ngOnInit(): void {
    
   }
 
-/*
-  subscribeToUpdateProf() {
-    this.apiservice.OnUpdateProfessorListener.subscribe((evt)=> {
-      
-       Auth.currentAuthenticatedUser().then((evt)=> {
-       this.profName = evt.given_name + " " + evt.family_name;
-     }); 
-     
-    });
-  
-    
-   
-  }
-*/  
-  
-
- 
-
-} 
-
 
   
 
 
-
-
-
+}
