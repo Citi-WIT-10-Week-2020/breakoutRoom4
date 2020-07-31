@@ -5,19 +5,26 @@
     
     <span class="spacer"></span>
 
-    <span>
-      <button class="file-btn">
-        <mat-icon class="btn">edit</mat-icon>
-        <span class="tooltiptext">Edit</span>
-      </button>
-    </span>
 
-    <span>
-      <button class="file-btn">
-        <mat-icon class="btn">delete</mat-icon>
-        <span class="tooltiptext">Delete</span>
-      </button>
-    </span>
+    <ng-template [ngIf] = "isProfessor">
+                    
+      <span>
+        <button class="file-btn">
+          <mat-icon class="btn">edit</mat-icon>
+          <span class="tooltiptext">Edit</span>
+        </button>
+      </span>
+  
+      <span>
+        <button class="file-btn">
+          <mat-icon class="btn">delete</mat-icon>
+          <span class="tooltiptext">Delete</span>
+        </button>
+      </span>
+ 
+    </ng-template>
+
+    
 
     
   

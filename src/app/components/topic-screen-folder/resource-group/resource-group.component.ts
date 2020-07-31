@@ -10,6 +10,8 @@ export class ResourceGroupComponent implements OnInit {
 
   @Input() files: Array<any>
   @Input() rgName: String;
+
+  isProfessor: boolean = true;
   
 
   constructor(private apiservice: APIService) { }

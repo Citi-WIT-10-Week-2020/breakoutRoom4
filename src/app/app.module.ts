@@ -66,6 +66,9 @@ import { AccountDialogComponent } from './components/account-dialog/account-dial
 import { FormsModule } from '@angular/forms';
 
 
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -133,6 +136,10 @@ import { FormsModule } from '@angular/forms';
     MatInputModule,
     MatTabsModule,
     MatSelectModule,
+
+    MatProgressSpinnerModule,
+    MatProgressBarModule
+
   ],
   bootstrap: [AppComponent],
   entryComponents: [DialogBodyComponent, UpdateDialogComponent],

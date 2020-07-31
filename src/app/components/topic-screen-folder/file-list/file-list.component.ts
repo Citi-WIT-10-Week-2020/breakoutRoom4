@@ -12,6 +12,9 @@ export class FileListComponent implements OnInit {
   @Input() fileType: string;
   @Input() fileId:string;
   @Input() fileDescription:string;
+
+  isProfessor: boolean = true;
+
   constructor(private fileservice:FileService) { }
 
   ngOnInit(): void { 
