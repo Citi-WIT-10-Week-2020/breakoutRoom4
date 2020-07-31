@@ -25,6 +25,7 @@ export class CourseComponent implements OnInit {
   @Input() description: string;
   @Input() professor: string;
 
+  isProfessor : boolean = true;
 
   constructor(private apiservice: APIService, private courseservice:CourseService, private matDialog: MatDialog, private copyDialog: MatDialog, private deleteDialog: MatDialog) { }
       

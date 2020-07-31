@@ -1,0 +1,20 @@
+<h2 mat-dialog-title style ="text-align: center;">ADD COURSE</h2>
+    <mat-dialog-content class ="container">
+        
+        <form novalidate class ="course-search-form" [formGroup]= "courseSearch" > <!--(ngSubmit)="onSubmit(course)" -->
+        <p>
+            <mat-form-field appearance ="legacy" class="input-fields">
+                <mat-label style="font-size:18px;">Course ID</mat-label>
+                <input required matInput type="search" formControlName="courseId" id="className">
+            </mat-form-field>
+        </p>
+      
+        </form>
+
+
+    </mat-dialog-content>
+
+<mat-dialog-actions style ="align-items:center">
+    <button class="btn-cancel" class="mat-raised-button" style="padding: 5px 30px; margin: auto; margin-bottom: 20px;" (click)="cancel()">Cancel</button>
+    <button type ="btn-submit" class="mat-raised-button" style="padding: 5px 40px; margin: auto; margin-bottom: 20px;" (click)="onSubmit()">Add</button>   
+</mat-dialog-actions>
