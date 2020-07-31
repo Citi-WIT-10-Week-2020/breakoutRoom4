@@ -64,6 +64,7 @@ import { PlaylistContainerComponent } from './components/topic-screen-folder/pla
 import { AccountSettingsComponent } from './components/account-settings/account-settings.component';
 import { AccountDialogComponent } from './components/account-dialog/account-dialog.component';
 import { FormsModule } from '@angular/forms';
+import { StudentCourseDialogComponent } from './components/student-course-dialog/student-course-dialog.component';
 
 
 @NgModule({
@@ -105,6 +106,7 @@ import { FormsModule } from '@angular/forms';
     PlaylistContainerComponent,
     AccountSettingsComponent,
     AccountDialogComponent,
+    StudentCourseDialogComponent,
 
     
   ],

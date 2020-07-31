@@ -19,16 +19,16 @@
 
       <div class="wrapper">
         <div class="box1">
-          <div class="box1-title">Files <button class="add-btn-bg" (click) = "openResourceDialog()"><mat-icon class="add-file-btn">add_circle_outline</mat-icon></button></div>
+          <div class="box1-title" *ngIf ="isProfessor == true">Files 
+            <button class="add-btn-bg" (click) = "openResourceDialog()">
+              <mat-icon class="add-file-btn">add_circle_outline</mat-icon>
+            </button>
+          </div>
+          <div class="box1-title" *ngIf ="isProfessor == false">Files</div>
 
           <mat-accordion multi>
 
            
-
-
-            <!-- <ng-container *ngFor="let item of rgObject">
-              <app-resource-group [rgName]="item.rgName" [fileName]="item.fileName" ></app-resource-group>
-            </ng-container> -->
 
             <ng-container *ngFor="let item of resourceGroups">
               <app-resource-group [rgName]="item.groupName" [files]="item.files.items"></app-resource-group>
@@ -70,11 +70,13 @@
       
       <div class="wrapper-2">
         <mat-accordion multi>
-        <div class="box3-title">FAQ<button class="add-btn-bg" (click) = "openFaqDialog()"><mat-icon class="add-file-btn">add_circle_outline</mat-icon></button></div>
-        <!--<mat-expansion-panel class="rg">-->
-     <!-- <mat-expansion-panel-header>
-          <mat-panel-title class="mat-elevation-z rg-title">FAQ</mat-panel-title>
-        </mat-expansion-panel-header>-->
+        <div class="box3-title" *ngIf ="isProfessor == true">FAQ
+          <button class="add-btn-bg" (click) = "openFaqDialog()">
+            <mat-icon class="add-file-btn">add_circle_outline</mat-icon>
+          </button>
+        </div>
+        <div class="box3-title" *ngIf ="isProfessor == false">FAQ</div>
+      
         
           <div *ngIf="faq.files.items.length == 0">
             <span class="empty-screen-message">You do not currently have any questions or answers. Click the plus sign to add one!</span>
