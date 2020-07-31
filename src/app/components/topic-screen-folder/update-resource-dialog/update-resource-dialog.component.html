@@ -1,0 +1,19 @@
+<span mat-dialog-title style ="text-align: center;">UPDATE FAQ</span>
+    <mat-dialog-content class ="container">
+        <form novalidate class="resource-form" [formGroup]= "resourceGroup" > <!--(ngSubmit)="onSubmit(course)" -->
+        <p>
+            <mat-form-field appearance ="legacy" class="input-fields">
+                <mat-label style="font-size:18px; ">Question</mat-label>
+                <input matInput type="text" formControlName="groupName" placeholder={{rgName}}>
+            </mat-form-field>
+        </p>  
+
+        </form>
+
+
+    </mat-dialog-content>
+
+<mat-dialog-actions>
+    <button class="btn-cancel" class="mat-raised-button" style="padding: 5px 30px; margin: auto; margin-bottom: 20px;" (click)="cancel()">Cancel</button>
+    <button type ="btn-submit" class="mat-raised-button" style="padding: 5px 30px;margin: auto;margin-bottom: 20px;" (click)="onSubmit()">Update</button>   
+</mat-dialog-actions>

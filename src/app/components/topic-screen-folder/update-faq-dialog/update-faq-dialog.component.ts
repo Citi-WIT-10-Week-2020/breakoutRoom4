@@ -16,6 +16,9 @@ export class UpdateFaqDialogComponent implements OnInit {
 
   @Input() question: string;
   @Input() answer: string;
+  @Input() id: string;
+  @Input() course: string;
+  @Input() topic: string;
 
 
   faq: FormGroup;
@@ -23,20 +26,47 @@ export class UpdateFaqDialogComponent implements OnInit {
 
   ngOnInit(): void {
 
-    /*this.faqObject = {
+    this.faqObject = {
       filename: this.question,
-      fileDescription: this.answer
-    }*/
+      fileDescription: this.answer,
+      filetype: "Question/Answer",
+      resourseGroup: "FAQ",
+      id: this.id,
+      file: null,
+      course: this.course,
+      topic: this.topic,
+    }
 
     this.faq = new FormGroup({
-      question: new FormControl(''),
-      answer: new FormControl(''),
+      filename: new FormControl(''),
+      fileDescription: new FormControl(''),
     })
     console.log("OLD INFO", this.faqObject);
   };
 
   onSubmit(): void {
+    console.log(this.faq.value);
+    console.log("submit works");
 
+    if(this.faq.get('filename').value != ''){
+      this.faqObject.filename = this.faq.get('filename').value;
+      this.question = this.faq.get('filename').value;
+      console.log("new question");
+    }
+    else {this.faqObject.filename = this.question;}
+
+    if(this.faq.get('fileDescription').value != ''){
+      this.faqObject.fileDescription = this.faq.get('fileDescription').value;
+      this.answer = this.faq.get('fileDescription').value;
+      console.log("new answer");
+    }
+    else {this.faqObject.fileDescription = this.answer;}
+    
+    console.log("NEW INFO", this.faqObject);
+
+
+    this.updateFile();
+    this.dialogRef.close();
   }
 
   cancel() {
@@ -44,6 +74,11 @@ export class UpdateFaqDialogComponent implements OnInit {
     console.log("Question:",this.question);
     console.log("Answer:",this.answer);
   }
+
+  async updateFile(){
+    //just need an updateFile method in fileservice/api!
+    this.fileservice.updateFile(this.faqObject);
+}
 
 }
 
