@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { APIService } from '../../API.service';
 import { Auth } from 'aws-amplify';
 import { ResourceLoader, ConditionalExpr } from '@angular/compiler';
@@ -8,7 +8,7 @@ import { AccountDialogComponent } from '../account-dialog/account-dialog.compone
 import { MatDialogConfig, MatDialog } from '@angular/material/dialog';
 import { IAccount } from 'src/app/shared/account';
 import { Router } from '@angular/router';
-import { NavBarComponent } from 'src/app/components/Navigation/nav-bar/nav-bar.component';
+//import { NavBarComponent } from 'src/app/components/Navigation/nav-bar/nav-bar.component';
 export type EditorType = 'name' | 'profile';
  
 @Component({
@@ -16,6 +16,7 @@ export type EditorType = 'name' | 'profile';
  templateUrl: './account-settings.component.html',
  styleUrls: ['./account-settings.component.scss'],
  providers:[UserinfoService],
+
 })
  
 export class AccountSettingsComponent implements OnInit {
@@ -41,7 +42,7 @@ export class AccountSettingsComponent implements OnInit {
  
    this.subscribeToUpdateProf();
 
- //  this.refreshNavBar();
+ //   this.refreshNavBar();
  }
  
    getInfo() {
@@ -86,55 +87,39 @@ export class AccountSettingsComponent implements OnInit {
  
  
    //shows update values and updates backend
-   subscribeToUpdateProf() {
+   async subscribeToUpdateProf() {
      this.apiservice.OnUpdateProfessorListener.subscribe((evt)=> {
        const data = (evt as any).value.data.onUpdateProfessor;
        console.log("new data", data);
        //assign values to local variables for display
-        //fix user firstname last name
-    //   this.user = data.firstName + " " + data.lastName;
-
       
+       //value updated in account dialog
         this.univName = data.universityName;
 
-       //refresh works
+       //refresh works 
+     
+
       if (data.firstName != '') {
-          this.firstName = data.firstName;
-          Auth.currentAuthenticatedUser().then((evt)=> {
-              Auth.updateUserAttributes(evt, {given_name: data.firstName})});
-      //  this.refreshNavBar();
-       //   let refresh = new NavBarComponent(this.apiservice, this.userinfo);
-       //   refresh.displayUserName();  
+        this.firstName = data.firstName;
+        Auth.currentAuthenticatedUser().then((evt)=> {
+            Auth.updateUserAttributes(evt, {given_name: data.firstName})
+          });
       }
 
       if (data.lastName != '') {
-          this.lastName = data.lastName;
-          Auth.currentAuthenticatedUser().then((evt)=> {
-              Auth.updateUserAttributes(evt, {family_name: data.lastName})});
-       //   this.refreshNavBar();
-       //   let refresh = new NavBarComponent(this.apiservice, this.userinfo);
-       //   refresh.displayUserName();
-     }
+        this.lastName = data.lastName;
+        Auth.currentAuthenticatedUser().then((evt)=> {
+            Auth.updateUserAttributes(evt, {family_name: data.lastName})
+          });
+      }
+
       
-     })
-     .next (() => {
-       console.log("in second .then");
-      let refreshNav = new NavBarComponent(this.apiservice, this.userinfo);
-      refreshNav.displayUserName();
-     }); 
-   
-    return true;
+     });
+
+    
     
    }
  
 
-   async refreshNavBar(){
-    console.log("in refresh nav bar"); 
-    let refresh = await this.subscribeToUpdateProf();
-    if(refresh == true){
-      let refreshNav = new NavBarComponent(this.apiservice, this.userinfo);
-      refreshNav.displayUserName();
-    }
-   }
  
 }
