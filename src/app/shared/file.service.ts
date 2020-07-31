@@ -79,6 +79,19 @@ export class FileService{
     async createResourceGroup(group: IResourceGroup) : Promise<any>{
         return await this.apiservice.CreateResourceGroup(group);
       }
+
+    async deleteResource(key:string){
+        //delete from s3
+        let result = await Storage.remove(key);
+        console.log(result);
+        //delete from dynamodb
+
+        await this.apiservice.DeleteResourceGroup({id:key});
+    }
+
+    async updateResource(group: IResourceGroup){
+        return await this.apiservice.UpdateResourceGroup(group);
+     }
     
     //create / upload file
     async createFile(fileName,fileType,file, course, topic, fileDescription, resourceGroup,resourceName:string){
@@ -120,8 +133,8 @@ export class FileService{
     }
 
     //update files
-    updateFile(){
-
+    async updateFile(file:IFile){
+       return await this.apiservice.UpdateFile(file);
     }
     //delete files
     async deleteFile(key:string){
