@@ -88,6 +88,10 @@ export class FileService{
 
         await this.apiservice.DeleteResourceGroup({id:key});
     }
+
+    async updateResource(group: IResourceGroup){
+        return await this.apiservice.UpdateResourceGroup(group);
+     }
     
     //create / upload file
     async createFile(fileName,fileType,file, course, topic, fileDescription, resourceGroup,resourceName:string){
