@@ -13,6 +13,8 @@ export class FaqComponent implements OnInit {
   @Input() question: string;
   @Input() answer: string;
   @Input() faqId: string;
+  @Input() course: string;
+  @Input() topic: string;
 
   constructor(private matDialog: MatDialog) { }
 
@@ -26,6 +28,9 @@ export class FaqComponent implements OnInit {
       let instance =  dialogRef.componentInstance;
       instance.question = this.question;
       instance.answer = this.answer;
+      instance.id = this.faqId;
+      instance.course = this.course;
+      instance.topic = this.topic;
       dialogRef.afterClosed().subscribe(()=>{console.log("dialog has been closed")});
   }
 
