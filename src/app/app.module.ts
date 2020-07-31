@@ -135,7 +135,7 @@ import { FormsModule } from '@angular/forms';
     MatSelectModule,
   ],
   bootstrap: [AppComponent],
-  entryComponents: [DialogBodyComponent, UpdateDialogComponent],
+  entryComponents: [DialogBodyComponent, UpdateDialogComponent, AccountDialogComponent],
   providers: [],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
 
