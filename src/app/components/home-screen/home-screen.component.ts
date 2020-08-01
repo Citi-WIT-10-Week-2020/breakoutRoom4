@@ -87,7 +87,25 @@ export class HomeScreenComponent implements OnInit {
           });
         }
         else{
-          //eventually, call get student using the username. If that doesn't exist, create a Student
+          //call get student using the username. If that doesn't exist, create a Student
+          this.apiservice.StudentByName(this.user.username).then((evt)=>{
+            console.log(evt);
+            if(evt.items.length == 0){
+              console.log("NULL! Create student");
+              this.apiservice.CreateStudent({
+                id:uuidv4(),  //eventually change this to username?
+                studentName:this.user.username,
+                universityName:"Default",
+                
+              }).then((evt)=>{
+                console.log("Student was created!");
+                this.getStudentCourses();
+              })
+            }
+            else{
+              this.getStudentCourses();
+            }
+          })
         }
         
 
@@ -136,7 +154,13 @@ export class HomeScreenComponent implements OnInit {
 
   }
 
-  
+  //get courses by getting student
+  getStudentCourses(){
+    this.apiservice.StudentByName(this.user.username).then((evt)=>{
+      console.log("GETSTUDENT COURSES BALUE:",evt);
+      this.courses =[];
+    });
+  }
   getCourses(){
     console.log("Getting Courses", this.user.username);
     const myObserver = {

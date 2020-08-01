@@ -13,6 +13,8 @@ type Student @model
 	id:ID!
 	studentName: ID!
 	universityName: String!
+	firstName: String
+	lastName: String
 	courses: [StudentCourse] @connection(keyName:"byStudent",fields:["studentName"])
 }
 
@@ -36,33 +38,36 @@ type Course @model
 	students: [StudentCourse] @connection(keyName:"byCourse",fields:["id"])
 	courseName: String!
 	courseDescription: String!
-	topics: [Topic] @connection(keyName:"byCourseByProfessor",fields:["professor","courseName"])
+	topics: [Topic] @connection(keyName:"byTopicId",fields:["id"])
 }
 
 type Topic @model
 @key(name:"byCourseByProfessor",fields:["professor","course"],queryField:"topicByCourseByProfessor")
+@key(name:"byTopicId",fields:["id"])
 {
 	id:ID!
 	professor:String!
 	TopicName: String!
 	course: String!
 	TopicDescription: String!
-	resourceGroups: [ResourceGroup] @connection(keyName:"byCourseByTopic",fields:["course","TopicName"])
+	resourceGroups: [ResourceGroup] @connection(keyName:"byResourceGroupId",fields:["id"])
 }
 
 type ResourceGroup @model 
 @key(name:"byCourseByTopic",fields:["course","topic"],queryField:"fileByCourseByTopic")
+@key(name:"byResourceGroupId",fields:["id"])
 {
 	id: ID!
 	course: String!
 	topic: String!
 	groupName: String!
-	files:[File] @connection(keyName:"byTopicbyResourceGroup",fields:["topic","groupName"])
+	files:[File] @connection(keyName:"byFileId",fields:["id"])
 }
 
 type File @model
 @key(name:"byTopicbyResourceGroup",fields:["topic","resourseGroup"],queryField:"fileByTopicByResourceGroup")
 @key(name:"byFilename",fields:["resourseGroup"],queryField:"fileByFilename")
+@key(name:"byFileId",fields:["id"])
 {
 	id: ID!
 	course:String!
