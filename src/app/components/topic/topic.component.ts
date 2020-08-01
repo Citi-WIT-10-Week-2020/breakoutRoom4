@@ -21,6 +21,8 @@ export class TopicComponent implements OnInit {
   @Input() className: string;
   @Input() courseId: string;
 
+  isProfessor : boolean = true;
+
   constructor(private apiservice: APIService, private matDialog: MatDialog, private topicservice:TopicsService) {}
 
   ngOnInit(): void {

@@ -24,6 +24,9 @@ export class TopicScreenComponent implements OnInit {
   courseName: string;
   groupName: string;
   fileDescription: string;
+  isProfessor: boolean = false;
+
+
   constructor(private route:ActivatedRoute,private fb: FormBuilder,private matDialog: MatDialog, private fileservice: FileService, private apiservice: APIService) { }
   course: string;
   playlist: any;
@@ -83,6 +86,19 @@ export class TopicScreenComponent implements OnInit {
           return(question.id != data.id)
         })
       }
+    });
+    //updates
+    this.apiservice.OnUpdateFileListener.subscribe((evt)=>{
+      const data = (evt as any).value.data.onUpdateFile;
+      console.log("Update", data);
+      console.log("An update has occurred!");
+      //search thru array, find original, and replace it with the new one
+      this.faq.files.items = this.faq.files.items.map((question)=>{
+        if(question.id == data.id){
+          return data;
+        }
+        else return question;
+      })
     });
   }
   subscribeToResourceGroupEvents(){

@@ -25,8 +25,9 @@
 <ng-container *ngIf="fileType == 'Link'">
   <div class="file" >
       <span><a href="{{fileDescription}}" target="_blank">{{fileName}}</a></span>
-      <!-- <span>{{fileName}}</span> -->
+      <!-- <span class="tooltiptext">{{fileDescription}}</span> -->
       <span class="spacer"></span>
+    
       <!-- <span>
         <button class="file-btn" (click)="onDownload()">
           <mat-icon class="btn">get_app</mat-icon>

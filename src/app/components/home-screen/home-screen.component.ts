@@ -11,6 +11,7 @@ import {CourseService} from '../../shared/courses.service';
 import { ICourse } from '../../shared/course';
 
 import { UserinfoService } from 'src/app/shared/userinfo.service';
+import { StudentCourseDialogComponent } from '../student-course-dialog/student-course-dialog.component';
 
 /* May use for grid */
 export interface Tile {
@@ -31,6 +32,8 @@ export class HomeScreenComponent implements OnInit {
   courses: Array<any>;  
   user: any;
   userStatus: string ;
+  isProfessor : boolean = false;
+
   constructor(private userinfo: UserinfoService, private apiservice: APIService,private matDialog: MatDialog, private courseservice:CourseService, private breakpointObserver: BreakpointObserver) { 
 
     /* //Might use this for the responsive layout (uses breakpoint import statment)
@@ -186,6 +189,15 @@ export class HomeScreenComponent implements OnInit {
     dialogRef.afterClosed().subscribe(()=>{console.log("dialog has been closed")});
    } //instead of console log , refresh page
  
+   openStudentCourseDialog() {
+    console.log("dialog opened");
+    const dialogConfig = new MatDialogConfig();
+    let dialogRef = this.matDialog.open(StudentCourseDialogComponent, dialogConfig);
+    let instance =  dialogRef.componentInstance;
+      //instance.professorName = this.user.username;
+      
+    dialogRef.afterClosed().subscribe(()=>{console.log("dialog has been closed")});
+   }
   
   
 }

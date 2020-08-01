@@ -14,9 +14,13 @@
       </mat-card-content>
     </div>
       <div class="footer">
-        <div class="actions">
+        <div class="actions" *ngIf ="isProfessor == true">
           <button class="action-btn" [title]="this.courseId" (click)="openCopyDialog()">COPY ID</button>
           <button class="action-btn" (click)="openUpdateDialog()">UPDATE</button>
+          <button class="action-btn" (click)="openDeleteDialog()">DELETE</button>
+        </div>
+        <div class="actions" *ngIf ="isProfessor == false">
+
           <button class="action-btn" (click)="openDeleteDialog()">DELETE</button>
         </div>
       </div>
