@@ -11,7 +11,30 @@ import API, { graphqlOperation } from "@aws-amplify/api";
 )
 export class CourseService{
     constructor(private apiservice: APIService){}
+    getStudentCourses(student:string): Observable<any>{
+      const studentByName = `query studentByName($studentName:ID!){
+        studentByName(studentName:$studentName){
+          items{
+            id
+            universityName
+            studentName
+            courses{
+              items{
+                id
+                course{
+                  id
+                  courseName
+                  courseDescription
+                  professor
+                }
+              }
+            }
+          }
+        }
+      }`
 
+      return from(API.graphql(graphqlOperation(studentByName,{studentName:student})));
+    }
     getCourses(professor:string) : Observable<any> {
         //return from(this.apiservice.ListCourses());
         const professorByName = `query ProfessorByName($professorName:String){
@@ -43,5 +66,9 @@ export class CourseService{
 
     deleteCourse(id:string): Observable<any>{
         return from(this.apiservice.DeleteCourse({id}));
+    }
+
+    deleteStudentCourse(id:string): Observable<any>{
+      return from(this.apiservice.DeleteStudentCourse({id}));
     }
 }

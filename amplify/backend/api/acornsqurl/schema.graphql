@@ -26,8 +26,8 @@ type StudentCourse @model(queries: null)
 	id:ID!
 	studentID: ID!
 	courseID: ID!
-	student: Student! @connection(fields:["studentID"])
-	course: Course! @connection(fields:["courseID"])
+	student: Student @connection(fields:["studentID"])
+	course: Course @connection(fields:["courseID"])
 }
 
 type Course @model
