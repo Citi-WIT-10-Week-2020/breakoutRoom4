@@ -33,7 +33,9 @@ export class HomeScreenComponent implements OnInit {
   user: any;
   userStatus: string ;
 
+
   isProfessor : boolean;
+
 
 
   constructor(private userinfo: UserinfoService, private apiservice: APIService,private matDialog: MatDialog, private courseservice:CourseService, private breakpointObserver: BreakpointObserver) { 

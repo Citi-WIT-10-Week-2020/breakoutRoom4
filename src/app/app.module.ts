@@ -69,6 +69,9 @@ import { DeleteResourceDialogComponent } from './components/topic-screen-folder/
 import { UpdateResourceDialogComponent } from './components/topic-screen-folder/update-resource-dialog/update-resource-dialog.component';
 
 
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -139,6 +142,10 @@ import { UpdateResourceDialogComponent } from './components/topic-screen-folder/
     MatInputModule,
     MatTabsModule,
     MatSelectModule,
+
+    MatProgressSpinnerModule,
+    MatProgressBarModule
+
   ],
   bootstrap: [AppComponent],
   entryComponents: [DialogBodyComponent, UpdateDialogComponent, AccountDialogComponent],
