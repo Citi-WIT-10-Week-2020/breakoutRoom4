@@ -12,10 +12,14 @@ import { UpdateResourceDialogComponent } from 'src/app/components/topic-screen-f
 export class ResourceGroupComponent implements OnInit {
 
   @Input() files: Array<any>
+  
+
+  isProfessor: boolean = true;
   @Input() rgName: string;
   @Input() rgId: string;
   @Input() course: string;
   @Input() topic: string;
+  
   
 
   constructor(private apiservice: APIService, private matDialog: MatDialog) { }
@@ -35,6 +39,7 @@ export class ResourceGroupComponent implements OnInit {
       instance.id = this.rgId;
       instance.course = this.course;
       instance.topic = this.topic;
+      instance.files = this.files;
       dialogRef.afterClosed().subscribe(()=>{console.log("dialog has been closed")});
   }
 

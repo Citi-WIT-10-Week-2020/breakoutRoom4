@@ -13,12 +13,18 @@
       </button>
     </span>
     
-    <span>
-      <button class="file-btn" (click)="onDelete()">
-        <mat-icon class="btn">delete</mat-icon>
-        <span class="tooltiptext">Delete</span>
-      </button>
-    </span>
+    <ng-template [ngIf] = "isProfessor">
+                    
+      <span>
+        <button class="file-btn" (click)="onDelete()">
+          <mat-icon class="btn">delete</mat-icon>
+          <span class="tooltiptext">Delete</span>
+        </button>
+      </span>
+ 
+  </ng-template>
+
+    
   </div>
 </ng-container>
 

@@ -11,7 +11,7 @@ import { Input } from '@angular/core'
 })
 export class DeleteDialogComponent implements OnInit {
   @Input() courseId : string;
-
+  @Input() isProfessor : boolean;
   constructor( public dialogRef: MatDialogRef<DeleteDialogComponent>, private courseservice:CourseService) {}
 
   ngOnInit(): void {
@@ -25,9 +25,18 @@ export class DeleteDialogComponent implements OnInit {
         error: err => console.error('Observer got an error: ' + err),
         complete: () => console.log('Observer got a complete notification'),
       };
-      this.courseservice.deleteCourse(this.courseId).subscribe(myObserver);
+      if(this.isProfessor){
+        this.courseservice.deleteCourse(this.courseId).subscribe(myObserver);
+      }
+      else{
+        console.log("Deleting student course");
+        this.courseservice.deleteStudentCourse(this.courseId).subscribe(myObserver);
+      }
+      
       this.dialogRef.close();
     }
+
+
     cancel(): void{
       this.dialogRef.close();
     }
