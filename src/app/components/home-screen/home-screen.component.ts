@@ -50,10 +50,6 @@ export class HomeScreenComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUser();
-   
-    this.subscribeToCourseCreations();
-    this.subscribeToCourseUpdates();
-    this.subscribeToCourseDeletions();
   }
 
 
@@ -68,6 +64,8 @@ export class HomeScreenComponent implements OnInit {
         
 
         if(this.userStatus == "Professor"){
+          this.isProfessor = true;
+          this.subscribeToCourseEventsProfessor();
           //call get professor using the username. If that doesn't exist, create a professor
           this.apiservice.ProfessorByName(this.user.username).then((evt)=>{
             console.log(evt);
@@ -90,7 +88,27 @@ export class HomeScreenComponent implements OnInit {
           });
         }
         else{
-          //eventually, call get student using the username. If that doesn't exist, create a Student
+          //call get student using the username. If that doesn't exist, create a Student
+          this.isProfessor = false;
+          this.subscribeToCourseEventsStudent();
+          this.apiservice.StudentByName(this.user.username).then((evt)=>{
+            console.log(evt);
+            if(evt.items.length == 0){
+              console.log("NULL! Create student");
+              this.apiservice.CreateStudent({
+                id:uuidv4(),  //eventually change this to username?
+                studentName:this.user.username,
+                universityName:"Default",
+                
+              }).then((evt)=>{
+                console.log("Student was created!");
+                this.getStudentCourses();
+              })
+            }
+            else{
+              this.getStudentCourses();
+            }
+          })
         }
         
 
@@ -103,26 +121,13 @@ export class HomeScreenComponent implements OnInit {
     this.userinfo.getUserInfo().subscribe(myObserver);
   }
 
-  subscribeToCourseDeletions(){
-    this.apiservice.OnDeleteCourseListener.subscribe((evt)=>{
-      console.log("A deletion has occured!");
-      const data = (evt as any).value.data.onDeleteCourse;
-      console.log(data);
-      //basically, search thru array, find original, remove it
-      this.courses = this.courses.filter((course)=>{
-          return (course.id != data.id)
-      });
-      console.log(this.courses);
-    });
-  }
-
-  subscribeToCourseCreations(){
+ 
+  subscribeToCourseEventsProfessor(){
     this.apiservice.OnCreateCourseListener.subscribe((evt)=>{
       const data = (evt as any).value.data.onCreateCourse;
       this.courses =[...this.courses,data];
     });
-  }
-  subscribeToCourseUpdates(){
+
     this.apiservice.OnUpdateCourseListener.subscribe((evt)=>{
      
       const data = (evt as any).value.data.onUpdateCourse;
@@ -137,9 +142,50 @@ export class HomeScreenComponent implements OnInit {
       })
     });
 
+    this.apiservice.OnDeleteCourseListener.subscribe((evt)=>{
+      console.log("A deletion has occured!");
+      const data = (evt as any).value.data.onDeleteCourse;
+      console.log(data);
+      //basically, search thru array, find original, remove it
+      this.courses = this.courses.filter((course)=>{
+          return (course.id != data.id)
+      });
+      console.log(this.courses);
+    });
+  }
+  
+  subscribeToCourseEventsStudent(){
+    //subscribe to StudentCourse creations
+    this.apiservice.OnCreateStudentCourseListener.subscribe((course)=>{
+      console.log("STUDENTCOURSE CREATED",course);
+      //may have to call api again haha
+    })
+
+    //deletions
+    this.apiservice.OnDeleteStudentCourseListener.subscribe((course)=>{
+      console.log("STUDENTCOURSE DELETED",course);
+    })
   }
 
-  
+  //get courses by getting student
+  getStudentCourses(){
+    console.log("Getting Student Courses", this.user.username);
+    const myObserver = {
+      next: x => {
+        console.log('GETSTUDENTCOURSE VALUE: ' , x);
+        this.courses = [];
+        this.courses = x.data.studentByName.items[0].courses.items;
+        console.log(this.courses);
+        //console.log(this.courses);
+        //this.courses = x.items[0].courses.items;
+      },
+      error: err => console.error('Observer got an error: ' , err),
+      complete: () => console.log('Observer got a complete notification'),
+    };
+    this.courseservice.getStudentCourses(this.user.username).subscribe(myObserver);
+  }
+
+
   getCourses(){
     console.log("Getting Courses", this.user.username);
     const myObserver = {
@@ -171,6 +217,7 @@ export class HomeScreenComponent implements OnInit {
     let dialogRef = this.matDialog.open(StudentCourseDialogComponent, dialogConfig);
     let instance =  dialogRef.componentInstance;
       //instance.professorName = this.user.username;
+      instance.studentId = this.user.username;
       
     dialogRef.afterClosed().subscribe(()=>{console.log("dialog has been closed")});
    }

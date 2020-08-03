@@ -126,7 +126,7 @@ onResourceSubmit(){
   this.fileType = this.fileForm.get('fileType').value;
   this.fileDescription = this.fileForm.get('fileDescription').value;
   this.groupName = this.fileForm.get('groupName').value;
-
+  console.log("GROUPNAME",this.groupName);
   console.log(this.filename, this.fileType," DESC ", this.fileDescription, this.groupName);
   console.log("RESOURCENAME",this.fileForm.get("fileName").value);
   this.fileservice.createFile(this.filename, this.fileType, file, this.courseName, this.topicName, this.fileDescription, this.groupName,this.fileForm.get('fileName').value); //PASS IN MORE PARAMS

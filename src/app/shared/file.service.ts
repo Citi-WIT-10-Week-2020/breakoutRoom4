@@ -118,13 +118,14 @@ export class FileService{
         try{
             if(file){
                 
-                await Storage.put(key,file,{
+               let result = await Storage.put(key,file,{
                 contentType:fileType
                 });
+                console.log("S3", result);
             }
             
             let returned = await this.apiservice.CreateFile(this.fileInput);
-            console.log(returned);
+            console.log("DYNAMO",returned);
         }
         catch(err){
             console.log("err",err);
