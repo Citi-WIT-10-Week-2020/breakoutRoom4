@@ -24,7 +24,7 @@ export class TopicScreenComponent implements OnInit {
   courseName: string;
   groupName: string;
   fileDescription: string;
-  isProfessor: boolean = false;
+  isProfessor: boolean = true;
 
 
   constructor(private route:ActivatedRoute,private fb: FormBuilder,private matDialog: MatDialog, private fileservice: FileService, private apiservice: APIService) { }

@@ -32,7 +32,7 @@ export class HomeScreenComponent implements OnInit {
   courses: Array<any>;  
   user: any;
   userStatus: string ;
-  isProfessor : boolean = false;
+  isProfessor : boolean = true;
 
   constructor(private userinfo: UserinfoService, private apiservice: APIService,private matDialog: MatDialog, private courseservice:CourseService, private breakpointObserver: BreakpointObserver) { 
 
