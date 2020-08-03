@@ -6,18 +6,20 @@
       <div class="ans">
         <span class="answer">{{answer}}</span>
         <span class="spacer"></span>
-        <span class="buttons">
-          <button mat-icon-button (click)="openUpdateFaqDialog()">
-            <mat-icon>edit</mat-icon>
-            <span class="tooltip-text">Update</span>
-          </button>
-        </span>
-        <span class="buttons">
-          <button mat-icon-button (click)="openDeleteFaqDialog()">
-            <mat-icon>delete</mat-icon>
-            <span class="tooltip-text">Delete</span>
-          </button>
-        </span>
+        <ng-template [ngIf] = "isProfessor">
+            <span class="buttons">
+              <button mat-icon-button (click)="openUpdateFaqDialog()">
+                <mat-icon>edit</mat-icon>
+                <span class="tooltip-text">Update</span>
+              </button>
+            </span>
+            <span class="buttons">
+              <button mat-icon-button (click)="openDeleteFaqDialog()">
+                <mat-icon>delete</mat-icon>
+                <span class="tooltip-text">Delete</span>
+              </button>
+            </span>
+        </ng-template>
       </div>
   </mat-expansion-panel>
 
