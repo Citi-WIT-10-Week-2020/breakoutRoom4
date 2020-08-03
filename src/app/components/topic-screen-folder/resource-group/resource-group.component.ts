@@ -20,6 +20,7 @@ export class ResourceGroupComponent implements OnInit {
   @Input() course: string;
   @Input() topic: string;
   
+  
 
   constructor(private apiservice: APIService, private matDialog: MatDialog) { }
 

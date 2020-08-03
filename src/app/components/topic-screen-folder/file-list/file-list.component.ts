@@ -13,7 +13,7 @@ export class FileListComponent implements OnInit {
   @Input() fileId:string;
   @Input() fileDescription:string;
 
-  isProfessor: boolean = true;
+  isProfessor: boolean = false;
 
   constructor(private fileservice:FileService) { }
 
