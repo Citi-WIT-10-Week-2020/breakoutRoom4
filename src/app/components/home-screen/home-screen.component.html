@@ -8,8 +8,13 @@
 
       <div class="title-container">
         <span class="title-item"><a routerLink='/home'>Courses</a></span>
-        
-        <span><button class="add-btn-bg" (click) = "openCourseDialog()"><mat-icon class="add-btn">add_circle_outline</mat-icon></button></span>
+        <ng-container *ngIf= "isProfessor == true">
+          <span ><button class="add-btn-bg" (click) = "openCourseDialog()"><mat-icon class="add-btn">add_circle_outline</mat-icon></button></span>
+        </ng-container>
+
+        <ng-container *ngIf= "isProfessor == false">
+          <span><button class="add-btn-bg" (click) = "openStudentCourseDialog()"><mat-icon class="add-btn">add_circle_outline</mat-icon></button></span>
+        </ng-container>
       </div>
 
       <div *ngIf="courses && courses.length == 0">
