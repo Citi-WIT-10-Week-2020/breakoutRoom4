@@ -141,7 +141,7 @@ import { UpdateResourceDialogComponent } from './components/topic-screen-folder/
     MatSelectModule,
   ],
   bootstrap: [AppComponent],
-  entryComponents: [DialogBodyComponent, UpdateDialogComponent],
+  entryComponents: [DialogBodyComponent, UpdateDialogComponent, AccountDialogComponent],
   providers: [],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
 
