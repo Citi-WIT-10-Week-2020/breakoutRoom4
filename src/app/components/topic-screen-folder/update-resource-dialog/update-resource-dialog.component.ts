@@ -17,6 +17,7 @@ export class UpdateResourceDialogComponent implements OnInit {
   @Input() rgName: string;
   @Input() course: string;
   @Input() topic: string;
+  @Input() files: Array<any>
 
   resourceGroup: FormGroup;
   resourceGroupObject: IResourceGroup;
