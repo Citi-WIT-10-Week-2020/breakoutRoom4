@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { APIService } from '../../API.service';
 import { Auth } from 'aws-amplify';
 import { ResourceLoader, ConditionalExpr } from '@angular/compiler';
@@ -7,6 +7,8 @@ import { FormBuilder } from '@angular/forms';
 import { AccountDialogComponent } from '../account-dialog/account-dialog.component';
 import { MatDialogConfig, MatDialog } from '@angular/material/dialog';
 import { IAccount } from 'src/app/shared/account';
+import { Router } from '@angular/router';
+//import { NavBarComponent } from 'src/app/components/Navigation/nav-bar/nav-bar.component';
 export type EditorType = 'name' | 'profile';
  
 @Component({
@@ -14,29 +16,33 @@ export type EditorType = 'name' | 'profile';
  templateUrl: './account-settings.component.html',
  styleUrls: ['./account-settings.component.scss'],
  providers:[UserinfoService],
+
 })
  
 export class AccountSettingsComponent implements OnInit {
+
+ firstName: any;
+ lastName: any;
  user: any;
  studentProf: any;
  email: any;
  univName: string;
  phone: string;
  last4: string;
+ refresh: Boolean;
  
-  constructor(private userinfo: UserinfoService, private apiservice: APIService,private matDialog: MatDialog) {
+  constructor(private router: Router, private userinfo: UserinfoService, private apiservice: APIService,private matDialog: MatDialog) {
   
  }
  
  ngOnInit(): void {
- 
-   console.log("univ name first", this.univName);
- 
+   this.refresh = false;
+   
    this.getInfo();
  
- 
    this.subscribeToUpdateProf();
- //  this.onSubmit();
+
+ //   this.refreshNavBar();
  }
  
    getInfo() {
@@ -44,11 +50,18 @@ export class AccountSettingsComponent implements OnInit {
      const myObserver = {
        next: x => {
        console.log('User: ' , x);
-       this.user = x.attributes.given_name + " " + x.attributes.family_name;
+       this.firstName = x.attributes.given_name;
+       this.lastName = x.attributes.family_name;
        this.studentProf = x.attributes.name;
        this.email = x.username;
        this.phone = x.attributes.phone_number;
        this.last4 = this.phone.substring(8, 12);
+
+
+       //to get univName
+       this.apiservice.ProfessorByName(this.email).then((evt) => {
+          this.univName = evt.items[0].universityName;
+       });
  
       
       
@@ -73,19 +86,40 @@ export class AccountSettingsComponent implements OnInit {
    } //instead of console log , refresh page
  
  
-   subscribeToUpdateProf() {
+   //shows update values and updates backend
+   async subscribeToUpdateProf() {
      this.apiservice.OnUpdateProfessorListener.subscribe((evt)=> {
        const data = (evt as any).value.data.onUpdateProfessor;
-       console.log("subscribe update", data);
+       console.log("new data", data);
        //assign values to local variables for display
-       this.user = data.firstName + " " + data.lastName;
-       this.univName = data.universityName;
- 
+      
+       //value updated in account dialog
+        this.univName = data.universityName;
+
+       //refresh works 
+     
+
+      if (data.firstName != '') {
+        this.firstName = data.firstName;
+        Auth.currentAuthenticatedUser().then((evt)=> {
+            Auth.updateUserAttributes(evt, {given_name: data.firstName})
+          });
+      }
+
+      if (data.lastName != '') {
+        this.lastName = data.lastName;
+        Auth.currentAuthenticatedUser().then((evt)=> {
+            Auth.updateUserAttributes(evt, {family_name: data.lastName})
+          });
+      }
+
       
      });
- 
+
+    
     
    }
  
+
  
 }

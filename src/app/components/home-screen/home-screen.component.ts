@@ -32,7 +32,11 @@ export class HomeScreenComponent implements OnInit {
   courses: Array<any>;  
   user: any;
   userStatus: string ;
-  isProfessor : boolean = true;
+
+
+  isProfessor : boolean;
+
+
 
   constructor(private userinfo: UserinfoService, private apiservice: APIService,private matDialog: MatDialog, private courseservice:CourseService, private breakpointObserver: BreakpointObserver) { 
 
@@ -217,7 +221,9 @@ export class HomeScreenComponent implements OnInit {
     let dialogRef = this.matDialog.open(StudentCourseDialogComponent, dialogConfig);
     let instance =  dialogRef.componentInstance;
       //instance.professorName = this.user.username;
+
       instance.studentId = this.user.username;
+
       
     dialogRef.afterClosed().subscribe(()=>{console.log("dialog has been closed")});
    }

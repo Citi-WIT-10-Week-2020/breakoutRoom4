@@ -148,7 +148,7 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
 
   ],
   bootstrap: [AppComponent],
-  entryComponents: [DialogBodyComponent, UpdateDialogComponent],
+  entryComponents: [DialogBodyComponent, UpdateDialogComponent, AccountDialogComponent],
   providers: [],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
 

@@ -7,8 +7,11 @@
                <div class="background">
                  <!--  <button (click)="openAccountDialog()" class="button">Edit</button> -->
                    <button class="add-btn-bg" (click) = "openAccountDialog()"><mat-icon class="add-btn">edit</mat-icon></button>
+
                    <mat-icon class="image">account_circle</mat-icon>
-                   <p class="user">{{user}}</p>
+                
+                   <p class="user">{{firstName}} {{lastName}}</p>
+
                    <p class="details">{{studentProf}}</p>
                    <p class="details">{{univName}}</p>
                    <p class="details">{{email}}</p>
