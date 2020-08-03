@@ -196,6 +196,17 @@
     margin-bottom: px;
 }
 
+#notstarted {
+    color: blue;
+}
+
+.changebtn {
+    height: 20px;
+    width: 150px;
+    background-color: #F0F0F0;
+    border: none; 
+}
+
 @media only screen and (max-width: 959px) {
 
     .playlist-container {
@@ -207,3 +218,7 @@
         margin-right: 0;
         }
     }
+
+
+
+// start

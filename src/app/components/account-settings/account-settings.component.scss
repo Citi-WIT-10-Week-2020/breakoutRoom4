@@ -30,10 +30,11 @@
   
  .image {
     display: block;
-    margin-left: auto;
+    font-size: 150px;
     margin-right: auto;
-    width: 20%;
-    height: 20%;
+    margin-left: auto;
+    width: 150px;
+    height: 150px;
     padding: 20px;
  }
   
@@ -90,6 +91,7 @@
   //  background-color: white;
     border: 5px solid #5F5173;
     border-radius: .25em;
+    padding-bottom: 20px;
  }
   
  .user {
