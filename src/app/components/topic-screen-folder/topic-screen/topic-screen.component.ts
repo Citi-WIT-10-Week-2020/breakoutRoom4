@@ -10,11 +10,12 @@ import  {ResourceDialogComponent} from '../resource-dialog/resource-dialog.compo
 import { IResourceGroup } from 'src/app/shared/resourceGroup';
 import { v4 as uuidv4 } from 'uuid';
 import { state } from '@angular/animations';
+import { UserinfoService } from 'src/app/shared/userinfo.service';
 @Component({
   selector: 'app-topic-screen',
   templateUrl: './topic-screen.component.html',
   styleUrls: ['./topic-screen.component.scss'],
-  providers:[FileService]
+  providers:[FileService,UserinfoService]
 })
 export class TopicScreenComponent implements OnInit {
   resourceGroups : Array<any>;  //DINA, THE RESOURCE GROUPS ARE IN HERE :)
@@ -25,10 +26,10 @@ export class TopicScreenComponent implements OnInit {
   courseName: string;
   groupName: string;
   fileDescription: string;
-  isProfessor: boolean = true;
+  isProfessor: boolean ;
 
 
-  constructor(private route:ActivatedRoute,private fb: FormBuilder,private matDialog: MatDialog, private fileservice: FileService, private apiservice: APIService) { }
+  constructor(private route:ActivatedRoute,private fb: FormBuilder,private matDialog: MatDialog, private fileservice: FileService, private apiservice: APIService,private userinfo: UserinfoService) { }
   course: string;
   playlist: any;
   faq : any;
@@ -38,7 +39,7 @@ export class TopicScreenComponent implements OnInit {
 
 
   ngOnInit(): void {
-
+    this.getUserStatus();
     this.buttonFunction();
     
     //gets courseID
@@ -65,6 +66,17 @@ export class TopicScreenComponent implements OnInit {
     this.checkResourceGroups();
     this.subscribeToResourceGroupEvents();
     this.subscibeToFileEvents();
+  }
+
+  getUserStatus(){
+    const myObserver = {
+      next: x =>{
+        let status = x.attributes.name;
+        (x.attributes.name == "Professor") ? this.isProfessor = true : this.isProfessor = false;
+        console.log("Professor Status: ", this.isProfessor);
+      }
+    }
+    this.userinfo.getUserInfo().subscribe(myObserver);
   }
   subscibeToFileEvents(){
      //creations
