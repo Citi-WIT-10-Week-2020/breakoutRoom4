@@ -24,8 +24,8 @@ export class CourseComponent implements OnInit {
   @Input() courseId: string;
   @Input() description: string;
   @Input() professor: string;
-
-  isProfessor : boolean = true;
+  @Input() isProfessor : boolean;
+ 
 
   constructor(private apiservice: APIService, private courseservice:CourseService, private matDialog: MatDialog, private copyDialog: MatDialog, private deleteDialog: MatDialog) { }
       
@@ -76,6 +76,7 @@ export class CourseComponent implements OnInit {
       let dialogRef = this.matDialog.open(DeleteDialogComponent, dialogConfig);
       let instance =  dialogRef.componentInstance;
       instance.courseId = this.courseId;
+      instance.isProfessor = this.isProfessor;
       dialogRef.afterClosed().subscribe(()=>{console.log("dialog has been closed")});
      }
 
