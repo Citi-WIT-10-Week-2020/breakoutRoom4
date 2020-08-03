@@ -34,7 +34,7 @@
         <ng-container *ngIf="isProfessor == false">
 
           <ng-container *ngFor="let item of courses">
-          <app-course class="appcoursecont" fxFlex="0 1 auto" [name]="item.course.courseName" [professor] ="item.course.professor" [courseId]="item.id" [description]="item.course.courseDescription" [isProfessor]="isProfessor"></app-course>
+          <app-course class="appcoursecont" fxFlex="0 1 auto" [name]="item.course.courseName" [professor] ="item.course.professor" [studentcourseId] ="item.id" [courseId]="item.course.id" [description]="item.course.courseDescription" [isProfessor]="isProfessor"></app-course>
         </ng-container>
         </ng-container>
         
