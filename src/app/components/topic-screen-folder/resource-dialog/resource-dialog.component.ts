@@ -121,8 +121,8 @@ onResourceSubmit(){
   if(this.fileDescription == undefined){
     this.fileDescription = "empty";
   }  
-  //if adding a new resource, do this
-  this.filename = this.fileForm.get('fileName').value;
+ 
+  
   this.fileType = this.fileForm.get('fileType').value;
   this.fileDescription = this.fileForm.get('fileDescription').value;
   this.groupName = this.fileForm.get('groupName').value;
