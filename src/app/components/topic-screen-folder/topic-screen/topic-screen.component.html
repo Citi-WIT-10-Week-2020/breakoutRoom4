@@ -47,14 +47,15 @@
                 </div>
 
                 <ng-container *ngFor="let item of playlist.files.items">
-                  <app-playlist-video class="videocards" [videosrc]="item.videosrc" [videoName]="item.videoName" ></app-playlist-video>
+                  <app-playlist-video class="videocards" [videosrc]="item.fileDescription" [videoName]="item.fileName" ></app-playlist-video>
                 </ng-container>
 
                 <!--<ng-container *ngFor="let item of videoLink">
                   <app-video-links class="videocards" [videourl]="item.videourl" [linkName]="item.linkName" ></app-video-links>
                 </ng-container>-->
+                
                 <app-video-links></app-video-links>
-                <app-video-links></app-video-links>
+                <app-video-links></app-video-links> 
                 
                 
                   

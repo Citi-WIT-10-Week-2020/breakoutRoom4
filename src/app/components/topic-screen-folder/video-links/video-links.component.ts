@@ -7,8 +7,8 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class VideoLinksComponent implements OnInit {
 
-  @Input() videourl: String;
-  @Input() linkName: String;
+  @Input() videoName: string;
+  @Input() videosrc: string;
 
   constructor() { }
 

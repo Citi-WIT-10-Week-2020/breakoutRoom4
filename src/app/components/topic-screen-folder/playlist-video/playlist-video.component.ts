@@ -7,8 +7,9 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class PlaylistVideoComponent implements OnInit {
 
-  @Input() videosrc: String;
-  @Input() videoName: String;
+  @Input() fileDescription: string;
+  @Input() fileName: string;
+  @Input() fileType: string;
 
   constructor() { }
 

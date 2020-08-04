@@ -11,7 +11,7 @@
       </div>
 
       <ng-container *ngFor="let item of playlistObject">
-        <app-playlist-video class="videocards" [videosrc]="item.videosrc" [videoName]="item.videoName" ></app-playlist-video>
+        <app-playlist-video class="videocards" [fileDescription]="item.videosrc" [fileName]="item.videoName" ></app-playlist-video>
       </ng-container>
        
     </div>
