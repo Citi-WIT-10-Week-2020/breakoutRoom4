@@ -82,6 +82,8 @@ mutation CreateStudent(
     id
     studentName
     universityName
+    firstName
+    lastName
     courses {
       items {
         id
@@ -104,6 +106,8 @@ mutation UpdateStudent(
     id
     studentName
     universityName
+    firstName
+    lastName
     courses {
       items {
         id
@@ -126,6 +130,8 @@ mutation DeleteStudent(
     id
     studentName
     universityName
+    firstName
+    lastName
     courses {
       items {
         id
@@ -152,6 +158,8 @@ mutation CreateStudentCourse(
       id
       studentName
       universityName
+      firstName
+      lastName
       courses {
         nextToken
       }
@@ -188,6 +196,8 @@ mutation UpdateStudentCourse(
       id
       studentName
       universityName
+      firstName
+      lastName
       courses {
         nextToken
       }
@@ -224,6 +234,8 @@ mutation DeleteStudentCourse(
       id
       studentName
       universityName
+      firstName
+      lastName
       courses {
         nextToken
       }

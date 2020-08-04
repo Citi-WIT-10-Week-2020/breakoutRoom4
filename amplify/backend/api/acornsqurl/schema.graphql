@@ -13,6 +13,8 @@ type Student @model
 	id:ID!
 	studentName: ID!
 	universityName: String!
+	firstName: String
+	lastName: String
 	courses: [StudentCourse] @connection(keyName:"byStudent",fields:["studentName"])
 }
 
@@ -24,8 +26,8 @@ type StudentCourse @model(queries: null)
 	id:ID!
 	studentID: ID!
 	courseID: ID!
-	student: Student! @connection(fields:["studentID"])
-	course: Course! @connection(fields:["courseID"])
+	student: Student @connection(fields:["studentID"])
+	course: Course @connection(fields:["courseID"])
 }
 
 type Course @model
@@ -41,6 +43,7 @@ type Course @model
 
 type Topic @model
 @key(name:"byCourseByProfessor",fields:["professor","course"],queryField:"topicByCourseByProfessor")
+
 {
 	id:ID!
 	professor:String!
@@ -52,6 +55,7 @@ type Topic @model
 
 type ResourceGroup @model 
 @key(name:"byCourseByTopic",fields:["course","topic"],queryField:"fileByCourseByTopic")
+
 {
 	id: ID!
 	course: String!
@@ -63,6 +67,7 @@ type ResourceGroup @model
 type File @model
 @key(name:"byTopicbyResourceGroup",fields:["topic","resourseGroup"],queryField:"fileByTopicByResourceGroup")
 @key(name:"byFilename",fields:["resourseGroup"],queryField:"fileByFilename")
+
 {
 	id: ID!
 	course:String!

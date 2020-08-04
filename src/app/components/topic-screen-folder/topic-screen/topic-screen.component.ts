@@ -9,11 +9,13 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import  {ResourceDialogComponent} from '../resource-dialog/resource-dialog.component'
 import { IResourceGroup } from 'src/app/shared/resourceGroup';
 import { v4 as uuidv4 } from 'uuid';
+import { state } from '@angular/animations';
+import { UserinfoService } from 'src/app/shared/userinfo.service';
 @Component({
   selector: 'app-topic-screen',
   templateUrl: './topic-screen.component.html',
   styleUrls: ['./topic-screen.component.scss'],
-  providers:[FileService]
+  providers:[FileService,UserinfoService]
 })
 export class TopicScreenComponent implements OnInit {
   resourceGroups : Array<any>;  //DINA, THE RESOURCE GROUPS ARE IN HERE :)
@@ -24,11 +26,22 @@ export class TopicScreenComponent implements OnInit {
   courseName: string;
   groupName: string;
   fileDescription: string;
-  constructor(private route:ActivatedRoute,private fb: FormBuilder,private matDialog: MatDialog, private fileservice: FileService, private apiservice: APIService) { }
+  isProfessor: boolean ;
+
+
+  constructor(private route:ActivatedRoute,private fb: FormBuilder,private matDialog: MatDialog, private fileservice: FileService, private apiservice: APIService,private userinfo: UserinfoService) { }
   course: string;
   playlist: any;
   faq : any;
+
+
+  
+
+
   ngOnInit(): void {
+    this.getUserStatus();
+    this.buttonFunction();
+    
     //gets courseID
     this.route.paramMap.subscribe(params => {
       this.courseId = params.get('courseId');
@@ -53,6 +66,17 @@ export class TopicScreenComponent implements OnInit {
     this.checkResourceGroups();
     this.subscribeToResourceGroupEvents();
     this.subscibeToFileEvents();
+  }
+
+  getUserStatus(){
+    const myObserver = {
+      next: x =>{
+        let status = x.attributes.name;
+        (x.attributes.name == "Professor") ? this.isProfessor = true : this.isProfessor = false;
+        console.log("Professor Status: ", this.isProfessor);
+      }
+    }
+    this.userinfo.getUserInfo().subscribe(myObserver);
   }
   subscibeToFileEvents(){
      //creations
@@ -83,6 +107,19 @@ export class TopicScreenComponent implements OnInit {
           return(question.id != data.id)
         })
       }
+    });
+    //updates
+    this.apiservice.OnUpdateFileListener.subscribe((evt)=>{
+      const data = (evt as any).value.data.onUpdateFile;
+      console.log("Update", data);
+      console.log("An update has occurred!");
+      //search thru array, find original, and replace it with the new one
+      this.faq.files.items = this.faq.files.items.map((question)=>{
+        if(question.id == data.id){
+          return data;
+        }
+        else return question;
+      })
     });
   }
   subscribeToResourceGroupEvents(){
@@ -202,4 +239,101 @@ export class TopicScreenComponent implements OnInit {
     instance.faqObject = this.faq;
     dialogRef.afterClosed().subscribe(()=>{console.log("dialog has been closed")});
    } //instead of console log , refresh page
+
+
+
+// button start--please ignore below
+
+// function to change class
+        /*function changeColor($elm, classes) {                
+            var className = $elm.attr('class');                
+            var index = $.inArray(className, classes);
+
+            $elm.removeClass(className);
+            index++;                
+            if (index === classes.length) {
+                index = 0;
+            }
+            $elm.addClass(classes[index]);                
+        }        
+        // equivalent to $(document).ready
+        $(function(){            
+            // cache button element
+            var $button = $("#dynamic-button");
+            var classes = ["red", "green", "blue"];
+            // attach event with $button
+            $button.on("click", function (){                
+                changeColor($(this), classes);                
+            });
+        });  */
+        
+        buttonFunction () {
+          //var startHandler = (<HTMLInputElement>document.getElementById('m')).value;
+          var colors = [];
+          var counter1 = 0;
+          var counter2 = 0;
+
+          colors.push("#E1D8F1");
+          colors.push("#CCB8F1");
+          colors.push("#F0F0F0");
+
+          var startHandler = function (state) { console.log(state); }
+       
+          var stopHandler = function (state) { console.log(state); }
+          var resetHandler = function (state) { console.log(state); }
+          
+          let StopWatch = function (selector) {
+            var states = ['Not Started', 'In progress', 'Finished']
+            states
+            var handlers = [startHandler, stopHandler, resetHandler]
+            var currentState = 0;
+            var element = document.querySelector(selector);
+            
+            var clickHandler = function () {
+              // Execute 'currentState', pass anything you want to handlers
+              handlers[currentState](states[currentState])
+                
+                
+              // Update currentState after, means 'move to next state'
+              if (currentState < (states.length - 1)) {
+                currentState++;
+              } else {
+               currentState = 0;
+              }
+                  
+              element.innerHTML = states[currentState];
+            }
+            return {
+              init: function () {
+                // Initial work
+                element.addEventListener('click', clickHandler);
+              },
+              remove: function () {
+                // Cleanup
+                element.removeEventListener('click', clickHandler)
+              }
+            }
+          }
+          function switchColors() {
+            var changes = document.getElementsByClassName("change");
+            
+            Array.prototype.forEach.call(changes, function (change) {
+                change.style.backgroundColor = colors[counter1];
+            });
+        
+            counter1 += 1;
+            if (counter1 > colors.length - 1) {
+                counter1 = 0;
+            }
+            
+          
+        }
+        window.addEventListener("load", function () {
+          document.getElementById("stopwatch").addEventListener("click", switchColors, false);
+      }, false);
+
+          StopWatch('#stopwatch').init();
+        }
+
+
 }

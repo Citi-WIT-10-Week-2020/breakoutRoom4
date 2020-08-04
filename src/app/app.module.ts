@@ -64,7 +64,13 @@ import { PlaylistContainerComponent } from './components/topic-screen-folder/pla
 import { AccountSettingsComponent } from './components/account-settings/account-settings.component';
 import { AccountDialogComponent } from './components/account-dialog/account-dialog.component';
 import { FormsModule } from '@angular/forms';
+import { StudentCourseDialogComponent } from './components/student-course-dialog/student-course-dialog.component';
+import { DeleteResourceDialogComponent } from './components/topic-screen-folder/delete-resource-dialog/delete-resource-dialog.component';
+import { UpdateResourceDialogComponent } from './components/topic-screen-folder/update-resource-dialog/update-resource-dialog.component';
 
+
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 @NgModule({
   declarations: [
@@ -105,6 +111,9 @@ import { FormsModule } from '@angular/forms';
     PlaylistContainerComponent,
     AccountSettingsComponent,
     AccountDialogComponent,
+    StudentCourseDialogComponent,
+    DeleteResourceDialogComponent,
+    UpdateResourceDialogComponent,
 
     
   ],
@@ -133,9 +142,13 @@ import { FormsModule } from '@angular/forms';
     MatInputModule,
     MatTabsModule,
     MatSelectModule,
+
+    MatProgressSpinnerModule,
+    MatProgressBarModule
+
   ],
   bootstrap: [AppComponent],
-  entryComponents: [DialogBodyComponent, UpdateDialogComponent],
+  entryComponents: [DialogBodyComponent, UpdateDialogComponent, AccountDialogComponent],
   providers: [],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
 
