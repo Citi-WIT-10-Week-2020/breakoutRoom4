@@ -162,12 +162,19 @@ export class HomeScreenComponent implements OnInit {
     //subscribe to StudentCourse creations
     this.apiservice.OnCreateStudentCourseListener.subscribe((course)=>{
       console.log("STUDENTCOURSE CREATED",course);
+      const data = (course as any).value.data.onCreateStudentCourse;
       //may have to call api again haha
+      this.courses = [...this.courses,data];
     })
 
     //deletions
     this.apiservice.OnDeleteStudentCourseListener.subscribe((course)=>{
       console.log("STUDENTCOURSE DELETED",course);
+      const data = (course as any).value.data.onDeleteStudentCourse;
+      this.courses = this.courses.filter((course)=>{
+        return (course.id != data.id)
+    });
+    console.log(this.courses);
     })
   }
 
