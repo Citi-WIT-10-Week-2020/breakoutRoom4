@@ -39,6 +39,7 @@ export class ResourceGroupComponent implements OnInit {
       instance.id = this.rgId;
       instance.course = this.course;
       instance.topic = this.topic;
+      instance.files = this.files;
       dialogRef.afterClosed().subscribe(()=>{console.log("dialog has been closed")});
   }
 

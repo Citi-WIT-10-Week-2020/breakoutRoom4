@@ -20,6 +20,7 @@ export class UpdateDialogComponent implements OnInit {
   @Input() professor : string;
   @Input() courseId : string;
 
+
   course : FormGroup;
   courseObject: ICourse;
   

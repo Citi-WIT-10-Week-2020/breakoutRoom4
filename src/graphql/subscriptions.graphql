@@ -70,6 +70,8 @@ subscription OnCreateStudent {
     id
     studentName
     universityName
+    firstName
+    lastName
     courses {
       items {
         id
@@ -89,6 +91,8 @@ subscription OnUpdateStudent {
     id
     studentName
     universityName
+    firstName
+    lastName
     courses {
       items {
         id
@@ -108,6 +112,8 @@ subscription OnDeleteStudent {
     id
     studentName
     universityName
+    firstName
+    lastName
     courses {
       items {
         id
@@ -131,6 +137,8 @@ subscription OnCreateStudentCourse {
       id
       studentName
       universityName
+      firstName
+      lastName
       courses {
         nextToken
       }
@@ -164,6 +172,8 @@ subscription OnUpdateStudentCourse {
       id
       studentName
       universityName
+      firstName
+      lastName
       courses {
         nextToken
       }
@@ -197,6 +207,8 @@ subscription OnDeleteStudentCourse {
       id
       studentName
       universityName
+      firstName
+      lastName
       courses {
         nextToken
       }

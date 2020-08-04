@@ -11,12 +11,14 @@ import { ConsoleLogger } from '@aws-amplify/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import {TopicDialogComponent} from '../topic-dialog/topic-dialog.component';
 import {CourseService} from '../../shared/courses.service';
+import { UserInfo } from 'os';
+import { UserinfoService } from 'src/app/shared/userinfo.service';
 
 @Component({
   selector: 'app-course-screen',
   templateUrl: './course-screen.component.html',
   styleUrls: ['./course-screen.component.scss'],
-  providers:[TopicsService]
+  providers:[TopicsService,UserinfoService]
 })
 
 export class CourseScreenComponent implements OnInit {
@@ -30,13 +32,14 @@ export class CourseScreenComponent implements OnInit {
   professorName: string;
   courseName: string;
 
-  isProfessor: boolean = true;
+  isProfessor: boolean ;
 
-  constructor(private route: ActivatedRoute, private matDialog: MatDialog,private apiservice : APIService, private breakpointObserver: BreakpointObserver, private topicservice:TopicsService) { }
+  constructor(private route: ActivatedRoute, private matDialog: MatDialog,private apiservice : APIService, private breakpointObserver: BreakpointObserver, private topicservice:TopicsService,private userinfo:UserinfoService) { }
   
 
   ngOnInit(): void {
-
+    //get isProfessor
+    this.getUserStatus();
     //gets the course ID passed in from home-screen
     this.route.paramMap.subscribe(params => { 
       this.courseId = params.get('id'); 
@@ -48,6 +51,16 @@ export class CourseScreenComponent implements OnInit {
    this.subscribeToTopicDeletions(); 
   }
 
+  getUserStatus(){
+    const myObserver = {
+      next: x =>{
+        let status = x.attributes.name;
+        (x.attributes.name == "Professor") ? this.isProfessor = true : this.isProfessor = false;
+        console.log("Professor Status: ", this.isProfessor);
+      }
+    }
+    this.userinfo.getUserInfo().subscribe(myObserver);
+  }
   subscibeToTopicCreations(){
     this.apiservice.OnCreateTopicListener.subscribe((evt)=>{
       const data = (evt as any).value.data.onCreateTopic;
