@@ -1,7 +1,11 @@
 import { Component, OnInit, OnChanges, SimpleChanges, Input } from '@angular/core';
 import Amplify, { Auth } from 'aws-amplify';
 import { Hub, Logger} from 'aws-amplify';
+<<<<<<< Updated upstream
 import { APIService } from 'src/app/API.service';
+=======
+import { Router } from '@angular/router';
+>>>>>>> Stashed changes
 import { Observable, of ,from} from 'rxjs';
 import { ResourceLoader } from '@angular/compiler';
 import { UserinfoService } from '../../../shared/userinfo.service';
@@ -24,7 +28,11 @@ export class NavBarComponent implements OnInit {
   lastName: string;
   email: string;
 
+<<<<<<< Updated upstream
   constructor(private apiservice: APIService, private userinfo: UserinfoService) {}
+=======
+  constructor(private userinfo: UserinfoService,private router: Router) {}
+>>>>>>> Stashed changes
 
   ngOnInit(): void {
 
@@ -55,20 +63,29 @@ export class NavBarComponent implements OnInit {
       switch (data.payload.event) {
 
          case 'signIn':
+           this.router.navigate(['/']);
               location.reload();
+              
               this.displayUserName();
               break;
           case 'signUp':
               this.displayUserName();
               break;
           case 'signOut':
+<<<<<<< Updated upstream
            //  this.profName = "";
               this.firstName = "";
               this.lastName = "";
            //  console.log(this.profName);
+=======
+            this.router.navigate(['/']);
+             this.profName = "";
+             console.log(this.profName);
+>>>>>>> Stashed changes
              console.log("sign out");
              location.reload();
           // this.userinfo.logout(this.profName);
+          
              break;
       }
     }

@@ -41,6 +41,7 @@
             
     <ng-container *ngIf="fileType == 'Link'">
         <div class="video-comp">
+<<<<<<< Updated upstream
             <button class="change changebtn" id="stopwatch">Not Started</button>
            
             <a href="{{fileDescription}}" target="_blank"><img class="img" src="assets/video-link-img-05.jpg"></a>
@@ -51,6 +52,21 @@
             </button>
             -->
             <span class="vidname">{{fileName}}</span>
+=======
+            <video class="video-item" 
+            controls poster= "assets/Logo-colored-1.png"> 
+            <source src= {{videosrc}}
+            type="video/mp4">
+            </video>
+            <iframe
+                src="{{videosrc}}"
+                frameborder="0"
+                 webkitallowfullscreen
+                mozallowfullscreen
+                allowfullscreen
+            ></iframe>
+            <span class="vidname">{{videoName}}</span>
+>>>>>>> Stashed changes
         </div>
         <!-- <div class="file" >
             <span><a href="{{fileDescription}}" target="_blank">{{fileName}}</a></span>

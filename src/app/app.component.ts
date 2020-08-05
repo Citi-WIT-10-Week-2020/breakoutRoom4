@@ -72,9 +72,13 @@ export class AppComponent {
    // this.displayFunction();   // listens for sign in/sign out
     this.signIn();
     
+<<<<<<< Updated upstream
 
     //this.router.navigate(['/']);
 
+=======
+    //this.router.navigate(['/']);
+>>>>>>> Stashed changes
 }
   
 // wait for sign in to change displayLogo variable 
