@@ -74,10 +74,6 @@ export class NavBarComponent implements OnInit {
     }
     Hub.listen('auth', listener);
   }
-
-  /// when user signs in or signs out, the displayUserName function is called to 
-  // read the name using currentUserInfo
-  
   displayUserName() {
 
 
