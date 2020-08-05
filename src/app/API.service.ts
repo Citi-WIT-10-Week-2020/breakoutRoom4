@@ -79,11 +79,15 @@ export type CreateStudentInput = {
   id?: string | null;
   studentName: string;
   universityName: string;
+  firstName?: string | null;
+  lastName?: string | null;
 };
 
 export type ModelStudentConditionInput = {
   studentName?: ModelIDInput | null;
   universityName?: ModelStringInput | null;
+  firstName?: ModelStringInput | null;
+  lastName?: ModelStringInput | null;
   and?: Array<ModelStudentConditionInput | null> | null;
   or?: Array<ModelStudentConditionInput | null> | null;
   not?: ModelStudentConditionInput | null;
@@ -109,6 +113,8 @@ export type UpdateStudentInput = {
   id: string;
   studentName?: string | null;
   universityName?: string | null;
+  firstName?: string | null;
+  lastName?: string | null;
 };
 
 export type DeleteStudentInput = {
@@ -282,6 +288,8 @@ export type ModelStudentFilterInput = {
   id?: ModelIDInput | null;
   studentName?: ModelIDInput | null;
   universityName?: ModelStringInput | null;
+  firstName?: ModelStringInput | null;
+  lastName?: ModelStringInput | null;
   and?: Array<ModelStudentFilterInput | null> | null;
   or?: Array<ModelStudentFilterInput | null> | null;
   not?: ModelStudentFilterInput | null;
@@ -423,6 +431,8 @@ export type CreateStudentMutation = {
   id: string;
   studentName: string;
   universityName: string;
+  firstName: string | null;
+  lastName: string | null;
   courses: {
     __typename: "ModelStudentCourseConnection";
     items: Array<{
@@ -444,6 +454,8 @@ export type UpdateStudentMutation = {
   id: string;
   studentName: string;
   universityName: string;
+  firstName: string | null;
+  lastName: string | null;
   courses: {
     __typename: "ModelStudentCourseConnection";
     items: Array<{
@@ -465,6 +477,8 @@ export type DeleteStudentMutation = {
   id: string;
   studentName: string;
   universityName: string;
+  firstName: string | null;
+  lastName: string | null;
   courses: {
     __typename: "ModelStudentCourseConnection";
     items: Array<{
@@ -491,13 +505,15 @@ export type CreateStudentCourseMutation = {
     id: string;
     studentName: string;
     universityName: string;
+    firstName: string | null;
+    lastName: string | null;
     courses: {
       __typename: "ModelStudentCourseConnection";
       nextToken: string | null;
     } | null;
     createdAt: string;
     updatedAt: string;
-  };
+  } | null;
   course: {
     __typename: "Course";
     id: string;
@@ -514,7 +530,7 @@ export type CreateStudentCourseMutation = {
     } | null;
     createdAt: string;
     updatedAt: string;
-  };
+  } | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -529,13 +545,15 @@ export type UpdateStudentCourseMutation = {
     id: string;
     studentName: string;
     universityName: string;
+    firstName: string | null;
+    lastName: string | null;
     courses: {
       __typename: "ModelStudentCourseConnection";
       nextToken: string | null;
     } | null;
     createdAt: string;
     updatedAt: string;
-  };
+  } | null;
   course: {
     __typename: "Course";
     id: string;
@@ -552,7 +570,7 @@ export type UpdateStudentCourseMutation = {
     } | null;
     createdAt: string;
     updatedAt: string;
-  };
+  } | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -567,13 +585,15 @@ export type DeleteStudentCourseMutation = {
     id: string;
     studentName: string;
     universityName: string;
+    firstName: string | null;
+    lastName: string | null;
     courses: {
       __typename: "ModelStudentCourseConnection";
       nextToken: string | null;
     } | null;
     createdAt: string;
     updatedAt: string;
-  };
+  } | null;
   course: {
     __typename: "Course";
     id: string;
@@ -590,7 +610,7 @@ export type DeleteStudentCourseMutation = {
     } | null;
     createdAt: string;
     updatedAt: string;
-  };
+  } | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -958,6 +978,8 @@ export type GetStudentQuery = {
   id: string;
   studentName: string;
   universityName: string;
+  firstName: string | null;
+  lastName: string | null;
   courses: {
     __typename: "ModelStudentCourseConnection";
     items: Array<{
@@ -981,6 +1003,8 @@ export type ListStudentsQuery = {
     id: string;
     studentName: string;
     universityName: string;
+    firstName: string | null;
+    lastName: string | null;
     courses: {
       __typename: "ModelStudentCourseConnection";
       nextToken: string | null;
@@ -1204,6 +1228,8 @@ export type StudentByNameQuery = {
     id: string;
     studentName: string;
     universityName: string;
+    firstName: string | null;
+    lastName: string | null;
     courses: {
       __typename: "ModelStudentCourseConnection";
       nextToken: string | null;
@@ -1396,6 +1422,8 @@ export type OnCreateStudentSubscription = {
   id: string;
   studentName: string;
   universityName: string;
+  firstName: string | null;
+  lastName: string | null;
   courses: {
     __typename: "ModelStudentCourseConnection";
     items: Array<{
@@ -1417,6 +1445,8 @@ export type OnUpdateStudentSubscription = {
   id: string;
   studentName: string;
   universityName: string;
+  firstName: string | null;
+  lastName: string | null;
   courses: {
     __typename: "ModelStudentCourseConnection";
     items: Array<{
@@ -1438,6 +1468,8 @@ export type OnDeleteStudentSubscription = {
   id: string;
   studentName: string;
   universityName: string;
+  firstName: string | null;
+  lastName: string | null;
   courses: {
     __typename: "ModelStudentCourseConnection";
     items: Array<{
@@ -1464,13 +1496,15 @@ export type OnCreateStudentCourseSubscription = {
     id: string;
     studentName: string;
     universityName: string;
+    firstName: string | null;
+    lastName: string | null;
     courses: {
       __typename: "ModelStudentCourseConnection";
       nextToken: string | null;
     } | null;
     createdAt: string;
     updatedAt: string;
-  };
+  } | null;
   course: {
     __typename: "Course";
     id: string;
@@ -1487,7 +1521,7 @@ export type OnCreateStudentCourseSubscription = {
     } | null;
     createdAt: string;
     updatedAt: string;
-  };
+  } | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -1502,13 +1536,15 @@ export type OnUpdateStudentCourseSubscription = {
     id: string;
     studentName: string;
     universityName: string;
+    firstName: string | null;
+    lastName: string | null;
     courses: {
       __typename: "ModelStudentCourseConnection";
       nextToken: string | null;
     } | null;
     createdAt: string;
     updatedAt: string;
-  };
+  } | null;
   course: {
     __typename: "Course";
     id: string;
@@ -1525,7 +1561,7 @@ export type OnUpdateStudentCourseSubscription = {
     } | null;
     createdAt: string;
     updatedAt: string;
-  };
+  } | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -1540,13 +1576,15 @@ export type OnDeleteStudentCourseSubscription = {
     id: string;
     studentName: string;
     universityName: string;
+    firstName: string | null;
+    lastName: string | null;
     courses: {
       __typename: "ModelStudentCourseConnection";
       nextToken: string | null;
     } | null;
     createdAt: string;
     updatedAt: string;
-  };
+  } | null;
   course: {
     __typename: "Course";
     id: string;
@@ -1563,7 +1601,7 @@ export type OnDeleteStudentCourseSubscription = {
     } | null;
     createdAt: string;
     updatedAt: string;
-  };
+  } | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -2017,6 +2055,8 @@ export class APIService {
           id
           studentName
           universityName
+          firstName
+          lastName
           courses {
             __typename
             items {
@@ -2054,6 +2094,8 @@ export class APIService {
           id
           studentName
           universityName
+          firstName
+          lastName
           courses {
             __typename
             items {
@@ -2091,6 +2133,8 @@ export class APIService {
           id
           studentName
           universityName
+          firstName
+          lastName
           courses {
             __typename
             items {
@@ -2133,6 +2177,8 @@ export class APIService {
             id
             studentName
             universityName
+            firstName
+            lastName
             courses {
               __typename
               nextToken
@@ -2187,6 +2233,8 @@ export class APIService {
             id
             studentName
             universityName
+            firstName
+            lastName
             courses {
               __typename
               nextToken
@@ -2241,6 +2289,8 @@ export class APIService {
             id
             studentName
             universityName
+            firstName
+            lastName
             courses {
               __typename
               nextToken
@@ -2868,6 +2918,8 @@ export class APIService {
           id
           studentName
           universityName
+          firstName
+          lastName
           courses {
             __typename
             items {
@@ -2905,6 +2957,8 @@ export class APIService {
             id
             studentName
             universityName
+            firstName
+            lastName
             courses {
               __typename
               nextToken
@@ -3038,7 +3092,6 @@ export class APIService {
               groupName
               createdAt
               updatedAt
-              
             }
             nextToken
           }
@@ -3305,6 +3358,8 @@ export class APIService {
             id
             studentName
             universityName
+            firstName
+            lastName
             courses {
               __typename
               nextToken
@@ -3708,6 +3763,8 @@ export class APIService {
           id
           studentName
           universityName
+          firstName
+          lastName
           courses {
             __typename
             items {
@@ -3737,6 +3794,8 @@ export class APIService {
           id
           studentName
           universityName
+          firstName
+          lastName
           courses {
             __typename
             items {
@@ -3766,6 +3825,8 @@ export class APIService {
           id
           studentName
           universityName
+          firstName
+          lastName
           courses {
             __typename
             items {
@@ -3800,6 +3861,8 @@ export class APIService {
             id
             studentName
             universityName
+            firstName
+            lastName
             courses {
               __typename
               nextToken
@@ -3846,6 +3909,8 @@ export class APIService {
             id
             studentName
             universityName
+            firstName
+            lastName
             courses {
               __typename
               nextToken
@@ -3892,6 +3957,8 @@ export class APIService {
             id
             studentName
             universityName
+            firstName
+            lastName
             courses {
               __typename
               nextToken
