@@ -30,7 +30,8 @@
     height: 150px;
     width: 200px;
     background-color: whitesmoke;
-    border-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
 }
 .video-title {
     align-self: stretch;
@@ -68,4 +69,12 @@
 
 .video-comp:last-of-type {
     margin-right: 50px;
+}
+.changebtn {
+    height: 20px;
+    width: 200px;
+    background-color: #F0F0F0;
+    border: none; 
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
 }
