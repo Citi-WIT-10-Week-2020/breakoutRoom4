@@ -30,6 +30,8 @@ export class AccountSettingsComponent implements OnInit {
  phone: string;
  last4: string;
  refresh: Boolean;
+ emailVerified: string;
+ phoneVerified: string;
  
   constructor(private router: Router, private userinfo: UserinfoService, private apiservice: APIService,private matDialog: MatDialog) {
   
@@ -57,6 +59,17 @@ export class AccountSettingsComponent implements OnInit {
        this.phone = x.attributes.phone_number;
        this.last4 = this.phone.substring(8, 12);
 
+       if(x.attributes.email_verified == true){
+         this.emailVerified = "Email verified";
+       } else {
+         this.emailVerified = "Email not verified";
+       }
+       
+       if(x.attributes.phone_number_verified == true){
+        this.phoneVerified = "Phone number verified";
+        } else {
+        this.phoneVerified = "Phone number not verified";
+        }
 
        //to get univName
        this.apiservice.ProfessorByName(this.email).then((evt) => {
@@ -119,6 +132,8 @@ export class AccountSettingsComponent implements OnInit {
     
     
    }
+
+   
  
 
  
