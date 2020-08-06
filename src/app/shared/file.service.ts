@@ -54,6 +54,16 @@ export class FileService{
         //change to getResourceGroup
         return from(this.apiservice.ListFiles());
     }
+
+    //function to get video URL
+    async getVideo(key){
+      let video =  await Storage.get(key);
+      return video;
+      //console.log("VIDDDEOO",video);
+      //let url = URL.createObjectURL(video);
+     // return url;
+     
+    }
     //function to download a file
     async downloadFile(key){
         //const reader = new FileReader();
@@ -97,8 +107,8 @@ export class FileService{
     async createFile(fileName,fileType,file, course, topic, fileDescription, resourceGroup,resourceName:string){
         let id = uuidv4()
         const key = `${id}${fileName}`;
-        console.log(key);
-        console.log(config);
+        //console.log(key);
+        //console.log(config);
         this.fileInput={
             id:key,
             course:course,
@@ -114,16 +124,16 @@ export class FileService{
             }
         }
 
-        
+        console.log("Before submitting file");
         try{
             if(file){
-                
+                console.log("Try to put in S3");
                let result = await Storage.put(key,file,{
                 contentType:fileType
                 });
                 console.log("S3", result);
             }
-            
+            console.log("Try to put in Dynamo");
             let returned = await this.apiservice.CreateFile(this.fileInput);
             console.log("DYNAMO",returned);
         }

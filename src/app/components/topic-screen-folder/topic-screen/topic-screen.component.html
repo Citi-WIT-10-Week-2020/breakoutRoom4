@@ -42,21 +42,19 @@
 
               <div class="playlist-container" fxLayout="row wrap" fxLayoutGap="50px" fxLayoutAlign="flex-start" fxLayout.1t-md="column">
                   
-                <div *ngIf="playlist.files.items == 0"> <!--&& videoLink.items == 0-->
+                <div *ngIf="playlist && playlist.files.items == 0"> <!--&& videoLink.items == 0-->
                   <span class="empty-screen-message">You do not currently have any videos. Click the plus sign to add one!</span>
                 </div>
 
-                <ng-container *ngFor="let item of playlist.files.items">
-                  <app-playlist-video class="videocards" [videosrc]="item.videosrc" [videoName]="item.videoName" ></app-playlist-video>
+                <ng-container  *ngFor="let item of playlist.files.items">
+                  <app-playlist-video class="videocards" [videoId]="item.id" [videoName]="item.filename" ></app-playlist-video>
                 </ng-container>
 
-                <!--<ng-container *ngFor="let item of videoLink">
-                  <app-video-links class="videocards" [videourl]="item.videourl" [linkName]="item.linkName" ></app-video-links>
-                </ng-container>-->
-                <app-video-links></app-video-links>
-                <app-video-links></app-video-links>
+              
                 
-                
+                <ng-container *ngFor="let item of playlist.files.items">
+                  <app-video-links></app-video-links>
+                </ng-container>
                   
               </div>
               </mat-expansion-panel> 
@@ -79,7 +77,7 @@
         <div class="box3-title" *ngIf ="isProfessor == false">FAQ</div>
       
         
-          <div *ngIf="faq.files.items.length == 0">
+          <div *ngIf="faq && faq.files.items.length == 0">
             <span class="empty-screen-message">You do not currently have any questions or answers. Click the plus sign to add one!</span>
           </div>
 

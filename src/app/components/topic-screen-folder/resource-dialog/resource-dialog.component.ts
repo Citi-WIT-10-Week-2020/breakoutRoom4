@@ -61,7 +61,9 @@ export class ResourceDialogComponent implements OnInit {
         fileDescription: new FormControl('')
         
       })
-  };
+  }
+
+
 
   tabChanged(tabChangeEvent: MatTabChangeEvent): void {
     console.log('tabChangeEvent => ', tabChangeEvent);
@@ -115,19 +117,28 @@ cancel(){
 }
 
 onResourceSubmit(){
-  let file = this.getFileGroup.get('file').value;
+  let file = this.getFileGroup.get('file').value; //get the file
   console.log("INONSUBMIT",file);
-  //let newFile = file.replace(/^data:image\/[a-z]+;base64,/, "");
+ 
   if(this.fileDescription == undefined){
+    
     this.fileDescription = "empty";
-  }  
-  //if adding a new resource, do this
-  this.filename = this.fileForm.get('fileName').value;
+    console.log("FILEDESCRIPTION",  this.fileDescription);
+  } 
+  else{
+    //here we KNOW it is a link
+    this.fileDescription = this.fileForm.get('fileDescription').value;
+  }
+ 
+  //this.filename = this.fileForm.get('fileName').value;
   this.fileType = this.fileForm.get('fileType').value;
-  this.fileDescription = this.fileForm.get('fileDescription').value;
+  //will there be a disrepancy here?
+  console.log("FILETYPE",this.fileType);
+  console.log("FILENAME",this.filename);
+  
   this.groupName = this.fileForm.get('groupName').value;
   console.log("GROUPNAME",this.groupName);
-  console.log(this.filename, this.fileType," DESC ", this.fileDescription, this.groupName);
+ 
   console.log("RESOURCENAME",this.fileForm.get("fileName").value);
   this.fileservice.createFile(this.filename, this.fileType, file, this.courseName, this.topicName, this.fileDescription, this.groupName,this.fileForm.get('fileName').value); //PASS IN MORE PARAMS
 }
