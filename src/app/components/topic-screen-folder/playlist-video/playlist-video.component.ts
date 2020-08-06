@@ -95,7 +95,7 @@ export class PlaylistVideoComponent implements OnInit {
     function switchColors() {
       //var changes = document.getElementsByClassName("change");
       
-      Array.prototype.entries.call(this.states, function (state) {
+      Array.prototype.forEach.call(this.states, function (state) {
           state.style.backgroundColor = colors[counter1];
       });
   
