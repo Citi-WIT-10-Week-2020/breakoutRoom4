@@ -31,7 +31,7 @@
            
 
             <ng-container *ngFor="let item of resourceGroups">
-              <app-resource-group [rgName]="item.groupName" [files]="item.files.items" [rgId]="item.id" [course]="this.course" [topic]="this.topicName"></app-resource-group>
+              <app-resource-group [isProfessor]="isProfessor" [rgName]="item.groupName" [files]="item.files.items" [rgId]="item.id" [course]="this.course" [topic]="this.topicName"></app-resource-group>
             </ng-container>
             
             
@@ -42,18 +42,18 @@
 
               <div class="playlist-container" fxLayout="row wrap" fxLayoutGap="50px" fxLayoutAlign="flex-start" fxLayout.1t-md="column">
                   
-                <div *ngIf="playlist && playlist.files.items == 0"> <!--&& videoLink.items == 0-->
+                <div *ngIf="isProfessor && playlist && playlist.files.items == 0"> <!--&& videoLink.items == 0-->
                   <span class="empty-screen-message">You do not currently have any videos. Click the plus sign to add one!</span>
-                </div>
+                </div> 
 
-                <ng-container  *ngFor="let item of playlist.files.items">
+               <!-- <ng-container  *ngFor="let item of playlist.files.items">
                   <app-playlist-video class="videocards" [videoId]="item.id" [videoName]="item.filename" ></app-playlist-video>
-                </ng-container>
+                </ng-container>-->
 
-              
+              <app-playlist-video></app-playlist-video>
                 
                 <ng-container *ngFor="let item of playlist.files.items">
-                  <app-video-links></app-video-links>
+                  <app-video-links [videourl]="item.fileDescription" [videoName]="item.filename" [type]="item.filetype"></app-video-links>
                 </ng-container>
                   
               </div>
@@ -61,7 +61,6 @@
 
 
           </mat-accordion>
-
           
 
         </div>
@@ -77,12 +76,16 @@
         <div class="box3-title" *ngIf ="isProfessor == false">FAQ</div>
       
         
-          <div *ngIf="faq && faq.files.items.length == 0">
+          <div *ngIf="isProfessor && faq && faq.files.items.length == 0">
             <span class="empty-screen-message">You do not currently have any questions or answers. Click the plus sign to add one!</span>
           </div>
 
+          <div *ngIf="!isProfessor && faq.files.items.length == 0">
+            <span class="empty-screen-message">This class currently has no FAQ questions</span>
+          </div>
+
           <ng-container *ngFor="let item of faq.files.items">
-            <app-faq [question]="item.filename" [answer]="item.fileDescription" [faqId]="item.id" [course]="this.course" [topic]="this.topicName"></app-faq>
+            <app-faq [isProfessor]="isProfessor" [question]="item.filename" [answer]="item.fileDescription" [faqId]="item.id" [course]="this.course" [topic]="this.topicName"></app-faq>
           </ng-container>
         <!--</mat-expansion-panel> -->
         </mat-accordion>

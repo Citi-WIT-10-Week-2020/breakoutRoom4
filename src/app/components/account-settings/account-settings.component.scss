@@ -43,12 +43,12 @@
     width: 40px;
     height: 30px;
   //  color: rgb(85, 32, 116);
-    color: black;
+    color: white;
   //  float: right;
  }
   
  .add-btn:hover {
-    color: white;
+    color:black;
  }
   
  .add-btn-bg {
@@ -89,9 +89,11 @@
     margin-left: 250px;
     margin-right: 250px;
   //  background-color: white;
-    border: 5px solid #5F5173;
+    border: 5px solid white;
     border-radius: .25em;
     padding-bottom: 20px;
+    align-items: center;
+    justify-content: center;
  }
   
  .user {
@@ -101,7 +103,85 @@
  }
   
  .details {
+    justify-content: center;
     text-align: center;
     font-size: 15px;
+
  }
+
+ .i-icon{
+   font-size: 15px;
+   width: 10px;
+   height: 10px;
+ }
+
+
+//.i-icon:hover{
+  // color:black;
+  // opacity: 1;
+//}
+
+
+.file-btn {
+   position: relative;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   align-self: center;
+   text-justify: center;
+   border: none;
+   background: none;
+  
+   
+}
+
+.file-btn .tooltiptext {
+ color: white;
+ visibility: hidden;
+ width: 200px;
+ //height: 10px;
+ background-color: none;
+ text-align: center;
+ font-size: 10px;
+ border-radius: 6px;
+ padding: 5px 0;
+ padding-left: 7px;
+ padding-bottom: 3px;
+ padding-top: 10px;
+ position: absolute;
+ z-index: 1;
+ bottom: 10%;
+ left: 55%;
+ margin-left: 0px;
+ opacity: 0;
+ transition: opacity 0.3s;
+ }
+ 
+ .file-btn .tooltiptext::after {
+   content: "";
+   position: absolute;
+   /*top: 100%;
+   left: 50%;
+   margin-left: -5px;
+   border-width: 5px;
+   border-style: solid;
+   border-color: #555 transparent transparent transparent;*/
+ }
+ 
+ .file-btn:hover .tooltiptext {
+   visibility: visible;
+   opacity: 1;
+ }
+
+.btn {
+   color: white;
+   
+}
+
+//.btn:hover {
+ //  color: black;
+   
+//}
+
+
  

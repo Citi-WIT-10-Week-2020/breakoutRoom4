@@ -14,19 +14,19 @@ export class ResourceGroupComponent implements OnInit {
   @Input() files: Array<any>
   
 
-  isProfessor: boolean = true;
+  
   @Input() rgName: string;
   @Input() rgId: string;
   @Input() course: string;
   @Input() topic: string;
-  
+  @Input() isProfessor : boolean;
   
 
   constructor(private apiservice: APIService, private matDialog: MatDialog) { }
 
   ngOnInit(): void {
     console.log("IN RESOURCE GROUP",this.files);
-
+    console.log("RG: PROFSTAT", this.isProfessor);
     this.subscribeToFileEvents();
   }
 

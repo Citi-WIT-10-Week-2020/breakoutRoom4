@@ -120,22 +120,20 @@ onResourceSubmit(){
   let file = this.getFileGroup.get('file').value; //get the file
   console.log("INONSUBMIT",file);
  
-  if(this.fileDescription == undefined){
-    
-    this.fileDescription = "empty";
-    console.log("FILEDESCRIPTION",  this.fileDescription);
-  } 
-  else{
+ 
     //here we KNOW it is a link
     this.fileDescription = this.fileForm.get('fileDescription').value;
-  }
+  
  
   //this.filename = this.fileForm.get('fileName').value;
-  this.fileType = this.fileForm.get('fileType').value;
+  if(this.fileForm.get('fileType').value == 'link'){
+    this.fileType = this.fileForm.get('fileType').value;
+  }
+
   //will there be a disrepancy here?
   console.log("FILETYPE",this.fileType);
   console.log("FILENAME",this.filename);
-  
+  console.log("FILEDESCRIPTION",  this.fileDescription);
   this.groupName = this.fileForm.get('groupName').value;
   console.log("GROUPNAME",this.groupName);
  

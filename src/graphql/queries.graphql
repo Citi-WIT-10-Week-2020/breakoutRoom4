@@ -47,6 +47,8 @@ query GetStudent($id: ID!) {
     id
     studentName
     universityName
+    firstName
+    lastName
     courses {
       items {
         id
@@ -71,6 +73,8 @@ query ListStudents(
       id
       studentName
       universityName
+      firstName
+      lastName
       courses {
         nextToken
       }
@@ -312,6 +316,8 @@ query StudentByName(
       id
       studentName
       universityName
+      firstName
+      lastName
       courses {
         nextToken
       }

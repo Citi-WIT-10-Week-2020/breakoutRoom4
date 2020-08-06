@@ -11,19 +11,12 @@
 
 
         <div class="video-comp">
+            <button class="change changebtn" id="stopwatch">Not Started</button>
             <video class="video-item" 
-            controls poster= "assets/Logo-colored-1.png"> 
-            <source src= {{videosrc}}
+            controls poster= "assets/video-link-img-05.jpg"> 
+            <source src="assets/hardcode-testvid.mp4"
             type="video/mp4">
             </video>
-            <iframe
-                src="{{videosrc}}"
-                frameborder="0"
-                 webkitallowfullscreen
-                mozallowfullscreen
-                allowfullscreen
-            ></iframe>
-            <span class="vidname">{{videoName}}</span>
-            <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
+            <span class="vidname">If Squirrels Could Fly</span>
         </div>
        
