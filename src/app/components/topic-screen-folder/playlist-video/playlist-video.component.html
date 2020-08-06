@@ -1,67 +1,18 @@
-
-        
-
-    <ng-container *ngIf="fileType != 'Link'">
-            <div class="file">
-                <div class="video-comp">
-                    <video class="video-item" 
-                        controls poster= "assets/Logo-colored-1.png"> 
-                        <source src= {{fileDescription}}
-                        type="video/mp4">
-                    </video>
-                    <span class="vidname">{{fileName}}</span>
-                    <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
-                </div>
-                <!-- <span class="file-name">
-                  <span>{{fileName}}</span>
-                  <span class="tooltiptext">{{fileId}}</span>
-                </span>
-                <span class="spacer"></span>
-                <span>
-                  <button class="file-btn" (click)="onDownload()">
-                    <mat-icon class="btn">get_app</mat-icon>
-                    <span class="tooltiptext">Download</span>
-                  </button>
-                </span>
-                
-                <ng-template [ngIf] = "isProfessor">
-                                
-                  <span>
-                    <button class="file-btn" (click)="onDelete()">
-                      <mat-icon class="btn">delete</mat-icon>
-                      <span class="tooltiptext">Delete</span>
-                    </button>
-                  </span>
-             
-              </ng-template> -->
-            
-                
-            </div>
-            </ng-container>
-            
-    <ng-container *ngIf="fileType == 'Link'">
-        <div class="video-comp">
-            <button class="change changebtn" id="stopwatch">Not Started</button>
-           
-            <a href="{{fileDescription}}" target="_blank"><img class="img" src="assets/video-link-img-05.jpg"></a>
-                
-        
-            <!-- <button class="video-btn" onclick=" (click)={window.open(fileDescription,'_blank')}>
-                <img class="img" src="assets/video-link-img-05.jpg">
-            </button>
-            -->
-            <span class="vidname">{{fileName}}</span>
-        </div>
-        <!-- <div class="file" >
-            <span><a href="{{fileDescription}}" target="_blank">{{fileName}}</a></span>
-            <span class="spacer"></span>
-
-            <span>
-                <button class="file-btn" (click)="onDelete()">
-                <mat-icon class="btn">delete</mat-icon>
-                <span class="tooltiptext">Delete</span>
-                </button>
-            </span>
-        </div> -->
-    </ng-container>
-       
+<!--<div class="video-container">
+    <div class="video-title"> hihihihihihihihihihihihihihihihihi
+        hihihihihihihihihihihihihih</div>
+    <video class="video-item" 
+    controls poster= "https://media.geeksforgeeks.org/wp-content/cdn-uploads/20190710102234/download3.png"> 
+    <source src= "https://www.youtube.com/watch?v=cMRafU-sOH4"
+    type="video/mp4">
+    </video>
+</div> -->
+<div class="video-comp">
+  <button class="change changebtn" id="stopwatch">Not Started</button>
+  <video class="video-item" 
+  controls poster= "assets/video-link-img-05.jpg"> 
+  <source src="assets/hardcode-testvid.mp4"
+  type="video/mp4">
+  </video>
+  <span class="vidname">If Squirrels Could Fly</span>
+</div>

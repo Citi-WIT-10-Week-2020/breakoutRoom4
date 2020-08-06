@@ -2,6 +2,7 @@ import { Component, OnInit, OnChanges, SimpleChanges, Input } from '@angular/cor
 import Amplify, { Auth } from 'aws-amplify';
 import { Hub, Logger} from 'aws-amplify';
 import { APIService } from 'src/app/API.service';
+import { Router } from '@angular/router';
 import { Observable, of ,from} from 'rxjs';
 import { ResourceLoader } from '@angular/compiler';
 import { UserinfoService } from '../../../shared/userinfo.service';
@@ -24,7 +25,7 @@ export class NavBarComponent implements OnInit {
   lastName: string;
   email: string;
 
-  constructor(private apiservice: APIService, private userinfo: UserinfoService) {}
+  constructor(private userinfo: UserinfoService,private router: Router,private apiservice: APIService) {}
 
   ngOnInit(): void {
 
@@ -55,7 +56,9 @@ export class NavBarComponent implements OnInit {
       switch (data.payload.event) {
 
          case 'signIn':
+           this.router.navigate(['/']);
               location.reload();
+              
               this.displayUserName();
               break;
           case 'signUp':
@@ -69,15 +72,12 @@ export class NavBarComponent implements OnInit {
              console.log("sign out");
              location.reload();
           // this.userinfo.logout(this.profName);
+          
              break;
       }
     }
     Hub.listen('auth', listener);
   }
-
-  /// when user signs in or signs out, the displayUserName function is called to 
-  // read the name using currentUserInfo
-  
   displayUserName() {
 
 

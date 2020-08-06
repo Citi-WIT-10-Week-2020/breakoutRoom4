@@ -10,7 +10,7 @@ import { DeleteFaqDialogComponent } from 'src/app/components/topic-screen-folder
 })
 export class FaqComponent implements OnInit {
 
-  isProfessor: boolean = true;
+  @Input() isProfessor: boolean;
   @Input() rgName: string;
   @Input() question: string;
   @Input() answer: string;

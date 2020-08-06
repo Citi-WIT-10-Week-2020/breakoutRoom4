@@ -1,12 +1,10 @@
 <div class="video-comp">
     <button class="change changebtn" id="stopwatch">Not Started</button>
    
-    <a href="{{fileDescription}}" target="_blank"><img class="img" src="assets/video-link-img-05.jpg"></a>
-        
-
-    <!-- <button class="video-btn" onclick=" (click)={window.open(fileDescription,'_blank')}>
+    <!--<button class="video-btn" onclick=" window.open({videourl},'_blank')">
         <img class="img" src="assets/video-link-img-05.jpg">
-    </button>
-    -->
-    <span class="vidname">{{fileName}}</span>
+    </button>-->
+    <a class="video-btn" href={{videourl}} target="_blank"><img class="img" src="assets/video-link-img-05.jpg"></a>
+
+    <span class="vidname">{{videoName}}</span>
 </div>

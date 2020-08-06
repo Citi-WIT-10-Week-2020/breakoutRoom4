@@ -73,7 +73,7 @@ export class AppComponent {
     this.signIn();
     
 
-    //this.router.navigate(['/']);
+    this.router.navigate(['/']);
 
 }
   
