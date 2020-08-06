@@ -14,6 +14,7 @@ export class PlaylistVideoComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    console.log("FILE TYPE AND NAME AND DESC ", this.fileType, " ", this.fileName," ", this.fileDescription);
   }
 
 }

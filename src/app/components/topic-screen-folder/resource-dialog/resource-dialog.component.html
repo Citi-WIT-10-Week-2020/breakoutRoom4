@@ -81,7 +81,7 @@
                     <p>
                         <mat-form-field appearance="legacy" class="input-fields">
                             <mat-label style="font-size:15px;">File Type</mat-label>
-                            <mat-select [(value)]="fileTypeSelected">
+                            <mat-select [(value)]="fileTypeSelected" formControlName="fileType">
                                 <mat-option value ="Link">Link</mat-option>
                                 <mat-option value =".mp4">.Mp4</mat-option>
                             </mat-select>             

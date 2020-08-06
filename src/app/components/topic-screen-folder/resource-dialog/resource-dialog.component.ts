@@ -119,13 +119,14 @@ onResourceSubmit(){
   let file = this.getFileGroup.get('file').value;
   console.log("INONSUBMIT",file);
   //let newFile = file.replace(/^data:image\/[a-z]+;base64,/, "");
-  if(this.fileDescription == undefined){
-    this.fileDescription = "empty";
-  }
+  
   //if adding a new resource, do this
   this.filename = this.fileForm.get('fileName').value;
   this.fileType = this.fileForm.get('fileType').value;
   this.fileDescription = this.fileForm.get('fileDescription').value;
+  if(this.fileDescription == undefined){
+    this.fileDescription = "empty";
+  }
   this.groupName = this.fileForm.get('groupName').value;
   console.log("GROUPNAME",this.groupName);
   console.log(this.filename, this.fileType," DESC ", this.fileDescription, this.groupName);
