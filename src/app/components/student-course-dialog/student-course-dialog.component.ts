@@ -37,8 +37,13 @@ export class StudentCourseDialogComponent implements OnInit {
       id:uuidv4(),
       studentID:this.studentId,
       courseID: this.courseId
-    }).catch((err)=>{
+    }).then((course)=>{
+      console.log("STUDNTCOURSE evt",course);
+      //if it was an incorrect one, alert the student saying it was an incorrect id
+    })
+    .catch((err)=>{
       console.log("Couldn't create studentCourse",err);
+      //alert student there was an error
     })
 
     this.dialogRef.close();
