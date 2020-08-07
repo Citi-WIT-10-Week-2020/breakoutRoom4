@@ -1,5 +1,5 @@
 <!--fileName is not connected to anything right now-->
-<ng-container *ngIf="fileType != 'Link'">
+<ng-container *ngIf="fileType != 'link'">
 <div class="file">
     <span class="file-name">
       <span>{{fileName}}</span>
@@ -28,7 +28,7 @@
   </div>
 </ng-container>
 
-<ng-container *ngIf="fileType == 'Link'">
+<ng-container *ngIf="fileType == 'link'">
   <div class="file" >
       <span><a href="{{fileDescription}}" target="_blank">{{fileName}}</a></span>
       <!-- <span class="tooltiptext">{{fileDescription}}</span> -->
