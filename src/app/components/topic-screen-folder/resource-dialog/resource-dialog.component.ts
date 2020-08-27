@@ -43,6 +43,8 @@ export class ResourceDialogComponent implements OnInit {
   fileDescription: string; //get from userInput, if URL = url, if file this = ""
   groupName: string; //get from userInput
   tabLabel : boolean = true;
+  videosrc : string;
+  videoName : string;
 
   ngOnInit(): void {
     this.subscibeToResourceGroupEvents();
@@ -71,6 +73,7 @@ export class ResourceDialogComponent implements OnInit {
     if(tabChangeEvent.index == 1){
       this.fileForm.get('groupName').setValue("Playlist");
       this.groupName = "Playlist";
+      this.tabLabel = false;
     }
     console.log("THIS GROUPNAME",this.groupName);
     console.log("FORM CONTROL GROUPNAME",this.fileForm.get('groupName').value);
@@ -91,8 +94,6 @@ cancel(){
   this.dialogRef.close();
   console.log(this.resourceGroups);
 }
-
-
 
  onFileChange(event){
   const reader = new FileReader();
@@ -139,6 +140,12 @@ onResourceSubmit(){
  
   console.log("RESOURCENAME",this.fileForm.get("fileName").value);
   this.fileservice.createFile(this.filename, this.fileType, file, this.courseName, this.topicName, this.fileDescription, this.groupName,this.fileForm.get('fileName').value); //PASS IN MORE PARAMS
+
+  if (this.tabLabel == false) {
+    this.videosrc = this.fileForm.get('fileDescription').value;
+    this.videoName = this.fileForm.get('fileName').value;
+  }
+
 }
 
 addResource(newGroup : boolean){
@@ -152,7 +159,6 @@ addResource(newGroup : boolean){
   
 
   if(newGroup){
-
     console.log("CREATING NEW GROUP");
     this.resourceGroupObject ={
     id : this.fileForm.get('id').value, 
@@ -160,8 +166,6 @@ addResource(newGroup : boolean){
     topic : this.topicName,
     groupName : this.fileForm.get('groupName').value
     }
-    
-
     
     this.fileservice.createResourceGroup(this.resourceGroupObject); 
     this.onResourceSubmit();
