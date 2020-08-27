@@ -43,7 +43,7 @@ export class CourseScreenComponent implements OnInit {
     //gets the course ID passed in from home-screen
     this.route.paramMap.subscribe(params => { 
       this.courseId = params.get('id'); 
-      console.log("courseId", this.courseId);
+      //console.log("courseId", this.courseId);
     });
    this.getTopics();
    this.subscibeToTopicCreations();
@@ -56,53 +56,62 @@ export class CourseScreenComponent implements OnInit {
       next: x =>{
         let status = x.attributes.name;
         (x.attributes.name == "Professor") ? this.isProfessor = true : this.isProfessor = false;
-        console.log("Professor Status: ", this.isProfessor);
+        //console.log("Professor Status: ", this.isProfessor);
       }
     }
     this.userinfo.getUserInfo().subscribe(myObserver);
   }
   subscibeToTopicCreations(){
     this.apiservice.OnCreateTopicListener.subscribe((evt)=>{
+      //console.log(this.professorName);
+
       const data = (evt as any).value.data.onCreateTopic;
+      //console.log(data);
+      if(data.professor == this.professorName){
       this.topics =[...this.topics,data];
+      }
     });
   }
   subscribeToTopicUpdates(){
     this.apiservice.OnUpdateTopicListener.subscribe((evt)=>{
-      console.log("HERE");
+     // console.log("HERE");
       const data = (evt as any).value.data.onUpdateTopic;
-      console.log("data", data);
+     // console.log("data", data);
       
-      console.log("An update has occurred!");
+      //console.log("An update has occurred!");
       //search thru array, find original, and replace it with the new one
+      if(data.professor == this.professorName){
       this.topics = this.topics.map((topic)=>{
         if(topic.id == data.id){
           return data;
         }
         else return topic;
       })
+    }
     });
   }
   subscribeToTopicDeletions(){
     this.apiservice.OnDeleteTopicListener.subscribe((evt)=>{
-      console.log("HEREE");
-      console.log("A deletion has occured!");
+      //console.log("HEREE");
+      //console.log("A deletion has occured!");
       const data = (evt as any).value.data.onDeleteTopic;
-      console.log(data);
+      //console.log(data);
       //basically, search thru array, find original, remove it
+      if(data.professor == this.professorName){
       this.topics = this.topics.filter((topic)=>{
           return (topic.id != data.id)
       });
-      console.log(this.topics);
+    }
+      //console.log(this.topics);
     });
   }
   getTopics(){
     const myObserver = {
       next: x => {
-       console.log("get topics" , x);
+       //console.log("get topics" , x);
        this.course = x.courseName;
         this.topics = x.topics.items;
-        console.log("topics", this.topics);
+        //console.log("topics", this.topics);
         //also set professor and course name
         this.courseName = x.courseName;
         this.professorName = x.professor;
@@ -114,7 +123,7 @@ export class CourseScreenComponent implements OnInit {
   }
   //open topic dialog
   openTopicDialog() {
-    console.log("dialog opened");
+    //console.log("dialog opened");
     const dialogConfig = new MatDialogConfig();
     let dialogRef = this.matDialog.open(TopicDialogComponent, dialogConfig);
     let instance =  dialogRef.componentInstance;

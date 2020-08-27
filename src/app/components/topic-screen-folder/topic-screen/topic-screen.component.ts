@@ -60,20 +60,21 @@ export class TopicScreenComponent implements OnInit {
       this.topicId = params.get('id'); 
       this.topicName = params.get('TopicName'); 
     });
-    console.log(this.topicId);
-    console.log(this.topicName);
+    //console.log(this.topicId);
+    //console.log(this.topicName);
     //this.getFiles();
     this.checkResourceGroups();
     this.subscribeToResourceGroupEvents();
     this.subscibeToFileEvents();
+
   }
 
   getUserStatus(){
     const myObserver = {
       next: x =>{
-        let status = x.attributes.name;
+        //let status = x.attributes.name;
         (x.attributes.name == "Professor") ? this.isProfessor = true : this.isProfessor = false;
-        console.log("Professor Status: ", this.isProfessor);
+        //console.log("Professor Status: ", this.isProfessor);
       }
     }
     this.userinfo.getUserInfo().subscribe(myObserver);
@@ -83,13 +84,16 @@ export class TopicScreenComponent implements OnInit {
      this.apiservice.OnCreateFileListener.subscribe((evt)=>{
       //console.log("FILE CREATED",evt);
       const data = (evt as any).value.data.onCreateFile;
-      console.log(data.resourseGroup)
-      if(data.resourseGroup == "Playlist"){
+      console.log(data)
+      if(data.course = this.courseName && data.topic == this.topic.TopicName){
+        if(data.resourseGroup == "Playlist"){
         this.playlist.files.items = [...this.playlist.files.items,data];
       }
       else if(data.resourseGroup == "FAQ"){
         this.faq.files.items = [...this.faq.files.items,data];
       }
+      }
+      
     });
     //deletions
     this.apiservice.OnDeleteFileListener.subscribe((evt)=>{
@@ -97,6 +101,8 @@ export class TopicScreenComponent implements OnInit {
       const data = (evt as any).value.data.onDeleteFile;
       console.log(data);
       //basically, search thru array, find original, remove it
+
+      if(data.course = this.courseName && data.topic == this.topic.TopicName){
       if(data.resourseGroup == "Playlist"){
         this.playlist.files.items = this.playlist.files.items.filter((video)=>{
           return(video.id != data.id)
@@ -107,6 +113,7 @@ export class TopicScreenComponent implements OnInit {
           return(question.id != data.id)
         })
       }
+    }
     });
     //updates
     this.apiservice.OnUpdateFileListener.subscribe((evt)=>{
@@ -114,24 +121,26 @@ export class TopicScreenComponent implements OnInit {
       console.log("Update", data);
       console.log("An update has occurred!");
       //search thru array, find original, and replace it with the new one
+      if(data.course = this.courseName && data.topic == this.topic.TopicName){
       this.faq.files.items = this.faq.files.items.map((question)=>{
         if(question.id == data.id){
           return data;
         }
         else return question;
       })
+    }
     });
   }
   subscribeToResourceGroupEvents(){
     //creations
     this.apiservice.OnCreateResourceGroupListener.subscribe((evt)=>{
-      console.log("RESOURCE GROUP CREATED");
+      //console.log("RESOURCE GROUP CREATED");
       const data = (evt as any).value.data.onCreateResourceGroup;
       if(this.resourceGroups== undefined){
         this.resourceGroups = [];
       }
-      console.log(evt);
-      if(data.groupName != "Playlist" && data.groupName != "FAQ"){
+      //console.log(data);
+      if(data.course = this.courseName && data.topic == this.topic.TopicName && data.groupName != "Playlist" && data.groupName != "FAQ"){
         this.resourceGroups = [...this.resourceGroups,data];
       }
     });
@@ -139,12 +148,14 @@ export class TopicScreenComponent implements OnInit {
     this.apiservice.OnDeleteResourceGroupListener.subscribe((evt)=>{
       console.log("RESOURCE GROUP DELETED");
       const data = (evt as any).value.data.onDeleteResourceGroup;
-      console.log(data);
+      //console.log(data);
       //basically, search thru array, find original, remove it
+      if(data.course = this.courseName && data.topic == this.topic.TopicName && data.groupName != "Playlist" && data.groupName != "FAQ"){
       this.resourceGroups = this.resourceGroups.filter((group)=>{
           return (group.id != data.id)
       });
-      console.log(this.resourceGroups);
+    }
+      //console.log(this.resourceGroups);
     });
     //updates
     this.apiservice.OnUpdateResourceGroupListener.subscribe((evt)=>{
@@ -152,20 +163,23 @@ export class TopicScreenComponent implements OnInit {
       console.log("Update", data);
       console.log("An update has occurred!");
       //search thru array, find original, and replace it with the new one
+      if(data.course = this.courseName && data.topic == this.topic.TopicName && data.groupName != "Playlist" && data.groupName != "FAQ"){
       this.resourceGroups = this.resourceGroups.map((group)=>{
         if(group.id == data.id){
           return data;
         }
         else return group;
       })
+    }
     });
   }
    checkResourceGroups(){
     const myObserver = {
       next: x => {
-        console.log('THE TOPIC: ' , x);
+        //console.log('THE TOPIC: ' , x);
         this.topic = x.data.getTopic;
-        console.log("ACTUAL TOPIC",this.topic.resourceGroups);
+        console.log(this.topic);
+       // console.log("ACTUAL TOPIC",this.topic.resourceGroups);
         //if resource groups are empty, createresource groups
         if(this.topic.resourceGroups.items.length == 0){
           console.log("creating resourceGroups");
@@ -173,19 +187,19 @@ export class TopicScreenComponent implements OnInit {
         }
         else{
           //find faq and playlist
-          console.log("RESOURCE GROUP ASSIGNMENT");
+          //console.log("RESOURCE GROUP ASSIGNMENT");
           this.faq = this.topic.resourceGroups.items.find((item)=>{
             return (item.groupName == "FAQ")
           });
-          console.log("FAQ",this.faq);
+          //console.log("FAQ",this.faq);
           this.playlist = this.topic.resourceGroups.items.find((item)=>{
             return (item.groupName == "Playlist")
           });
-          console.log("PLAYLIST",this.playlist);
+         // console.log("PLAYLIST",this.playlist);
           this.resourceGroups = this.topic.resourceGroups.items.filter((item)=>{
             return(item.groupName != "Playlist" && item.groupName != "FAQ")
           });
-          console.log("GROUPS", this.resourceGroups);
+          //console.log("GROUPS", this.resourceGroups);
         }
       },
       error: err => console.error('Observer got an error: ' + err),
@@ -208,10 +222,10 @@ export class TopicScreenComponent implements OnInit {
     }
     //create Playlist
     this.playlist = await this.fileservice.createResourceGroup(playlist);
-    console.log("PLAYLIST",this.playlist);
+    //console.log("PLAYLIST",this.playlist);
     //create FAQ
     this.faq = await this.fileservice.createResourceGroup(faq);
-    console.log(this.faq,faq);
+    //console.log(this.faq,faq);
     //check to see if the resourcegroups are there
    /* this.fileservice.getTopic(this.topicId).subscribe((x)=>{
       console.log(x);
