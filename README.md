@@ -1,13 +1,7 @@
 # AcornSQURL
-Anjali was here
 
-Ashley wuz also herr
-=======
-
-Caitlin has arrived
-
-=======
-Dina wuz here
+## Deploying to Console
+[![amplifybutton](https://oneclick.amplifyapp.com/button.svg)](https://console.aws.amazon.com/amplify/home#/deploy?repo=https://github.com/Citi-WIT-10-Week-2020/breakoutRoom4)
 
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.8.
